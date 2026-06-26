@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cổng ứng dụng Khoa Dược - VPMED Tân Hưng</title>
+<meta name="description" content="Cổng ứng dụng Khoa Dược - Bệnh viện VPMED Tân Hưng">
+<style>
+:root{
+  --primary:#0B63A5;
+  --primary2:#073f73;
+  --accent:#0f766e;
+  --warning:#f59e0b;
+  --bg:#eef5fb;
+  --card:#fff;
+  --text:#102033;
+  --muted:#667085;
+  --border:#d8e4ef;
+  --shadow:0 14px 35px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,"Helvetica Neue",sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(11,99,165,.18), transparent 34%),
+    linear-gradient(135deg,#f7fbff,#eef5fb);
+  min-height:100vh;
+}
+.wrap{max-width:1050px;margin:0 auto;padding:22px}
+.hero{
+  background:linear-gradient(135deg,var(--primary),var(--primary2));
+  color:#fff;
+  border-radius:26px;
+  padding:28px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  box-shadow:var(--shadow);
+}
+.logo{
+  width:84px;height:84px;border-radius:22px;background:#fff;color:var(--primary);
+  display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:900;
+  flex-shrink:0;
+}
+.hero h1{margin:0;font-size:29px;text-transform:uppercase;letter-spacing:.3px}
+.hero p{margin:7px 0 0;color:#e7f2ff;font-size:16px}
+.badge{
+  display:inline-flex;margin-top:12px;padding:7px 12px;border-radius:999px;
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);
+  font-size:13px;font-weight:700;
+}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 10px 25px rgba(15,23,42,.07);
+  position:relative;
+  overflow:hidden;
+  transition:.18s ease;
+}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 32px rgba(15,23,42,.12)}
+.card:before{
+  content:"";
+  position:absolute;right:-45px;top:-45px;width:145px;height:145px;border-radius:50%;
+  background:rgba(11,99,165,.08);
+}
+.icon{font-size:42px;margin-bottom:12px}
+.card h2{margin:0 0 8px;color:var(--primary);font-size:22px}
+.card p{margin:0 0 16px;color:var(--muted);line-height:1.55}
+.status{
+  display:inline-flex;
+  gap:6px;
+  align-items:center;
+  color:#15803d;
+  background:#ecfdf5;
+  border:1px solid #bbf7d0;
+  border-radius:999px;
+  padding:5px 10px;
+  font-size:13px;
+  font-weight:800;
+  margin-bottom:13px;
+}
+.status.soon{color:#92400e;background:#fffbeb;border-color:#fde68a}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 16px;border-radius:14px;text-decoration:none;font-weight:800;
+  color:#fff;background:var(--primary);box-shadow:0 8px 18px rgba(11,99,165,.22);
+}
+.btn.secondary{background:var(--accent);box-shadow:0 8px 18px rgba(15,118,110,.20)}
+.btn.disabled{background:#94a3b8;pointer-events:none;box-shadow:none}
+.info{
+  margin-top:18px;background:#fff;border:1px solid var(--border);border-radius:20px;
+  padding:18px;box-shadow:0 8px 20px rgba(15,23,42,.05);
+}
+.info h3{margin:0 0 10px;color:var(--primary)}
+.info ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.7}
+.footer{text-align:center;color:var(--muted);font-size:13px;margin:18px 0 6px}
+.small{font-size:13px;color:var(--muted);margin-top:12px}
+@media(max-width:760px){
+  .wrap{padding:12px}
+  .hero{padding:20px;align-items:flex-start}
+  .logo{width:62px;height:62px;font-size:32px;border-radius:16px}
+  .hero h1{font-size:21px}
+  .hero p{font-size:14px}
+  .grid{grid-template-columns:1fr}
+  .card{padding:18px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <div class="logo">💊</div>
+    <div>
+      <h1>Cổng ứng dụng Khoa Dược</h1>
+      <p>Bệnh viện VPMED Tân Hưng · Hỗ trợ thực hành dược lâm sàng</p>
+      <div class="badge">Phiên bản v1.0 · QR dùng chung</div>
+    </div>
+  </section>
+
+  <main class="grid">
+    <article class="card">
+      <div class="icon">🧮</div>
+      <h2>Hiệu chỉnh liều kháng sinh</h2>
+      <div class="status">● Đang hoạt động</div>
+      <p>Tra cứu và hỗ trợ hiệu chỉnh liều kháng sinh cho bệnh nhân suy thận.</p>
+      <a class="btn" href="https://vpmed-tanhung.github.io/tinh-lieu-khang-sinh/" target="_blank" rel="noopener">Mở ứng dụng</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">⭐</div>
+      <h2>Đánh giá phần mềm</h2>
+      <div class="status">● Đang hoạt động</div>
+      <p>Gửi góp ý về giao diện, tính hữu ích, độ tin cậy và các tính năng cần bổ sung.</p>
+      <a class="btn secondary" href="https://vpmed-tanhung.github.io/phieu-danh-gia-khang-sinh/" target="_blank" rel="noopener">Gửi đánh giá</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🔎</div>
+      <h2>Tra cứu tương tác thuốc</h2>
+      <div class="status soon">● Sắp bổ sung</div>
+      <p>Module cảnh báo tương tác thuốc và hỗ trợ rà soát thuốc dùng đồng thời.</p>
+      <a class="btn disabled" href="#">Đang phát triển</a>
+    </article>
+
+    <article class="card">
+      <div class="icon">🧪</div>
+      <h2>Theo dõi TDM</h2>
+      <div class="status soon">● Sắp bổ sung</div>
+      <p>Theo dõi nồng độ thuốc, ưu tiên vancomycin, aminoglycoside và thuốc cần giám sát.</p>
+      <a class="btn disabled" href="#">Đang phát triển</a>
+    </article>
+  </main>
+
+  <section class="info">
+    <h3>Hướng dẫn sử dụng nhanh</h3>
+    <ul>
+      <li>Quét QR để vào cổng ứng dụng chung của Khoa Dược.</li>
+      <li>Chọn đúng công cụ cần sử dụng: hiệu chỉnh liều hoặc gửi đánh giá.</li>
+      <li>QR này có thể dùng lâu dài; khi bổ sung công cụ mới chỉ cần cập nhật trang Portal.</li>
+    </ul>
+  </section>
+
+  <div class="footer">
+    © 2026 Khoa Dược · Bệnh viện VPMED Tân Hưng
+    <div class="small">Cổng ứng dụng nội bộ phục vụ công tác dược lâm sàng</div>
+  </div>
+</div>
+</body>
+</html>
