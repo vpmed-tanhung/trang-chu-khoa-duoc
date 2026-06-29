@@ -178,3 +178,16 @@ body{font-size:16px;line-height:1.55}main{max-width:1680px;padding:28px 36px}.to
 .brand-facebook:hover{color:#0f7f6e!important}
 
 @media(max-width:560px){.brand-logo{width:62px;height:42px}.title-separator{margin:0 2px!important}}
+
+/* Liên kết quản trị chỉ hiển thị trên thanh công cụ; truy cập bắt buộc xác thực */
+.admin-nav-link{
+  display:inline-flex!important;
+  align-items:center;
+  gap:6px;
+  border:1px solid #b9d4e8;
+  background:#f5fbff;
+  color:#075985!important;
+  border-radius:10px;
+  padding:8px 11px!important;
+}
+.admin-nav-link:hover{background:#e8f5fd!important;color:#064d73!important}

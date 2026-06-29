@@ -82,3 +82,14 @@ Công cụ hỗ trợ tra cứu; liều cuối cùng phụ thuộc chỉ định
 6. Thêm tên miền GitHub Pages của bạn vào **Authentication → Settings → Authorized domains**.
 
 > GitHub Pages là website tĩnh. Lớp này xác thực người dùng trước khi mở giao diện quản trị. Trang cập nhật vẫn xuất JSON để Khoa Dược duyệt và Commit/Push; website không tự ghi trực tiếp vào repository.
+
+
+## Thanh công cụ và quyền quản trị
+
+- Trang chủ và trang tương tác có mục **🔒 Cập nhật thuốc mới** trên thanh công cụ.
+- Liên kết này mở `admin-login.html`; chỉ tài khoản Firebase Authentication nằm trong `allowedEmails` hoặc `allowedDomains` mới được chuyển tới `admin.html`.
+- Thẻ cập nhật thuốc ở khu vực ứng dụng bên dưới vẫn được ẩn.
+
+## Bảo vệ mã nguồn
+
+GitHub Pages là website tĩnh: mọi HTML/CSS/JavaScript gửi tới trình duyệt đều có thể được xem bằng công cụ phát triển. Không đưa mật khẩu, khóa quản trị, GitHub token hoặc dữ liệu bí mật vào mã nguồn. Để hạn chế người khác **chỉnh sửa kho mã**, đặt repository ở chế độ private nếu gói GitHub của đơn vị hỗ trợ Pages riêng tư, giới hạn collaborator, bật branch protection và yêu cầu pull request. Muốn ẩn hoàn toàn logic quản trị/dữ liệu nhạy cảm cần chuyển phần quản trị sang backend hoặc cổng nội bộ có kiểm soát truy cập.
