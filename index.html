@@ -20,7 +20,7 @@
     <nav class="nav">
       <a href="#apps">Ứng dụng</a>
       <a href="#khang-sinh">Tra cứu kháng sinh</a>
-      <a href="#nguon-du-lieu">Nguồn dữ liệu</a>
+      <a href="admin.html">Cập nhật thuốc</a>
     </nav>
   </header>
 
@@ -77,6 +77,14 @@
           <span class="status developing">Đang phát triển</span>
           <a class="card-link disabled-link" href="javascript:void(0)" aria-disabled="true">Sắp bổ sung</a>
         </article>
+
+        <article class="app-card admin-card">
+          <div class="app-icon">➕</div>
+          <h3>Cập nhật thuốc mới</h3>
+          <p>Nhập thuốc mới bằng JSON/CSV, kiểm tra trường bắt buộc và xuất lại tệp dữ liệu để triển khai.</p>
+          <span class="status active">Quản trị cục bộ</span>
+          <a class="card-link admin-link" href="admin.html">Mở trình cập nhật</a>
+        </article>
       </div>
     </section>
 
@@ -84,7 +92,7 @@
       <div class="section-head">
         <p class="eyebrow">Tra cứu nhanh</p>
         <h2>Danh mục kháng sinh điều trị nội trú</h2>
-        <p class="section-desc">Tìm theo biệt dược, hoạt chất hoặc nhóm kháng sinh. Mỗi thuốc/biệt dược là một hồ sơ riêng: cơ chế, phổ tác dụng, chỉ định, chống chỉ định, liều chuẩn, hiệu chỉnh CrCl, HD/CRRT, pha truyền, tương tác, ADR, TDM và theo dõi.</p>
+        <p class="section-desc">Tìm theo biệt dược hoặc hoạt chất. Mỗi biệt dược là một hồ sơ riêng; dữ liệu hiệu chỉnh liều được trình bày chi tiết theo CrCl và phương thức lọc máu khi có nguồn phù hợp.</p>
       </div>
 
       <div class="search-toolbar">
@@ -124,9 +132,10 @@
 
   <footer class="footer">
     <strong>Khoa Dược · Bệnh viện VPMED Tân Hưng</strong>
-    <span>Hệ thống hỗ trợ dược lâm sàng và quản lý sử dụng kháng sinh · Phiên bản V5</span>
+    <span>Hệ thống hỗ trợ dược lâm sàng và quản lý sử dụng kháng sinh</span>
   </footer>
 
+  <script src="js/data-fallback.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>
