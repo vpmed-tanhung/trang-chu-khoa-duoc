@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi" class="auth-pending">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Đăng nhập nội bộ · VPMED</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .auth-pending body{visibility:hidden}.login-shell{max-width:520px;margin:70px auto;padding:20px}.login-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:30px;box-shadow:var(--shadow)}.login-card h1{margin:0 0 8px;color:var(--primary-dark)}.login-card p{color:var(--muted);line-height:1.55}.login-field{display:grid;gap:7px;margin:16px 0}.login-field input{padding:14px;border:1px solid var(--border);border-radius:12px;font:inherit}.login-btn{width:100%;border:0;border-radius:12px;padding:14px;background:var(--primary);color:#fff;font-weight:900;cursor:pointer}.login-msg{min-height:24px;color:#b91c1c;font-weight:700;margin-top:14px}.back{display:inline-block;margin-top:18px;color:var(--primary);font-weight:700}
+  </style>
+</head>
+<body>
+  <main class="login-shell">
+    <section class="login-card">
+      <p class="eyebrow">Khu vực nội bộ</p>
+      <h1>Đăng nhập quản trị thuốc</h1>
+      <p>Chỉ tài khoản do Khoa Dược tạo trong hệ thống xác thực nội bộ mới được phép truy cập.</p>
+      <form id="loginForm">
+        <label class="login-field">Email nội bộ<input id="email" type="email" autocomplete="username" required></label>
+        <label class="login-field">Mật khẩu<input id="password" type="password" autocomplete="current-password" required></label>
+        <button class="login-btn" type="submit">Đăng nhập</button>
+      </form>
+      <div id="loginMessage" class="login-msg"></div>
+      <a class="back" href="index.html">← Quay lại trang chủ</a>
+    </section>
+  </main>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-auth-compat.js"></script>
+  <script src="js/auth-config.js"></script>
+  <script src="js/auth-guard.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const msg = document.getElementById('loginMessage');
+      msg.textContent = 'Đang xác thực...';
+      try {
+        await firebase.auth().signInWithEmailAndPassword(
+          document.getElementById('email').value.trim(),
+          document.getElementById('password').value
+        );
+      } catch (err) {
+        const map = {
+          'auth/invalid-credential':'Email hoặc mật khẩu không đúng.',
+          'auth/user-disabled':'Tài khoản đã bị khóa.',
+          'auth/too-many-requests':'Đăng nhập sai quá nhiều lần. Vui lòng thử lại sau.'
+        };
+        msg.textContent = map[err.code] || ('Không đăng nhập được: ' + (err.message || err));
+      }
+    });
+  </script>
+</body>
+</html>

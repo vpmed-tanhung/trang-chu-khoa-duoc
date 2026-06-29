@@ -58,3 +58,27 @@ Công cụ hỗ trợ tra cứu; liều cuối cùng phụ thuộc chỉ định
 - Danh sách gợi ý hiển thị theo dạng: `Biệt dược — Hoạt chất (hàm lượng)`.
 - Khi kiểm tra, hệ thống tự quy đổi biệt dược sang hoạt chất tương ứng.
 - Kết quả tương tác hiển thị kèm tên biệt dược nội trú nếu hoạt chất có trong danh mục.
+
+
+## Cập nhật giao diện
+- Tất cả nội dung chi tiết của tương tác được thu gọn mặc định.
+- Chỉ hiển thị Mức độ, Hậu quả, Cơ chế, Cách xử trí và Nguồn khi người dùng nhấp từng mục.
+- Danh sách chỉ hiển thị tên cặp thuốc; không hiển thị sẵn mức độ hay nội dung.
+
+## Bảo mật trang cập nhật thuốc
+
+- Trang chủ đã ẩn hoàn toàn thẻ và liên kết **Cập nhật thuốc mới**.
+- Truy cập quản trị qua URL riêng: `admin-login.html`.
+- Trang `admin.html` yêu cầu đăng nhập Firebase Authentication trước khi hiển thị.
+- Tài khoản không được đăng ký trong danh sách email/tên miền nội bộ sẽ bị đăng xuất.
+
+### Thiết lập một lần
+
+1. Tạo project tại Firebase Console.
+2. Vào **Authentication → Sign-in method** và bật **Email/Password**.
+3. Vào **Authentication → Users** để tạo tài khoản nội bộ. Không bật chức năng tự đăng ký công khai.
+4. Tạo Web App trong Firebase, sao chép cấu hình vào `js/auth-config.js`.
+5. Khai báo `allowedEmails` hoặc `allowedDomains` trong cùng file.
+6. Thêm tên miền GitHub Pages của bạn vào **Authentication → Settings → Authorized domains**.
+
+> GitHub Pages là website tĩnh. Lớp này xác thực người dùng trước khi mở giao diện quản trị. Trang cập nhật vẫn xuất JSON để Khoa Dược duyệt và Commit/Push; website không tự ghi trực tiếp vào repository.

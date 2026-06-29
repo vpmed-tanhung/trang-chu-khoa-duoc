@@ -100,40 +100,37 @@
       .map(line => `<p>${escapeHtml(line)}</p>`).join("");
   };
 
+  const accordionItem = (title, content, extraClass = "") => `
+    <details class="interaction-accordion ${extraClass}">
+      <summary>
+        <span>${escapeHtml(title)}</span>
+        <span class="accordion-icon" aria-hidden="true">＋</span>
+      </summary>
+      <div class="accordion-content">${content}</div>
+    </details>`;
+
   const resultCard = row => `
     <article class="interaction-detail-card">
       <div class="interaction-detail-head">
         <div>
           <p class="eyebrow">Tương tác chống chỉ định</p>
           <h2>${escapeHtml(displayDrugName(row.drug_a))} <span>+</span> ${escapeHtml(displayDrugName(row.drug_b))}</h2>
+          <p class="interaction-click-note">Nhấp từng mục bên dưới để xem thông tin.</p>
         </div>
-        <span class="severity-badge">${escapeHtml(row.evidence || "Chưa ghi")}</span>
       </div>
-      <div class="interaction-detail-grid">
-        <section>
-          <h3>Hậu quả</h3>
-          ${formatMultiline(row.consequence)}
-        </section>
-        <section>
-          <h3>Cơ chế</h3>
-          ${formatMultiline(row.mechanism)}
-        </section>
-        <section class="wide">
-          <h3>Cách xử trí</h3>
-          ${formatMultiline(row.management)}
-        </section>
-        <section class="wide source-box">
-          <h3>Tài liệu tham khảo</h3>
-          <p>${escapeHtml(row.reference || "Chưa ghi trong tệp nguồn.")}</p>
-        </section>
+      <div class="interaction-accordion-list">
+        ${accordionItem("Mức độ bằng chứng", `<p><strong>${escapeHtml(row.evidence || "Chưa ghi")}</strong></p>`, "severity-panel")}
+        ${accordionItem("Hậu quả", formatMultiline(row.consequence))}
+        ${accordionItem("Cơ chế", formatMultiline(row.mechanism))}
+        ${accordionItem("Cách xử trí", formatMultiline(row.management))}
+        ${accordionItem("Tài liệu tham khảo", `<p>${escapeHtml(row.reference || "Chưa ghi trong tệp nguồn.")}</p>`, "source-panel")}
       </div>
     </article>`;
 
   const listItem = row => `
-    <button class="interaction-list-item" type="button" data-id="${escapeHtml(row.id)}">
+    <button class="interaction-list-item compact" type="button" data-id="${escapeHtml(row.id)}">
       <span class="interaction-pair">${escapeHtml(displayDrugName(row.drug_a))} + ${escapeHtml(displayDrugName(row.drug_b))}</span>
-      <span class="interaction-summary">${escapeHtml(row.consequence || "")}</span>
-      <span class="mini-severity">${escapeHtml(row.evidence || "Chưa ghi")}</span>
+      <span class="interaction-open-label">Nhấp để xem chi tiết →</span>
     </button>`;
 
   const renderList = () => {
