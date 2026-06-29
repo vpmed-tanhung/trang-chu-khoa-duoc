@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danh mục tương tác thuốc | VPMED Tân Hưng</title>
+  <meta name="description" content="Tra cứu danh mục tương tác thuốc chống chỉ định tại Bệnh viện VPMED Tân Hưng." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="interaction-page">
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Trang chủ">
+      <div class="brand-logo">V</div>
+      <div>
+        <strong>Hệ thống Hỗ trợ Dược lâm sàng</strong>
+        <span>Bệnh viện VPMED Tân Hưng</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="index.html#apps">Ứng dụng</a>
+      <a href="index.html#khang-sinh">Tra cứu kháng sinh</a>
+      <a class="active" href="interactions.html">Tương tác thuốc</a>
+    </nav>
+  </header>
+
+  <main class="interaction-main">
+    <section class="interaction-hero">
+      <div>
+        <p class="eyebrow">Danh mục tương tác chống chỉ định</p>
+        <h1>Kiểm tra tương tác thuốc</h1>
+        <p>Tra cứu các cặp tương tác trong danh mục do Khoa Dược cung cấp, kèm hậu quả, cơ chế, cách xử trí và tài liệu tham khảo.</p>
+      </div>
+      <div class="interaction-metrics">
+        <div><b id="totalInteractions">0</b><span>cặp tương tác</span></div>
+        <div><b id="totalMedicines">0</b><span>thuốc/hoạt chất</span></div>
+      </div>
+    </section>
+
+    <section class="interaction-checker">
+      <div class="section-head">
+        <p class="eyebrow">Kiểm tra nhanh</p>
+        <h2>Nhập hai thuốc cần kiểm tra</h2>
+      </div>
+      <datalist id="drugNames"></datalist>
+      <div class="interaction-form">
+        <div>
+          <label for="drugA">Thuốc thứ nhất</label>
+          <input id="drugA" list="drugNames" type="search" placeholder="Ví dụ: Medivernol 1g hoặc Ceftriaxon" autocomplete="off" />
+        </div>
+        <button id="swapDrugs" class="swap-button" type="button" title="Đổi vị trí hai thuốc">⇄</button>
+        <div>
+          <label for="drugB">Thuốc thứ hai</label>
+          <input id="drugB" list="drugNames" type="search" placeholder="Ví dụ: Calci clorid" autocomplete="off" />
+        </div>
+        <button id="checkInteraction" class="btn primary checker-button" type="button">Kiểm tra</button>
+        <button id="clearInteraction" class="btn outline checker-button" type="button">Xóa</button>
+      </div>
+      <p class="interaction-input-note">Có thể nhập <strong>tên biệt dược trong danh mục nội trú</strong> hoặc <strong>tên hoạt chất</strong>. Hệ thống tự quy đổi biệt dược sang hoạt chất để kiểm tra.</p>
+      <div id="interactionResult" class="interaction-result">
+        <div class="empty-state">Nhập hai thuốc để kiểm tra tương tác.</div>
+      </div>
+    </section>
+
+    <section class="interaction-catalog">
+      <div class="section-head catalog-head">
+        <div>
+          <p class="eyebrow">Danh mục đầy đủ</p>
+          <h2>Tra cứu tất cả tương tác</h2>
+        </div>
+        <span id="interactionCount" class="catalog-count">0 tương tác</span>
+      </div>
+      <div class="catalog-search">
+        <label for="interactionSearch">Tìm theo tên thuốc, hậu quả, cơ chế hoặc cách xử trí</label>
+        <input id="interactionSearch" type="search" placeholder="Nhập từ khóa..." autocomplete="off" />
+      </div>
+      <div id="interactionList" class="interaction-list"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <strong>Khoa Dược · Bệnh viện VPMED Tân Hưng</strong>
+    <span>Danh mục tương tác thuốc được nhập từ tệp do Khoa Dược cung cấp</span>
+  </footer>
+
+  <script src="js/data-fallback.js"></script>
+  <script src="js/interactions.js"></script>
+</body>
+</html>

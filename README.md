@@ -45,3 +45,16 @@ Công cụ hỗ trợ tra cứu; liều cuối cùng phụ thuộc chỉ định
 - Mở rộng chống chỉ định riêng theo từng hoạt chất/biệt dược trong danh mục nội trú.
 - Đồng bộ cả `data/antibiotics.json` và dữ liệu dự phòng mở local.
 - Đối chiếu Dược thư Quốc gia Việt Nam lần 3 và tờ HDSD được phê duyệt; các chống chỉ định đặc thù chế phẩm/tá dược vẫn cần đối chiếu tờ HDSD đúng số đăng ký đang sử dụng tại bệnh viện.
+
+## Bổ sung danh mục tương tác thuốc
+
+- `interactions.html`: giao diện tra cứu tương tác.
+- `data/interactions.json`: dữ liệu nhập từ tệp `Dm TT CCĐ.xls`.
+- `js/interactions.js`: logic tìm kiếm và kiểm tra cặp thuốc.
+- Các module đang hoạt động khác được giữ nguyên.
+
+## Bổ sung tên thuốc theo danh mục nội trú
+- Ô kiểm tra tương tác nhận cả **tên biệt dược nội trú** và **tên hoạt chất**.
+- Danh sách gợi ý hiển thị theo dạng: `Biệt dược — Hoạt chất (hàm lượng)`.
+- Khi kiểm tra, hệ thống tự quy đổi biệt dược sang hoạt chất tương ứng.
+- Kết quả tương tác hiển thị kèm tên biệt dược nội trú nếu hoạt chất có trong danh mục.
