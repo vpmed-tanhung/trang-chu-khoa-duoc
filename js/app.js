@@ -27,8 +27,71 @@ function renderInteractions(items) {
   return items.map(x => `<li><b>${safeText(x.cap, 'Cặp tương tác')}</b> <span class="badge ${normalizeText(x.muc_do)}">${safeText(x.muc_do, 'Theo dõi')}</span><br>${safeText(x.canh_bao, '')}<br><small><b>Xử trí:</b> ${safeText(x.xu_tri, 'Theo dõi và đánh giá lâm sàng.')}</small></li>`).join('');
 }
 
+function renderObjRows(obj) {
+  if (!obj || !Object.keys(obj).length) return '<tr><td colspan="2">Chưa có dữ liệu.</td></tr>';
+  return Object.entries(obj).map(([key, value]) => `<tr><td><b>${key}</b></td><td>${safeText(value)}</td></tr>`).join('');
+}
+function renderClinical(item) {
+  const c = item.thong_tin_chuyen_mon || {};
+  const pha = c.pha_truyen || item.cach_pha_truyen || {};
+  const tdm = c.tdm || item.tdm || {};
+  return `
+    <div class="clinical-full">
+      <section class="tab-card wide clinical-banner">
+        <h4>📚 Hồ sơ chuyên môn đầy đủ</h4>
+        <p>Thông tin được trình bày theo cấu trúc dùng cho danh mục kháng sinh nội trú: tổng quan, phổ tác dụng, liều, suy thận/lọc máu, pha truyền, tương tác, ADR, theo dõi và TDM.</p>
+      </section>
+      <section class="tab-card">
+        <h4>🧬 Cơ chế & phổ tác dụng</h4>
+        <p><b>Cơ chế:</b> ${safeText(c.co_che)}</p>
+        <ul>${renderList(c.pho_tac_dung)}</ul>
+        <p><b>Dược động học/lưu ý PK-PD:</b></p>
+        <ul>${renderList(c.duoc_dong_hoc)}</ul>
+      </section>
+      <section class="tab-card">
+        <h4>✅ Chỉ định chính</h4>
+        <ul>${renderList(c.chi_dinh_chinh || item.chi_dinh_goi_y)}</ul>
+        <h5>Chống chỉ định</h5>
+        <ul>${renderList(c.chong_chi_dinh || item.chong_chi_dinh)}</ul>
+      </section>
+      <section class="tab-card wide">
+        <h4>💉 Liều chuẩn & hiệu chỉnh chức năng thận</h4>
+        <p><b>Liều chuẩn người lớn:</b> ${safeText(c.lieu_chuan || item.lieu_goi_y?.lieu_truyen_thong)}</p>
+        <p><b>ODA / truyền kéo dài:</b> ${safeText(c.oda_truyen_keo_dai || item.lieu_goi_y?.oda_keo_dai)}</p>
+        <table><thead><tr><th>CrCl / lọc máu</th><th>Gợi ý hiệu chỉnh</th></tr></thead><tbody>${renderObjRows(c.hieu_chinh_than || item.lieu_goi_y?.hieu_chinh_crcl)}</tbody></table>
+        <h5>HD / CRRT</h5>
+        <table><tbody>${renderObjRows(c.hd_crrt)}</tbody></table>
+      </section>
+      <section class="tab-card">
+        <h4>🧪 Pha truyền / cách dùng</h4>
+        <p><b>Dung môi:</b> ${safeText(pha.dung_moi)}</p>
+        <p><b>Tốc độ / thời gian:</b> ${safeText(pha.toc_do)}</p>
+        <p><b>Lưu ý tương hợp:</b> ${safeText(pha.luu_y)}</p>
+        <p><b>Bảo quản:</b> ${safeText(c.bao_quan)}</p>
+      </section>
+      <section class="tab-card">
+        <h4>⚠️ Tương tác thuốc ưu tiên</h4>
+        <ul>${renderInteractions(c.tuong_tac || item.canh_bao_tuong_tac)}</ul>
+      </section>
+      <section class="tab-card">
+        <h4>📈 Theo dõi & TDM</h4>
+        <p><b>TDM:</b> ${tdm.can ? 'Có / ưu tiên' : 'Không thường quy'} ${tdm.muc_tieu ? '· ' + tdm.muc_tieu : ''}</p>
+        <ul>${renderList(c.theo_doi || item.theo_doi)}</ul>
+      </section>
+      <section class="tab-card">
+        <h4>🚨 ADR & thận trọng</h4>
+        <h5>ADR cần lưu ý</h5><ul>${renderList(c.adr || item.adr_can_luu_y)}</ul>
+        <h5>Thận trọng</h5><ul>${renderList(c.than_trong)}</ul>
+      </section>
+      <section class="tab-card wide">
+        <h4>👶 Thai kỳ / cho con bú / ghi chú thực hành</h4>
+        <p>${safeText(c.thai_ky_cho_con_bu)}</p>
+        <ul>${renderList(c.ghi_chu_thuc_hanh || item.luu_y_quan_trong)}</ul>
+      </section>
+    </div>`;
+}
+
 function renderAntibioticCard(item) {
-  const crcl = item.lieu_goi_y?.hieu_chinh_crcl || {};
   return `
     <article class="abx-card">
       <div class="abx-title">
@@ -47,48 +110,9 @@ function renderAntibioticCard(item) {
       </div>
 
       <div class="tab-grid">
-        <section class="tab-card">
-          <h4>📋 Tổng quan</h4>
-          <ul>${renderList(item.chi_dinh_goi_y)}</ul>
-          <h5>Chống chỉ định / thận trọng</h5>
-          <ul>${renderList(item.chong_chi_dinh)}</ul>
-        </section>
-
-        <section class="tab-card wide">
-          <h4>💉 Liều gợi ý & hiệu chỉnh CrCl</h4>
-          <p><b>Liều truyền thống:</b> ${safeText(item.lieu_goi_y?.lieu_truyen_thong)}</p>
-          <p><b>ODA / truyền kéo dài:</b> ${safeText(item.lieu_goi_y?.oda_keo_dai)}</p>
-          <table><thead><tr><th>CrCl / lọc máu</th><th>Gợi ý hiệu chỉnh</th></tr></thead><tbody>${renderRows(crcl)}</tbody></table>
-        </section>
-
-        <section class="tab-card">
-          <h4>🧪 Cách pha truyền</h4>
-          <p><b>Dung môi:</b> ${safeText(item.cach_pha_truyen?.dung_moi)}</p>
-          <p><b>Tốc độ:</b> ${safeText(item.cach_pha_truyen?.toc_do)}</p>
-          <p><b>Lưu ý:</b> ${safeText(item.cach_pha_truyen?.luu_y)}</p>
-        </section>
-
-        <section class="tab-card">
-          <h4>⚠️ Tương tác ưu tiên</h4>
-          <ul>${renderInteractions(item.canh_bao_tuong_tac)}</ul>
-        </section>
-
-        <section class="tab-card">
-          <h4>📈 TDM & theo dõi</h4>
-          <p><b>TDM:</b> ${item.tdm?.can ? 'Có / ưu tiên' : 'Không thường quy'} ${item.tdm?.muc_tieu ? '· ' + item.tdm.muc_tieu : ''}</p>
-          <ul>${renderList(item.theo_doi)}</ul>
-        </section>
-
-        <section class="tab-card">
-          <h4>🚨 ADR cần lưu ý</h4>
-          <ul>${renderList(item.adr_can_luu_y)}</ul>
-        </section>
+        ${renderClinical(item)}
       </div>
 
-      <div class="clinical-note">
-        <b>Lưu ý:</b>
-        <ul>${renderList(item.luu_y_quan_trong)}</ul>
-      </div>
       <p class="note"><b>Trạng thái dữ liệu:</b> ${safeText(item.trang_thai_du_lieu)}<br><b>Nguồn:</b> ${sourceBadges(item.nguon_tham_khao)}</p>
     </article>`;
 }

@@ -71,14 +71,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Beta-lactam ức chế tổng hợp vách tế bào; chất ức chế beta-lactamase mở rộng tác dụng trên vi khuẩn sinh beta-lactamase nhạy cảm.",
+      "pho_tac_dung": [
+        "Gram dương, một số Gram âm và kỵ khí tùy hoạt chất.",
+        "Piperacillin/tazobactam có phổ rộng hơn và có tác dụng trên Pseudomonas khi còn nhạy."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm hoặc phụ khoa tùy hoạt chất và mức độ nặng.",
+        "Lựa chọn theo phác đồ bệnh viện, kháng sinh đồ và nguy cơ ESBL/Pseudomonas."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Thận trọng dị ứng chéo cephalosporin/carbapenem tùy mức độ phản ứng."
+      ],
+      "than_trong": [
+        "Chỉnh liều ở suy thận, đặc biệt piperacillin/tazobactam và ampicillin/sulbactam.",
+        "Theo dõi tiêu chảy do C. difficile, men gan và công thức máu nếu dùng kéo dài."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam có hiệu quả phụ thuộc thời gian trên MIC; có thể cân nhắc truyền kéo dài với piperacillin/tazobactam ở nhiễm nặng."
+      ],
+      "lieu_chuan": "Dạng IV thường 1,2 g mỗi 8 giờ; nhiễm nặng có thể mỗi 6 giờ theo phác đồ.",
+      "hieu_chinh_than": {
+        ">=50": "Dùng liều chuẩn theo chỉ định.",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo hoạt chất.",
+        "15-29": "Giảm liều/giãn khoảng cách rõ hơn.",
+        "<15": "Liều thấp hơn hoặc q24h; cân nhắc sau lọc máu.",
+        "HD": "Dùng sau HD khi cần; theo protocol nội viện.",
+        "CRRT": "Có thể cần liều cao hơn suy thận thường; cân nhắc truyền kéo dài và hội chẩn."
+      },
+      "oda_truyen_keo_dai": "Piperacillin/tazobactam: có thể truyền kéo dài 3–4 giờ nếu phác đồ nội viện phê duyệt; amoxicillin/clavulanate và ampicillin/sulbactam thường truyền ngắn theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "Dùng sau lọc máu trong ngày lọc; cân nhắc bổ sung liều sau HD.",
+        "CRRT": "Thường gần liều thường quy; cá thể hóa theo tốc độ siêu lọc và ổ nhiễm."
+      },
+      "pha_truyen": {
+        "dung_moi": "Nước cất pha tiêm/NaCl 0,9% theo tờ HDSD; dùng ngay sau pha theo khuyến cáo ổn định.",
+        "toc_do": "Tiêm IV chậm 3–4 phút hoặc truyền 30–40 phút theo chế phẩm.",
+        "luu_y": "Chỉnh liều theo thận; theo dõi tiêu chảy và dị ứng."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu/tiểu cầu khi dùng kéo dài"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR và dấu hiệu chảy máu."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số penicillin có thể làm giảm thải trừ methotrexate.",
+          "xu_tri": "Theo dõi độc tính methotrexate khi phối hợp."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "benzathine-benzylpenicillin-benzathin-benzylpenicilin-1-200-000-iu",
@@ -145,14 +225,84 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Penicillin G tác dụng kéo dài, ức chế tổng hợp vách tế bào; dùng đường tiêm bắp tạo nồng độ kéo dài.",
+      "pho_tac_dung": [
+        "Streptococcus nhạy cảm, Treponema pallidum và một số vi khuẩn Gram dương nhạy penicillin."
+      ],
+      "chi_dinh_chinh": [
+        "Điều trị giang mai theo phác đồ.",
+        "Dự phòng thấp tim/tái phát thấp tim; viêm họng liên cầu khi phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Không tiêm tĩnh mạch, không tiêm vào/ gần động mạch hoặc dây thần kinh."
+      ],
+      "than_trong": [
+        "Chỉ dùng tiêm bắp sâu; chuẩn bị xử trí phản vệ.",
+        "Không dùng để điều trị nhiễm khuẩn nặng cần nồng độ huyết thanh cao tức thì."
+      ],
+      "duoc_dong_hoc": [
+        "Hấp thu chậm sau tiêm bắp, tạo nồng độ kéo dài; không phù hợp truyền IV."
+      ],
+      "lieu_chuan": "Theo chỉ định: ví dụ giang mai người lớn thường 2,4 triệu đơn vị IM liều đơn hoặc hằng tuần tùy giai đoạn; dự phòng thấp tim thường 1,2 triệu đơn vị IM mỗi 3–4 tuần.",
+      "hieu_chinh_than": {
+        ">=50": "Thường không cần chỉnh liều đơn thông thường.",
+        "30-49": "Thường không cần chỉnh; theo dõi nếu suy thận nặng/kéo dài.",
+        "15-29": "Thận trọng, cá thể hóa.",
+        "<15": "Thận trọng, cá thể hóa.",
+        "HD": "Không liên quan truyền HD thường quy.",
+        "CRRT": "Không áp dụng thường quy."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng truyền kéo dài/ODA vì là dạng tiêm bắp giải phóng chậm.",
+      "hd_crrt": {
+        "HD": "Không cần bổ sung thường quy; tiêm bắp theo lịch.",
+        "CRRT": "Không áp dụng thường quy."
+      },
+      "pha_truyen": {
+        "dung_moi": "Hoàn nguyên theo tờ HDSD; dùng tiêm bắp sâu.",
+        "toc_do": "Không truyền tĩnh mạch.",
+        "luu_y": "Lắc đều hỗn dịch; tiêm IM sâu đúng kỹ thuật."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM."
+      },
+      "theo_doi": [
+        "Phản ứng quá mẫn/phản vệ",
+        "Đau/áp xe tại chỗ tiêm",
+        "Đáp ứng điều trị theo bệnh cảnh"
+      ],
+      "adr": [
+        "Đau tại chỗ tiêm",
+        "Dị ứng/phản vệ",
+        "Phản ứng Jarisch-Herxheimer khi điều trị giang mai"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Kháng sinh có thể ảnh hưởng INR ở một số bệnh nhân.",
+          "xu_tri": "Theo dõi INR nếu dùng đồng thời."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "sulfamethoxazol-trimethoprim-biseptol-480",
@@ -233,14 +383,100 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Ức chế hai bước liên tiếp trong tổng hợp acid folic vi khuẩn; phối hợp có tác dụng hiệp đồng.",
+      "pho_tac_dung": [
+        "Nhiều Gram dương/Gram âm nhạy cảm; Pneumocystis jirovecii, một số Stenotrophomonas/Nocardia tùy phác đồ.",
+        "Không dùng theo kinh nghiệm nếu tỷ lệ kháng cao hoặc nhiễm nặng chưa có kháng sinh đồ."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn tiết niệu, da mô mềm do chủng nhạy; PJP điều trị/dự phòng; một số nhiễm khuẩn đặc biệt theo phác đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn sulfonamid/trimethoprim.",
+        "Tiền sử SJS/TEN do sulfonamid; thiếu máu hồng cầu khổng lồ do thiếu folat nặng."
+      ],
+      "than_trong": [
+        "Nguy cơ tăng kali máu, tăng creatinin giả, suy tủy, phản ứng da nặng.",
+        "Chỉnh liều theo thận; tránh/đánh giá kỹ ở suy thận nặng nếu không theo dõi được."
+      ],
+      "duoc_dong_hoc": [
+        "Thải trừ qua thận; TMP có thể làm tăng kali và tăng SCr do giảm bài tiết creatinin ống thận."
+      ],
+      "lieu_chuan": "Theo thành phần TMP: nhiễm thông thường 1 viên DS q12h; PJP điều trị 15–20 mg/kg/ngày TMP chia liều theo phác đồ.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Thường liều chuẩn hoặc giảm tùy chỉ định.",
+        "15-29": "Giảm 50% liều hoặc giãn khoảng cách.",
+        "<15": "Tránh nếu có lựa chọn hoặc dùng khi bắt buộc với theo dõi sát.",
+        "HD": "Dùng sau HD, chỉnh theo chỉ định.",
+        "CRRT": "Cá thể hóa theo chỉ định, liều PJP có thể cần cao hơn suy thận thường."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA/truyền kéo dài. IV truyền theo tờ HDSD, thường 60–90 phút sau pha loãng.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; thường 50% liều thường quy tùy chỉ định.",
+        "CRRT": "Thường cần liều gần thường quy ở nhiễm nặng; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "IV phải pha loãng theo tờ HDSD; thường dùng Glucose 5%, tránh pha quá đặc.",
+        "toc_do": "Truyền IV 60–90 phút; không tiêm bolus.",
+        "luu_y": "Nguy cơ tăng kali máu, tăng creatinin giả do TMP, ức chế tủy, hội chứng Stevens–Johnson."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "Kali",
+        "CBC",
+        "Phát ban/SJS-TEN",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Tăng kali máu",
+        "Phát ban/SJS-TEN",
+        "Giảm bạch cầu/tiểu cầu",
+        "Tăng SCr",
+        "Viêm gan thuốc"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng INR/chảy máu đáng kể.",
+          "xu_tri": "Tránh nếu có thể hoặc giảm liều warfarin và theo dõi INR sát."
+        },
+        {
+          "cap": "ACEI/ARB/spironolacton/eplerenon",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ tăng kali máu.",
+          "xu_tri": "Theo dõi kali/SCr, cân nhắc thuốc thay thế."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc tính huyết học.",
+          "xu_tri": "Tránh phối hợp hoặc theo dõi CBC sát."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "levofloxacin-bivelox-i-v-5mg-ml",
@@ -321,14 +557,102 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Fluoroquinolon ức chế DNA gyrase/topoisomerase IV, diệt khuẩn phụ thuộc nồng độ/AUC.",
+      "pho_tac_dung": [
+        "Gram âm và một số Gram dương; ciprofloxacin mạnh hơn trên Pseudomonas, levofloxacin/moxifloxacin mạnh hơn trên hô hấp.",
+        "Moxifloxacin có hoạt tính kỵ khí hơn nhưng không phù hợp điều trị UTI do nồng độ niệu thấp."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, tiêu hóa, ổ bụng hoặc da mô mềm khi phù hợp phác đồ và kháng sinh đồ.",
+        "Cân nhắc hạn chế sử dụng do nguy cơ ADR nghiêm trọng và kháng thuốc."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fluoroquinolon.",
+        "Tiền sử bệnh gân liên quan quinolon; thận trọng QT kéo dài."
+      ],
+      "than_trong": [
+        "Nguy cơ kéo dài QT, rối loạn đường huyết, bệnh gân/đứt gân, bệnh lý thần kinh ngoại biên, tác dụng TKTW.",
+        "Tránh dùng không cần thiết ở người có nguy cơ phình/tách động mạch chủ theo cảnh báo an toàn."
+      ],
+      "duoc_dong_hoc": [
+        "Ciprofloxacin/levofloxacin cần chỉnh liều theo thận; moxifloxacin ít cần chỉnh liều thận nhưng cần chú ý gan/QT."
+      ],
+      "lieu_chuan": "Thường 500–750 mg IV/PO mỗi 24 giờ tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Ciprofloxacin/levofloxacin giảm liều hoặc giãn khoảng cách; moxifloxacin thường không cần chỉnh thận.",
+        "15-29": "Ciprofloxacin/levofloxacin giảm thêm; moxifloxacin thường không cần chỉnh thận.",
+        "<15": "Ciprofloxacin/levofloxacin dùng liều giảm và giãn khoảng cách; moxifloxacin theo dõi QT/gan.",
+        "HD": "Dùng sau HD nếu ciprofloxacin/levofloxacin.",
+        "CRRT": "Theo cường độ CRRT và chỉ định; tránh thiếu liều trong nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD hoặc không phụ thuộc HD tùy phác đồ; thường giãn 48 giờ.",
+        "CRRT": "Thường 500–750 mg mỗi 24 giờ; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dung dịch truyền pha sẵn; nếu cần pha loãng theo tờ HDSD, tránh trộn thuốc không tương thích.",
+        "toc_do": "500 mg truyền ≥60 phút; 750 mg truyền ≥90 phút.",
+        "luu_y": "Tránh dùng không cần thiết do nguy cơ QT, gân, thần kinh ngoại biên, hạ/tăng đường huyết."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "QTc nếu nguy cơ",
+        "Đường huyết",
+        "Đau gân",
+        "Triệu chứng TKTW",
+        "SCr với ciprofloxacin/levofloxacin",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Buồn nôn/tiêu chảy",
+        "Kéo dài QT",
+        "Viêm/đứt gân",
+        "Rối loạn đường huyết",
+        "Tác dụng TKTW"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Amiodarone/sotalol/macrolid/thuốc kéo dài QT",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+          "xu_tri": "Tránh phối hợp nếu nguy cơ cao; theo dõi ECG, điện giải."
+        },
+        {
+          "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
+          "muc_do": "Moderate",
+          "canh_bao": "Giảm hấp thu quinolon đường uống.",
+          "xu_tri": "Tách thời điểm dùng."
+        },
+        {
+          "cap": "Warfarin",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR.",
+          "xu_tri": "Theo dõi INR."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "cefpodoxim-cebest",
@@ -396,14 +720,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 100–200 mg mỗi 12 giờ đường uống tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Đa số cần giảm/giãn khoảng cách, ngoại trừ ceftriaxone thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Giảm liều/giãn khoảng cách theo hoạt chất.",
+        "<15": "Liều thấp hơn; tránh tích lũy thuốc thải trừ thận.",
+        "HD": "Bổ sung sau HD tùy hoạt chất.",
+        "CRRT": "Cân nhắc liều theo cường độ CRRT và MIC."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA/truyền kéo dài.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD.",
+        "CRRT": "Không thường dùng; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "Không áp dụng pha truyền.",
+        "toc_do": "Đường uống; dùng cùng thức ăn giúp hấp thu tốt hơn.",
+        "luu_y": "Theo dõi dị ứng beta-lactam và tiêu chảy."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "cefixime-cefixime-stada-200mg",
@@ -465,14 +868,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 200 mg mỗi 12 giờ hoặc 400 mg mỗi 24 giờ đường uống tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Đa số cần giảm/giãn khoảng cách, ngoại trừ ceftriaxone thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Giảm liều/giãn khoảng cách theo hoạt chất.",
+        "<15": "Liều thấp hơn; tránh tích lũy thuốc thải trừ thận.",
+        "HD": "Bổ sung sau HD tùy hoạt chất.",
+        "CRRT": "Cân nhắc liều theo cường độ CRRT và MIC."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA/truyền kéo dài.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; thường không cần bổ sung lớn.",
+        "CRRT": "Không thường dùng; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "Không áp dụng pha truyền.",
+        "toc_do": "Đường uống.",
+        "luu_y": "Theo dõi tiêu chảy, dị ứng beta-lactam."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "cefoperazone-cefoperazone-1000-syt-25",
@@ -540,14 +1022,100 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận.",
+        "Cefoperazone có thể gây giảm prothrombin/chảy máu, thận trọng thiếu vitamin K, bệnh gan mật."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 1–2 g IV mỗi 12 giờ; liều tùy mức độ nhiễm và chức năng gan mật.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Đa số cần giảm/giãn khoảng cách, ngoại trừ ceftriaxone thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Giảm liều/giãn khoảng cách theo hoạt chất.",
+        "<15": "Liều thấp hơn; tránh tích lũy thuốc thải trừ thận.",
+        "HD": "Bổ sung sau HD tùy hoạt chất.",
+        "CRRT": "Cân nhắc liều theo cường độ CRRT và MIC."
+      },
+      "oda_truyen_keo_dai": "Không phải ODA kinh điển; truyền IV 30–60 phút.",
+      "hd_crrt": {
+        "HD": "Không cần bổ sung thường quy.",
+        "CRRT": "Thường liều thường quy; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% tùy chế phẩm.",
+        "toc_do": "Truyền 30–60 phút.",
+        "luu_y": "Có thể gây giảm prothrombin/chảy máu, phản ứng kiểu disulfiram với rượu."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        },
+        {
+          "cap": "Rượu/ethanol",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có nhóm NMTT có thể gây phản ứng kiểu disulfiram.",
+          "xu_tri": "Tránh rượu trong và sau điều trị theo khuyến cáo."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "cefoxitin-cefoxitin-1g",
@@ -609,14 +1177,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 1–2 g IV mỗi 6–8 giờ tùy chỉ định; cần chỉnh theo thận.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Đa số cần giảm/giãn khoảng cách, ngoại trừ ceftriaxone thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Giảm liều/giãn khoảng cách theo hoạt chất.",
+        "<15": "Liều thấp hơn; tránh tích lũy thuốc thải trừ thận.",
+        "HD": "Bổ sung sau HD tùy hoạt chất.",
+        "CRRT": "Cân nhắc liều theo cường độ CRRT và MIC."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA thường quy; truyền 30 phút.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; cân nhắc liều bổ sung sau lọc.",
+        "CRRT": "1–2 g mỗi 8–12 giờ; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+        "toc_do": "Truyền IV khoảng 30 phút.",
+        "luu_y": "Theo dõi dị ứng beta-lactam, SCr, CBC khi dùng kéo dài."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "ceftazidime-ceftazidime-1000",
@@ -683,14 +1330,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 1–2 g IV mỗi 8 giờ tùy mức độ nhiễm, có Pseudomonas khi còn nhạy.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Đa số cần giảm/giãn khoảng cách, ngoại trừ ceftriaxone thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Giảm liều/giãn khoảng cách theo hoạt chất.",
+        "<15": "Liều thấp hơn; tránh tích lũy thuốc thải trừ thận.",
+        "HD": "Bổ sung sau HD tùy hoạt chất.",
+        "CRRT": "Cân nhắc liều theo cường độ CRRT và MIC."
+      },
+      "oda_truyen_keo_dai": "Có thể dùng truyền kéo dài 3 giờ trong nhiễm Gram âm nặng nếu phác đồ cho phép.",
+      "hd_crrt": {
+        "HD": "1 g sau HD; nhiễm nặng cá thể hóa.",
+        "CRRT": "1–2 g mỗi 8–12 giờ; cân nhắc truyền kéo dài."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5%; cần thoát khí CO2 khi hoàn nguyên một số lọ.",
+        "toc_do": "Truyền 30 phút hoặc truyền kéo dài 3 giờ theo phác đồ.",
+        "luu_y": "Nguy cơ độc thần kinh/co giật khi suy thận nếu không chỉnh liều."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "imipenem-cilastatin-cepemid-1-5g",
@@ -763,14 +1489,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Carbapenem ức chế tổng hợp vách tế bào; phổ rất rộng, bền với nhiều beta-lactamase.",
+      "pho_tac_dung": [
+        "Gram âm, Gram dương và kỵ khí; meropenem/imipenem có tác dụng rộng, tùy nhạy cảm.",
+        "Không bao phủ MRSA, VRE, một số chủng kháng carbapenem."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn nặng, nhiễm khuẩn bệnh viện hoặc nghi/nghiệm ESBL theo phác đồ.",
+        "Nhiễm ổ bụng, tiết niệu phức tạp, viêm phổi bệnh viện, nhiễm khuẩn huyết tùy bệnh cảnh."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn carbapenem hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Nguy cơ co giật tăng khi suy thận, bệnh lý thần kinh trung ương hoặc liều cao, đặc biệt imipenem.",
+        "Chỉnh liều theo CrCl để tránh tích lũy."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; meropenem có thể truyền kéo dài 3 giờ ở nhiễm nặng theo phác đồ nội viện."
+      ],
+      "lieu_chuan": "Thường 500 mg IV mỗi 6 giờ hoặc 1 g mỗi 8 giờ tùy chỉ định; không vượt liều tối đa theo chức năng thận.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Giảm/giãn khoảng cách, ví dụ meropenem q12h tùy liều.",
+        "15-29": "Giảm liều, thường 500 mg q12h với meropenem theo mức độ nhiễm.",
+        "<15": "Giảm liều/giãn q24h; thận trọng co giật.",
+        "HD": "Dùng sau HD hoặc bổ sung sau HD.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo cường độ CRRT, có thể cần EI."
+      },
+      "oda_truyen_keo_dai": "Meropenem: truyền kéo dài 3 giờ có thể tối ưu fT>MIC trong nhiễm nặng; imipenem thường truyền 30–60 phút, không kéo dài tùy phác đồ.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; thường 250–500 mg mỗi 12 giờ tùy chỉ định.",
+        "CRRT": "500 mg mỗi 6–8 giờ; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9%; một số chế phẩm không ổn định trong lactate, kiểm tra tờ HDSD.",
+        "toc_do": "Truyền 30–60 phút.",
+        "luu_y": "Nguy cơ co giật cao hơn meropenem, nhất là suy thận/CNS."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Beta-lactam TDM chỉ khi cơ sở có điều kiện và bệnh nhân nặng/CRRT."
+      },
+      "theo_doi": [
+        "SCr",
+        "Triệu chứng thần kinh/co giật",
+        "AST/ALT",
+        "CBC",
+        "Cấy vi sinh và xuống thang"
+      ],
+      "adr": [
+        "Tiêu chảy",
+        "Phát ban",
+        "Co giật khi tích lũy/suy thận",
+        "Tăng men gan"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Valproat/acid valproic",
+          "muc_do": "Major",
+          "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproat, tăng nguy cơ co giật.",
+          "xu_tri": "Tránh phối hợp; đổi kháng sinh hoặc thuốc chống động kinh."
+        },
+        {
+          "cap": "Probenecid",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng nồng độ carbapenem.",
+          "xu_tri": "Tránh phối hợp không cần thiết."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "ciprofloxacin-ciproven-10mg-ml",
@@ -850,14 +1655,102 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Fluoroquinolon ức chế DNA gyrase/topoisomerase IV, diệt khuẩn phụ thuộc nồng độ/AUC.",
+      "pho_tac_dung": [
+        "Gram âm và một số Gram dương; ciprofloxacin mạnh hơn trên Pseudomonas, levofloxacin/moxifloxacin mạnh hơn trên hô hấp.",
+        "Moxifloxacin có hoạt tính kỵ khí hơn nhưng không phù hợp điều trị UTI do nồng độ niệu thấp."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, tiêu hóa, ổ bụng hoặc da mô mềm khi phù hợp phác đồ và kháng sinh đồ.",
+        "Cân nhắc hạn chế sử dụng do nguy cơ ADR nghiêm trọng và kháng thuốc."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fluoroquinolon.",
+        "Tiền sử bệnh gân liên quan quinolon; thận trọng QT kéo dài."
+      ],
+      "than_trong": [
+        "Nguy cơ kéo dài QT, rối loạn đường huyết, bệnh gân/đứt gân, bệnh lý thần kinh ngoại biên, tác dụng TKTW.",
+        "Tránh dùng không cần thiết ở người có nguy cơ phình/tách động mạch chủ theo cảnh báo an toàn."
+      ],
+      "duoc_dong_hoc": [
+        "Ciprofloxacin/levofloxacin cần chỉnh liều theo thận; moxifloxacin ít cần chỉnh liều thận nhưng cần chú ý gan/QT."
+      ],
+      "lieu_chuan": "Thường 400 mg IV q8–12h hoặc 500–750 mg PO q12h tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Ciprofloxacin/levofloxacin giảm liều hoặc giãn khoảng cách; moxifloxacin thường không cần chỉnh thận.",
+        "15-29": "Ciprofloxacin/levofloxacin giảm thêm; moxifloxacin thường không cần chỉnh thận.",
+        "<15": "Ciprofloxacin/levofloxacin dùng liều giảm và giãn khoảng cách; moxifloxacin theo dõi QT/gan.",
+        "HD": "Dùng sau HD nếu ciprofloxacin/levofloxacin.",
+        "CRRT": "Theo cường độ CRRT và chỉ định; tránh thiếu liều trong nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD.",
+        "CRRT": "400 mg IV mỗi 8–12 giờ tùy nặng."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dung dịch truyền pha sẵn hoặc pha loãng theo tờ HDSD; tránh trộn với dung dịch không tương thích.",
+        "toc_do": "Truyền IV 60 phút.",
+        "luu_y": "Tránh phối hợp cation đường uống; theo dõi QT/gân/đường huyết."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "QTc nếu nguy cơ",
+        "Đường huyết",
+        "Đau gân",
+        "Triệu chứng TKTW",
+        "SCr với ciprofloxacin/levofloxacin",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Buồn nôn/tiêu chảy",
+        "Kéo dài QT",
+        "Viêm/đứt gân",
+        "Rối loạn đường huyết",
+        "Tác dụng TKTW"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Amiodarone/sotalol/macrolid/thuốc kéo dài QT",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+          "xu_tri": "Tránh phối hợp nếu nguy cơ cao; theo dõi ECG, điện giải."
+        },
+        {
+          "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
+          "muc_do": "Moderate",
+          "canh_bao": "Giảm hấp thu quinolon đường uống.",
+          "xu_tri": "Tách thời điểm dùng."
+        },
+        {
+          "cap": "Warfarin",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR.",
+          "xu_tri": "Theo dõi INR."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "colistin-colistimed",
@@ -931,14 +1824,95 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Polymyxin gắn lipopolysaccharide và phospholipid màng ngoài Gram âm, làm mất toàn vẹn màng tế bào.",
+      "pho_tac_dung": [
+        "Gram âm đa kháng như Acinetobacter, Pseudomonas, Klebsiella khi còn nhạy.",
+        "Không tác dụng trên Gram dương, kỵ khí, Proteus, Serratia, Burkholderia."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn Gram âm đa kháng khi ít lựa chọn thay thế, theo kháng sinh đồ/phác đồ.",
+        "Thường cần phối hợp và hội chẩn dược lâm sàng/vi sinh trong bệnh nhân nặng."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn polymyxin.",
+        "Thận trọng nhược cơ do nguy cơ phong bế thần kinh cơ."
+      ],
+      "than_trong": [
+        "Nguy cơ độc thận cao, cần liều nạp phù hợp và chỉnh liều theo thận.",
+        "Đơn vị liều colistin dễ nhầm giữa CBA, CMS và IU; phải thống nhất đơn vị."
+      ],
+      "duoc_dong_hoc": [
+        "Tiền thuốc CMS chuyển thành colistin; PK phức tạp ở ICU/CRRT.",
+        "Cần liều nạp để đạt nồng độ điều trị sớm trong nhiễm nặng."
+      ],
+      "lieu_chuan": "Theo đơn vị chế phẩm và phác đồ nội viện; cần liều nạp, sau đó duy trì theo CrCl/CRRT. Kiểm tra đơn vị IU/CBA trước khi kê.",
+      "hieu_chinh_than": {
+        ">=50": "Liều duy trì theo CrCl và mục tiêu điều trị.",
+        "30-49": "Giảm liều duy trì theo CrCl.",
+        "15-29": "Giảm liều/giãn khoảng cách.",
+        "<15": "Liều duy trì thấp, theo dõi độc thận sát.",
+        "HD": "Bổ sung sau HD theo protocol.",
+        "CRRT": "Liều phụ thuộc cường độ CRRT; hội chẩn dược lâm sàng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; ưu tiên hội chẩn dược lâm sàng/KSNK do cửa sổ điều trị hẹp.",
+      "hd_crrt": {
+        "HD": "Liều sau HD theo CBA/IU; cần phác đồ riêng.",
+        "CRRT": "Thường cần liều cao hơn suy thận không lọc; cá thể hóa theo CRRT."
+      },
+      "pha_truyen": {
+        "dung_moi": "Hoàn nguyên theo tờ HDSD; dùng ngay sau pha, tránh lưu kéo dài do nguy cơ chuyển dạng.",
+        "toc_do": "Truyền IV thường 30–60 phút.",
+        "luu_y": "Nguy cơ độc thận/độc thần kinh cao; không nhầm đơn vị CBA, colistimethate sodium và IU."
+      },
+      "tdm": {
+        "can": true,
+        "muc_tieu": "Nếu cơ sở có TDM colistin; nếu không, theo dõi độc thận và đáp ứng sát."
+      },
+      "theo_doi": [
+        "SCr hằng ngày",
+        "Nước tiểu",
+        "Điện giải",
+        "Dấu hiệu thần kinh cơ",
+        "Đáp ứng vi sinh"
+      ],
+      "adr": [
+        "AKI",
+        "Độc thần kinh",
+        "Phong bế thần kinh cơ",
+        "Dị cảm"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Aminoglycosid/vancomycin/amphotericin B/cisplatin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc thận.",
+          "xu_tri": "Tránh nếu có thể; theo dõi SCr sát."
+        },
+        {
+          "cap": "Thuốc giãn cơ",
+          "muc_do": "Major",
+          "canh_bao": "Tăng phong bế thần kinh cơ/suy hô hấp.",
+          "xu_tri": "Theo dõi hô hấp, tránh phối hợp không cần thiết."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "amoxicillin-acid-clavulanic-curam-625mg",
@@ -1012,14 +1986,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Beta-lactam ức chế tổng hợp vách tế bào; chất ức chế beta-lactamase mở rộng tác dụng trên vi khuẩn sinh beta-lactamase nhạy cảm.",
+      "pho_tac_dung": [
+        "Gram dương, một số Gram âm và kỵ khí tùy hoạt chất.",
+        "Piperacillin/tazobactam có phổ rộng hơn và có tác dụng trên Pseudomonas khi còn nhạy."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm hoặc phụ khoa tùy hoạt chất và mức độ nặng.",
+        "Lựa chọn theo phác đồ bệnh viện, kháng sinh đồ và nguy cơ ESBL/Pseudomonas."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Thận trọng dị ứng chéo cephalosporin/carbapenem tùy mức độ phản ứng."
+      ],
+      "than_trong": [
+        "Chỉnh liều ở suy thận, đặc biệt piperacillin/tazobactam và ampicillin/sulbactam.",
+        "Theo dõi tiêu chảy do C. difficile, men gan và công thức máu nếu dùng kéo dài."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam có hiệu quả phụ thuộc thời gian trên MIC; có thể cân nhắc truyền kéo dài với piperacillin/tazobactam ở nhiễm nặng."
+      ],
+      "lieu_chuan": "Dạng uống thường 625 mg mỗi 8–12 giờ hoặc 1 g/125 mg mỗi 12 giờ tùy chỉ định và chế phẩm.",
+      "hieu_chinh_than": {
+        ">=50": "Dùng liều chuẩn theo chỉ định.",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo hoạt chất.",
+        "15-29": "Giảm liều/giãn khoảng cách rõ hơn.",
+        "<15": "Liều thấp hơn hoặc q24h; cân nhắc sau lọc máu.",
+        "HD": "Dùng sau HD khi cần; theo protocol nội viện.",
+        "CRRT": "Có thể cần liều cao hơn suy thận thường; cân nhắc truyền kéo dài và hội chẩn."
+      },
+      "oda_truyen_keo_dai": "Piperacillin/tazobactam: có thể truyền kéo dài 3–4 giờ nếu phác đồ nội viện phê duyệt; amoxicillin/clavulanate và ampicillin/sulbactam thường truyền ngắn theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "Dùng sau lọc máu trong ngày lọc; cân nhắc bổ sung liều sau HD.",
+        "CRRT": "Thường gần liều thường quy; cá thể hóa theo tốc độ siêu lọc và ổ nhiễm."
+      },
+      "pha_truyen": {
+        "dung_moi": "Không áp dụng cho dạng uống.",
+        "toc_do": "Dùng đường uống sau ăn để giảm kích ứng tiêu hóa.",
+        "luu_y": "Chỉnh liều theo thận; chú ý tỷ lệ amoxicillin/clavulanate của chế phẩm."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu/tiểu cầu khi dùng kéo dài"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR và dấu hiệu chảy máu."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số penicillin có thể làm giảm thải trừ methotrexate.",
+          "xu_tri": "Theo dõi độc tính methotrexate khi phối hợp."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "fosfomycin-fosmicin-for-i-v-use-2g",
@@ -1087,14 +2141,86 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Ức chế giai đoạn sớm tổng hợp peptidoglycan bằng ức chế enolpyruvyl transferase.",
+      "pho_tac_dung": [
+        "Gram âm và Gram dương tùy nhạy cảm; có thể dùng trong một số nhiễm khuẩn đa kháng theo kháng sinh đồ.",
+        "Thường phối hợp trong nhiễm nặng để hạn chế kháng thuốc."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn tiết niệu hoặc nhiễm khuẩn nặng do vi khuẩn nhạy cảm theo phác đồ/kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fosfomycin."
+      ],
+      "than_trong": [
+        "Chú ý tải natri của fosfomycin IV, đặc biệt suy tim/suy thận/phù.",
+        "Theo dõi hạ kali máu."
+      ],
+      "duoc_dong_hoc": [
+        "Thải trừ qua thận; cần hiệu chỉnh ở suy thận. Thấm mô tương đối tốt, tùy chỉ định."
+      ],
+      "lieu_chuan": "Fosfomycin IV thường 4–8 g mỗi 6–8 giờ trong nhiễm nặng tùy chỉ định; liều theo phác đồ nội viện và chức năng thận.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Giảm tổng liều/ngày hoặc giãn khoảng cách.",
+        "15-29": "Giảm liều đáng kể.",
+        "<15": "Cá thể hóa, tránh tích lũy natri và thuốc.",
+        "HD": "Dùng sau HD theo protocol.",
+        "CRRT": "Theo cường độ CRRT và MIC; hội chẩn khi nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD theo phác đồ.",
+        "CRRT": "Có thể cần liều gần thường quy trong nhiễm nặng; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "Hoàn nguyên/pha loãng theo tờ HDSD, thường trong nước cất/NaCl 0,9%. Dùng thể tích đủ để truyền IV.",
+        "toc_do": "Thường truyền 15–60 phút tùy liều/chế phẩm.",
+        "luu_y": "Theo dõi natri, kali, tình trạng dịch; không tự ý pha chung thuốc khác."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "Na/K",
+        "Tình trạng dịch/phù",
+        "AST/ALT",
+        "Đáp ứng vi sinh"
+      ],
+      "adr": [
+        "Hạ kali máu",
+        "Tăng natri/tải muối",
+        "Tiêu chảy",
+        "Tăng men gan"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Metoclopramid",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể giảm nồng độ fosfomycin đường uống; ít liên quan dạng IV.",
+          "xu_tri": "Tránh phối hợp không cần thiết."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "gentamicin-gentamicin-80mg",
@@ -1168,14 +2294,101 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Aminoglycosid gắn tiểu đơn vị 30S, ức chế tổng hợp protein và gây đọc sai mRNA; diệt khuẩn phụ thuộc nồng độ.",
+      "pho_tac_dung": [
+        "Gram âm hiếu khí, bao gồm nhiều chủng Enterobacterales và Pseudomonas tùy nhạy cảm.",
+        "Không có tác dụng trên vi khuẩn kỵ khí; thường dùng phối hợp trong nhiễm khuẩn nặng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn Gram âm nặng khi cần aminoglycosid theo kháng sinh đồ/phác đồ.",
+        "Phối hợp trong nhiễm khuẩn huyết, viêm phổi bệnh viện, nhiễm khuẩn tiết niệu phức tạp hoặc nhiễm Pseudomonas khi phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn aminoglycosid.",
+        "Nhược cơ: tránh hoặc chỉ dùng khi bắt buộc và theo dõi sát."
+      ],
+      "than_trong": [
+        "Nguy cơ độc thận và độc tai tăng ở người cao tuổi, suy thận, mất nước, dùng kèm thuốc độc thận/độc tai.",
+        "Cần dùng liều theo cân nặng phù hợp; người béo phì cân nhắc cân nặng hiệu chỉnh."
+      ],
+      "duoc_dong_hoc": [
+        "Diệt khuẩn phụ thuộc nồng độ; ưu tiên đạt Cmax/MIC phù hợp.",
+        "Thải trừ chủ yếu qua thận; cần TDM để cá thể hóa liều."
+      ],
+      "lieu_chuan": "5–7 mg/kg IV q24h theo protocol extended-interval hoặc liều chia theo chỉ định đặc biệt; chỉnh theo TDM.",
+      "hieu_chinh_than": {
+        ">=50": "15–20 mg/kg IV q24h hoặc theo protocol extended-interval.",
+        "30-49": "Dùng liều nạp, sau đó giãn khoảng cách q36h hoặc theo nồng độ.",
+        "15-29": "Dùng liều nạp, sau đó q48h hoặc theo nồng độ.",
+        "<15": "Tránh liều lặp lại khi chưa có TDM; dùng theo nồng độ.",
+        "HD": "Liều sau HD và chỉnh theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo TDM và cường độ CRRT."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; cần TDM để tối ưu Cmax/Cmin.",
+      "hd_crrt": {
+        "HD": "Liều sau HD và chỉnh theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ, sau đó theo nồng độ và thông số CRRT."
+      },
+      "pha_truyen": {
+        "dung_moi": "Pha trong NaCl 0,9% hoặc Glucose 5%.",
+        "toc_do": "Truyền IV 30–60 phút.",
+        "luu_y": "Bắt buộc TDM nếu dùng >48–72 giờ hoặc bệnh nhân nguy cơ; theo dõi độc thận/độc tai."
+      },
+      "tdm": {
+        "can": true,
+        "muc_tieu": "Theo chỉ định: peak/trough hoặc random; tránh trough kéo dài."
+      },
+      "theo_doi": [
+        "SCr hằng ngày",
+        "Nồng độ thuốc",
+        "Thính lực/tiền đình",
+        "Nước tiểu",
+        "Dấu hiệu phong bế thần kinh cơ"
+      ],
+      "adr": [
+        "Độc thận",
+        "Độc tai/tiền đình",
+        "Phong bế thần kinh cơ",
+        "Phát ban/dị ứng"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Vancomycin, colistin, amphotericin B, cisplatin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc thận/độc tai.",
+          "xu_tri": "Tránh phối hợp nếu có lựa chọn; nếu bắt buộc cần TDM và theo dõi SCr sát."
+        },
+        {
+          "cap": "Furosemid/lợi tiểu quai",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ độc tai.",
+          "xu_tri": "Tránh dùng đồng thời liều cao; theo dõi thính lực."
+        },
+        {
+          "cap": "Thuốc giãn cơ/thuốc mê",
+          "muc_do": "Moderate",
+          "canh_bao": "Tăng phong bế thần kinh cơ.",
+          "xu_tri": "Theo dõi hô hấp, chuẩn bị xử trí."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "amikacin-jw-amikacin",
@@ -1249,14 +2462,101 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Aminoglycosid gắn tiểu đơn vị 30S, ức chế tổng hợp protein và gây đọc sai mRNA; diệt khuẩn phụ thuộc nồng độ.",
+      "pho_tac_dung": [
+        "Gram âm hiếu khí, bao gồm nhiều chủng Enterobacterales và Pseudomonas tùy nhạy cảm.",
+        "Không có tác dụng trên vi khuẩn kỵ khí; thường dùng phối hợp trong nhiễm khuẩn nặng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn Gram âm nặng khi cần aminoglycosid theo kháng sinh đồ/phác đồ.",
+        "Phối hợp trong nhiễm khuẩn huyết, viêm phổi bệnh viện, nhiễm khuẩn tiết niệu phức tạp hoặc nhiễm Pseudomonas khi phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn aminoglycosid.",
+        "Nhược cơ: tránh hoặc chỉ dùng khi bắt buộc và theo dõi sát."
+      ],
+      "than_trong": [
+        "Nguy cơ độc thận và độc tai tăng ở người cao tuổi, suy thận, mất nước, dùng kèm thuốc độc thận/độc tai.",
+        "Cần dùng liều theo cân nặng phù hợp; người béo phì cân nhắc cân nặng hiệu chỉnh."
+      ],
+      "duoc_dong_hoc": [
+        "Diệt khuẩn phụ thuộc nồng độ; ưu tiên đạt Cmax/MIC phù hợp.",
+        "Thải trừ chủ yếu qua thận; cần TDM để cá thể hóa liều."
+      ],
+      "lieu_chuan": "15–20 mg/kg IV mỗi 24 giờ khi dùng extended-interval ở người lớn phù hợp; nhiễm khuẩn nặng cần liều nạp và chỉnh theo TDM.",
+      "hieu_chinh_than": {
+        ">=50": "15–20 mg/kg IV q24h hoặc theo protocol extended-interval.",
+        "30-49": "Dùng liều nạp, sau đó giãn khoảng cách q36h hoặc theo nồng độ.",
+        "15-29": "Dùng liều nạp, sau đó q48h hoặc theo nồng độ.",
+        "<15": "Tránh liều lặp lại khi chưa có TDM; dùng theo nồng độ.",
+        "HD": "Liều sau HD và chỉnh theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo TDM và cường độ CRRT."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; cần TDM để tối ưu Cmax/Cmin.",
+      "hd_crrt": {
+        "HD": "Liều sau HD và chỉnh theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ, sau đó theo nồng độ và thông số CRRT."
+      },
+      "pha_truyen": {
+        "dung_moi": "Pha trong NaCl 0,9% hoặc Glucose 5%.",
+        "toc_do": "Truyền IV 30–60 phút.",
+        "luu_y": "Bắt buộc TDM nếu dùng >48–72 giờ hoặc bệnh nhân nguy cơ; theo dõi độc thận/độc tai."
+      },
+      "tdm": {
+        "can": true,
+        "muc_tieu": "Theo chỉ định: peak/trough hoặc random; tránh trough kéo dài."
+      },
+      "theo_doi": [
+        "SCr hằng ngày",
+        "Nồng độ thuốc",
+        "Thính lực/tiền đình",
+        "Nước tiểu",
+        "Dấu hiệu phong bế thần kinh cơ"
+      ],
+      "adr": [
+        "Độc thận",
+        "Độc tai/tiền đình",
+        "Phong bế thần kinh cơ",
+        "Phát ban/dị ứng"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Vancomycin, colistin, amphotericin B, cisplatin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc thận/độc tai.",
+          "xu_tri": "Tránh phối hợp nếu có lựa chọn; nếu bắt buộc cần TDM và theo dõi SCr sát."
+        },
+        {
+          "cap": "Furosemid/lợi tiểu quai",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ độc tai.",
+          "xu_tri": "Tránh dùng đồng thời liều cao; theo dõi thính lực."
+        },
+        {
+          "cap": "Thuốc giãn cơ/thuốc mê",
+          "muc_do": "Moderate",
+          "canh_bao": "Tăng phong bế thần kinh cơ.",
+          "xu_tri": "Theo dõi hô hấp, chuẩn bị xử trí."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "amoxicillin-acid-clavulanic-koact-625",
@@ -1330,14 +2630,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Beta-lactam ức chế tổng hợp vách tế bào; chất ức chế beta-lactamase mở rộng tác dụng trên vi khuẩn sinh beta-lactamase nhạy cảm.",
+      "pho_tac_dung": [
+        "Gram dương, một số Gram âm và kỵ khí tùy hoạt chất.",
+        "Piperacillin/tazobactam có phổ rộng hơn và có tác dụng trên Pseudomonas khi còn nhạy."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm hoặc phụ khoa tùy hoạt chất và mức độ nặng.",
+        "Lựa chọn theo phác đồ bệnh viện, kháng sinh đồ và nguy cơ ESBL/Pseudomonas."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Thận trọng dị ứng chéo cephalosporin/carbapenem tùy mức độ phản ứng."
+      ],
+      "than_trong": [
+        "Chỉnh liều ở suy thận, đặc biệt piperacillin/tazobactam và ampicillin/sulbactam.",
+        "Theo dõi tiêu chảy do C. difficile, men gan và công thức máu nếu dùng kéo dài."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam có hiệu quả phụ thuộc thời gian trên MIC; có thể cân nhắc truyền kéo dài với piperacillin/tazobactam ở nhiễm nặng."
+      ],
+      "lieu_chuan": "Dạng uống thường 625 mg mỗi 8–12 giờ hoặc 1 g/125 mg mỗi 12 giờ tùy chỉ định và chế phẩm.",
+      "hieu_chinh_than": {
+        ">=50": "Dùng liều chuẩn theo chỉ định.",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo hoạt chất.",
+        "15-29": "Giảm liều/giãn khoảng cách rõ hơn.",
+        "<15": "Liều thấp hơn hoặc q24h; cân nhắc sau lọc máu.",
+        "HD": "Dùng sau HD khi cần; theo protocol nội viện.",
+        "CRRT": "Có thể cần liều cao hơn suy thận thường; cân nhắc truyền kéo dài và hội chẩn."
+      },
+      "oda_truyen_keo_dai": "Piperacillin/tazobactam: có thể truyền kéo dài 3–4 giờ nếu phác đồ nội viện phê duyệt; amoxicillin/clavulanate và ampicillin/sulbactam thường truyền ngắn theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "Dùng sau lọc máu trong ngày lọc; cân nhắc bổ sung liều sau HD.",
+        "CRRT": "Thường gần liều thường quy; cá thể hóa theo tốc độ siêu lọc và ổ nhiễm."
+      },
+      "pha_truyen": {
+        "dung_moi": "Không áp dụng cho dạng uống.",
+        "toc_do": "Dùng đường uống sau ăn để giảm kích ứng tiêu hóa.",
+        "luu_y": "Chỉnh liều theo thận; chú ý tỷ lệ amoxicillin/clavulanate của chế phẩm."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu/tiểu cầu khi dùng kéo dài"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR và dấu hiệu chảy máu."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số penicillin có thể làm giảm thải trừ methotrexate.",
+          "xu_tri": "Theo dõi độc tính methotrexate khi phối hợp."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "levofloxacin-levofloxacin-kabi",
@@ -1418,14 +2798,102 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Fluoroquinolon ức chế DNA gyrase/topoisomerase IV, diệt khuẩn phụ thuộc nồng độ/AUC.",
+      "pho_tac_dung": [
+        "Gram âm và một số Gram dương; ciprofloxacin mạnh hơn trên Pseudomonas, levofloxacin/moxifloxacin mạnh hơn trên hô hấp.",
+        "Moxifloxacin có hoạt tính kỵ khí hơn nhưng không phù hợp điều trị UTI do nồng độ niệu thấp."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, tiêu hóa, ổ bụng hoặc da mô mềm khi phù hợp phác đồ và kháng sinh đồ.",
+        "Cân nhắc hạn chế sử dụng do nguy cơ ADR nghiêm trọng và kháng thuốc."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fluoroquinolon.",
+        "Tiền sử bệnh gân liên quan quinolon; thận trọng QT kéo dài."
+      ],
+      "than_trong": [
+        "Nguy cơ kéo dài QT, rối loạn đường huyết, bệnh gân/đứt gân, bệnh lý thần kinh ngoại biên, tác dụng TKTW.",
+        "Tránh dùng không cần thiết ở người có nguy cơ phình/tách động mạch chủ theo cảnh báo an toàn."
+      ],
+      "duoc_dong_hoc": [
+        "Ciprofloxacin/levofloxacin cần chỉnh liều theo thận; moxifloxacin ít cần chỉnh liều thận nhưng cần chú ý gan/QT."
+      ],
+      "lieu_chuan": "Thường 500–750 mg IV/PO mỗi 24 giờ tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Ciprofloxacin/levofloxacin giảm liều hoặc giãn khoảng cách; moxifloxacin thường không cần chỉnh thận.",
+        "15-29": "Ciprofloxacin/levofloxacin giảm thêm; moxifloxacin thường không cần chỉnh thận.",
+        "<15": "Ciprofloxacin/levofloxacin dùng liều giảm và giãn khoảng cách; moxifloxacin theo dõi QT/gan.",
+        "HD": "Dùng sau HD nếu ciprofloxacin/levofloxacin.",
+        "CRRT": "Theo cường độ CRRT và chỉ định; tránh thiếu liều trong nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD hoặc không phụ thuộc HD tùy phác đồ; thường giãn 48 giờ.",
+        "CRRT": "Thường 500–750 mg mỗi 24 giờ; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dung dịch truyền pha sẵn; nếu cần pha loãng theo tờ HDSD, tránh trộn thuốc không tương thích.",
+        "toc_do": "500 mg truyền ≥60 phút; 750 mg truyền ≥90 phút.",
+        "luu_y": "Tránh dùng không cần thiết do nguy cơ QT, gân, thần kinh ngoại biên, hạ/tăng đường huyết."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "QTc nếu nguy cơ",
+        "Đường huyết",
+        "Đau gân",
+        "Triệu chứng TKTW",
+        "SCr với ciprofloxacin/levofloxacin",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Buồn nôn/tiêu chảy",
+        "Kéo dài QT",
+        "Viêm/đứt gân",
+        "Rối loạn đường huyết",
+        "Tác dụng TKTW"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Amiodarone/sotalol/macrolid/thuốc kéo dài QT",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+          "xu_tri": "Tránh phối hợp nếu nguy cơ cao; theo dõi ECG, điện giải."
+        },
+        {
+          "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
+          "muc_do": "Moderate",
+          "canh_bao": "Giảm hấp thu quinolon đường uống.",
+          "xu_tri": "Tách thời điểm dùng."
+        },
+        {
+          "cap": "Warfarin",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR.",
+          "xu_tri": "Theo dõi INR."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "ceftriaxone-medivernol-1g",
@@ -1492,14 +2960,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 1–2 g IV/IM mỗi 24 giờ; nhiễm nặng/viêm màng não có thể 2 g mỗi 12 giờ theo phác đồ.",
+      "hieu_chinh_than": {
+        ">=50": "Thường không cần chỉnh liều.",
+        "30-49": "Thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Thường không cần chỉnh; theo dõi nếu suy gan kèm theo.",
+        "<15": "Thận trọng nếu suy gan hoặc dùng liều cao kéo dài.",
+        "HD": "Không cần bổ sung thường quy sau HD.",
+        "CRRT": "Thường liều chuẩn; cá thể hóa theo nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA thường quy; truyền 30 phút.",
+      "hd_crrt": {
+        "HD": "Không cần bổ sung sau HD.",
+        "CRRT": "Không cần chỉnh thường quy; cá thể hóa nhiễm nặng."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD; không pha chung dung dịch chứa calci.",
+        "toc_do": "IV thường truyền ≥30 phút; IM theo hướng dẫn pha.",
+        "luu_y": "Tránh dùng đồng thời đường truyền với dung dịch chứa calci; thận trọng vàng da/ứ mật."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "meropenem-meronem-1g",
@@ -1572,14 +3119,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Carbapenem ức chế tổng hợp vách tế bào; phổ rất rộng, bền với nhiều beta-lactamase.",
+      "pho_tac_dung": [
+        "Gram âm, Gram dương và kỵ khí; meropenem/imipenem có tác dụng rộng, tùy nhạy cảm.",
+        "Không bao phủ MRSA, VRE, một số chủng kháng carbapenem."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn nặng, nhiễm khuẩn bệnh viện hoặc nghi/nghiệm ESBL theo phác đồ.",
+        "Nhiễm ổ bụng, tiết niệu phức tạp, viêm phổi bệnh viện, nhiễm khuẩn huyết tùy bệnh cảnh."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn carbapenem hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Nguy cơ co giật tăng khi suy thận, bệnh lý thần kinh trung ương hoặc liều cao, đặc biệt imipenem.",
+        "Chỉnh liều theo CrCl để tránh tích lũy."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; meropenem có thể truyền kéo dài 3 giờ ở nhiễm nặng theo phác đồ nội viện."
+      ],
+      "lieu_chuan": "Thường 1 g IV mỗi 8 giờ; nhiễm nặng/viêm màng não có thể 2 g mỗi 8 giờ. Truyền kéo dài 3 giờ nếu phác đồ phê duyệt.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Giảm/giãn khoảng cách, ví dụ meropenem q12h tùy liều.",
+        "15-29": "Giảm liều, thường 500 mg q12h với meropenem theo mức độ nhiễm.",
+        "<15": "Giảm liều/giãn q24h; thận trọng co giật.",
+        "HD": "Dùng sau HD hoặc bổ sung sau HD.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo cường độ CRRT, có thể cần EI."
+      },
+      "oda_truyen_keo_dai": "Meropenem: truyền kéo dài 3 giờ có thể tối ưu fT>MIC trong nhiễm nặng; imipenem thường truyền 30–60 phút, không kéo dài tùy phác đồ.",
+      "hd_crrt": {
+        "HD": "500 mg–1 g sau HD tùy chỉ định.",
+        "CRRT": "1 g q8h, cân nhắc truyền kéo dài; nhiễm CNS có thể 2 g q8h theo PK."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% thường ưu tiên; Glucose 5% theo ổn định của chế phẩm.",
+        "toc_do": "Truyền 30 phút hoặc truyền kéo dài 3 giờ.",
+        "luu_y": "Chỉnh liều theo thận; tránh phối hợp valproat."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Beta-lactam TDM chỉ khi cơ sở có điều kiện và bệnh nhân nặng/CRRT."
+      },
+      "theo_doi": [
+        "SCr",
+        "Triệu chứng thần kinh/co giật",
+        "AST/ALT",
+        "CBC",
+        "Cấy vi sinh và xuống thang"
+      ],
+      "adr": [
+        "Tiêu chảy",
+        "Phát ban",
+        "Co giật khi tích lũy/suy thận",
+        "Tăng men gan"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Valproat/acid valproic",
+          "muc_do": "Major",
+          "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproat, tăng nguy cơ co giật.",
+          "xu_tri": "Tránh phối hợp; đổi kháng sinh hoặc thuốc chống động kinh."
+        },
+        {
+          "cap": "Probenecid",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng nồng độ carbapenem.",
+          "xu_tri": "Tránh phối hợp không cần thiết."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "meropenem-meropenem-1g",
@@ -1652,14 +3278,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Carbapenem ức chế tổng hợp vách tế bào; phổ rất rộng, bền với nhiều beta-lactamase.",
+      "pho_tac_dung": [
+        "Gram âm, Gram dương và kỵ khí; meropenem/imipenem có tác dụng rộng, tùy nhạy cảm.",
+        "Không bao phủ MRSA, VRE, một số chủng kháng carbapenem."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn nặng, nhiễm khuẩn bệnh viện hoặc nghi/nghiệm ESBL theo phác đồ.",
+        "Nhiễm ổ bụng, tiết niệu phức tạp, viêm phổi bệnh viện, nhiễm khuẩn huyết tùy bệnh cảnh."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn carbapenem hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Nguy cơ co giật tăng khi suy thận, bệnh lý thần kinh trung ương hoặc liều cao, đặc biệt imipenem.",
+        "Chỉnh liều theo CrCl để tránh tích lũy."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; meropenem có thể truyền kéo dài 3 giờ ở nhiễm nặng theo phác đồ nội viện."
+      ],
+      "lieu_chuan": "Thường 1 g IV mỗi 8 giờ; nhiễm nặng/viêm màng não có thể 2 g mỗi 8 giờ. Truyền kéo dài 3 giờ nếu phác đồ phê duyệt.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Giảm/giãn khoảng cách, ví dụ meropenem q12h tùy liều.",
+        "15-29": "Giảm liều, thường 500 mg q12h với meropenem theo mức độ nhiễm.",
+        "<15": "Giảm liều/giãn q24h; thận trọng co giật.",
+        "HD": "Dùng sau HD hoặc bổ sung sau HD.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo cường độ CRRT, có thể cần EI."
+      },
+      "oda_truyen_keo_dai": "Meropenem: truyền kéo dài 3 giờ có thể tối ưu fT>MIC trong nhiễm nặng; imipenem thường truyền 30–60 phút, không kéo dài tùy phác đồ.",
+      "hd_crrt": {
+        "HD": "500 mg–1 g sau HD tùy chỉ định.",
+        "CRRT": "1 g q8h, cân nhắc truyền kéo dài; nhiễm CNS có thể 2 g q8h theo PK."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% thường ưu tiên; Glucose 5% theo ổn định của chế phẩm.",
+        "toc_do": "Truyền 30 phút hoặc truyền kéo dài 3 giờ.",
+        "luu_y": "Chỉnh liều theo thận; tránh phối hợp valproat."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Beta-lactam TDM chỉ khi cơ sở có điều kiện và bệnh nhân nặng/CRRT."
+      },
+      "theo_doi": [
+        "SCr",
+        "Triệu chứng thần kinh/co giật",
+        "AST/ALT",
+        "CBC",
+        "Cấy vi sinh và xuống thang"
+      ],
+      "adr": [
+        "Tiêu chảy",
+        "Phát ban",
+        "Co giật khi tích lũy/suy thận",
+        "Tăng men gan"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Valproat/acid valproic",
+          "muc_do": "Major",
+          "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproat, tăng nguy cơ co giật.",
+          "xu_tri": "Tránh phối hợp; đổi kháng sinh hoặc thuốc chống động kinh."
+        },
+        {
+          "cap": "Probenecid",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng nồng độ carbapenem.",
+          "xu_tri": "Tránh phối hợp không cần thiết."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "metronidazol-metronidazol-0-5g-100ml-dv23",
@@ -1732,14 +3437,97 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Nitroimidazol tạo chất chuyển hóa khử gây phá hủy DNA vi khuẩn kỵ khí và đơn bào nhạy cảm.",
+      "pho_tac_dung": [
+        "Vi khuẩn kỵ khí bắt buộc và một số đơn bào.",
+        "Không có tác dụng trên vi khuẩn hiếu khí; thường phối hợp với thuốc phủ Gram âm/Gram dương tùy ổ nhiễm."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn kỵ khí ổ bụng, phụ khoa, răng hàm mặt; C. difficile theo phác đồ; áp xe gan amip hoặc đơn bào khi phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn metronidazol/nitroimidazol."
+      ],
+      "than_trong": [
+        "Thận trọng bệnh gan nặng, bệnh thần kinh ngoại biên, dùng kéo dài.",
+        "Tránh rượu trong thời gian dùng và ít nhất 48–72 giờ sau liều cuối."
+      ],
+      "duoc_dong_hoc": [
+        "Chuyển hóa chủ yếu qua gan; suy thận đơn thuần thường không cần chỉnh liều lớn, nhưng chất chuyển hóa có thể tích lũy."
+      ],
+      "lieu_chuan": "Thường 500 mg IV/PO mỗi 8 giờ; điều chỉnh theo chỉ định và chức năng gan.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Thường không cần chỉnh liều.",
+        "15-29": "Thường không cần chỉnh; theo dõi nếu dùng kéo dài.",
+        "<15": "Cân nhắc giảm/giãn nếu dùng kéo dài hoặc suy gan kèm theo.",
+        "HD": "Có thể dùng sau HD nếu liều gần thời điểm lọc.",
+        "CRRT": "Thường liều chuẩn; cá thể hóa nếu nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD trong ngày lọc nếu lịch trùng.",
+        "CRRT": "Thường liều thường quy."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dạng truyền pha sẵn 500 mg/100 mL hoặc pha theo tờ HDSD.",
+        "toc_do": "Truyền IV 30–60 phút.",
+        "luu_y": "Tránh rượu; theo dõi độc thần kinh khi dùng kéo dài/liều cao."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "AST/ALT nếu dùng kéo dài",
+        "Triệu chứng thần kinh ngoại biên",
+        "Tiêu hóa",
+        "Tương tác warfarin"
+      ],
+      "adr": [
+        "Buồn nôn/vị kim loại",
+        "Viêm thần kinh ngoại biên khi dùng kéo dài",
+        "Tăng men gan",
+        "Phản ứng kiểu disulfiram với rượu"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, chỉnh liều warfarin."
+        },
+        {
+          "cap": "Rượu/ethanol",
+          "muc_do": "Moderate",
+          "canh_bao": "Phản ứng kiểu disulfiram.",
+          "xu_tri": "Tránh rượu trong và sau điều trị."
+        },
+        {
+          "cap": "Lithium",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng độc tính lithium.",
+          "xu_tri": "Theo dõi nồng độ/dấu hiệu độc tính."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "metronidazol-metronidazol-250",
@@ -1812,14 +3600,97 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Nitroimidazol tạo chất chuyển hóa khử gây phá hủy DNA vi khuẩn kỵ khí và đơn bào nhạy cảm.",
+      "pho_tac_dung": [
+        "Vi khuẩn kỵ khí bắt buộc và một số đơn bào.",
+        "Không có tác dụng trên vi khuẩn hiếu khí; thường phối hợp với thuốc phủ Gram âm/Gram dương tùy ổ nhiễm."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn kỵ khí ổ bụng, phụ khoa, răng hàm mặt; C. difficile theo phác đồ; áp xe gan amip hoặc đơn bào khi phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn metronidazol/nitroimidazol."
+      ],
+      "than_trong": [
+        "Thận trọng bệnh gan nặng, bệnh thần kinh ngoại biên, dùng kéo dài.",
+        "Tránh rượu trong thời gian dùng và ít nhất 48–72 giờ sau liều cuối."
+      ],
+      "duoc_dong_hoc": [
+        "Chuyển hóa chủ yếu qua gan; suy thận đơn thuần thường không cần chỉnh liều lớn, nhưng chất chuyển hóa có thể tích lũy."
+      ],
+      "lieu_chuan": "Thường 500 mg IV/PO mỗi 8 giờ; điều chỉnh theo chỉ định và chức năng gan.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Thường không cần chỉnh liều.",
+        "15-29": "Thường không cần chỉnh; theo dõi nếu dùng kéo dài.",
+        "<15": "Cân nhắc giảm/giãn nếu dùng kéo dài hoặc suy gan kèm theo.",
+        "HD": "Có thể dùng sau HD nếu liều gần thời điểm lọc.",
+        "CRRT": "Thường liều chuẩn; cá thể hóa nếu nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD trong ngày lọc nếu lịch trùng.",
+        "CRRT": "Thường liều thường quy."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dạng truyền pha sẵn 500 mg/100 mL hoặc pha theo tờ HDSD.",
+        "toc_do": "Truyền IV 30–60 phút.",
+        "luu_y": "Tránh rượu; theo dõi độc thần kinh khi dùng kéo dài/liều cao."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "AST/ALT nếu dùng kéo dài",
+        "Triệu chứng thần kinh ngoại biên",
+        "Tiêu hóa",
+        "Tương tác warfarin"
+      ],
+      "adr": [
+        "Buồn nôn/vị kim loại",
+        "Viêm thần kinh ngoại biên khi dùng kéo dài",
+        "Tăng men gan",
+        "Phản ứng kiểu disulfiram với rượu"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, chỉnh liều warfarin."
+        },
+        {
+          "cap": "Rượu/ethanol",
+          "muc_do": "Moderate",
+          "canh_bao": "Phản ứng kiểu disulfiram.",
+          "xu_tri": "Tránh rượu trong và sau điều trị."
+        },
+        {
+          "cap": "Lithium",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng độc tính lithium.",
+          "xu_tri": "Theo dõi nồng độ/dấu hiệu độc tính."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "moxifloxacin-moxifloxacin-imp-400-mg-250ml",
@@ -1893,14 +3764,102 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Fluoroquinolon ức chế DNA gyrase/topoisomerase IV, diệt khuẩn phụ thuộc nồng độ/AUC.",
+      "pho_tac_dung": [
+        "Gram âm và một số Gram dương; ciprofloxacin mạnh hơn trên Pseudomonas, levofloxacin/moxifloxacin mạnh hơn trên hô hấp.",
+        "Moxifloxacin có hoạt tính kỵ khí hơn nhưng không phù hợp điều trị UTI do nồng độ niệu thấp."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, tiêu hóa, ổ bụng hoặc da mô mềm khi phù hợp phác đồ và kháng sinh đồ.",
+        "Cân nhắc hạn chế sử dụng do nguy cơ ADR nghiêm trọng và kháng thuốc."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fluoroquinolon.",
+        "Tiền sử bệnh gân liên quan quinolon; thận trọng QT kéo dài."
+      ],
+      "than_trong": [
+        "Nguy cơ kéo dài QT, rối loạn đường huyết, bệnh gân/đứt gân, bệnh lý thần kinh ngoại biên, tác dụng TKTW.",
+        "Tránh dùng không cần thiết ở người có nguy cơ phình/tách động mạch chủ theo cảnh báo an toàn."
+      ],
+      "duoc_dong_hoc": [
+        "Ciprofloxacin/levofloxacin cần chỉnh liều theo thận; moxifloxacin ít cần chỉnh liều thận nhưng cần chú ý gan/QT."
+      ],
+      "lieu_chuan": "400 mg IV/PO mỗi 24 giờ; thường không chỉnh liều thận nhưng chú ý QT/gan.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Ciprofloxacin/levofloxacin giảm liều hoặc giãn khoảng cách; moxifloxacin thường không cần chỉnh thận.",
+        "15-29": "Ciprofloxacin/levofloxacin giảm thêm; moxifloxacin thường không cần chỉnh thận.",
+        "<15": "Ciprofloxacin/levofloxacin dùng liều giảm và giãn khoảng cách; moxifloxacin theo dõi QT/gan.",
+        "HD": "Dùng sau HD nếu ciprofloxacin/levofloxacin.",
+        "CRRT": "Theo cường độ CRRT và chỉ định; tránh thiếu liều trong nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Không cần bổ sung sau HD.",
+        "CRRT": "Không cần chỉnh thường quy."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dung dịch truyền pha sẵn hoặc theo tờ HDSD.",
+        "toc_do": "Truyền IV ≥60 phút.",
+        "luu_y": "Không dùng cho nhiễm khuẩn tiết niệu do nồng độ niệu thấp; nguy cơ QT nổi bật."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "QTc nếu nguy cơ",
+        "Đường huyết",
+        "Đau gân",
+        "Triệu chứng TKTW",
+        "SCr với ciprofloxacin/levofloxacin",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Buồn nôn/tiêu chảy",
+        "Kéo dài QT",
+        "Viêm/đứt gân",
+        "Rối loạn đường huyết",
+        "Tác dụng TKTW"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Amiodarone/sotalol/macrolid/thuốc kéo dài QT",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+          "xu_tri": "Tránh phối hợp nếu nguy cơ cao; theo dõi ECG, điện giải."
+        },
+        {
+          "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
+          "muc_do": "Moderate",
+          "canh_bao": "Giảm hấp thu quinolon đường uống.",
+          "xu_tri": "Tách thời điểm dùng."
+        },
+        {
+          "cap": "Warfarin",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR.",
+          "xu_tri": "Theo dõi INR."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "ampicilin-sulbactam-nerusyn-1-5g-ttkn-25",
@@ -1974,14 +3933,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Beta-lactam ức chế tổng hợp vách tế bào; chất ức chế beta-lactamase mở rộng tác dụng trên vi khuẩn sinh beta-lactamase nhạy cảm.",
+      "pho_tac_dung": [
+        "Gram dương, một số Gram âm và kỵ khí tùy hoạt chất.",
+        "Piperacillin/tazobactam có phổ rộng hơn và có tác dụng trên Pseudomonas khi còn nhạy."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm hoặc phụ khoa tùy hoạt chất và mức độ nặng.",
+        "Lựa chọn theo phác đồ bệnh viện, kháng sinh đồ và nguy cơ ESBL/Pseudomonas."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Thận trọng dị ứng chéo cephalosporin/carbapenem tùy mức độ phản ứng."
+      ],
+      "than_trong": [
+        "Chỉnh liều ở suy thận, đặc biệt piperacillin/tazobactam và ampicillin/sulbactam.",
+        "Theo dõi tiêu chảy do C. difficile, men gan và công thức máu nếu dùng kéo dài."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam có hiệu quả phụ thuộc thời gian trên MIC; có thể cân nhắc truyền kéo dài với piperacillin/tazobactam ở nhiễm nặng."
+      ],
+      "lieu_chuan": "Thường 1,5–3 g IV mỗi 6 giờ tùy mức độ nhiễm; chỉnh theo thận.",
+      "hieu_chinh_than": {
+        ">=50": "Dùng liều chuẩn theo chỉ định.",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo hoạt chất.",
+        "15-29": "Giảm liều/giãn khoảng cách rõ hơn.",
+        "<15": "Liều thấp hơn hoặc q24h; cân nhắc sau lọc máu.",
+        "HD": "Dùng sau HD khi cần; theo protocol nội viện.",
+        "CRRT": "Có thể cần liều cao hơn suy thận thường; cân nhắc truyền kéo dài và hội chẩn."
+      },
+      "oda_truyen_keo_dai": "Piperacillin/tazobactam: có thể truyền kéo dài 3–4 giờ nếu phác đồ nội viện phê duyệt; amoxicillin/clavulanate và ampicillin/sulbactam thường truyền ngắn theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; thường q24h hoặc theo mức độ nặng.",
+        "CRRT": "1,5–3 g q6–8h; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+        "toc_do": "Truyền IV khoảng 15–30 phút.",
+        "luu_y": "Theo dõi quá mẫn beta-lactam, tiêu chảy, men gan."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu/tiểu cầu khi dùng kéo dài"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR và dấu hiệu chảy máu."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số penicillin có thể làm giảm thải trừ methotrexate.",
+          "xu_tri": "Theo dõi độc tính methotrexate khi phối hợp."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "sulfamethoxazol-trimethoprim-ocebiso-syt-25",
@@ -2062,14 +4101,100 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Ức chế hai bước liên tiếp trong tổng hợp acid folic vi khuẩn; phối hợp có tác dụng hiệp đồng.",
+      "pho_tac_dung": [
+        "Nhiều Gram dương/Gram âm nhạy cảm; Pneumocystis jirovecii, một số Stenotrophomonas/Nocardia tùy phác đồ.",
+        "Không dùng theo kinh nghiệm nếu tỷ lệ kháng cao hoặc nhiễm nặng chưa có kháng sinh đồ."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn tiết niệu, da mô mềm do chủng nhạy; PJP điều trị/dự phòng; một số nhiễm khuẩn đặc biệt theo phác đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn sulfonamid/trimethoprim.",
+        "Tiền sử SJS/TEN do sulfonamid; thiếu máu hồng cầu khổng lồ do thiếu folat nặng."
+      ],
+      "than_trong": [
+        "Nguy cơ tăng kali máu, tăng creatinin giả, suy tủy, phản ứng da nặng.",
+        "Chỉnh liều theo thận; tránh/đánh giá kỹ ở suy thận nặng nếu không theo dõi được."
+      ],
+      "duoc_dong_hoc": [
+        "Thải trừ qua thận; TMP có thể làm tăng kali và tăng SCr do giảm bài tiết creatinin ống thận."
+      ],
+      "lieu_chuan": "Theo thành phần TMP: nhiễm thông thường 1 viên DS q12h; PJP điều trị 15–20 mg/kg/ngày TMP chia liều theo phác đồ.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Thường liều chuẩn hoặc giảm tùy chỉ định.",
+        "15-29": "Giảm 50% liều hoặc giãn khoảng cách.",
+        "<15": "Tránh nếu có lựa chọn hoặc dùng khi bắt buộc với theo dõi sát.",
+        "HD": "Dùng sau HD, chỉnh theo chỉ định.",
+        "CRRT": "Cá thể hóa theo chỉ định, liều PJP có thể cần cao hơn suy thận thường."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA/truyền kéo dài. IV truyền theo tờ HDSD, thường 60–90 phút sau pha loãng.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; thường 50% liều thường quy tùy chỉ định.",
+        "CRRT": "Thường cần liều gần thường quy ở nhiễm nặng; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "IV phải pha loãng theo tờ HDSD; thường dùng Glucose 5%, tránh pha quá đặc.",
+        "toc_do": "Truyền IV 60–90 phút; không tiêm bolus.",
+        "luu_y": "Nguy cơ tăng kali máu, tăng creatinin giả do TMP, ức chế tủy, hội chứng Stevens–Johnson."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "Kali",
+        "CBC",
+        "Phát ban/SJS-TEN",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Tăng kali máu",
+        "Phát ban/SJS-TEN",
+        "Giảm bạch cầu/tiểu cầu",
+        "Tăng SCr",
+        "Viêm gan thuốc"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng INR/chảy máu đáng kể.",
+          "xu_tri": "Tránh nếu có thể hoặc giảm liều warfarin và theo dõi INR sát."
+        },
+        {
+          "cap": "ACEI/ARB/spironolacton/eplerenon",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ tăng kali máu.",
+          "xu_tri": "Theo dõi kali/SCr, cân nhắc thuốc thay thế."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc tính huyết học.",
+          "xu_tri": "Tránh phối hợp hoặc theo dõi CBC sát."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "levofloxacin-ozanier-500mg",
@@ -2150,14 +4275,102 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Fluoroquinolon ức chế DNA gyrase/topoisomerase IV, diệt khuẩn phụ thuộc nồng độ/AUC.",
+      "pho_tac_dung": [
+        "Gram âm và một số Gram dương; ciprofloxacin mạnh hơn trên Pseudomonas, levofloxacin/moxifloxacin mạnh hơn trên hô hấp.",
+        "Moxifloxacin có hoạt tính kỵ khí hơn nhưng không phù hợp điều trị UTI do nồng độ niệu thấp."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, tiêu hóa, ổ bụng hoặc da mô mềm khi phù hợp phác đồ và kháng sinh đồ.",
+        "Cân nhắc hạn chế sử dụng do nguy cơ ADR nghiêm trọng và kháng thuốc."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fluoroquinolon.",
+        "Tiền sử bệnh gân liên quan quinolon; thận trọng QT kéo dài."
+      ],
+      "than_trong": [
+        "Nguy cơ kéo dài QT, rối loạn đường huyết, bệnh gân/đứt gân, bệnh lý thần kinh ngoại biên, tác dụng TKTW.",
+        "Tránh dùng không cần thiết ở người có nguy cơ phình/tách động mạch chủ theo cảnh báo an toàn."
+      ],
+      "duoc_dong_hoc": [
+        "Ciprofloxacin/levofloxacin cần chỉnh liều theo thận; moxifloxacin ít cần chỉnh liều thận nhưng cần chú ý gan/QT."
+      ],
+      "lieu_chuan": "Thường 500–750 mg IV/PO mỗi 24 giờ tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Ciprofloxacin/levofloxacin giảm liều hoặc giãn khoảng cách; moxifloxacin thường không cần chỉnh thận.",
+        "15-29": "Ciprofloxacin/levofloxacin giảm thêm; moxifloxacin thường không cần chỉnh thận.",
+        "<15": "Ciprofloxacin/levofloxacin dùng liều giảm và giãn khoảng cách; moxifloxacin theo dõi QT/gan.",
+        "HD": "Dùng sau HD nếu ciprofloxacin/levofloxacin.",
+        "CRRT": "Theo cường độ CRRT và chỉ định; tránh thiếu liều trong nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD hoặc không phụ thuộc HD tùy phác đồ; thường giãn 48 giờ.",
+        "CRRT": "Thường 500–750 mg mỗi 24 giờ; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dung dịch truyền pha sẵn; nếu cần pha loãng theo tờ HDSD, tránh trộn thuốc không tương thích.",
+        "toc_do": "500 mg truyền ≥60 phút; 750 mg truyền ≥90 phút.",
+        "luu_y": "Tránh dùng không cần thiết do nguy cơ QT, gân, thần kinh ngoại biên, hạ/tăng đường huyết."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "QTc nếu nguy cơ",
+        "Đường huyết",
+        "Đau gân",
+        "Triệu chứng TKTW",
+        "SCr với ciprofloxacin/levofloxacin",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Buồn nôn/tiêu chảy",
+        "Kéo dài QT",
+        "Viêm/đứt gân",
+        "Rối loạn đường huyết",
+        "Tác dụng TKTW"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Amiodarone/sotalol/macrolid/thuốc kéo dài QT",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+          "xu_tri": "Tránh phối hợp nếu nguy cơ cao; theo dõi ECG, điện giải."
+        },
+        {
+          "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
+          "muc_do": "Moderate",
+          "canh_bao": "Giảm hấp thu quinolon đường uống.",
+          "xu_tri": "Tách thời điểm dùng."
+        },
+        {
+          "cap": "Warfarin",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR.",
+          "xu_tri": "Theo dõi INR."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "ciprofloxacin-tamisynt-500mg",
@@ -2237,14 +4450,102 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Fluoroquinolon ức chế DNA gyrase/topoisomerase IV, diệt khuẩn phụ thuộc nồng độ/AUC.",
+      "pho_tac_dung": [
+        "Gram âm và một số Gram dương; ciprofloxacin mạnh hơn trên Pseudomonas, levofloxacin/moxifloxacin mạnh hơn trên hô hấp.",
+        "Moxifloxacin có hoạt tính kỵ khí hơn nhưng không phù hợp điều trị UTI do nồng độ niệu thấp."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, tiêu hóa, ổ bụng hoặc da mô mềm khi phù hợp phác đồ và kháng sinh đồ.",
+        "Cân nhắc hạn chế sử dụng do nguy cơ ADR nghiêm trọng và kháng thuốc."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn fluoroquinolon.",
+        "Tiền sử bệnh gân liên quan quinolon; thận trọng QT kéo dài."
+      ],
+      "than_trong": [
+        "Nguy cơ kéo dài QT, rối loạn đường huyết, bệnh gân/đứt gân, bệnh lý thần kinh ngoại biên, tác dụng TKTW.",
+        "Tránh dùng không cần thiết ở người có nguy cơ phình/tách động mạch chủ theo cảnh báo an toàn."
+      ],
+      "duoc_dong_hoc": [
+        "Ciprofloxacin/levofloxacin cần chỉnh liều theo thận; moxifloxacin ít cần chỉnh liều thận nhưng cần chú ý gan/QT."
+      ],
+      "lieu_chuan": "Thường 400 mg IV q8–12h hoặc 500–750 mg PO q12h tùy chỉ định.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn.",
+        "30-49": "Ciprofloxacin/levofloxacin giảm liều hoặc giãn khoảng cách; moxifloxacin thường không cần chỉnh thận.",
+        "15-29": "Ciprofloxacin/levofloxacin giảm thêm; moxifloxacin thường không cần chỉnh thận.",
+        "<15": "Ciprofloxacin/levofloxacin dùng liều giảm và giãn khoảng cách; moxifloxacin theo dõi QT/gan.",
+        "HD": "Dùng sau HD nếu ciprofloxacin/levofloxacin.",
+        "CRRT": "Theo cường độ CRRT và chỉ định; tránh thiếu liều trong nhiễm nặng."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD.",
+        "CRRT": "400 mg IV mỗi 8–12 giờ tùy nặng."
+      },
+      "pha_truyen": {
+        "dung_moi": "Dung dịch truyền pha sẵn hoặc pha loãng theo tờ HDSD; tránh trộn với dung dịch không tương thích.",
+        "toc_do": "Truyền IV 60 phút.",
+        "luu_y": "Tránh phối hợp cation đường uống; theo dõi QT/gân/đường huyết."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "QTc nếu nguy cơ",
+        "Đường huyết",
+        "Đau gân",
+        "Triệu chứng TKTW",
+        "SCr với ciprofloxacin/levofloxacin",
+        "AST/ALT"
+      ],
+      "adr": [
+        "Buồn nôn/tiêu chảy",
+        "Kéo dài QT",
+        "Viêm/đứt gân",
+        "Rối loạn đường huyết",
+        "Tác dụng TKTW"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Amiodarone/sotalol/macrolid/thuốc kéo dài QT",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+          "xu_tri": "Tránh phối hợp nếu nguy cơ cao; theo dõi ECG, điện giải."
+        },
+        {
+          "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
+          "muc_do": "Moderate",
+          "canh_bao": "Giảm hấp thu quinolon đường uống.",
+          "xu_tri": "Tách thời điểm dùng."
+        },
+        {
+          "cap": "Warfarin",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR.",
+          "xu_tri": "Theo dõi INR."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "piperacillin-tazobactam-tazopelin-4-5g",
@@ -2317,14 +4618,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Beta-lactam ức chế tổng hợp vách tế bào; chất ức chế beta-lactamase mở rộng tác dụng trên vi khuẩn sinh beta-lactamase nhạy cảm.",
+      "pho_tac_dung": [
+        "Gram dương, một số Gram âm và kỵ khí tùy hoạt chất.",
+        "Piperacillin/tazobactam có phổ rộng hơn và có tác dụng trên Pseudomonas khi còn nhạy."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm hoặc phụ khoa tùy hoạt chất và mức độ nặng.",
+        "Lựa chọn theo phác đồ bệnh viện, kháng sinh đồ và nguy cơ ESBL/Pseudomonas."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Thận trọng dị ứng chéo cephalosporin/carbapenem tùy mức độ phản ứng."
+      ],
+      "than_trong": [
+        "Chỉnh liều ở suy thận, đặc biệt piperacillin/tazobactam và ampicillin/sulbactam.",
+        "Theo dõi tiêu chảy do C. difficile, men gan và công thức máu nếu dùng kéo dài."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam có hiệu quả phụ thuộc thời gian trên MIC; có thể cân nhắc truyền kéo dài với piperacillin/tazobactam ở nhiễm nặng."
+      ],
+      "lieu_chuan": "Thường 4,5 g IV mỗi 6–8 giờ; nhiễm nặng/Pseudomonas có thể dùng q6h hoặc truyền kéo dài theo phác đồ.",
+      "hieu_chinh_than": {
+        ">=50": "4,5 g q6–8h tùy chỉ định.",
+        "30-49": "Thường 4,5 g q8h.",
+        "15-29": "Thường 4,5 g q12h.",
+        "<15": "Thường 2,25–4,5 g q12h tùy nhiễm.",
+        "HD": "Liều sau HD theo protocol.",
+        "CRRT": "Có thể cần 4,5 g q8h truyền kéo dài tùy cường độ CRRT/MIC."
+      },
+      "oda_truyen_keo_dai": "Piperacillin/tazobactam: có thể truyền kéo dài 3–4 giờ nếu phác đồ nội viện phê duyệt; amoxicillin/clavulanate và ampicillin/sulbactam thường truyền ngắn theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "2,25–3,375 g q8–12h, dùng sau HD; bổ sung theo phác đồ.",
+        "CRRT": "4,5 g q8h EI thường dùng trong nhiễm nặng; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+        "toc_do": "Truyền 30 phút hoặc truyền kéo dài 3–4 giờ nếu phác đồ phê duyệt.",
+        "luu_y": "Không pha chung aminoglycosid trong cùng bơm/đường truyền; chú ý tải natri."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu/tiểu cầu khi dùng kéo dài"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR và dấu hiệu chảy máu."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số penicillin có thể làm giảm thải trừ methotrexate.",
+          "xu_tri": "Theo dõi độc tính methotrexate khi phối hợp."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "cefotaxime-tenamyd-cefotaxime-1000",
@@ -2392,14 +4773,93 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Cephalosporin/cephamycin ức chế tổng hợp vách tế bào vi khuẩn.",
+      "pho_tac_dung": [
+        "Phổ tác dụng tùy thế hệ: ceftriaxone/cefotaxime/ceftazidime/cefixime/cefpodoxime chủ yếu Gram âm; ceftazidime có Pseudomonas; cefoxitin có thêm kỵ khí ổ bụng."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm, nhiễm khuẩn huyết hoặc dự phòng phẫu thuật tùy hoạt chất.",
+        "Lựa chọn theo vị trí nhiễm, mức độ nặng và kháng sinh đồ."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn cephalosporin hoặc phản vệ beta-lactam."
+      ],
+      "than_trong": [
+        "Ceftriaxone thận trọng ứ mật, bệnh gan mật, sơ sinh; tránh pha chung dung dịch chứa calci ở đối tượng nguy cơ.",
+        "Ceftazidime/cefotaxime/cefixime/cefpodoxime cần chú ý hiệu chỉnh thận."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam phụ thuộc thời gian trên MIC; hiệu chỉnh thận tùy hoạt chất. Ceftriaxone thải trừ qua mật/thận nên thường không cần chỉnh liều đơn thuần do suy thận nhẹ-vừa."
+      ],
+      "lieu_chuan": "Thường 1–2 g IV mỗi 6–8 giờ tùy mức độ nhiễm.",
+      "hieu_chinh_than": {
+        ">=50": "Liều chuẩn theo chỉ định.",
+        "30-49": "Đa số cần giảm/giãn khoảng cách, ngoại trừ ceftriaxone thường không cần chỉnh nếu không suy gan nặng.",
+        "15-29": "Giảm liều/giãn khoảng cách theo hoạt chất.",
+        "<15": "Liều thấp hơn; tránh tích lũy thuốc thải trừ thận.",
+        "HD": "Bổ sung sau HD tùy hoạt chất.",
+        "CRRT": "Cân nhắc liều theo cường độ CRRT và MIC."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA thường quy; truyền 30 phút.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; cá thể hóa.",
+        "CRRT": "1–2 g q8h; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+        "toc_do": "Truyền IV khoảng 30 phút.",
+        "luu_y": "Theo dõi độc thần kinh nếu suy thận không chỉnh liều."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu khi dùng kéo dài",
+        "Nguy cơ co giật nếu tích lũy ở suy thận"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số cephalosporin có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR, đặc biệt người suy dinh dưỡng/dùng kéo dài."
+        },
+        {
+          "cap": "Dung dịch chứa calci với ceftriaxone",
+          "muc_do": "Major",
+          "canh_bao": "Nguy cơ kết tủa, đặc biệt ở trẻ sơ sinh; không pha chung đường truyền.",
+          "xu_tri": "Không pha chung; xả đường truyền theo quy định."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "ampicilin-sulbactam-unasyn",
@@ -2473,14 +4933,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Beta-lactam ức chế tổng hợp vách tế bào; chất ức chế beta-lactamase mở rộng tác dụng trên vi khuẩn sinh beta-lactamase nhạy cảm.",
+      "pho_tac_dung": [
+        "Gram dương, một số Gram âm và kỵ khí tùy hoạt chất.",
+        "Piperacillin/tazobactam có phổ rộng hơn và có tác dụng trên Pseudomonas khi còn nhạy."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm khuẩn hô hấp, tiết niệu, ổ bụng, da mô mềm hoặc phụ khoa tùy hoạt chất và mức độ nặng.",
+        "Lựa chọn theo phác đồ bệnh viện, kháng sinh đồ và nguy cơ ESBL/Pseudomonas."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn penicillin hoặc phản vệ beta-lactam.",
+        "Thận trọng dị ứng chéo cephalosporin/carbapenem tùy mức độ phản ứng."
+      ],
+      "than_trong": [
+        "Chỉnh liều ở suy thận, đặc biệt piperacillin/tazobactam và ampicillin/sulbactam.",
+        "Theo dõi tiêu chảy do C. difficile, men gan và công thức máu nếu dùng kéo dài."
+      ],
+      "duoc_dong_hoc": [
+        "Beta-lactam có hiệu quả phụ thuộc thời gian trên MIC; có thể cân nhắc truyền kéo dài với piperacillin/tazobactam ở nhiễm nặng."
+      ],
+      "lieu_chuan": "Thường 1,5–3 g IV mỗi 6 giờ tùy mức độ nhiễm; chỉnh theo thận.",
+      "hieu_chinh_than": {
+        ">=50": "Dùng liều chuẩn theo chỉ định.",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo hoạt chất.",
+        "15-29": "Giảm liều/giãn khoảng cách rõ hơn.",
+        "<15": "Liều thấp hơn hoặc q24h; cân nhắc sau lọc máu.",
+        "HD": "Dùng sau HD khi cần; theo protocol nội viện.",
+        "CRRT": "Có thể cần liều cao hơn suy thận thường; cân nhắc truyền kéo dài và hội chẩn."
+      },
+      "oda_truyen_keo_dai": "Piperacillin/tazobactam: có thể truyền kéo dài 3–4 giờ nếu phác đồ nội viện phê duyệt; amoxicillin/clavulanate và ampicillin/sulbactam thường truyền ngắn theo tờ HDSD.",
+      "hd_crrt": {
+        "HD": "Dùng sau HD; thường q24h hoặc theo mức độ nặng.",
+        "CRRT": "1,5–3 g q6–8h; cá thể hóa."
+      },
+      "pha_truyen": {
+        "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+        "toc_do": "Truyền IV khoảng 15–30 phút.",
+        "luu_y": "Theo dõi quá mẫn beta-lactam, tiêu chảy, men gan."
+      },
+      "tdm": {
+        "can": false,
+        "muc_tieu": "Không TDM thường quy."
+      },
+      "theo_doi": [
+        "SCr",
+        "AST/ALT",
+        "CBC nếu dùng kéo dài",
+        "Tiêu chảy/C. difficile",
+        "Dị ứng"
+      ],
+      "adr": [
+        "Dị ứng/phát ban",
+        "Tiêu chảy",
+        "Tăng men gan",
+        "Giảm bạch cầu/tiểu cầu khi dùng kéo dài"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Warfarin/thuốc chống đông",
+          "muc_do": "Moderate",
+          "canh_bao": "Có thể tăng INR/chảy máu.",
+          "xu_tri": "Theo dõi INR và dấu hiệu chảy máu."
+        },
+        {
+          "cap": "Methotrexate",
+          "muc_do": "Moderate",
+          "canh_bao": "Một số penicillin có thể làm giảm thải trừ methotrexate.",
+          "xu_tri": "Theo dõi độc tính methotrexate khi phối hợp."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "vancomycin-vancomycin-1g",
@@ -2554,14 +5094,95 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Glycopeptid ức chế tổng hợp thành tế bào Gram dương bằng cách gắn D-Ala-D-Ala.",
+      "pho_tac_dung": [
+        "Gram dương, bao gồm MRSA và tụ cầu kháng methicillin khi còn nhạy.",
+        "Không có tác dụng trên Gram âm; không dùng đơn độc nếu nghi Gram âm."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm MRSA hoặc Gram dương nặng theo phác đồ/kháng sinh đồ.",
+        "Viêm phổi bệnh viện, nhiễm khuẩn huyết, viêm nội tâm mạc, nhiễm khuẩn xương khớp do Gram dương phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn vancomycin/glycopeptid.",
+        "Thận trọng nếu tiền sử hội chứng truyền vancomycin nặng."
+      ],
+      "than_trong": [
+        "Nguy cơ AKI tăng khi phối hợp thuốc độc thận.",
+        "Truyền quá nhanh gây hội chứng người đỏ/giải phóng histamin."
+      ],
+      "duoc_dong_hoc": [
+        "Hiệu quả liên quan AUC/MIC; ưu tiên AUC-guided monitoring khi có điều kiện.",
+        "Thải trừ chủ yếu qua thận; cần chỉnh liều theo CrCl và nồng độ."
+      ],
+      "lieu_chuan": "Liều nạp 20–25 mg/kg IV khi nhiễm nặng; duy trì thường 15–20 mg/kg mỗi 8–12 giờ ở chức năng thận bình thường, chỉnh theo AUC/nồng độ.",
+      "hieu_chinh_than": {
+        ">=50": "15–20 mg/kg q8–12h, chỉnh theo AUC/nồng độ.",
+        "30-49": "Kéo dài khoảng cách q24h hoặc theo nồng độ.",
+        "15-29": "q24–48h hoặc theo nồng độ.",
+        "<15": "Dùng liều nạp, liều duy trì theo nồng độ.",
+        "HD": "Liều nạp, sau đó bổ sung sau HD theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và cường độ CRRT."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA. Truyền chậm để giảm phản ứng truyền; không tiêm nhanh.",
+      "hd_crrt": {
+        "HD": "Liều nạp, sau đó liều sau HD theo nồng độ trước lọc hoặc sau lọc.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và thông số CRRT."
+      },
+      "pha_truyen": {
+        "dung_moi": "Pha loãng trong NaCl 0,9% hoặc Glucose 5%; nồng độ thường ≤5 mg/mL qua đường ngoại vi.",
+        "toc_do": "Tối thiểu 60 phút cho mỗi 1 g; không vượt 10 mg/phút.",
+        "luu_y": "Kéo dài thời gian truyền nếu phản ứng kiểu người đỏ; không tiêm bolus."
+      },
+      "tdm": {
+        "can": true,
+        "muc_tieu": "AUC24/MIC 400–600 khi MIC giả định 1 mg/L; nếu chưa tính AUC, theo dõi trough theo phác đồ nội viện."
+      },
+      "theo_doi": [
+        "SCr",
+        "AUC/trough",
+        "Dấu hiệu truyền thuốc",
+        "CBC nếu điều trị kéo dài",
+        "Đáp ứng lâm sàng và cấy vi sinh"
+      ],
+      "adr": [
+        "AKI",
+        "Hội chứng truyền vancomycin",
+        "Giảm bạch cầu trung tính khi dùng kéo dài",
+        "Độc tai hiếm gặp"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Piperacillin/tazobactam",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ AKI được ghi nhận trong nhiều nghiên cứu.",
+          "xu_tri": "Cân nhắc lựa chọn beta-lactam khác nếu phù hợp; theo dõi SCr sát."
+        },
+        {
+          "cap": "Aminoglycosid/colistin/amphotericin B/cisplatin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc thận/độc tai.",
+          "xu_tri": "Tránh phối hợp hoặc TDM/theo dõi sát."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "vancomycin-vancomycin-500mg",
@@ -2635,14 +5256,95 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Glycopeptid ức chế tổng hợp thành tế bào Gram dương bằng cách gắn D-Ala-D-Ala.",
+      "pho_tac_dung": [
+        "Gram dương, bao gồm MRSA và tụ cầu kháng methicillin khi còn nhạy.",
+        "Không có tác dụng trên Gram âm; không dùng đơn độc nếu nghi Gram âm."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm MRSA hoặc Gram dương nặng theo phác đồ/kháng sinh đồ.",
+        "Viêm phổi bệnh viện, nhiễm khuẩn huyết, viêm nội tâm mạc, nhiễm khuẩn xương khớp do Gram dương phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn vancomycin/glycopeptid.",
+        "Thận trọng nếu tiền sử hội chứng truyền vancomycin nặng."
+      ],
+      "than_trong": [
+        "Nguy cơ AKI tăng khi phối hợp thuốc độc thận.",
+        "Truyền quá nhanh gây hội chứng người đỏ/giải phóng histamin."
+      ],
+      "duoc_dong_hoc": [
+        "Hiệu quả liên quan AUC/MIC; ưu tiên AUC-guided monitoring khi có điều kiện.",
+        "Thải trừ chủ yếu qua thận; cần chỉnh liều theo CrCl và nồng độ."
+      ],
+      "lieu_chuan": "Liều nạp 20–25 mg/kg IV khi nhiễm nặng; duy trì thường 15–20 mg/kg mỗi 8–12 giờ ở chức năng thận bình thường, chỉnh theo AUC/nồng độ.",
+      "hieu_chinh_than": {
+        ">=50": "15–20 mg/kg q8–12h, chỉnh theo AUC/nồng độ.",
+        "30-49": "Kéo dài khoảng cách q24h hoặc theo nồng độ.",
+        "15-29": "q24–48h hoặc theo nồng độ.",
+        "<15": "Dùng liều nạp, liều duy trì theo nồng độ.",
+        "HD": "Liều nạp, sau đó bổ sung sau HD theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và cường độ CRRT."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA. Truyền chậm để giảm phản ứng truyền; không tiêm nhanh.",
+      "hd_crrt": {
+        "HD": "Liều nạp, sau đó liều sau HD theo nồng độ trước lọc hoặc sau lọc.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và thông số CRRT."
+      },
+      "pha_truyen": {
+        "dung_moi": "Pha loãng trong NaCl 0,9% hoặc Glucose 5%; nồng độ thường ≤5 mg/mL qua đường ngoại vi.",
+        "toc_do": "Tối thiểu 60 phút cho mỗi 1 g; không vượt 10 mg/phút.",
+        "luu_y": "Kéo dài thời gian truyền nếu phản ứng kiểu người đỏ; không tiêm bolus."
+      },
+      "tdm": {
+        "can": true,
+        "muc_tieu": "AUC24/MIC 400–600 khi MIC giả định 1 mg/L; nếu chưa tính AUC, theo dõi trough theo phác đồ nội viện."
+      },
+      "theo_doi": [
+        "SCr",
+        "AUC/trough",
+        "Dấu hiệu truyền thuốc",
+        "CBC nếu điều trị kéo dài",
+        "Đáp ứng lâm sàng và cấy vi sinh"
+      ],
+      "adr": [
+        "AKI",
+        "Hội chứng truyền vancomycin",
+        "Giảm bạch cầu trung tính khi dùng kéo dài",
+        "Độc tai hiếm gặp"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Piperacillin/tazobactam",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ AKI được ghi nhận trong nhiều nghiên cứu.",
+          "xu_tri": "Cân nhắc lựa chọn beta-lactam khác nếu phù hợp; theo dõi SCr sát."
+        },
+        {
+          "cap": "Aminoglycosid/colistin/amphotericin B/cisplatin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc thận/độc tai.",
+          "xu_tri": "Tránh phối hợp hoặc TDM/theo dõi sát."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   },
   {
     "id": "vancomycin-vecmid-500mg",
@@ -2716,13 +5418,94 @@
       "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
       "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
     ],
-    "trang_thai_du_lieu": "Đã nhập dữ liệu chuyên môn cho danh mục nội trú. Sử dụng theo phác đồ bệnh viện và đánh giá lâm sàng từng ca.",
+    "trang_thai_du_lieu": "CSDL chuyên môn đã chuẩn hóa cho tra cứu nội trú; cần áp dụng theo phác đồ bệnh viện, kháng sinh đồ và phê duyệt chuyên môn nội bộ.",
     "nguon_tham_khao": [
-      "BYT-708-QD-BYT",
-      "BYT-5631-QD-BYT",
-      "Duoc-thu-Quoc-gia-VN",
-      "UCSF-IDMP",
-      "Stanford-ABX-Dosing"
-    ]
+      "QD-708/QĐ-BYT",
+      "Dược thư Quốc gia Việt Nam lần 3 - QĐ 3445/QĐ-BYT",
+      "QD-5631/QĐ-BYT",
+      "UCSF IDMP",
+      "Stanford Antimicrobial Safety and Sustainability Program",
+      "IDSA/ASHP/SIDP Vancomycin TDM guideline",
+      "Renal Drug Handbook/Lexicomp đối chiếu"
+    ],
+    "thong_tin_chuyen_mon": {
+      "co_che": "Glycopeptid ức chế tổng hợp thành tế bào Gram dương bằng cách gắn D-Ala-D-Ala.",
+      "pho_tac_dung": [
+        "Gram dương, bao gồm MRSA và tụ cầu kháng methicillin khi còn nhạy.",
+        "Không có tác dụng trên Gram âm; không dùng đơn độc nếu nghi Gram âm."
+      ],
+      "chi_dinh_chinh": [
+        "Nhiễm MRSA hoặc Gram dương nặng theo phác đồ/kháng sinh đồ.",
+        "Viêm phổi bệnh viện, nhiễm khuẩn huyết, viêm nội tâm mạc, nhiễm khuẩn xương khớp do Gram dương phù hợp."
+      ],
+      "chong_chi_dinh": [
+        "Quá mẫn vancomycin/glycopeptid.",
+        "Thận trọng nếu tiền sử hội chứng truyền vancomycin nặng."
+      ],
+      "than_trong": [
+        "Nguy cơ AKI tăng khi phối hợp thuốc độc thận.",
+        "Truyền quá nhanh gây hội chứng người đỏ/giải phóng histamin."
+      ],
+      "duoc_dong_hoc": [
+        "Hiệu quả liên quan AUC/MIC; ưu tiên AUC-guided monitoring khi có điều kiện.",
+        "Thải trừ chủ yếu qua thận; cần chỉnh liều theo CrCl và nồng độ."
+      ],
+      "lieu_chuan": "Liều nạp 20–25 mg/kg IV khi nhiễm nặng; duy trì thường 15–20 mg/kg mỗi 8–12 giờ ở chức năng thận bình thường, chỉnh theo AUC/nồng độ.",
+      "hieu_chinh_than": {
+        ">=50": "15–20 mg/kg q8–12h, chỉnh theo AUC/nồng độ.",
+        "30-49": "Kéo dài khoảng cách q24h hoặc theo nồng độ.",
+        "15-29": "q24–48h hoặc theo nồng độ.",
+        "<15": "Dùng liều nạp, liều duy trì theo nồng độ.",
+        "HD": "Liều nạp, sau đó bổ sung sau HD theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và cường độ CRRT."
+      },
+      "oda_truyen_keo_dai": "Không áp dụng ODA. Truyền chậm để giảm phản ứng truyền; không tiêm nhanh.",
+      "hd_crrt": {
+        "HD": "Liều nạp, sau đó liều sau HD theo nồng độ trước lọc hoặc sau lọc.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và thông số CRRT."
+      },
+      "pha_truyen": {
+        "dung_moi": "Pha loãng trong NaCl 0,9% hoặc Glucose 5%; nồng độ thường ≤5 mg/mL qua đường ngoại vi.",
+        "toc_do": "Tối thiểu 60 phút cho mỗi 1 g; không vượt 10 mg/phút.",
+        "luu_y": "Kéo dài thời gian truyền nếu phản ứng kiểu người đỏ; không tiêm bolus."
+      },
+      "tdm": {
+        "can": true,
+        "muc_tieu": "AUC24/MIC 400–600 khi MIC giả định 1 mg/L; nếu chưa tính AUC, theo dõi trough theo phác đồ nội viện."
+      },
+      "theo_doi": [
+        "SCr",
+        "AUC/trough",
+        "Dấu hiệu truyền thuốc",
+        "CBC nếu điều trị kéo dài",
+        "Đáp ứng lâm sàng và cấy vi sinh"
+      ],
+      "adr": [
+        "AKI",
+        "Hội chứng truyền vancomycin",
+        "Giảm bạch cầu trung tính khi dùng kéo dài",
+        "Độc tai hiếm gặp"
+      ],
+      "tuong_tac": [
+        {
+          "cap": "Piperacillin/tazobactam",
+          "muc_do": "Major",
+          "canh_bao": "Tăng nguy cơ AKI được ghi nhận trong nhiều nghiên cứu.",
+          "xu_tri": "Cân nhắc lựa chọn beta-lactam khác nếu phù hợp; theo dõi SCr sát."
+        },
+        {
+          "cap": "Aminoglycosid/colistin/amphotericin B/cisplatin",
+          "muc_do": "Major",
+          "canh_bao": "Tăng độc thận/độc tai.",
+          "xu_tri": "Tránh phối hợp hoặc TDM/theo dõi sát."
+        }
+      ],
+      "thai_ky_cho_con_bu": "Đánh giá lợi ích/nguy cơ, ưu tiên theo Dược thư Quốc gia Việt Nam và tờ hướng dẫn sử dụng. Thận trọng đặc biệt với fluoroquinolon, aminoglycosid, glycopeptid và sulfamid/trimethoprim.",
+      "bao_quan": "Bảo quản theo tờ hướng dẫn sử dụng của biệt dược; dung dịch sau pha cần dùng trong thời gian ổn định được khuyến cáo.",
+      "ghi_chu_thuc_hanh": [
+        "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+        "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+      ]
+    }
   }
 ]
