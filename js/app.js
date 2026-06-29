@@ -23,7 +23,7 @@ function renderRows(obj) {
   return Object.entries(obj || {}).map(([key, value]) => `<tr><td><b>${key}</b></td><td>${safeText(value)}</td></tr>`).join('');
 }
 function renderInteractions(items) {
-  if (!items || !items.length) return '<li>Chưa ghi nhận tương tác ưu tiên mức độ cao trong bản dữ liệu này.</li>';
+  if (!items || !items.length) return '<li>Chưa có cảnh báo tương tác ưu tiên mức độ cao trong danh mục hiện tại. Vẫn cần kiểm tra thêm theo bệnh cảnh và thuốc dùng đồng thời.</li>';
   return items.map(x => `<li><b>${safeText(x.cap, 'Cặp tương tác')}</b> <span class="badge ${normalizeText(x.muc_do)}">${safeText(x.muc_do, 'Theo dõi')}</span><br>${safeText(x.canh_bao, '')}<br><small><b>Xử trí:</b> ${safeText(x.xu_tri, 'Theo dõi và đánh giá lâm sàng.')}</small></li>`).join('');
 }
 
@@ -89,7 +89,7 @@ function renderAntibioticCard(item) {
         <b>Lưu ý:</b>
         <ul>${renderList(item.luu_y_quan_trong)}</ul>
       </div>
-      <p class="note"><b>Trạng thái:</b> ${safeText(item.trang_thai_du_lieu)}<br><b>Nguồn:</b> ${sourceBadges(item.nguon_tham_khao)}</p>
+      <p class="note"><b>Trạng thái dữ liệu:</b> ${safeText(item.trang_thai_du_lieu)}<br><b>Nguồn:</b> ${sourceBadges(item.nguon_tham_khao)}</p>
     </article>`;
 }
 
