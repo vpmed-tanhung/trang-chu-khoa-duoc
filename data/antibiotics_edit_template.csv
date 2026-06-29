@@ -1,0 +1,35 @@
+﻿stt_noi_tru,ten_thuoc_biet_duoc,hoat_chat,ham_luong_nong_do,duong_dung,nhom_khang_sinh,aware,trang_thai_du_lieu
+1,Axuka,Amoxicillin + acid clavulanic,1000mg + 200mg,Tiêm,Penicillin + chất ức chế beta-lactamase,Access/Watch tùy chỉ định,seed-can-ra-soat
+2,Benzathin benzylpenicilin 1.200.000 IU,Benzathine benzylpenicillin,1200000 IU,Tiêm,Penicillin tự nhiên,Access,seed-can-ra-soat
+3,Biseptol 480,Sulfamethoxazol + trimethoprim,400mg + 80mg,Uống,Sulfonamide + diaminopyrimidine,Access,seed-can-ra-soat
+4,Bivelox I.V 5mg/ml,Levofloxacin,5mg/1ml,Tiêm truyền,Fluoroquinolone,Watch,seed-can-ra-soat
+5,Cebest,Cefpodoxim,100mg,Uống,Cephalosporin thế hệ 3 đường uống,Watch,seed-can-ra-soat
+6,Cefixime STADA 200mg,Cefixime,200mg,Uống,Cephalosporin thế hệ 3 đường uống,Watch,seed-can-ra-soat
+7,Cefoperazone 1000 SYT-25,Cefoperazone,1g,Tiêm,Cephalosporin thế hệ 3,Watch,seed-can-ra-soat
+8,Cefoxitin 1g,Cefoxitin,1g,Tiêm,Cephamycin,Watch,seed-can-ra-soat
+9,Ceftazidime 1000,Ceftazidime,1000mg,Tiêm,Cephalosporin thế hệ 3 kháng Pseudomonas,Watch,seed-can-ra-soat
+10,"Cepemid 1,5g",Imipenem + cilastatin,"1,5g",Tiêm,Carbapenem,Watch/Reserve tùy chính sách BV,seed-can-ra-soat
+11,Ciproven 10mg/ml,Ciprofloxacin,10mg/ml,Tiêm,Fluoroquinolone,Watch,seed-can-ra-soat
+12,Colistimed,Colistin,2MIU,Tiêm,Polymyxin,Reserve,seed-can-ra-soat
+13,Curam 625mg,Amoxicillin + acid clavulanic,500mg + 125mg,Uống,Penicillin + chất ức chế beta-lactamase,Access/Watch tùy chỉ định,seed-can-ra-soat
+14,Fosmicin for I.V.USE 2g,Fosfomycin,2g,Tiêm,Phosphonic acid derivative,Watch/Reserve tùy chỉ định,seed-can-ra-soat
+15,Gentamicin 80mg,Gentamicin,80mg/2ml,Tiêm,Aminoglycoside,Access,seed-can-ra-soat
+16,JW Amikacin,Amikacin,500mg/100ml,Tiêm truyền tĩnh mạch,Aminoglycoside,Access/Watch tùy chỉ định,seed-can-ra-soat
+17,Koact 625,Amoxicillin + acid clavulanic,500mg; 125mg,Uống,Penicillin + chất ức chế beta-lactamase,Access/Watch tùy chỉ định,seed-can-ra-soat
+18,Levofloxacin Kabi,Levofloxacin,500mg/100ml,Tiêm truyền,Fluoroquinolone,Watch,seed-can-ra-soat
+19,Medivernol 1g,Ceftriaxone,1000mg,Tiêm,Cephalosporin thế hệ 3,Watch,seed-can-ra-soat
+20,Meronem 1g,Meropenem,1g,Tiêm,Carbapenem,Watch/Reserve tùy chính sách BV,seed-can-ra-soat
+21,Meropenem 1g,Meropenem,1g,Tiêm,Carbapenem,Watch/Reserve tùy chính sách BV,seed-can-ra-soat
+22,"Metronidazol 0,5g/ 100ml -DV23",Metronidazol,"0,5/100ML",Tiêm,Nitroimidazole,Access,seed-can-ra-soat
+23,Metronidazol 250,Metronidazol,250mg,Uống,Nitroimidazole,Access,seed-can-ra-soat
+24,Moxifloxacin IMP 400 mg/ 250mL,Moxifloxacin,400mg/ 250ml,Tiêm truyền,Fluoroquinolone,Watch,seed-can-ra-soat
+25,"Nerusyn 1,5g TTKN-25",Ampicilin + sulbactam,"1g + 0,5g",Tiêm,Penicillin + chất ức chế beta-lactamase,Access/Watch tùy chỉ định,seed-can-ra-soat
+26,Ocebiso SYT-25,Sulfamethoxazol + trimethoprim,400mg + 80mg,Uống,Sulfonamide + diaminopyrimidine,Access,seed-can-ra-soat
+27,Ozanier 500mg,Levofloxacin,500mg,Uống,Fluoroquinolone,Watch,seed-can-ra-soat
+28,Tamisynt 500mg,Ciprofloxacin,500mg,Uống,Fluoroquinolone,Watch,seed-can-ra-soat
+29,"Tazopelin 4,5g",Piperacillin + tazobactam,"4,5g",Tiêm truyền,Penicillin kháng Pseudomonas + chất ức chế beta-lactamase,Watch,seed-can-ra-soat
+30,Tenamyd-Cefotaxime 1000,Cefotaxime,1000mg,Tiêm,Cephalosporin thế hệ 3,Watch,seed-can-ra-soat
+31,Unasyn,Ampicilin + sulbactam,1.5g,Tiêm,Penicillin + chất ức chế beta-lactamase,Access/Watch tùy chỉ định,seed-can-ra-soat
+32,Vancomycin 1g,Vancomycin,1000mg,Tiêm,Glycopeptide,Watch/Reserve tùy chỉ định,seed-can-ra-soat
+33,Vancomycin 500mg,Vancomycin,500mg,Tiêm,Glycopeptide,Watch/Reserve tùy chỉ định,seed-can-ra-soat
+34,Vecmid 500mg,Vancomycin,500mg,Tiêm,Glycopeptide,Watch/Reserve tùy chỉ định,seed-can-ra-soat

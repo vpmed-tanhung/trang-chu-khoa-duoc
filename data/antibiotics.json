@@ -1,0 +1,1982 @@
+[
+  {
+    "id": "amoxicillin-acid-clavulanic-axuka",
+    "stt_noi_tru": 1,
+    "ten_thuoc_biet_duoc": "Axuka",
+    "hoat_chat": "Amoxicillin + acid clavulanic",
+    "ham_luong_nong_do": "1000mg + 200mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
+    "aware": "Access/Watch tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "benzathine-benzylpenicillin-benzathin-benzylpenicilin-1-200-000-iu",
+    "stt_noi_tru": 2,
+    "ten_thuoc_biet_duoc": "Benzathin benzylpenicilin 1.200.000 IU",
+    "hoat_chat": "Benzathine benzylpenicillin",
+    "ham_luong_nong_do": "1200000 IU",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Penicillin tự nhiên",
+    "aware": "Access",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "sulfamethoxazol-trimethoprim-biseptol-480",
+    "stt_noi_tru": 3,
+    "ten_thuoc_biet_duoc": "Biseptol 480",
+    "hoat_chat": "Sulfamethoxazol + trimethoprim",
+    "ham_luong_nong_do": "400mg + 80mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Sulfonamide + diaminopyrimidine",
+    "aware": "Access",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ chảy máu/tăng INR.",
+        "xu_tri": "Tránh nếu có lựa chọn; nếu dùng phải theo dõi INR sát."
+      },
+      {
+        "cap": "ACEI/ARB/spironolactone hoặc thuốc giữ kali",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ tăng kali máu, đặc biệt ở người suy thận/người cao tuổi.",
+        "xu_tri": "Kiểm tra K+, SCr; cân nhắc thuốc thay thế."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc tính methotrexate/ức chế tủy.",
+        "xu_tri": "Tránh phối hợp hoặc theo dõi CBC, độc tính."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "levofloxacin-bivelox-i-v-5mg-ml",
+    "stt_noi_tru": 4,
+    "ten_thuoc_biet_duoc": "Bivelox I.V 5mg/ml",
+    "hoat_chat": "Levofloxacin",
+    "ham_luong_nong_do": "5mg/1ml",
+    "duong_dung": "Tiêm truyền",
+    "nhom_khang_sinh": "Fluoroquinolone",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
+        "muc_do": "Moderate",
+        "canh_bao": "Giảm hấp thu quinolone đường uống.",
+        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+      },
+      {
+        "cap": "Thuốc kéo dài QT",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
+        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR.",
+        "xu_tri": "Theo dõi INR."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "cefpodoxim-cebest",
+    "stt_noi_tru": 5,
+    "ten_thuoc_biet_duoc": "Cebest",
+    "hoat_chat": "Cefpodoxim",
+    "ham_luong_nong_do": "100mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3 đường uống",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "cefixime-cefixime-stada-200mg",
+    "stt_noi_tru": 6,
+    "ten_thuoc_biet_duoc": "Cefixime STADA 200mg",
+    "hoat_chat": "Cefixime",
+    "ham_luong_nong_do": "200mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3 đường uống",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "cefoperazone-cefoperazone-1000-syt-25",
+    "stt_noi_tru": 7,
+    "ten_thuoc_biet_duoc": "Cefoperazone 1000 SYT-25",
+    "hoat_chat": "Cefoperazone",
+    "ham_luong_nong_do": "1g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Rượu/ethanol",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể gây phản ứng kiểu disulfiram.",
+        "xu_tri": "Tránh rượu."
+      },
+      {
+        "cap": "Thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Nguy cơ giảm prothrombin/chảy máu.",
+        "xu_tri": "Theo dõi PT/INR; cân nhắc vitamin K ở nguy cơ cao."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "cefoxitin-cefoxitin-1g",
+    "stt_noi_tru": 8,
+    "ten_thuoc_biet_duoc": "Cefoxitin 1g",
+    "hoat_chat": "Cefoxitin",
+    "ham_luong_nong_do": "1g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Cephamycin",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "ceftazidime-ceftazidime-1000",
+    "stt_noi_tru": 9,
+    "ten_thuoc_biet_duoc": "Ceftazidime 1000",
+    "hoat_chat": "Ceftazidime",
+    "ham_luong_nong_do": "1000mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3 kháng Pseudomonas",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "imipenem-cilastatin-cepemid-1-5g",
+    "stt_noi_tru": 10,
+    "ten_thuoc_biet_duoc": "Cepemid 1,5g",
+    "hoat_chat": "Imipenem + cilastatin",
+    "ham_luong_nong_do": "1,5g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Carbapenem",
+    "aware": "Watch/Reserve tùy chính sách BV",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Valproate/acid valproic",
+        "muc_do": "Major",
+        "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproate, tăng nguy cơ co giật.",
+        "xu_tri": "Tránh phối hợp; hội chẩn đổi kháng sinh hoặc thuốc chống động kinh."
+      },
+      {
+        "cap": "Probenecid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nồng độ beta-lactam.",
+        "xu_tri": "Không khuyến cáo phối hợp thường quy."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "ciprofloxacin-ciproven-10mg-ml",
+    "stt_noi_tru": 11,
+    "ten_thuoc_biet_duoc": "Ciproven 10mg/ml",
+    "hoat_chat": "Ciprofloxacin",
+    "ham_luong_nong_do": "10mg/ml",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Fluoroquinolone",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
+        "muc_do": "Moderate",
+        "canh_bao": "Giảm hấp thu quinolone đường uống.",
+        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+      },
+      {
+        "cap": "Thuốc kéo dài QT",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
+        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR.",
+        "xu_tri": "Theo dõi INR."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "colistin-colistimed",
+    "stt_noi_tru": 12,
+    "ten_thuoc_biet_duoc": "Colistimed",
+    "hoat_chat": "Colistin",
+    "ham_luong_nong_do": "2MIU",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Polymyxin",
+    "aware": "Reserve",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Thuốc độc thận khác",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ AKI.",
+        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+      },
+      {
+        "cap": "Thuốc độc tai/loop diuretic",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ độc tai.",
+        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": "Khuyến nghị nếu có điều kiện",
+      "muc_tieu": "Theo phác đồ/PK-PD tại bệnh viện.",
+      "ghi_chu": "Theo dõi độc thận và thần kinh sát."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "amoxicillin-acid-clavulanic-curam-625mg",
+    "stt_noi_tru": 13,
+    "ten_thuoc_biet_duoc": "Curam 625mg",
+    "hoat_chat": "Amoxicillin + acid clavulanic",
+    "ham_luong_nong_do": "500mg + 125mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
+    "aware": "Access/Watch tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "fosfomycin-fosmicin-for-i-v-use-2g",
+    "stt_noi_tru": 14,
+    "ten_thuoc_biet_duoc": "Fosmicin for I.V.USE 2g",
+    "hoat_chat": "Fosfomycin",
+    "ham_luong_nong_do": "2g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Phosphonic acid derivative",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "gentamicin-gentamicin-80mg",
+    "stt_noi_tru": 15,
+    "ten_thuoc_biet_duoc": "Gentamicin 80mg",
+    "hoat_chat": "Gentamicin",
+    "ham_luong_nong_do": "80mg/2ml",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Aminoglycoside",
+    "aware": "Access",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Thuốc độc thận khác",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ AKI.",
+        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+      },
+      {
+        "cap": "Thuốc độc tai/loop diuretic",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ độc tai.",
+        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Ưu tiên liều dùng theo nồng độ/PK, cân nặng hiệu chỉnh và mục tiêu Cmax/Cmin.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Theo TDM; thường dùng liều mở rộng khoảng cách nếu phù hợp",
+        "30-49": "Giãn khoảng cách và TDM",
+        "15-29": "Giãn khoảng cách lớn, TDM bắt buộc",
+        "<15": "Tránh nếu có lựa chọn; TDM bắt buộc",
+        "HD": "Liều sau HD theo nồng độ",
+        "CRRT": "Theo TDM"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": true,
+      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
+      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "amikacin-jw-amikacin",
+    "stt_noi_tru": 16,
+    "ten_thuoc_biet_duoc": "JW Amikacin",
+    "hoat_chat": "Amikacin",
+    "ham_luong_nong_do": "500mg/100ml",
+    "duong_dung": "Tiêm truyền tĩnh mạch",
+    "nhom_khang_sinh": "Aminoglycoside",
+    "aware": "Access/Watch tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Thuốc độc thận khác",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ AKI.",
+        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+      },
+      {
+        "cap": "Thuốc độc tai/loop diuretic",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ độc tai.",
+        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Ưu tiên liều theo nồng độ/PK, cân nặng hiệu chỉnh và mục tiêu Cmax/Cmin.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Theo TDM; liều mở rộng khoảng cách nếu phù hợp",
+        "30-49": "Giãn khoảng cách và TDM",
+        "15-29": "Giãn khoảng cách lớn, TDM bắt buộc",
+        "<15": "Tránh nếu có lựa chọn; TDM bắt buộc",
+        "HD": "Liều sau HD theo nồng độ",
+        "CRRT": "Theo TDM"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": true,
+      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
+      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "amoxicillin-acid-clavulanic-koact-625",
+    "stt_noi_tru": 17,
+    "ten_thuoc_biet_duoc": "Koact 625",
+    "hoat_chat": "Amoxicillin + acid clavulanic",
+    "ham_luong_nong_do": "500mg; 125mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
+    "aware": "Access/Watch tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "levofloxacin-levofloxacin-kabi",
+    "stt_noi_tru": 18,
+    "ten_thuoc_biet_duoc": "Levofloxacin Kabi",
+    "hoat_chat": "Levofloxacin",
+    "ham_luong_nong_do": "500mg/100ml",
+    "duong_dung": "Tiêm truyền",
+    "nhom_khang_sinh": "Fluoroquinolone",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
+        "muc_do": "Moderate",
+        "canh_bao": "Giảm hấp thu quinolone đường uống.",
+        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+      },
+      {
+        "cap": "Thuốc kéo dài QT",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
+        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR.",
+        "xu_tri": "Theo dõi INR."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "ceftriaxone-medivernol-1g",
+    "stt_noi_tru": 19,
+    "ten_thuoc_biet_duoc": "Medivernol 1g",
+    "hoat_chat": "Ceftriaxone",
+    "ham_luong_nong_do": "1000mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "1–2 g IV mỗi 24 giờ; nhiễm nặng có thể 2 g mỗi 12 giờ theo chỉ định.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Thường không cần chỉnh liều",
+        "30-49": "Thường không cần chỉnh liều",
+        "15-29": "Thường không cần chỉnh liều; thận trọng nếu suy gan kèm suy thận",
+        "<15": "Thường không cần chỉnh liều; theo dõi tích lũy nếu suy gan kèm theo",
+        "HD": "Thường không cần bổ sung sau HD",
+        "CRRT": "Theo phác đồ bệnh viện/PK-PD"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "meropenem-meronem-1g",
+    "stt_noi_tru": 20,
+    "ten_thuoc_biet_duoc": "Meronem 1g",
+    "hoat_chat": "Meropenem",
+    "ham_luong_nong_do": "1g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Carbapenem",
+    "aware": "Watch/Reserve tùy chính sách BV",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Valproate/acid valproic",
+        "muc_do": "Major",
+        "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproate, tăng nguy cơ co giật.",
+        "xu_tri": "Tránh phối hợp; hội chẩn đổi kháng sinh hoặc thuốc chống động kinh."
+      },
+      {
+        "cap": "Probenecid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nồng độ beta-lactam.",
+        "xu_tri": "Không khuyến cáo phối hợp thường quy."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "1 g IV mỗi 8 giờ; nhiễm nặng/PK-PD có thể truyền kéo dài 3 giờ theo phác đồ.",
+      "oda_keo_dai": "1–2 g truyền 3 giờ mỗi 8 giờ tùy ổ nhiễm, MIC và chức năng thận.",
+      "hieu_chinh_crcl": {
+        ">=50": "Liều thường",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo phác đồ",
+        "15-29": "Giảm liều/giãn khoảng cách",
+        "<15": "Giảm liều mạnh/giãn khoảng cách; theo dõi độc thần kinh",
+        "HD": "Bổ sung sau HD theo phác đồ",
+        "CRRT": "Thường cần liều cao hơn suy thận không lọc; ưu tiên EI/TDM beta-lactam nếu có"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "meropenem-meropenem-1g",
+    "stt_noi_tru": 21,
+    "ten_thuoc_biet_duoc": "Meropenem 1g",
+    "hoat_chat": "Meropenem",
+    "ham_luong_nong_do": "1g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Carbapenem",
+    "aware": "Watch/Reserve tùy chính sách BV",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Valproate/acid valproic",
+        "muc_do": "Major",
+        "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproate, tăng nguy cơ co giật.",
+        "xu_tri": "Tránh phối hợp; hội chẩn đổi kháng sinh hoặc thuốc chống động kinh."
+      },
+      {
+        "cap": "Probenecid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nồng độ beta-lactam.",
+        "xu_tri": "Không khuyến cáo phối hợp thường quy."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "1 g IV mỗi 8 giờ; nhiễm nặng/PK-PD có thể truyền kéo dài 3 giờ theo phác đồ.",
+      "oda_keo_dai": "1–2 g truyền 3 giờ mỗi 8 giờ tùy ổ nhiễm, MIC và chức năng thận.",
+      "hieu_chinh_crcl": {
+        ">=50": "Liều thường",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo phác đồ",
+        "15-29": "Giảm liều/giãn khoảng cách",
+        "<15": "Giảm liều mạnh/giãn khoảng cách; theo dõi độc thần kinh",
+        "HD": "Bổ sung sau HD theo phác đồ",
+        "CRRT": "Thường cần liều cao hơn suy thận không lọc; ưu tiên EI/TDM beta-lactam nếu có"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "metronidazol-metronidazol-0-5g-100ml-dv23",
+    "stt_noi_tru": 22,
+    "ten_thuoc_biet_duoc": "Metronidazol 0,5g/ 100ml -DV23",
+    "hoat_chat": "Metronidazol",
+    "ham_luong_nong_do": "0,5/100ML",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Nitroimidazole",
+    "aware": "Access",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Rượu/ethanol",
+        "muc_do": "Major",
+        "canh_bao": "Phản ứng kiểu disulfiram.",
+        "xu_tri": "Tránh rượu trong và sau điều trị theo khuyến cáo."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng INR/chảy máu.",
+        "xu_tri": "Theo dõi INR sát, chỉnh liều chống đông nếu cần."
+      },
+      {
+        "cap": "Lithium",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng độc tính lithium.",
+        "xu_tri": "Theo dõi nồng độ lithium/chức năng thận."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "500 mg IV/PO mỗi 8 giờ hoặc theo chỉ định nhiễm khuẩn kỵ khí.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Liều thường",
+        "30-49": "Liều thường",
+        "15-29": "Liều thường; theo dõi khi dùng kéo dài",
+        "<15": "Cân nhắc giãn khoảng cách khi dùng kéo dài/độc tính",
+        "HD": "Có thể cần liều sau HD tùy phác đồ",
+        "CRRT": "Theo phác đồ bệnh viện"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "metronidazol-metronidazol-250",
+    "stt_noi_tru": 23,
+    "ten_thuoc_biet_duoc": "Metronidazol 250",
+    "hoat_chat": "Metronidazol",
+    "ham_luong_nong_do": "250mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Nitroimidazole",
+    "aware": "Access",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Rượu/ethanol",
+        "muc_do": "Major",
+        "canh_bao": "Phản ứng kiểu disulfiram.",
+        "xu_tri": "Tránh rượu trong và sau điều trị theo khuyến cáo."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng INR/chảy máu.",
+        "xu_tri": "Theo dõi INR sát, chỉnh liều chống đông nếu cần."
+      },
+      {
+        "cap": "Lithium",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng độc tính lithium.",
+        "xu_tri": "Theo dõi nồng độ lithium/chức năng thận."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "500 mg IV/PO mỗi 8 giờ hoặc theo chỉ định nhiễm khuẩn kỵ khí.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Liều thường",
+        "30-49": "Liều thường",
+        "15-29": "Liều thường; theo dõi khi dùng kéo dài",
+        "<15": "Cân nhắc giãn khoảng cách khi dùng kéo dài/độc tính",
+        "HD": "Có thể cần liều sau HD tùy phác đồ",
+        "CRRT": "Theo phác đồ bệnh viện"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "moxifloxacin-moxifloxacin-imp-400-mg-250ml",
+    "stt_noi_tru": 24,
+    "ten_thuoc_biet_duoc": "Moxifloxacin IMP 400 mg/ 250mL",
+    "hoat_chat": "Moxifloxacin",
+    "ham_luong_nong_do": "400mg/ 250ml",
+    "duong_dung": "Tiêm truyền",
+    "nhom_khang_sinh": "Fluoroquinolone",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
+        "muc_do": "Moderate",
+        "canh_bao": "Giảm hấp thu quinolone đường uống.",
+        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+      },
+      {
+        "cap": "Thuốc kéo dài QT",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
+        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR.",
+        "xu_tri": "Theo dõi INR."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "ampicilin-sulbactam-nerusyn-1-5g-ttkn-25",
+    "stt_noi_tru": 25,
+    "ten_thuoc_biet_duoc": "Nerusyn 1,5g TTKN-25",
+    "hoat_chat": "Ampicilin + sulbactam",
+    "ham_luong_nong_do": "1g + 0,5g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
+    "aware": "Access/Watch tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "sulfamethoxazol-trimethoprim-ocebiso-syt-25",
+    "stt_noi_tru": 26,
+    "ten_thuoc_biet_duoc": "Ocebiso SYT-25",
+    "hoat_chat": "Sulfamethoxazol + trimethoprim",
+    "ham_luong_nong_do": "400mg + 80mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Sulfonamide + diaminopyrimidine",
+    "aware": "Access",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ chảy máu/tăng INR.",
+        "xu_tri": "Tránh nếu có lựa chọn; nếu dùng phải theo dõi INR sát."
+      },
+      {
+        "cap": "ACEI/ARB/spironolactone hoặc thuốc giữ kali",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ tăng kali máu, đặc biệt ở người suy thận/người cao tuổi.",
+        "xu_tri": "Kiểm tra K+, SCr; cân nhắc thuốc thay thế."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc tính methotrexate/ức chế tủy.",
+        "xu_tri": "Tránh phối hợp hoặc theo dõi CBC, độc tính."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "levofloxacin-ozanier-500mg",
+    "stt_noi_tru": 27,
+    "ten_thuoc_biet_duoc": "Ozanier 500mg",
+    "hoat_chat": "Levofloxacin",
+    "ham_luong_nong_do": "500mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Fluoroquinolone",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
+        "muc_do": "Moderate",
+        "canh_bao": "Giảm hấp thu quinolone đường uống.",
+        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+      },
+      {
+        "cap": "Thuốc kéo dài QT",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
+        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR.",
+        "xu_tri": "Theo dõi INR."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "ciprofloxacin-tamisynt-500mg",
+    "stt_noi_tru": 28,
+    "ten_thuoc_biet_duoc": "Tamisynt 500mg",
+    "hoat_chat": "Ciprofloxacin",
+    "ham_luong_nong_do": "500mg",
+    "duong_dung": "Uống",
+    "nhom_khang_sinh": "Fluoroquinolone",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
+        "muc_do": "Moderate",
+        "canh_bao": "Giảm hấp thu quinolone đường uống.",
+        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+      },
+      {
+        "cap": "Thuốc kéo dài QT",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
+        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
+        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR.",
+        "xu_tri": "Theo dõi INR."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "Không áp dụng",
+      "toc_do": "Uống theo hướng dẫn từng thuốc",
+      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "piperacillin-tazobactam-tazopelin-4-5g",
+    "stt_noi_tru": 29,
+    "ten_thuoc_biet_duoc": "Tazopelin 4,5g",
+    "hoat_chat": "Piperacillin + tazobactam",
+    "ham_luong_nong_do": "4,5g",
+    "duong_dung": "Tiêm truyền",
+    "nhom_khang_sinh": "Penicillin kháng Pseudomonas + chất ức chế beta-lactamase",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Vancomycin",
+        "muc_do": "Moderate/Major",
+        "canh_bao": "Tăng nguy cơ tổn thương thận cấp.",
+        "xu_tri": "Theo dõi SCr; cân nhắc lựa chọn khác theo kháng sinh đồ."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể giảm thải trừ methotrexate.",
+        "xu_tri": "Theo dõi độc tính/CBC nếu phối hợp."
+      },
+      {
+        "cap": "Thuốc chống đông/kháng tiểu cầu",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng nguy cơ chảy máu.",
+        "xu_tri": "Theo dõi lâm sàng và xét nghiệm đông máu khi cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "4,5 g IV mỗi 6–8 giờ tùy mức độ nặng.",
+      "oda_keo_dai": "4,5 g truyền kéo dài 3–4 giờ mỗi 6–8 giờ theo PK-PD/phác đồ BV.",
+      "hieu_chinh_crcl": {
+        ">=50": "Liều thường",
+        "30-49": "Giảm liều hoặc giãn khoảng cách theo phác đồ",
+        "15-29": "Giảm liều/giãn khoảng cách",
+        "<15": "Giảm liều mạnh; theo dõi Na+, SCr",
+        "HD": "Bổ sung sau HD theo phác đồ",
+        "CRRT": "Theo phác đồ CRRT; cân nhắc EI"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "cefotaxime-tenamyd-cefotaxime-1000",
+    "stt_noi_tru": 30,
+    "ten_thuoc_biet_duoc": "Tenamyd-Cefotaxime 1000",
+    "hoat_chat": "Cefotaxime",
+    "ham_luong_nong_do": "1000mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3",
+    "aware": "Watch",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "ampicilin-sulbactam-unasyn",
+    "stt_noi_tru": 31,
+    "ten_thuoc_biet_duoc": "Unasyn",
+    "hoat_chat": "Ampicilin + sulbactam",
+    "ham_luong_nong_do": "1.5g",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
+    "aware": "Access/Watch tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Warfarin/thuốc chống đông",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
+        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
+      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "hieu_chinh_crcl": {
+        ">=50": "Cần nhập",
+        "30-49": "Cần nhập",
+        "15-29": "Cần nhập",
+        "<15": "Cần nhập",
+        "HD": "Cần nhập",
+        "CRRT": "Cần nhập"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": false,
+      "muc_tieu": "",
+      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "vancomycin-vancomycin-1g",
+    "stt_noi_tru": 32,
+    "ten_thuoc_biet_duoc": "Vancomycin 1g",
+    "hoat_chat": "Vancomycin",
+    "ham_luong_nong_do": "1000mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Glycopeptide",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Piperacillin/tazobactam",
+        "muc_do": "Moderate/Major",
+        "canh_bao": "Nhiều dữ liệu ghi nhận tăng nguy cơ tổn thương thận cấp khi phối hợp.",
+        "xu_tri": "Theo dõi SCr sát; cân nhắc beta-lactam khác khi phù hợp."
+      },
+      {
+        "cap": "Thuốc độc thận khác",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ AKI.",
+        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+      },
+      {
+        "cap": "Thuốc độc tai/loop diuretic",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ độc tai.",
+        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Liều tải 20–30 mg/kg IV; duy trì theo AUC/MIC hoặc nồng độ đáy và chức năng thận.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Theo AUC/CrCl, thường mỗi 8–12 giờ tùy cân nặng và nhiễm khuẩn",
+        "30-49": "Theo AUC/nồng độ; thường kéo dài khoảng cách",
+        "15-29": "Theo AUC/nồng độ; thường mỗi 24–48 giờ",
+        "<15": "Theo nồng độ; không dùng lịch cố định nếu chưa TDM",
+        "HD": "Liều tải, sau đó liều sau HD theo nồng độ",
+        "CRRT": "Theo AUC/TDM và tốc độ lọc"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": true,
+      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
+      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "vancomycin-vancomycin-500mg",
+    "stt_noi_tru": 33,
+    "ten_thuoc_biet_duoc": "Vancomycin 500mg",
+    "hoat_chat": "Vancomycin",
+    "ham_luong_nong_do": "500mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Glycopeptide",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Piperacillin/tazobactam",
+        "muc_do": "Moderate/Major",
+        "canh_bao": "Nhiều dữ liệu ghi nhận tăng nguy cơ tổn thương thận cấp khi phối hợp.",
+        "xu_tri": "Theo dõi SCr sát; cân nhắc beta-lactam khác khi phù hợp."
+      },
+      {
+        "cap": "Thuốc độc thận khác",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ AKI.",
+        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+      },
+      {
+        "cap": "Thuốc độc tai/loop diuretic",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ độc tai.",
+        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Liều tải 20–30 mg/kg IV; duy trì theo AUC/MIC hoặc nồng độ đáy và chức năng thận.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Theo AUC/CrCl, thường mỗi 8–12 giờ tùy cân nặng và nhiễm khuẩn",
+        "30-49": "Theo AUC/nồng độ; thường kéo dài khoảng cách",
+        "15-29": "Theo AUC/nồng độ; thường mỗi 24–48 giờ",
+        "<15": "Theo nồng độ; không dùng lịch cố định nếu chưa TDM",
+        "HD": "Liều tải, sau đó liều sau HD theo nồng độ",
+        "CRRT": "Theo AUC/TDM và tốc độ lọc"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": true,
+      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
+      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  },
+  {
+    "id": "vancomycin-vecmid-500mg",
+    "stt_noi_tru": 34,
+    "ten_thuoc_biet_duoc": "Vecmid 500mg",
+    "hoat_chat": "Vancomycin",
+    "ham_luong_nong_do": "500mg",
+    "duong_dung": "Tiêm",
+    "nhom_khang_sinh": "Glycopeptide",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "canh_bao_tuong_tac": [
+      {
+        "cap": "Piperacillin/tazobactam",
+        "muc_do": "Moderate/Major",
+        "canh_bao": "Nhiều dữ liệu ghi nhận tăng nguy cơ tổn thương thận cấp khi phối hợp.",
+        "xu_tri": "Theo dõi SCr sát; cân nhắc beta-lactam khác khi phù hợp."
+      },
+      {
+        "cap": "Thuốc độc thận khác",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ AKI.",
+        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+      },
+      {
+        "cap": "Thuốc độc tai/loop diuretic",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ độc tai.",
+        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+      }
+    ],
+    "lieu_goi_y": {
+      "lieu_truyen_thong": "Liều tải 20–30 mg/kg IV; duy trì theo AUC/MIC hoặc nồng độ đáy và chức năng thận.",
+      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "hieu_chinh_crcl": {
+        ">=50": "Theo AUC/CrCl, thường mỗi 8–12 giờ tùy cân nặng và nhiễm khuẩn",
+        "30-49": "Theo AUC/nồng độ; thường kéo dài khoảng cách",
+        "15-29": "Theo AUC/nồng độ; thường mỗi 24–48 giờ",
+        "<15": "Theo nồng độ; không dùng lịch cố định nếu chưa TDM",
+        "HD": "Liều tải, sau đó liều sau HD theo nồng độ",
+        "CRRT": "Theo AUC/TDM và tốc độ lọc"
+      }
+    },
+    "cach_pha_truyen": {
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
+      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
+      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+    },
+    "tdm": {
+      "can": true,
+      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
+      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+    },
+    "luu_y_quan_trong": [
+      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
+      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    ],
+    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "nguon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-DTQG",
+      "BYT-5631-QD-BYT"
+    ]
+  }
+]
