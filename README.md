@@ -1,26 +1,21 @@
-# Cổng Dược lâm sàng VPMED Tân Hưng
+# Hệ thống Hỗ trợ Dược lâm sàng VPMED Tân Hưng - V3
 
-Phiên bản V2 cho GitHub Pages.
+Bản V3 đã:
 
-## Cấu trúc
+- Bỏ khối quản trị khỏi giao diện người dùng.
+- Chuyển trang tra cứu kháng sinh sang bố cục 2 cột: danh sách thuốc và thẻ chi tiết.
+- Bổ sung dữ liệu thực hành cho 34 thuốc nội trú: liều thường dùng, hiệu chỉnh CrCl, HD/CRRT, pha truyền, tương tác ưu tiên, TDM, ADR và theo dõi.
+- Giữ liên kết tới công cụ tính liều kháng sinh và phiếu đánh giá.
 
-- `index.html`: giao diện trang chủ.
-- `css/style.css`: toàn bộ giao diện.
-- `js/app.js`: chức năng tra cứu kháng sinh.
-- `data/antibiotics.json`: dữ liệu danh mục kháng sinh nội trú.
-- `data/references.json`: nguồn tham khảo.
-- `data/antibiotics_edit_template.csv`: mẫu nhập liệu khi muốn chuẩn hóa dữ liệu.
+## Cách cập nhật lên GitHub Desktop
 
-## Cách cập nhật lên GitHub
+1. Giải nén file ZIP.
+2. Copy toàn bộ nội dung bên trong thư mục này vào thư mục local repo `trang-chu-khoa-duoc`.
+3. Mở GitHub Desktop.
+4. Summary: `Release V3 - tối ưu tra cứu kháng sinh`.
+5. Bấm `Commit to main`.
+6. Bấm `Push origin`.
 
-1. Giải nén file zip.
-2. Vào repo `vpmed-tanhung/trang-chu-khoa-duoc`.
-3. Upload toàn bộ các file/thư mục trong gói này lên repo.
-4. Commit changes.
-5. Đợi GitHub Pages cập nhật 1-3 phút.
+## Lưu ý chuyên môn
 
-## Tên mới đề xuất
-
-Tên hiển thị: **Cổng Dược lâm sàng VPMED Tân Hưng**
-
-Tên này hợp lý hơn vì trang không chỉ là trang chủ, mà là nơi tập trung các công cụ dược lâm sàng: tính liều kháng sinh, đánh giá phần mềm, tra cứu danh mục nội trú, TDM, pha truyền và tương tác thuốc.
+Dữ liệu trong bản V3 là dữ liệu tham khảo đã thay phần seed/demo. Cần Khoa Dược/Hội đồng thuốc & điều trị rà soát, phê duyệt nội bộ trước khi sử dụng như hướng dẫn chính thức của bệnh viện.

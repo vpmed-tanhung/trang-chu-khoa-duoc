@@ -2,19 +2,31 @@
   {
     "id": "BYT-708-QD-BYT",
     "ten": "Hướng dẫn sử dụng kháng sinh ban hành kèm Quyết định 708/QĐ-BYT",
-    "url": "https://kcb.vn/upload/2005611/20210723/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng-kh%C3%A1ng-sinh-C%E1%BA%ADp-nh%E1%BA%ADt-l%E1%BA%A7n-cu%E1%BB%91i-khi-in-09.01.2015.pdf",
-    "ghi_chu": "Tài liệu chuyên môn áp dụng tại cơ sở khám chữa bệnh."
+    "loai": "Bộ Y tế Việt Nam",
+    "url": "https://tvh-api.medpro.com.vn/images/180/1455/huong%20dan%20su%20dung%20khang%20sinh.pdf"
   },
   {
     "id": "BYT-5631-QD-BYT",
-    "ten": "Hướng dẫn thực hiện quản lý sử dụng kháng sinh trong bệnh viện - Quyết định 5631/QĐ-BYT",
-    "url": "https://thuvienphapluat.vn/van-ban/The-thao-Y-te/Quyet-dinh-5631-QD-BYT-2020-tai-lieu-Huong-dan-quan-ly-su-dung-khang-sinh-trong-benh-vien-461349.aspx",
-    "ghi_chu": "Cơ sở triển khai chương trình quản lý sử dụng kháng sinh trong bệnh viện."
+    "ten": "Hướng dẫn thực hiện quản lý sử dụng kháng sinh trong bệnh viện ban hành kèm Quyết định 5631/QĐ-BYT",
+    "loai": "Bộ Y tế Việt Nam",
+    "url": "https://canhgiacduoc.org.vn/Thongtinthuoc/TinYDuoc/1858/Quyet-dinh-5631-Huong-dan-thuc-hien-quan-ly-su-dung-khang-sinh-trong-benh-vien.htm"
   },
   {
-    "id": "BYT-DTQG",
+    "id": "Duoc-thu-Quoc-gia-VN",
     "ten": "Dược thư Quốc gia Việt Nam",
-    "url": "https://vnras.com/wp-content/uploads/2018/08/VNRAS-D%C6%B0%E1%BB%A3c-th%C6%B0-Qu%E1%BB%91c-gia-Vi%E1%BB%87t-Nam-2-2015.pdf",
-    "ghi_chu": "Tài liệu chính thức của Bộ Y tế về sử dụng thuốc."
+    "loai": "Tài liệu thuốc quốc gia",
+    "url": "https://drugbank.vn/"
+  },
+  {
+    "id": "UCSF-IDMP",
+    "ten": "UCSF Infectious Diseases Management Program - Adult antimicrobial dosing",
+    "loai": "Tham khảo liều, renal dosing, HD/CRRT",
+    "url": "https://idmp.ucsf.edu/adult-antimicrobial-dosing-non-dialysis"
+  },
+  {
+    "id": "Stanford-ABX-Dosing",
+    "ten": "Stanford Health Care Antimicrobial Dosing Reference Guide",
+    "loai": "Tham khảo liều và truyền kéo dài",
+    "url": "https://med.stanford.edu/bugsanddrugs/guidebook.html"
   }
 ]

@@ -8,46 +8,83 @@
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
     "aware": "Access/Watch tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Warfarin/kháng vitamin K",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR và dấu hiệu xuất huyết.",
+        "xu_tri": "Có thể tăng INR/chảy máu; theo dõi INR và dấu hiệu xuất huyết."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Penicillin có thể giảm thải trừ methotrexate; tránh phối hợp liều cao hoặc theo dõi độc tính.",
+        "xu_tri": "Penicillin có thể giảm thải trừ methotrexate; tránh phối hợp liều cao hoặc theo dõi độc tính."
+      },
+      {
+        "cap": "Allopurinol",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ phát ban; cân nhắc thay thế/theo dõi.",
+        "xu_tri": "Tăng nguy cơ phát ban; cân nhắc thay thế/theo dõi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO: 625 mg mỗi 8 giờ hoặc 1 g mỗi 12 giờ. IV: 1,2 g mỗi 8 giờ; nhiễm nặng có thể 1,2 g mỗi 6 giờ theo phác đồ.",
+      "oda_keo_dai": "Không phải lựa chọn ODA kinh điển. Có thể truyền IV 30 phút; không tự ý kéo dài khi chưa có phác đồ bệnh viện.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy theo mức độ nhiễm khuẩn.",
+        "30-49": "Thường dùng liều thường quy; cân nhắc giãn khoảng cách nếu điều trị kéo dài/người cao tuổi.",
+        "15-29": "PO thường 625 mg mỗi 12 giờ; IV cân nhắc 1,2 g mỗi 12 giờ.",
+        "<15": "PO 625 mg mỗi 24 giờ; IV cân nhắc 1,2 g mỗi 24 giờ.",
+        "HD": "Dùng sau lọc máu trong ngày lọc; cân nhắc bổ sung liều sau HD.",
+        "CRRT": "Thường gần liều thường quy; cá thể hóa theo tốc độ siêu lọc và ổ nhiễm."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD; dùng ngay sau pha nếu có thể.",
+      "toc_do": "IV truyền khoảng 30 phút; không trộn chung aminoglycosid trong cùng bơm/dây truyền.",
+      "luu_y": "Theo dõi tiêu chảy, phản ứng dị ứng beta-lactam, chức năng gan khi dùng kéo dài."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "AST/ALT, bilirubin nếu dùng kéo dài",
+      "Tiêu chảy/C. difficile",
+      "Tiền sử dị ứng beta-lactam"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -57,48 +94,78 @@
     "hoat_chat": "Benzathine benzylpenicillin",
     "ham_luong_nong_do": "1200000 IU",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Penicillin tự nhiên",
+    "nhom_khang_sinh": "Penicillin tự nhiên tác dụng kéo dài",
     "aware": "Access",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Có thể giảm thải trừ methotrexate; theo dõi độc tính.",
+        "xu_tri": "Có thể giảm thải trừ methotrexate; theo dõi độc tính."
+      },
+      {
+        "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể thay đổi INR; theo dõi nếu dùng cùng.",
+        "xu_tri": "Có thể thay đổi INR; theo dõi nếu dùng cùng."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IM sâu: 1,2 triệu đơn vị liều đơn cho chỉ định phù hợp; giang mai theo phác đồ chuyên khoa. Không dùng IV.",
+      "oda_keo_dai": "Không áp dụng truyền kéo dài/ODA vì là dạng tiêm bắp giải phóng chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Không cần hiệu chỉnh thường quy.",
+        "30-49": "Không cần hiệu chỉnh thường quy; thận trọng nếu dùng nhiều liều.",
+        "15-29": "Thận trọng, theo dõi độc tính thần kinh nếu dùng liều lặp lại.",
+        "<15": "Cá thể hóa; tránh dùng liều lặp lại không cần thiết.",
+        "HD": "Không cần bổ sung thường quy; tiêm bắp theo lịch.",
+        "CRRT": "Không áp dụng thường quy."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Hoàn nguyên theo tờ HDSD của chế phẩm; chỉ tiêm bắp sâu.",
+      "toc_do": "Tiêm bắp sâu chậm; tuyệt đối không tiêm tĩnh mạch.",
+      "luu_y": "Khai thác kỹ tiền sử sốc phản vệ penicillin; chuẩn bị xử trí phản vệ khi tiêm."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "Dị ứng/phản vệ",
+      "Đau/áp xe tại vị trí tiêm",
+      "Khai thác tiền sử dị ứng beta-lactam"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -108,60 +175,92 @@
     "hoat_chat": "Sulfamethoxazol + trimethoprim",
     "ham_luong_nong_do": "400mg + 80mg",
     "duong_dung": "Uống",
-    "nhom_khang_sinh": "Sulfonamide + diaminopyrimidine",
-    "aware": "Access",
+    "nhom_khang_sinh": "Sulfonamid + trimethoprim",
+    "aware": "Access/Watch tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
+      {
+        "cap": "ACEI/ARB/spironolacton",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ tăng kali máu; kiểm tra K+ sau 2–3 ngày và khi tăng liều.",
+        "xu_tri": "Tăng nguy cơ tăng kali máu; kiểm tra K+ sau 2–3 ngày và khi tăng liều."
+      },
       {
         "cap": "Warfarin",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ chảy máu/tăng INR.",
-        "xu_tri": "Tránh nếu có lựa chọn; nếu dùng phải theo dõi INR sát."
-      },
-      {
-        "cap": "ACEI/ARB/spironolactone hoặc thuốc giữ kali",
-        "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ tăng kali máu, đặc biệt ở người suy thận/người cao tuổi.",
-        "xu_tri": "Kiểm tra K+, SCr; cân nhắc thuốc thay thế."
+        "canh_bao": "Tăng INR/chảy máu; tránh nếu có thể hoặc giảm liều warfarin và theo dõi INR.",
+        "xu_tri": "Tăng INR/chảy máu; tránh nếu có thể hoặc giảm liều warfarin và theo dõi INR."
       },
       {
         "cap": "Methotrexate",
         "muc_do": "Major",
-        "canh_bao": "Tăng độc tính methotrexate/ức chế tủy.",
-        "xu_tri": "Tránh phối hợp hoặc theo dõi CBC, độc tính."
+        "canh_bao": "Tăng độc tính tủy/xuất huyết; tránh phối hợp hoặc theo dõi CBC rất sát.",
+        "xu_tri": "Tăng độc tính tủy/xuất huyết; tránh phối hợp hoặc theo dõi CBC rất sát."
+      },
+      {
+        "cap": "Phenytoin",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nồng độ phenytoin; theo dõi dấu hiệu độc tính.",
+        "xu_tri": "Tăng nồng độ phenytoin; theo dõi dấu hiệu độc tính."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO/IV: 960 mg mỗi 12 giờ cho nhiễm khuẩn thông thường. Pneumocystis: 15–20 mg/kg/ngày tính theo TMP chia 3–4 lần theo phác đồ.",
+      "oda_keo_dai": "Không áp dụng ODA/truyền kéo dài. IV truyền theo tờ HDSD, thường 60–90 phút sau pha loãng.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy.",
+        "30-49": "Thường liều thường quy; theo dõi kali/SCr.",
+        "15-29": "Dùng 50% liều thường quy hoặc giãn khoảng cách.",
+        "<15": "Tránh nếu có lựa chọn khác; nếu bắt buộc dùng 25–50% liều và theo dõi sát.",
+        "HD": "Dùng sau HD; thường 50% liều thường quy tùy chỉ định.",
+        "CRRT": "Thường cần liều gần thường quy ở nhiễm nặng; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "IV phải pha loãng theo tờ HDSD; thường dùng Glucose 5%, tránh pha quá đặc.",
+      "toc_do": "Truyền IV 60–90 phút; không tiêm bolus.",
+      "luu_y": "Nguy cơ tăng kali máu, tăng creatinin giả do TMP, ức chế tủy, hội chứng Stevens–Johnson."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "Kali máu",
+      "SCr/CrCl",
+      "CBC",
+      "Phát ban/niêm mạc"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Tăng kali máu",
+      "Ức chế tủy",
+      "SJS/TEN",
+      "Buồn nôn"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -171,66 +270,92 @@
     "hoat_chat": "Levofloxacin",
     "ham_luong_nong_do": "5mg/1ml",
     "duong_dung": "Tiêm truyền",
-    "nhom_khang_sinh": "Fluoroquinolone",
+    "nhom_khang_sinh": "Fluoroquinolon",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
-        "muc_do": "Moderate",
-        "canh_bao": "Giảm hấp thu quinolone đường uống.",
-        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+        "cap": "Thuốc kéo dài QT: amiodaron, sotalol, macrolid, antipsychotic",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ QT/xoắn đỉnh; tránh phối hợp hoặc theo dõi ECG/K+/Mg2+.",
+        "xu_tri": "Tăng nguy cơ QT/xoắn đỉnh; tránh phối hợp hoặc theo dõi ECG/K+/Mg2+."
       },
       {
-        "cap": "Thuốc kéo dài QT",
+        "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
-        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
-      },
-      {
-        "cap": "Corticosteroid",
-        "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
-        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+        "canh_bao": "Giảm hấp thu đường uống; tách liều ít nhất 2–4 giờ.",
+        "xu_tri": "Giảm hấp thu đường uống; tách liều ít nhất 2–4 giờ."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR.",
-        "xu_tri": "Theo dõi INR."
+        "canh_bao": "Có thể tăng INR; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR; theo dõi INR."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân, nhất là người cao tuổi.",
+        "xu_tri": "Tăng nguy cơ viêm/đứt gân, nhất là người cao tuổi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV/PO: 500 mg mỗi 24 giờ hoặc 750 mg mỗi 24 giờ tùy ổ nhiễm.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "500–750 mg mỗi 24 giờ.",
+        "30-49": "Nếu phác đồ 750 mg: 750 mg liều đầu, sau đó 500 mg mỗi 24 giờ hoặc 750 mg mỗi 48 giờ tùy chỉ định.",
+        "15-29": "750 mg mỗi 48 giờ hoặc 500 mg liều đầu rồi 250 mg mỗi 24–48 giờ.",
+        "<15": "Giãn 48 giờ; cá thể hóa theo chỉ định.",
+        "HD": "Dùng sau HD hoặc không phụ thuộc HD tùy phác đồ; thường giãn 48 giờ.",
+        "CRRT": "Thường 500–750 mg mỗi 24 giờ; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Dung dịch truyền pha sẵn; nếu cần pha loãng theo tờ HDSD, tránh trộn thuốc không tương thích.",
+      "toc_do": "500 mg truyền ≥60 phút; 750 mg truyền ≥90 phút.",
+      "luu_y": "Tránh dùng không cần thiết do nguy cơ QT, gân, thần kinh ngoại biên, hạ/tăng đường huyết."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "ECG nếu nguy cơ QT",
+      "K+/Mg2+",
+      "Đường huyết",
+      "Đau gân/triệu chứng thần kinh"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Kéo dài QT",
+      "Viêm/đứt gân",
+      "Rối loạn đường huyết",
+      "C. difficile"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -242,46 +367,77 @@
     "duong_dung": "Uống",
     "nhom_khang_sinh": "Cephalosporin thế hệ 3 đường uống",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Antacid/H2 blocker/PPI",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể giảm hấp thu cefpodoxim; tách liều/cân nhắc.",
+        "xu_tri": "Có thể giảm hấp thu cefpodoxim; tách liều/cân nhắc."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Có thể tăng INR; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR; theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO: 100–200 mg mỗi 12 giờ tùy chỉ định.",
+      "oda_keo_dai": "Không áp dụng ODA/truyền kéo dài.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "100–200 mg mỗi 12 giờ.",
+        "30-49": "Thường không cần chỉnh hoặc cân nhắc mỗi 24 giờ nếu điều trị kéo dài.",
+        "15-29": "100–200 mg mỗi 24 giờ.",
+        "<15": "100–200 mg mỗi 24–48 giờ; cá thể hóa.",
+        "HD": "Dùng sau HD.",
+        "CRRT": "Không thường dùng; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "Không áp dụng pha truyền.",
+      "toc_do": "Đường uống; dùng cùng thức ăn giúp hấp thu tốt hơn.",
+      "luu_y": "Theo dõi dị ứng beta-lactam và tiêu chảy."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/eGFR hoặc CrCl",
+      "Dấu hiệu đáp ứng lâm sàng",
+      "AST/ALT khi điều trị kéo dài",
+      "CBC khi điều trị kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -293,46 +449,71 @@
     "duong_dung": "Uống",
     "nhom_khang_sinh": "Cephalosporin thế hệ 3 đường uống",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể tăng INR; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR; theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO: 200 mg mỗi 12 giờ hoặc 400 mg mỗi 24 giờ.",
+      "oda_keo_dai": "Không áp dụng ODA/truyền kéo dài.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "400 mg/ngày.",
+        "30-49": "Thường 400 mg/ngày; theo dõi.",
+        "15-29": "Giảm còn khoảng 200 mg/ngày.",
+        "<15": "200 mg mỗi 24–48 giờ; cá thể hóa.",
+        "HD": "Dùng sau HD; thường không cần bổ sung lớn.",
+        "CRRT": "Không thường dùng; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "Không áp dụng pha truyền.",
+      "toc_do": "Đường uống.",
+      "luu_y": "Theo dõi tiêu chảy, dị ứng beta-lactam."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/eGFR hoặc CrCl",
+      "Dấu hiệu đáp ứng lâm sàng",
+      "AST/ALT khi điều trị kéo dài",
+      "CBC khi điều trị kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -342,54 +523,79 @@
     "hoat_chat": "Cefoperazone",
     "ham_luong_nong_do": "1g",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Cephalosporin thế hệ 3",
+    "nhom_khang_sinh": "Cephalosporin thế hệ 3, thải trừ mật nhiều",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Rượu/ethanol",
-        "muc_do": "Moderate",
-        "canh_bao": "Có thể gây phản ứng kiểu disulfiram.",
-        "xu_tri": "Tránh rượu."
+        "muc_do": "Major",
+        "canh_bao": "Nguy cơ phản ứng kiểu disulfiram; tránh trong và vài ngày sau điều trị.",
+        "xu_tri": "Nguy cơ phản ứng kiểu disulfiram; tránh trong và vài ngày sau điều trị."
       },
       {
-        "cap": "Thuốc chống đông",
-        "muc_do": "Moderate",
-        "canh_bao": "Nguy cơ giảm prothrombin/chảy máu.",
-        "xu_tri": "Theo dõi PT/INR; cân nhắc vitamin K ở nguy cơ cao."
+        "cap": "Warfarin/kháng đông",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ chảy máu; theo dõi INR, PT, dấu hiệu xuất huyết.",
+        "xu_tri": "Tăng nguy cơ chảy máu; theo dõi INR, PT, dấu hiệu xuất huyết."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 1–2 g mỗi 12 giờ; nhiễm nặng có thể tăng theo phác đồ.",
+      "oda_keo_dai": "Không phải ODA kinh điển; truyền IV 30–60 phút.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy.",
+        "30-49": "Thường không cần chỉnh liều đơn thuần theo thận.",
+        "15-29": "Thường không cần chỉnh; thận trọng nếu suy gan/tắc mật đồng thời.",
+        "<15": "Theo dõi tích lũy nếu suy gan kèm theo.",
+        "HD": "Không cần bổ sung thường quy.",
+        "CRRT": "Thường liều thường quy; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% tùy chế phẩm.",
+      "toc_do": "Truyền 30–60 phút.",
+      "luu_y": "Có thể gây giảm prothrombin/chảy máu, phản ứng kiểu disulfiram với rượu."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "PT/INR nếu nguy cơ chảy máu",
+      "AST/ALT/bilirubin",
+      "CBC",
+      "Dị ứng beta-lactam"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Chảy máu do giảm prothrombin",
+      "Tiêu chảy",
+      "Tăng men gan"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -399,48 +605,73 @@
     "hoat_chat": "Cefoxitin",
     "ham_luong_nong_do": "1g",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Cephamycin",
-    "aware": "Watch",
+    "nhom_khang_sinh": "Cephamycin/cephalosporin thế hệ 2",
+    "aware": "Access/Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR/chảy máu; theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 1–2 g mỗi 6–8 giờ tùy chỉ định; dự phòng phẫu thuật theo phác đồ.",
+      "oda_keo_dai": "Không áp dụng ODA thường quy; truyền 30 phút.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "1–2 g mỗi 6–8 giờ.",
+        "30-49": "1–2 g mỗi 8–12 giờ.",
+        "15-29": "1–2 g mỗi 12–24 giờ.",
+        "<15": "1 g mỗi 24–48 giờ.",
+        "HD": "Dùng sau HD; cân nhắc liều bổ sung sau lọc.",
+        "CRRT": "1–2 g mỗi 8–12 giờ; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+      "toc_do": "Truyền IV khoảng 30 phút.",
+      "luu_y": "Theo dõi dị ứng beta-lactam, SCr, CBC khi dùng kéo dài."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/eGFR hoặc CrCl",
+      "Dấu hiệu đáp ứng lâm sàng",
+      "AST/ALT khi điều trị kéo dài",
+      "CBC khi điều trị kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -452,46 +683,76 @@
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Cephalosporin thế hệ 3 kháng Pseudomonas",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Aminoglycosid/thuốc độc thận",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Tăng nguy cơ độc thận; theo dõi SCr.",
+        "xu_tri": "Tăng nguy cơ độc thận; theo dõi SCr."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Theo dõi INR.",
+        "xu_tri": "Theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 1–2 g mỗi 8 giờ; nhiễm nặng/Pseudomonas thường 2 g mỗi 8 giờ.",
+      "oda_keo_dai": "Có thể dùng truyền kéo dài 3 giờ trong nhiễm Gram âm nặng nếu phác đồ cho phép.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "1–2 g mỗi 8 giờ.",
+        "30-49": "1–2 g mỗi 12 giờ.",
+        "15-29": "1 g mỗi 24 giờ hoặc 2 g mỗi 24 giờ tùy mức độ nặng.",
+        "<15": "500 mg–1 g mỗi 24–48 giờ.",
+        "HD": "1 g sau HD; nhiễm nặng cá thể hóa.",
+        "CRRT": "1–2 g mỗi 8–12 giờ; cân nhắc truyền kéo dài."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5%; cần thoát khí CO2 khi hoàn nguyên một số lọ.",
+      "toc_do": "Truyền 30 phút hoặc truyền kéo dài 3 giờ theo phác đồ.",
+      "luu_y": "Nguy cơ độc thần kinh/co giật khi suy thận nếu không chỉnh liều."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "Tri giác/co giật nếu suy thận",
+      "CBC khi dùng kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -501,54 +762,84 @@
     "hoat_chat": "Imipenem + cilastatin",
     "ham_luong_nong_do": "1,5g",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Carbapenem",
-    "aware": "Watch/Reserve tùy chính sách BV",
+    "nhom_khang_sinh": "Carbapenem + chất ức chế DHP-1",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Valproate/acid valproic",
         "muc_do": "Major",
-        "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproate, tăng nguy cơ co giật.",
-        "xu_tri": "Tránh phối hợp; hội chẩn đổi kháng sinh hoặc thuốc chống động kinh."
+        "canh_bao": "Carbapenem làm giảm mạnh valproate; tránh phối hợp, chọn kháng sinh khác.",
+        "xu_tri": "Carbapenem làm giảm mạnh valproate; tránh phối hợp, chọn kháng sinh khác."
+      },
+      {
+        "cap": "Ganciclovir",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ co giật; cân nhắc tránh.",
+        "xu_tri": "Tăng nguy cơ co giật; cân nhắc tránh."
       },
       {
         "cap": "Probenecid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nồng độ beta-lactam.",
-        "xu_tri": "Không khuyến cáo phối hợp thường quy."
+        "canh_bao": "Tăng nồng độ imipenem; tránh phối hợp không cần thiết.",
+        "xu_tri": "Tăng nồng độ imipenem; tránh phối hợp không cần thiết."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 500 mg mỗi 6 giờ hoặc 1 g mỗi 8 giờ tùy nhiễm khuẩn; tránh vượt liều khi suy thận.",
+      "oda_keo_dai": "Có thể truyền 30–60 phút; truyền kéo dài chỉ khi có phác đồ được phê duyệt.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "500 mg mỗi 6 giờ hoặc 1 g mỗi 8 giờ.",
+        "30-49": "500 mg mỗi 8 giờ.",
+        "15-29": "500 mg mỗi 12 giờ.",
+        "<15": "Tránh nếu không lọc máu; nếu bắt buộc 250–500 mg mỗi 12–24 giờ theo dõi sát.",
+        "HD": "Dùng sau HD; thường 250–500 mg mỗi 12 giờ tùy chỉ định.",
+        "CRRT": "500 mg mỗi 6–8 giờ; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9%; một số chế phẩm không ổn định trong lactate, kiểm tra tờ HDSD.",
+      "toc_do": "Truyền 30–60 phút.",
+      "luu_y": "Nguy cơ co giật cao hơn meropenem, nhất là suy thận/CNS."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "Tri giác/co giật",
+      "CBC/AST/ALT"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Co giật",
+      "Buồn nôn",
+      "Dị ứng beta-lactam"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -558,66 +849,91 @@
     "hoat_chat": "Ciprofloxacin",
     "ham_luong_nong_do": "10mg/ml",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Fluoroquinolone",
+    "nhom_khang_sinh": "Fluoroquinolon",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
-        "muc_do": "Moderate",
-        "canh_bao": "Giảm hấp thu quinolone đường uống.",
-        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+        "cap": "Tizanidine",
+        "muc_do": "Major",
+        "canh_bao": "Chống chỉ định: ciprofloxacin làm tăng mạnh tizanidine gây tụt HA/an thần.",
+        "xu_tri": "Chống chỉ định: ciprofloxacin làm tăng mạnh tizanidine gây tụt HA/an thần."
       },
       {
         "cap": "Thuốc kéo dài QT",
-        "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
-        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ QT; tránh hoặc theo dõi ECG.",
+        "xu_tri": "Tăng nguy cơ QT; tránh hoặc theo dõi ECG."
       },
       {
-        "cap": "Corticosteroid",
+        "cap": "Cation: sắt/kẽm/calci/antacid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
-        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+        "canh_bao": "Giảm hấp thu PO; tách liều 2–6 giờ.",
+        "xu_tri": "Giảm hấp thu PO; tách liều 2–6 giờ."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Moderate",
         "canh_bao": "Có thể tăng INR.",
-        "xu_tri": "Theo dõi INR."
+        "xu_tri": "Có thể tăng INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV/PO: 400 mg IV mỗi 8–12 giờ hoặc 500–750 mg PO mỗi 12 giờ tùy chỉ định.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy.",
+        "30-49": "Thường 400 mg IV mỗi 12 giờ hoặc 500 mg PO mỗi 12 giờ.",
+        "15-29": "400 mg IV mỗi 24 giờ hoặc 250–500 mg PO mỗi 24 giờ.",
+        "<15": "250–500 mg PO mỗi 24 giờ hoặc 400 mg IV mỗi 24 giờ; cá thể hóa.",
+        "HD": "Dùng sau HD.",
+        "CRRT": "400 mg IV mỗi 8–12 giờ tùy nặng."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Dung dịch truyền pha sẵn hoặc pha loãng theo tờ HDSD; tránh trộn với dung dịch không tương thích.",
+      "toc_do": "Truyền IV 60 phút.",
+      "luu_y": "Tránh phối hợp cation đường uống; theo dõi QT/gân/đường huyết."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "ECG nếu nguy cơ QT",
+      "Đường huyết",
+      "Đau gân",
+      "SCr/CrCl"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -629,52 +945,83 @@
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Polymyxin",
     "aware": "Reserve",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Thuốc độc thận khác",
+        "cap": "Aminoglycosid/vancomycin/amphotericin B",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ AKI.",
-        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+        "canh_bao": "Tăng độc thận; tránh phối hợp nếu có thể.",
+        "xu_tri": "Tăng độc thận; tránh phối hợp nếu có thể."
       },
       {
-        "cap": "Thuốc độc tai/loop diuretic",
+        "cap": "Thuốc chẹn thần kinh cơ/giãn cơ",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ ức chế hô hấp; theo dõi sát.",
+        "xu_tri": "Tăng nguy cơ ức chế hô hấp; theo dõi sát."
+      },
+      {
+        "cap": "Lợi tiểu quai",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ độc tai.",
-        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+        "canh_bao": "Tăng nguy cơ độc thận/độc tai.",
+        "xu_tri": "Tăng nguy cơ độc thận/độc tai."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "Liều tính theo colistin base activity (CBA) hoặc IU tùy chế phẩm. Thường cần liều nạp trong nhiễm nặng, sau đó duy trì theo CrCl/CRRT.",
+      "oda_keo_dai": "Không áp dụng ODA; ưu tiên hội chẩn dược lâm sàng/KSNK do cửa sổ điều trị hẹp.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Cần tính theo CBA/IU và cân nặng; dùng phác đồ bệnh viện.",
+        "30-49": "Giảm liều duy trì theo CrCl; cần dược sĩ lâm sàng kiểm tra.",
+        "15-29": "Giảm liều đáng kể; theo dõi độc thận sát.",
+        "<15": "Cá thể hóa, tránh nếu có lựa chọn an toàn hơn.",
+        "HD": "Liều sau HD theo CBA/IU; cần phác đồ riêng.",
+        "CRRT": "Thường cần liều cao hơn suy thận không lọc; cá thể hóa theo CRRT."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Hoàn nguyên theo tờ HDSD; dùng ngay sau pha, tránh lưu kéo dài do nguy cơ chuyển dạng.",
+      "toc_do": "Truyền IV thường 30–60 phút.",
+      "luu_y": "Nguy cơ độc thận/độc thần kinh cao; không nhầm đơn vị CBA, colistimethate sodium và IU."
     },
     "tdm": {
-      "can": "Khuyến nghị nếu có điều kiện",
-      "muc_tieu": "Theo phác đồ/PK-PD tại bệnh viện.",
-      "ghi_chu": "Theo dõi độc thận và thần kinh sát."
+      "can": true,
+      "muc_tieu": "Ưu tiên theo phác đồ nếu bệnh viện có TDM/PK consult."
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày",
+      "Nước tiểu",
+      "Triệu chứng dị cảm/yếu cơ",
+      "Điện giải"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "AKI",
+      "Dị cảm/yếu cơ",
+      "Ức chế thần kinh cơ"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -686,46 +1033,83 @@
     "duong_dung": "Uống",
     "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
     "aware": "Access/Watch tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Warfarin/kháng vitamin K",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR và dấu hiệu xuất huyết.",
+        "xu_tri": "Có thể tăng INR/chảy máu; theo dõi INR và dấu hiệu xuất huyết."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Penicillin có thể giảm thải trừ methotrexate; tránh phối hợp liều cao hoặc theo dõi độc tính.",
+        "xu_tri": "Penicillin có thể giảm thải trừ methotrexate; tránh phối hợp liều cao hoặc theo dõi độc tính."
+      },
+      {
+        "cap": "Allopurinol",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ phát ban; cân nhắc thay thế/theo dõi.",
+        "xu_tri": "Tăng nguy cơ phát ban; cân nhắc thay thế/theo dõi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO: 625 mg mỗi 8 giờ hoặc 1 g mỗi 12 giờ. IV: 1,2 g mỗi 8 giờ; nhiễm nặng có thể 1,2 g mỗi 6 giờ theo phác đồ.",
+      "oda_keo_dai": "Không phải lựa chọn ODA kinh điển. Có thể truyền IV 30 phút; không tự ý kéo dài khi chưa có phác đồ bệnh viện.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy theo mức độ nhiễm khuẩn.",
+        "30-49": "Thường dùng liều thường quy; cân nhắc giãn khoảng cách nếu điều trị kéo dài/người cao tuổi.",
+        "15-29": "PO thường 625 mg mỗi 12 giờ; IV cân nhắc 1,2 g mỗi 12 giờ.",
+        "<15": "PO 625 mg mỗi 24 giờ; IV cân nhắc 1,2 g mỗi 24 giờ.",
+        "HD": "Dùng sau lọc máu trong ngày lọc; cân nhắc bổ sung liều sau HD.",
+        "CRRT": "Thường gần liều thường quy; cá thể hóa theo tốc độ siêu lọc và ổ nhiễm."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD; dùng ngay sau pha nếu có thể.",
+      "toc_do": "IV truyền khoảng 30 phút; không trộn chung aminoglycosid trong cùng bơm/dây truyền.",
+      "luu_y": "Theo dõi tiêu chảy, phản ứng dị ứng beta-lactam, chức năng gan khi dùng kéo dài."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "AST/ALT, bilirubin nếu dùng kéo dài",
+      "Tiêu chảy/C. difficile",
+      "Tiền sử dị ứng beta-lactam"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -735,48 +1119,79 @@
     "hoat_chat": "Fosfomycin",
     "ham_luong_nong_do": "2g",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Phosphonic acid derivative",
-    "aware": "Watch/Reserve tùy chỉ định",
+    "nhom_khang_sinh": "Kháng sinh phosphonic acid",
+    "aware": "Watch/Reserve tùy đường dùng",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Metoclopramide",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể giảm nồng độ fosfomycin đường uống; tránh dùng sát nhau.",
+        "xu_tri": "Có thể giảm nồng độ fosfomycin đường uống; tránh dùng sát nhau."
+      },
+      {
+        "cap": "Thuốc độc thận",
+        "muc_do": "Moderate",
+        "canh_bao": "Theo dõi SCr khi phối hợp trong nhiễm nặng.",
+        "xu_tri": "Theo dõi SCr khi phối hợp trong nhiễm nặng."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: thường 4–8 g mỗi 6–8 giờ trong nhiễm nặng theo phác đồ. PO gói 3 g liều đơn cho viêm bàng quang không biến chứng nếu có dạng dùng.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền theo tờ HDSD.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "IV liều thường quy theo chỉ định.",
+        "30-49": "Cân nhắc giãn khoảng cách 8–12 giờ.",
+        "15-29": "Giãn khoảng cách 12–24 giờ.",
+        "<15": "Cá thể hóa; theo dõi Na+/quá tải dịch.",
+        "HD": "Dùng sau HD theo phác đồ.",
+        "CRRT": "Có thể cần liều gần thường quy trong nhiễm nặng; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Pha loãng với NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+      "toc_do": "Truyền IV thường 30–60 phút hoặc lâu hơn tùy liều/nồng độ.",
+      "luu_y": "Chế phẩm IV chứa natri; theo dõi quá tải dịch/tăng Na+ ở suy tim/suy thận."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "Na+",
+      "SCr/CrCl",
+      "Dịch vào-ra",
+      "AST/ALT"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -786,54 +1201,85 @@
     "hoat_chat": "Gentamicin",
     "ham_luong_nong_do": "80mg/2ml",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Aminoglycoside",
-    "aware": "Access",
+    "nhom_khang_sinh": "Aminoglycosid",
+    "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Thuốc độc thận khác",
+        "cap": "Vancomycin/amphotericin B/colistin/cisplatin",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ AKI.",
-        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+        "canh_bao": "Tăng độc thận/độc tai; tránh hoặc TDM sát.",
+        "xu_tri": "Tăng độc thận/độc tai; tránh hoặc TDM sát."
       },
       {
-        "cap": "Thuốc độc tai/loop diuretic",
+        "cap": "Lợi tiểu quai",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc tai; thận trọng.",
+        "xu_tri": "Tăng độc tai; thận trọng."
+      },
+      {
+        "cap": "Thuốc giãn cơ",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ độc tai.",
-        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+        "canh_bao": "Tăng phong bế thần kinh cơ.",
+        "xu_tri": "Tăng phong bế thần kinh cơ."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Ưu tiên liều dùng theo nồng độ/PK, cân nặng hiệu chỉnh và mục tiêu Cmax/Cmin.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "Ưu tiên liều theo cân nặng và khoảng cách kéo dài: 5–7 mg/kg IV mỗi 24 giờ ở người bệnh phù hợp; liều hiệp đồng Gram dương thường 1 mg/kg mỗi 8 giờ theo phác đồ.",
+      "oda_keo_dai": "Không áp dụng ODA; cần TDM để tối ưu Cmax/Cmin.",
       "hieu_chinh_crcl": {
-        ">=50": "Theo TDM; thường dùng liều mở rộng khoảng cách nếu phù hợp",
-        "30-49": "Giãn khoảng cách và TDM",
-        "15-29": "Giãn khoảng cách lớn, TDM bắt buộc",
-        "<15": "Tránh nếu có lựa chọn; TDM bắt buộc",
-        "HD": "Liều sau HD theo nồng độ",
-        "CRRT": "Theo TDM"
+        ">=50": "Liều theo cân nặng, thường q24h nếu dùng extended-interval.",
+        "30-49": "Giãn khoảng cách q36h hoặc theo nồng độ.",
+        "15-29": "Giãn q48h hoặc theo nồng độ.",
+        "<15": "Tránh liều lặp lại nếu chưa có TDM; dùng theo nồng độ.",
+        "HD": "Liều sau HD và chỉnh theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ, sau đó theo nồng độ và thông số CRRT."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Pha trong NaCl 0,9% hoặc Glucose 5%.",
+      "toc_do": "Truyền IV 30–60 phút.",
+      "luu_y": "Bắt buộc TDM nếu dùng >48–72 giờ hoặc bệnh nhân nguy cơ; theo dõi độc thận/độc tai."
     },
     "tdm": {
       "can": true,
-      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
-      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+      "muc_tieu": "Cmax/Cmin theo chỉ định; tránh trough tích lũy."
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày",
+      "Nồng độ đỉnh/đáy hoặc random",
+      "Thính lực/tiền đình",
+      "Nước tiểu"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "AKI",
+      "Độc tai",
+      "Ức chế thần kinh cơ"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -843,54 +1289,85 @@
     "hoat_chat": "Amikacin",
     "ham_luong_nong_do": "500mg/100ml",
     "duong_dung": "Tiêm truyền tĩnh mạch",
-    "nhom_khang_sinh": "Aminoglycoside",
-    "aware": "Access/Watch tùy chỉ định",
+    "nhom_khang_sinh": "Aminoglycosid",
+    "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Thuốc độc thận khác",
+        "cap": "Vancomycin/amphotericin B/colistin/cisplatin",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ AKI.",
-        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+        "canh_bao": "Tăng độc thận/độc tai; tránh hoặc TDM sát.",
+        "xu_tri": "Tăng độc thận/độc tai; tránh hoặc TDM sát."
       },
       {
-        "cap": "Thuốc độc tai/loop diuretic",
+        "cap": "Lợi tiểu quai",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc tai; thận trọng.",
+        "xu_tri": "Tăng độc tai; thận trọng."
+      },
+      {
+        "cap": "Thuốc giãn cơ",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ độc tai.",
-        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+        "canh_bao": "Tăng phong bế thần kinh cơ.",
+        "xu_tri": "Tăng phong bế thần kinh cơ."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Ưu tiên liều theo nồng độ/PK, cân nặng hiệu chỉnh và mục tiêu Cmax/Cmin.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "15–20 mg/kg IV mỗi 24 giờ ở người phù hợp; nhiễm nặng Gram âm có thể cần liều nạp cao hơn theo PK/TDM.",
+      "oda_keo_dai": "Không áp dụng ODA; cần TDM để tối ưu Cmax/Cmin.",
       "hieu_chinh_crcl": {
-        ">=50": "Theo TDM; liều mở rộng khoảng cách nếu phù hợp",
-        "30-49": "Giãn khoảng cách và TDM",
-        "15-29": "Giãn khoảng cách lớn, TDM bắt buộc",
-        "<15": "Tránh nếu có lựa chọn; TDM bắt buộc",
-        "HD": "Liều sau HD theo nồng độ",
-        "CRRT": "Theo TDM"
+        ">=50": "Liều theo cân nặng, thường q24h nếu dùng extended-interval.",
+        "30-49": "Giãn khoảng cách q36h hoặc theo nồng độ.",
+        "15-29": "Giãn q48h hoặc theo nồng độ.",
+        "<15": "Tránh liều lặp lại nếu chưa có TDM; dùng theo nồng độ.",
+        "HD": "Liều sau HD và chỉnh theo nồng độ.",
+        "CRRT": "Liều nạp đầy đủ, sau đó theo nồng độ và thông số CRRT."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Pha trong NaCl 0,9% hoặc Glucose 5%.",
+      "toc_do": "Truyền IV 30–60 phút.",
+      "luu_y": "Bắt buộc TDM nếu dùng >48–72 giờ hoặc bệnh nhân nguy cơ; theo dõi độc thận/độc tai."
     },
     "tdm": {
       "can": true,
-      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
-      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+      "muc_tieu": "Cmax/Cmin theo chỉ định; ưu tiên PK consult/TDM."
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày",
+      "Nồng độ đỉnh/đáy hoặc random",
+      "Thính lực/tiền đình",
+      "Nước tiểu"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "AKI",
+      "Độc tai",
+      "Ức chế thần kinh cơ"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -902,46 +1379,83 @@
     "duong_dung": "Uống",
     "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
     "aware": "Access/Watch tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Warfarin/kháng vitamin K",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR và dấu hiệu xuất huyết.",
+        "xu_tri": "Có thể tăng INR/chảy máu; theo dõi INR và dấu hiệu xuất huyết."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Penicillin có thể giảm thải trừ methotrexate; tránh phối hợp liều cao hoặc theo dõi độc tính.",
+        "xu_tri": "Penicillin có thể giảm thải trừ methotrexate; tránh phối hợp liều cao hoặc theo dõi độc tính."
+      },
+      {
+        "cap": "Allopurinol",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nguy cơ phát ban; cân nhắc thay thế/theo dõi.",
+        "xu_tri": "Tăng nguy cơ phát ban; cân nhắc thay thế/theo dõi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO: 625 mg mỗi 8 giờ hoặc 1 g mỗi 12 giờ. IV: 1,2 g mỗi 8 giờ; nhiễm nặng có thể 1,2 g mỗi 6 giờ theo phác đồ.",
+      "oda_keo_dai": "Không phải lựa chọn ODA kinh điển. Có thể truyền IV 30 phút; không tự ý kéo dài khi chưa có phác đồ bệnh viện.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy theo mức độ nhiễm khuẩn.",
+        "30-49": "Thường dùng liều thường quy; cân nhắc giãn khoảng cách nếu điều trị kéo dài/người cao tuổi.",
+        "15-29": "PO thường 625 mg mỗi 12 giờ; IV cân nhắc 1,2 g mỗi 12 giờ.",
+        "<15": "PO 625 mg mỗi 24 giờ; IV cân nhắc 1,2 g mỗi 24 giờ.",
+        "HD": "Dùng sau lọc máu trong ngày lọc; cân nhắc bổ sung liều sau HD.",
+        "CRRT": "Thường gần liều thường quy; cá thể hóa theo tốc độ siêu lọc và ổ nhiễm."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD; dùng ngay sau pha nếu có thể.",
+      "toc_do": "IV truyền khoảng 30 phút; không trộn chung aminoglycosid trong cùng bơm/dây truyền.",
+      "luu_y": "Theo dõi tiêu chảy, phản ứng dị ứng beta-lactam, chức năng gan khi dùng kéo dài."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "AST/ALT, bilirubin nếu dùng kéo dài",
+      "Tiêu chảy/C. difficile",
+      "Tiền sử dị ứng beta-lactam"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -951,66 +1465,92 @@
     "hoat_chat": "Levofloxacin",
     "ham_luong_nong_do": "500mg/100ml",
     "duong_dung": "Tiêm truyền",
-    "nhom_khang_sinh": "Fluoroquinolone",
+    "nhom_khang_sinh": "Fluoroquinolon",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
-        "muc_do": "Moderate",
-        "canh_bao": "Giảm hấp thu quinolone đường uống.",
-        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+        "cap": "Thuốc kéo dài QT: amiodaron, sotalol, macrolid, antipsychotic",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ QT/xoắn đỉnh; tránh phối hợp hoặc theo dõi ECG/K+/Mg2+.",
+        "xu_tri": "Tăng nguy cơ QT/xoắn đỉnh; tránh phối hợp hoặc theo dõi ECG/K+/Mg2+."
       },
       {
-        "cap": "Thuốc kéo dài QT",
+        "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
-        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
-      },
-      {
-        "cap": "Corticosteroid",
-        "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
-        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+        "canh_bao": "Giảm hấp thu đường uống; tách liều ít nhất 2–4 giờ.",
+        "xu_tri": "Giảm hấp thu đường uống; tách liều ít nhất 2–4 giờ."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR.",
-        "xu_tri": "Theo dõi INR."
+        "canh_bao": "Có thể tăng INR; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR; theo dõi INR."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân, nhất là người cao tuổi.",
+        "xu_tri": "Tăng nguy cơ viêm/đứt gân, nhất là người cao tuổi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV/PO: 500 mg mỗi 24 giờ hoặc 750 mg mỗi 24 giờ tùy ổ nhiễm.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "500–750 mg mỗi 24 giờ.",
+        "30-49": "Nếu phác đồ 750 mg: 750 mg liều đầu, sau đó 500 mg mỗi 24 giờ hoặc 750 mg mỗi 48 giờ tùy chỉ định.",
+        "15-29": "750 mg mỗi 48 giờ hoặc 500 mg liều đầu rồi 250 mg mỗi 24–48 giờ.",
+        "<15": "Giãn 48 giờ; cá thể hóa theo chỉ định.",
+        "HD": "Dùng sau HD hoặc không phụ thuộc HD tùy phác đồ; thường giãn 48 giờ.",
+        "CRRT": "Thường 500–750 mg mỗi 24 giờ; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Dung dịch truyền pha sẵn; nếu cần pha loãng theo tờ HDSD, tránh trộn thuốc không tương thích.",
+      "toc_do": "500 mg truyền ≥60 phút; 750 mg truyền ≥90 phút.",
+      "luu_y": "Tránh dùng không cần thiết do nguy cơ QT, gân, thần kinh ngoại biên, hạ/tăng đường huyết."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "ECG nếu nguy cơ QT",
+      "K+/Mg2+",
+      "Đường huyết",
+      "Đau gân/triệu chứng thần kinh"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Kéo dài QT",
+      "Viêm/đứt gân",
+      "Rối loạn đường huyết",
+      "C. difficile"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1022,46 +1562,76 @@
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Cephalosporin thế hệ 3",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Calci IV/dung dịch Ringer lactate",
+        "muc_do": "Major",
+        "canh_bao": "Không pha/truyền chung; nguy cơ kết tủa ceftriaxone-calci.",
+        "xu_tri": "Không pha/truyền chung; nguy cơ kết tủa ceftriaxone-calci."
+      },
+      {
+        "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Có thể tăng INR; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR; theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "1–2 g IV mỗi 24 giờ; nhiễm nặng có thể 2 g mỗi 12 giờ theo chỉ định.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "IV: 1–2 g mỗi 24 giờ; viêm màng não hoặc chỉ định đặc biệt 2 g mỗi 12 giờ.",
+      "oda_keo_dai": "Không áp dụng ODA thường quy; truyền 30 phút.",
       "hieu_chinh_crcl": {
-        ">=50": "Thường không cần chỉnh liều",
-        "30-49": "Thường không cần chỉnh liều",
-        "15-29": "Thường không cần chỉnh liều; thận trọng nếu suy gan kèm suy thận",
-        "<15": "Thường không cần chỉnh liều; theo dõi tích lũy nếu suy gan kèm theo",
-        "HD": "Thường không cần bổ sung sau HD",
-        "CRRT": "Theo phác đồ bệnh viện/PK-PD"
+        ">=50": "Không cần hiệu chỉnh liều theo thận đơn thuần.",
+        "30-49": "Không cần hiệu chỉnh.",
+        "15-29": "Không cần hiệu chỉnh; thận trọng nếu suy gan nặng kèm suy thận.",
+        "<15": "Không cần hiệu chỉnh thường quy; theo dõi nếu suy gan kèm theo.",
+        "HD": "Không cần bổ sung sau HD.",
+        "CRRT": "Không cần chỉnh thường quy; cá thể hóa nhiễm nặng."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5%; không pha/truyền chung dung dịch chứa calci.",
+      "toc_do": "Truyền IV khoảng 30 phút; tiêm bắp theo tờ HDSD nếu dùng IM.",
+      "luu_y": "Tránh phối hợp dung dịch chứa calci cùng đường truyền; lưu ý bùn mật/tăng bilirubin."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "AST/ALT/bilirubin",
+      "Tiêu chảy/C. difficile",
+      "Dị ứng beta-lactam"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1072,53 +1642,83 @@
     "ham_luong_nong_do": "1g",
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Carbapenem",
-    "aware": "Watch/Reserve tùy chính sách BV",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Valproate/acid valproic",
         "muc_do": "Major",
-        "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproate, tăng nguy cơ co giật.",
-        "xu_tri": "Tránh phối hợp; hội chẩn đổi kháng sinh hoặc thuốc chống động kinh."
+        "canh_bao": "Giảm mạnh nồng độ valproate, nguy cơ co giật; tránh phối hợp.",
+        "xu_tri": "Giảm mạnh nồng độ valproate, nguy cơ co giật; tránh phối hợp."
       },
       {
         "cap": "Probenecid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nồng độ beta-lactam.",
-        "xu_tri": "Không khuyến cáo phối hợp thường quy."
+        "canh_bao": "Tăng nồng độ meropenem; không khuyến cáo phối hợp.",
+        "xu_tri": "Tăng nồng độ meropenem; không khuyến cáo phối hợp."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Theo dõi INR.",
+        "xu_tri": "Theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "1 g IV mỗi 8 giờ; nhiễm nặng/PK-PD có thể truyền kéo dài 3 giờ theo phác đồ.",
-      "oda_keo_dai": "1–2 g truyền 3 giờ mỗi 8 giờ tùy ổ nhiễm, MIC và chức năng thận.",
+      "lieu_truyen_thong": "IV: 1 g mỗi 8 giờ; viêm màng não/nhiễm Pseudomonas nặng có thể 2 g mỗi 8 giờ theo phác đồ.",
+      "oda_keo_dai": "Truyền kéo dài: 1–2 g truyền trong 3 giờ mỗi 8 giờ khi cần tối ưu %fT>MIC và phác đồ cho phép.",
       "hieu_chinh_crcl": {
-        ">=50": "Liều thường",
-        "30-49": "Giảm liều hoặc giãn khoảng cách theo phác đồ",
-        "15-29": "Giảm liều/giãn khoảng cách",
-        "<15": "Giảm liều mạnh/giãn khoảng cách; theo dõi độc thần kinh",
-        "HD": "Bổ sung sau HD theo phác đồ",
-        "CRRT": "Thường cần liều cao hơn suy thận không lọc; ưu tiên EI/TDM beta-lactam nếu có"
+        ">=50": "1 g q8h; nhiễm nặng 2 g q8h.",
+        "30-49": "1 g q12h; CNS/nhiễm nặng cá thể hóa.",
+        "15-29": "500 mg q12h hoặc 1 g q12h tùy chỉ định.",
+        "<15": "500 mg q24h hoặc 1 g q24h nếu CNS/nặng.",
+        "HD": "500 mg–1 g sau HD tùy chỉ định.",
+        "CRRT": "1 g q8h, cân nhắc truyền kéo dài; nhiễm CNS có thể 2 g q8h theo PK."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5%; ổn định sau pha phụ thuộc nồng độ/nhiệt độ, ưu tiên dùng sớm.",
+      "toc_do": "Truyền chuẩn 30 phút hoặc truyền kéo dài 3 giờ.",
+      "luu_y": "Nguy cơ co giật khi suy thận/CNS nếu quá liều; tránh phối hợp valproate."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "Tri giác/co giật",
+      "CBC/AST/ALT"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Co giật hiếm gặp",
+      "Tiêu chảy/C. difficile",
+      "Dị ứng beta-lactam"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1129,53 +1729,83 @@
     "ham_luong_nong_do": "1g",
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Carbapenem",
-    "aware": "Watch/Reserve tùy chính sách BV",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Valproate/acid valproic",
         "muc_do": "Major",
-        "canh_bao": "Carbapenem làm giảm mạnh nồng độ valproate, tăng nguy cơ co giật.",
-        "xu_tri": "Tránh phối hợp; hội chẩn đổi kháng sinh hoặc thuốc chống động kinh."
+        "canh_bao": "Giảm mạnh nồng độ valproate, nguy cơ co giật; tránh phối hợp.",
+        "xu_tri": "Giảm mạnh nồng độ valproate, nguy cơ co giật; tránh phối hợp."
       },
       {
         "cap": "Probenecid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nồng độ beta-lactam.",
-        "xu_tri": "Không khuyến cáo phối hợp thường quy."
+        "canh_bao": "Tăng nồng độ meropenem; không khuyến cáo phối hợp.",
+        "xu_tri": "Tăng nồng độ meropenem; không khuyến cáo phối hợp."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Theo dõi INR.",
+        "xu_tri": "Theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "1 g IV mỗi 8 giờ; nhiễm nặng/PK-PD có thể truyền kéo dài 3 giờ theo phác đồ.",
-      "oda_keo_dai": "1–2 g truyền 3 giờ mỗi 8 giờ tùy ổ nhiễm, MIC và chức năng thận.",
+      "lieu_truyen_thong": "IV: 1 g mỗi 8 giờ; viêm màng não/nhiễm Pseudomonas nặng có thể 2 g mỗi 8 giờ theo phác đồ.",
+      "oda_keo_dai": "Truyền kéo dài: 1–2 g truyền trong 3 giờ mỗi 8 giờ khi cần tối ưu %fT>MIC và phác đồ cho phép.",
       "hieu_chinh_crcl": {
-        ">=50": "Liều thường",
-        "30-49": "Giảm liều hoặc giãn khoảng cách theo phác đồ",
-        "15-29": "Giảm liều/giãn khoảng cách",
-        "<15": "Giảm liều mạnh/giãn khoảng cách; theo dõi độc thần kinh",
-        "HD": "Bổ sung sau HD theo phác đồ",
-        "CRRT": "Thường cần liều cao hơn suy thận không lọc; ưu tiên EI/TDM beta-lactam nếu có"
+        ">=50": "1 g q8h; nhiễm nặng 2 g q8h.",
+        "30-49": "1 g q12h; CNS/nhiễm nặng cá thể hóa.",
+        "15-29": "500 mg q12h hoặc 1 g q12h tùy chỉ định.",
+        "<15": "500 mg q24h hoặc 1 g q24h nếu CNS/nặng.",
+        "HD": "500 mg–1 g sau HD tùy chỉ định.",
+        "CRRT": "1 g q8h, cân nhắc truyền kéo dài; nhiễm CNS có thể 2 g q8h theo PK."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5%; ổn định sau pha phụ thuộc nồng độ/nhiệt độ, ưu tiên dùng sớm.",
+      "toc_do": "Truyền chuẩn 30 phút hoặc truyền kéo dài 3 giờ.",
+      "luu_y": "Nguy cơ co giật khi suy thận/CNS nếu quá liều; tránh phối hợp valproate."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/CrCl",
+      "Tri giác/co giật",
+      "CBC/AST/ALT"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Co giật hiếm gặp",
+      "Tiêu chảy/C. difficile",
+      "Dị ứng beta-lactam"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1185,60 +1815,84 @@
     "hoat_chat": "Metronidazol",
     "ham_luong_nong_do": "0,5/100ML",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Nitroimidazole",
+    "nhom_khang_sinh": "Nitroimidazol",
     "aware": "Access",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Rượu/ethanol",
         "muc_do": "Major",
-        "canh_bao": "Phản ứng kiểu disulfiram.",
-        "xu_tri": "Tránh rượu trong và sau điều trị theo khuyến cáo."
+        "canh_bao": "Tránh trong khi dùng và ít nhất 48–72 giờ sau liều cuối.",
+        "xu_tri": "Tránh trong khi dùng và ít nhất 48–72 giờ sau liều cuối."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Major",
-        "canh_bao": "Tăng INR/chảy máu.",
-        "xu_tri": "Theo dõi INR sát, chỉnh liều chống đông nếu cần."
+        "canh_bao": "Tăng INR; theo dõi INR và điều chỉnh.",
+        "xu_tri": "Tăng INR; theo dõi INR và điều chỉnh."
       },
       {
         "cap": "Lithium",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng độc tính lithium.",
-        "xu_tri": "Theo dõi nồng độ lithium/chức năng thận."
+        "canh_bao": "Có thể tăng lithium; theo dõi nồng độ/độc tính.",
+        "xu_tri": "Có thể tăng lithium; theo dõi nồng độ/độc tính."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "500 mg IV/PO mỗi 8 giờ hoặc theo chỉ định nhiễm khuẩn kỵ khí.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "IV/PO: 500 mg mỗi 8–12 giờ tùy chỉ định; amip/lỵ/viêm âm đạo theo phác đồ riêng.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Liều thường",
-        "30-49": "Liều thường",
-        "15-29": "Liều thường; theo dõi khi dùng kéo dài",
-        "<15": "Cân nhắc giãn khoảng cách khi dùng kéo dài/độc tính",
-        "HD": "Có thể cần liều sau HD tùy phác đồ",
-        "CRRT": "Theo phác đồ bệnh viện"
+        ">=50": "Không cần hiệu chỉnh thường quy.",
+        "30-49": "Không cần hiệu chỉnh thường quy.",
+        "15-29": "Không cần hiệu chỉnh; theo dõi khi dùng kéo dài.",
+        "<15": "Không cần chỉnh liều nạp; cân nhắc giãn khoảng cách khi dùng kéo dài.",
+        "HD": "Dùng sau HD trong ngày lọc nếu lịch trùng.",
+        "CRRT": "Thường liều thường quy."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Dạng truyền pha sẵn 500 mg/100 mL hoặc pha theo tờ HDSD.",
+      "toc_do": "Truyền IV 30–60 phút.",
+      "luu_y": "Tránh rượu; theo dõi độc thần kinh khi dùng kéo dài/liều cao."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "Triệu chứng thần kinh ngoại biên",
+      "AST/ALT",
+      "INR nếu dùng warfarin"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Vị kim loại",
+      "Buồn nôn",
+      "Bệnh thần kinh ngoại biên khi kéo dài"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1248,60 +1902,84 @@
     "hoat_chat": "Metronidazol",
     "ham_luong_nong_do": "250mg",
     "duong_dung": "Uống",
-    "nhom_khang_sinh": "Nitroimidazole",
+    "nhom_khang_sinh": "Nitroimidazol",
     "aware": "Access",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Rượu/ethanol",
         "muc_do": "Major",
-        "canh_bao": "Phản ứng kiểu disulfiram.",
-        "xu_tri": "Tránh rượu trong và sau điều trị theo khuyến cáo."
+        "canh_bao": "Tránh trong khi dùng và ít nhất 48–72 giờ sau liều cuối.",
+        "xu_tri": "Tránh trong khi dùng và ít nhất 48–72 giờ sau liều cuối."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Major",
-        "canh_bao": "Tăng INR/chảy máu.",
-        "xu_tri": "Theo dõi INR sát, chỉnh liều chống đông nếu cần."
+        "canh_bao": "Tăng INR; theo dõi INR và điều chỉnh.",
+        "xu_tri": "Tăng INR; theo dõi INR và điều chỉnh."
       },
       {
         "cap": "Lithium",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng độc tính lithium.",
-        "xu_tri": "Theo dõi nồng độ lithium/chức năng thận."
+        "canh_bao": "Có thể tăng lithium; theo dõi nồng độ/độc tính.",
+        "xu_tri": "Có thể tăng lithium; theo dõi nồng độ/độc tính."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "500 mg IV/PO mỗi 8 giờ hoặc theo chỉ định nhiễm khuẩn kỵ khí.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "IV/PO: 500 mg mỗi 8–12 giờ tùy chỉ định; amip/lỵ/viêm âm đạo theo phác đồ riêng.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Liều thường",
-        "30-49": "Liều thường",
-        "15-29": "Liều thường; theo dõi khi dùng kéo dài",
-        "<15": "Cân nhắc giãn khoảng cách khi dùng kéo dài/độc tính",
-        "HD": "Có thể cần liều sau HD tùy phác đồ",
-        "CRRT": "Theo phác đồ bệnh viện"
+        ">=50": "Không cần hiệu chỉnh thường quy.",
+        "30-49": "Không cần hiệu chỉnh thường quy.",
+        "15-29": "Không cần hiệu chỉnh; theo dõi khi dùng kéo dài.",
+        "<15": "Không cần chỉnh liều nạp; cân nhắc giãn khoảng cách khi dùng kéo dài.",
+        "HD": "Dùng sau HD trong ngày lọc nếu lịch trùng.",
+        "CRRT": "Thường liều thường quy."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "Dạng truyền pha sẵn 500 mg/100 mL hoặc pha theo tờ HDSD.",
+      "toc_do": "Truyền IV 30–60 phút.",
+      "luu_y": "Tránh rượu; theo dõi độc thần kinh khi dùng kéo dài/liều cao."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "Triệu chứng thần kinh ngoại biên",
+      "AST/ALT",
+      "INR nếu dùng warfarin"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Vị kim loại",
+      "Buồn nôn",
+      "Bệnh thần kinh ngoại biên khi kéo dài"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1311,66 +1989,85 @@
     "hoat_chat": "Moxifloxacin",
     "ham_luong_nong_do": "400mg/ 250ml",
     "duong_dung": "Tiêm truyền",
-    "nhom_khang_sinh": "Fluoroquinolone",
+    "nhom_khang_sinh": "Fluoroquinolon",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
-      {
-        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
-        "muc_do": "Moderate",
-        "canh_bao": "Giảm hấp thu quinolone đường uống.",
-        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
-      },
       {
         "cap": "Thuốc kéo dài QT",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
-        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+        "canh_bao": "Tăng nguy cơ QT/xoắn đỉnh; tránh nếu có thể.",
+        "xu_tri": "Tăng nguy cơ QT/xoắn đỉnh; tránh nếu có thể."
       },
       {
-        "cap": "Corticosteroid",
+        "cap": "Cation đường uống",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
-        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+        "canh_bao": "Giảm hấp thu; tách liều.",
+        "xu_tri": "Giảm hấp thu; tách liều."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR.",
+        "canh_bao": "Theo dõi INR.",
         "xu_tri": "Theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV/PO: 400 mg mỗi 24 giờ.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "400 mg q24h.",
+        "30-49": "Không cần hiệu chỉnh.",
+        "15-29": "Không cần hiệu chỉnh.",
+        "<15": "Không cần hiệu chỉnh; thận trọng QT.",
+        "HD": "Không cần bổ sung sau HD.",
+        "CRRT": "Không cần chỉnh thường quy."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Dung dịch truyền pha sẵn hoặc theo tờ HDSD.",
+      "toc_do": "Truyền IV ≥60 phút.",
+      "luu_y": "Không dùng cho nhiễm khuẩn tiết niệu do nồng độ niệu thấp; nguy cơ QT nổi bật."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "ECG nếu nguy cơ QT",
+      "K+/Mg2+",
+      "Đau gân",
+      "Đường huyết"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1381,47 +2078,84 @@
     "ham_luong_nong_do": "1g + 0,5g",
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
-    "aware": "Access/Watch tùy chỉ định",
+    "aware": "Access/Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Allopurinol",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Tăng nguy cơ phát ban.",
+        "xu_tri": "Tăng nguy cơ phát ban."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc tính methotrexate; tránh/theo dõi.",
+        "xu_tri": "Tăng độc tính methotrexate; tránh/theo dõi."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Theo dõi INR.",
+        "xu_tri": "Theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 1,5–3 g mỗi 6 giờ tùy chỉ định; liều tính theo tổng ampicillin/sulbactam.",
+      "oda_keo_dai": "Có thể truyền 30 phút; truyền kéo dài chỉ theo phác đồ bệnh viện.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "1,5–3 g q6h.",
+        "30-49": "1,5–3 g q6–8h.",
+        "15-29": "1,5–3 g q12h.",
+        "<15": "1,5–3 g q24h.",
+        "HD": "Dùng sau HD; thường q24h hoặc theo mức độ nặng.",
+        "CRRT": "1,5–3 g q6–8h; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+      "toc_do": "Truyền IV khoảng 15–30 phút.",
+      "luu_y": "Theo dõi quá mẫn beta-lactam, tiêu chảy, men gan."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/eGFR hoặc CrCl",
+      "Dấu hiệu đáp ứng lâm sàng",
+      "AST/ALT khi điều trị kéo dài",
+      "CBC khi điều trị kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1431,60 +2165,92 @@
     "hoat_chat": "Sulfamethoxazol + trimethoprim",
     "ham_luong_nong_do": "400mg + 80mg",
     "duong_dung": "Uống",
-    "nhom_khang_sinh": "Sulfonamide + diaminopyrimidine",
-    "aware": "Access",
+    "nhom_khang_sinh": "Sulfonamid + trimethoprim",
+    "aware": "Access/Watch tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
+      {
+        "cap": "ACEI/ARB/spironolacton",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ tăng kali máu; kiểm tra K+ sau 2–3 ngày và khi tăng liều.",
+        "xu_tri": "Tăng nguy cơ tăng kali máu; kiểm tra K+ sau 2–3 ngày và khi tăng liều."
+      },
       {
         "cap": "Warfarin",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ chảy máu/tăng INR.",
-        "xu_tri": "Tránh nếu có lựa chọn; nếu dùng phải theo dõi INR sát."
-      },
-      {
-        "cap": "ACEI/ARB/spironolactone hoặc thuốc giữ kali",
-        "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ tăng kali máu, đặc biệt ở người suy thận/người cao tuổi.",
-        "xu_tri": "Kiểm tra K+, SCr; cân nhắc thuốc thay thế."
+        "canh_bao": "Tăng INR/chảy máu; tránh nếu có thể hoặc giảm liều warfarin và theo dõi INR.",
+        "xu_tri": "Tăng INR/chảy máu; tránh nếu có thể hoặc giảm liều warfarin và theo dõi INR."
       },
       {
         "cap": "Methotrexate",
         "muc_do": "Major",
-        "canh_bao": "Tăng độc tính methotrexate/ức chế tủy.",
-        "xu_tri": "Tránh phối hợp hoặc theo dõi CBC, độc tính."
+        "canh_bao": "Tăng độc tính tủy/xuất huyết; tránh phối hợp hoặc theo dõi CBC rất sát.",
+        "xu_tri": "Tăng độc tính tủy/xuất huyết; tránh phối hợp hoặc theo dõi CBC rất sát."
+      },
+      {
+        "cap": "Phenytoin",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng nồng độ phenytoin; theo dõi dấu hiệu độc tính.",
+        "xu_tri": "Tăng nồng độ phenytoin; theo dõi dấu hiệu độc tính."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "PO/IV: 960 mg mỗi 12 giờ cho nhiễm khuẩn thông thường. Pneumocystis: 15–20 mg/kg/ngày tính theo TMP chia 3–4 lần theo phác đồ.",
+      "oda_keo_dai": "Không áp dụng ODA/truyền kéo dài. IV truyền theo tờ HDSD, thường 60–90 phút sau pha loãng.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy.",
+        "30-49": "Thường liều thường quy; theo dõi kali/SCr.",
+        "15-29": "Dùng 50% liều thường quy hoặc giãn khoảng cách.",
+        "<15": "Tránh nếu có lựa chọn khác; nếu bắt buộc dùng 25–50% liều và theo dõi sát.",
+        "HD": "Dùng sau HD; thường 50% liều thường quy tùy chỉ định.",
+        "CRRT": "Thường cần liều gần thường quy ở nhiễm nặng; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "IV phải pha loãng theo tờ HDSD; thường dùng Glucose 5%, tránh pha quá đặc.",
+      "toc_do": "Truyền IV 60–90 phút; không tiêm bolus.",
+      "luu_y": "Nguy cơ tăng kali máu, tăng creatinin giả do TMP, ức chế tủy, hội chứng Stevens–Johnson."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "Kali máu",
+      "SCr/CrCl",
+      "CBC",
+      "Phát ban/niêm mạc"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Tăng kali máu",
+      "Ức chế tủy",
+      "SJS/TEN",
+      "Buồn nôn"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1494,66 +2260,92 @@
     "hoat_chat": "Levofloxacin",
     "ham_luong_nong_do": "500mg",
     "duong_dung": "Uống",
-    "nhom_khang_sinh": "Fluoroquinolone",
+    "nhom_khang_sinh": "Fluoroquinolon",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
-        "muc_do": "Moderate",
-        "canh_bao": "Giảm hấp thu quinolone đường uống.",
-        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+        "cap": "Thuốc kéo dài QT: amiodaron, sotalol, macrolid, antipsychotic",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ QT/xoắn đỉnh; tránh phối hợp hoặc theo dõi ECG/K+/Mg2+.",
+        "xu_tri": "Tăng nguy cơ QT/xoắn đỉnh; tránh phối hợp hoặc theo dõi ECG/K+/Mg2+."
       },
       {
-        "cap": "Thuốc kéo dài QT",
+        "cap": "Cation đa hóa trị: sắt, kẽm, calci, antacid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
-        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
-      },
-      {
-        "cap": "Corticosteroid",
-        "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
-        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+        "canh_bao": "Giảm hấp thu đường uống; tách liều ít nhất 2–4 giờ.",
+        "xu_tri": "Giảm hấp thu đường uống; tách liều ít nhất 2–4 giờ."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR.",
-        "xu_tri": "Theo dõi INR."
+        "canh_bao": "Có thể tăng INR; theo dõi INR.",
+        "xu_tri": "Có thể tăng INR; theo dõi INR."
+      },
+      {
+        "cap": "Corticosteroid",
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ viêm/đứt gân, nhất là người cao tuổi.",
+        "xu_tri": "Tăng nguy cơ viêm/đứt gân, nhất là người cao tuổi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV/PO: 500 mg mỗi 24 giờ hoặc 750 mg mỗi 24 giờ tùy ổ nhiễm.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "500–750 mg mỗi 24 giờ.",
+        "30-49": "Nếu phác đồ 750 mg: 750 mg liều đầu, sau đó 500 mg mỗi 24 giờ hoặc 750 mg mỗi 48 giờ tùy chỉ định.",
+        "15-29": "750 mg mỗi 48 giờ hoặc 500 mg liều đầu rồi 250 mg mỗi 24–48 giờ.",
+        "<15": "Giãn 48 giờ; cá thể hóa theo chỉ định.",
+        "HD": "Dùng sau HD hoặc không phụ thuộc HD tùy phác đồ; thường giãn 48 giờ.",
+        "CRRT": "Thường 500–750 mg mỗi 24 giờ; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "Dung dịch truyền pha sẵn; nếu cần pha loãng theo tờ HDSD, tránh trộn thuốc không tương thích.",
+      "toc_do": "500 mg truyền ≥60 phút; 750 mg truyền ≥90 phút.",
+      "luu_y": "Tránh dùng không cần thiết do nguy cơ QT, gân, thần kinh ngoại biên, hạ/tăng đường huyết."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "ECG nếu nguy cơ QT",
+      "K+/Mg2+",
+      "Đường huyết",
+      "Đau gân/triệu chứng thần kinh"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Kéo dài QT",
+      "Viêm/đứt gân",
+      "Rối loạn đường huyết",
+      "C. difficile"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1563,66 +2355,91 @@
     "hoat_chat": "Ciprofloxacin",
     "ham_luong_nong_do": "500mg",
     "duong_dung": "Uống",
-    "nhom_khang_sinh": "Fluoroquinolone",
+    "nhom_khang_sinh": "Fluoroquinolon",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Antacid/sucralfate/sắt/kẽm/calci",
-        "muc_do": "Moderate",
-        "canh_bao": "Giảm hấp thu quinolone đường uống.",
-        "xu_tri": "Tách thời điểm dùng theo khuyến cáo."
+        "cap": "Tizanidine",
+        "muc_do": "Major",
+        "canh_bao": "Chống chỉ định: ciprofloxacin làm tăng mạnh tizanidine gây tụt HA/an thần.",
+        "xu_tri": "Chống chỉ định: ciprofloxacin làm tăng mạnh tizanidine gây tụt HA/an thần."
       },
       {
         "cap": "Thuốc kéo dài QT",
-        "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ kéo dài QT/xoắn đỉnh.",
-        "xu_tri": "Tránh phối hợp nguy cơ cao; theo dõi ECG, K+/Mg2+."
+        "muc_do": "Major",
+        "canh_bao": "Tăng nguy cơ QT; tránh hoặc theo dõi ECG.",
+        "xu_tri": "Tăng nguy cơ QT; tránh hoặc theo dõi ECG."
       },
       {
-        "cap": "Corticosteroid",
+        "cap": "Cation: sắt/kẽm/calci/antacid",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ viêm/đứt gân.",
-        "xu_tri": "Cảnh báo người bệnh; ngừng thuốc khi đau gân."
+        "canh_bao": "Giảm hấp thu PO; tách liều 2–6 giờ.",
+        "xu_tri": "Giảm hấp thu PO; tách liều 2–6 giờ."
       },
       {
         "cap": "Warfarin",
         "muc_do": "Moderate",
         "canh_bao": "Có thể tăng INR.",
-        "xu_tri": "Theo dõi INR."
+        "xu_tri": "Có thể tăng INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV/PO: 400 mg IV mỗi 8–12 giờ hoặc 500–750 mg PO mỗi 12 giờ tùy chỉ định.",
+      "oda_keo_dai": "Không áp dụng ODA; IV truyền chậm.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "Liều thường quy.",
+        "30-49": "Thường 400 mg IV mỗi 12 giờ hoặc 500 mg PO mỗi 12 giờ.",
+        "15-29": "400 mg IV mỗi 24 giờ hoặc 250–500 mg PO mỗi 24 giờ.",
+        "<15": "250–500 mg PO mỗi 24 giờ hoặc 400 mg IV mỗi 24 giờ; cá thể hóa.",
+        "HD": "Dùng sau HD.",
+        "CRRT": "400 mg IV mỗi 8–12 giờ tùy nặng."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "Không áp dụng",
-      "toc_do": "Uống theo hướng dẫn từng thuốc",
-      "luu_y": "Kiểm tra tương tác hấp thu với quinolone nếu có."
+      "dung_moi": "Dung dịch truyền pha sẵn hoặc pha loãng theo tờ HDSD; tránh trộn với dung dịch không tương thích.",
+      "toc_do": "Truyền IV 60 phút.",
+      "luu_y": "Tránh phối hợp cation đường uống; theo dõi QT/gân/đường huyết."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "ECG nếu nguy cơ QT",
+      "Đường huyết",
+      "Đau gân",
+      "SCr/CrCl"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1632,60 +2449,84 @@
     "hoat_chat": "Piperacillin + tazobactam",
     "ham_luong_nong_do": "4,5g",
     "duong_dung": "Tiêm truyền",
-    "nhom_khang_sinh": "Penicillin kháng Pseudomonas + chất ức chế beta-lactamase",
-    "aware": "Watch",
+    "nhom_khang_sinh": "Ureidopenicillin + chất ức chế beta-lactamase",
+    "aware": "Watch/Reserve tùy chỉ định",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Vancomycin",
-        "muc_do": "Moderate/Major",
-        "canh_bao": "Tăng nguy cơ tổn thương thận cấp.",
-        "xu_tri": "Theo dõi SCr; cân nhắc lựa chọn khác theo kháng sinh đồ."
+        "muc_do": "Major",
+        "canh_bao": "Liên quan tăng nguy cơ AKI trong nhiều nghiên cứu; theo dõi SCr sát, cân nhắc beta-lactam khác nếu nguy cơ cao.",
+        "xu_tri": "Liên quan tăng nguy cơ AKI trong nhiều nghiên cứu; theo dõi SCr sát, cân nhắc beta-lactam khác nếu nguy cơ cao."
       },
       {
         "cap": "Methotrexate",
-        "muc_do": "Moderate",
-        "canh_bao": "Có thể giảm thải trừ methotrexate.",
-        "xu_tri": "Theo dõi độc tính/CBC nếu phối hợp."
+        "muc_do": "Major",
+        "canh_bao": "Có thể giảm thải trừ methotrexate; tránh/theo dõi.",
+        "xu_tri": "Có thể giảm thải trừ methotrexate; tránh/theo dõi."
       },
       {
-        "cap": "Thuốc chống đông/kháng tiểu cầu",
+        "cap": "Aminoglycosid",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng nguy cơ chảy máu.",
-        "xu_tri": "Theo dõi lâm sàng và xét nghiệm đông máu khi cần."
+        "canh_bao": "Không pha chung; tăng độc thận khi phối hợp.",
+        "xu_tri": "Không pha chung; tăng độc thận khi phối hợp."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "4,5 g IV mỗi 6–8 giờ tùy mức độ nặng.",
-      "oda_keo_dai": "4,5 g truyền kéo dài 3–4 giờ mỗi 6–8 giờ theo PK-PD/phác đồ BV.",
+      "lieu_truyen_thong": "IV: 4,5 g mỗi 6–8 giờ tùy nhiễm khuẩn; Pseudomonas/nhiễm nặng thường 4,5 g mỗi 6 giờ.",
+      "oda_keo_dai": "Truyền kéo dài: 4,5 g truyền trong 3–4 giờ mỗi 8 giờ khi phác đồ cho phép.",
       "hieu_chinh_crcl": {
-        ">=50": "Liều thường",
-        "30-49": "Giảm liều hoặc giãn khoảng cách theo phác đồ",
-        "15-29": "Giảm liều/giãn khoảng cách",
-        "<15": "Giảm liều mạnh; theo dõi Na+, SCr",
-        "HD": "Bổ sung sau HD theo phác đồ",
-        "CRRT": "Theo phác đồ CRRT; cân nhắc EI"
+        ">=50": "4,5 g q6–8h; EI 4,5 g q8h truyền 3–4h.",
+        "30-49": "4,5 g q8h; EI cân nhắc 4,5 g q8–12h.",
+        "15-29": "4,5 g q12h hoặc 3,375 g q8–12h tùy chỉ định.",
+        "<15": "2,25–3,375 g q8–12h; cá thể hóa.",
+        "HD": "2,25–3,375 g q8–12h, dùng sau HD; bổ sung theo phác đồ.",
+        "CRRT": "4,5 g q8h EI thường dùng trong nhiễm nặng; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5%; kiểm tra tương thích với dung dịch khác.",
+      "toc_do": "Truyền chuẩn 30 phút hoặc truyền kéo dài 3–4 giờ.",
+      "luu_y": "Theo dõi tải natri, SCr; cân nhắc nguy cơ AKI khi phối hợp vancomycin."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày nếu nặng/phối hợp độc thận",
+      "Na+",
+      "CBC khi dùng kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1697,46 +2538,77 @@
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Cephalosporin thế hệ 3",
     "aware": "Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Warfarin",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Theo dõi INR.",
+        "xu_tri": "Theo dõi INR."
+      },
+      {
+        "cap": "Aminoglycosid",
+        "muc_do": "Moderate",
+        "canh_bao": "Tăng độc thận; theo dõi SCr.",
+        "xu_tri": "Tăng độc thận; theo dõi SCr."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 1–2 g mỗi 6–8 giờ tùy chỉ định; viêm màng não thường 2 g mỗi 4–6 giờ theo phác đồ.",
+      "oda_keo_dai": "Không áp dụng ODA thường quy; truyền 30 phút.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "1–2 g q6–8h.",
+        "30-49": "1–2 g q8–12h.",
+        "15-29": "1 g q12h.",
+        "<15": "1 g q24h hoặc q12h nếu nhiễm nặng/CNS theo dõi sát.",
+        "HD": "Dùng sau HD; cá thể hóa.",
+        "CRRT": "1–2 g q8h; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+      "toc_do": "Truyền IV khoảng 30 phút.",
+      "luu_y": "Theo dõi độc thần kinh nếu suy thận không chỉnh liều."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/eGFR hoặc CrCl",
+      "Dấu hiệu đáp ứng lâm sàng",
+      "AST/ALT khi điều trị kéo dài",
+      "CBC khi điều trị kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1747,47 +2619,84 @@
     "ham_luong_nong_do": "1.5g",
     "duong_dung": "Tiêm",
     "nhom_khang_sinh": "Penicillin + chất ức chế beta-lactamase",
-    "aware": "Access/Watch tùy chỉ định",
+    "aware": "Access/Watch",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
-        "cap": "Warfarin/thuốc chống đông",
+        "cap": "Allopurinol",
         "muc_do": "Moderate",
-        "canh_bao": "Có thể tăng INR/chảy máu; theo dõi INR khi phối hợp.",
-        "xu_tri": "Theo dõi INR, dấu hiệu chảy máu; chỉnh liều chống đông nếu cần."
+        "canh_bao": "Tăng nguy cơ phát ban.",
+        "xu_tri": "Tăng nguy cơ phát ban."
+      },
+      {
+        "cap": "Methotrexate",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc tính methotrexate; tránh/theo dõi.",
+        "xu_tri": "Tăng độc tính methotrexate; tránh/theo dõi."
+      },
+      {
+        "cap": "Warfarin",
+        "muc_do": "Moderate",
+        "canh_bao": "Theo dõi INR.",
+        "xu_tri": "Theo dõi INR."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Cần nhập liều chuẩn theo Hướng dẫn sử dụng kháng sinh/Dược thư Quốc gia/tờ HDSD tại bệnh viện.",
-      "oda_keo_dai": "Chỉ áp dụng ODA/truyền kéo dài nếu có phác đồ đã phê duyệt.",
+      "lieu_truyen_thong": "IV: 1,5–3 g mỗi 6 giờ tùy chỉ định; liều tính theo tổng ampicillin/sulbactam.",
+      "oda_keo_dai": "Có thể truyền 30 phút; truyền kéo dài chỉ theo phác đồ bệnh viện.",
       "hieu_chinh_crcl": {
-        ">=50": "Cần nhập",
-        "30-49": "Cần nhập",
-        "15-29": "Cần nhập",
-        "<15": "Cần nhập",
-        "HD": "Cần nhập",
-        "CRRT": "Cần nhập"
+        ">=50": "1,5–3 g q6h.",
+        "30-49": "1,5–3 g q6–8h.",
+        "15-29": "1,5–3 g q12h.",
+        "<15": "1,5–3 g q24h.",
+        "HD": "Dùng sau HD; thường q24h hoặc theo mức độ nặng.",
+        "CRRT": "1,5–3 g q6–8h; cá thể hóa."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "NaCl 0,9% hoặc Glucose 5% theo tờ HDSD.",
+      "toc_do": "Truyền IV khoảng 15–30 phút.",
+      "luu_y": "Theo dõi quá mẫn beta-lactam, tiêu chảy, men gan."
     },
     "tdm": {
       "can": false,
-      "muc_tieu": "",
-      "ghi_chu": "Không yêu cầu TDM thường quy; theo dõi chức năng cơ quan theo nguy cơ."
+      "muc_tieu": ""
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr/eGFR hoặc CrCl",
+      "Dấu hiệu đáp ứng lâm sàng",
+      "AST/ALT khi điều trị kéo dài",
+      "CBC khi điều trị kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "Dị ứng/phát ban",
+      "Rối loạn tiêu hóa",
+      "Tăng men gan thoáng qua"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1797,60 +2706,85 @@
     "hoat_chat": "Vancomycin",
     "ham_luong_nong_do": "1000mg",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Glycopeptide",
-    "aware": "Watch/Reserve tùy chỉ định",
+    "nhom_khang_sinh": "Glycopeptid",
+    "aware": "Watch/Reserve tùy MRSA",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Piperacillin/tazobactam",
-        "muc_do": "Moderate/Major",
-        "canh_bao": "Nhiều dữ liệu ghi nhận tăng nguy cơ tổn thương thận cấp khi phối hợp.",
-        "xu_tri": "Theo dõi SCr sát; cân nhắc beta-lactam khác khi phù hợp."
-      },
-      {
-        "cap": "Thuốc độc thận khác",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ AKI.",
-        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+        "canh_bao": "Tăng nguy cơ AKI; theo dõi SCr hằng ngày ở người nguy cơ.",
+        "xu_tri": "Tăng nguy cơ AKI; theo dõi SCr hằng ngày ở người nguy cơ."
       },
       {
-        "cap": "Thuốc độc tai/loop diuretic",
+        "cap": "Aminoglycosid/amphotericin B/colistin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc thận/độc tai; tránh nếu có thể.",
+        "xu_tri": "Tăng độc thận/độc tai; tránh nếu có thể."
+      },
+      {
+        "cap": "Lợi tiểu quai",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ độc tai.",
-        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+        "canh_bao": "Tăng độc tai/độc thận; theo dõi.",
+        "xu_tri": "Tăng độc tai/độc thận; theo dõi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Liều tải 20–30 mg/kg IV; duy trì theo AUC/MIC hoặc nồng độ đáy và chức năng thận.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "IV: liều nạp 20–25 mg/kg theo cân nặng thực tế trong nhiễm nặng; duy trì 15–20 mg/kg mỗi 8–12 giờ, chỉnh theo AUC/TDM và chức năng thận.",
+      "oda_keo_dai": "Không áp dụng ODA. Truyền chậm để giảm phản ứng truyền; không tiêm nhanh.",
       "hieu_chinh_crcl": {
-        ">=50": "Theo AUC/CrCl, thường mỗi 8–12 giờ tùy cân nặng và nhiễm khuẩn",
-        "30-49": "Theo AUC/nồng độ; thường kéo dài khoảng cách",
-        "15-29": "Theo AUC/nồng độ; thường mỗi 24–48 giờ",
-        "<15": "Theo nồng độ; không dùng lịch cố định nếu chưa TDM",
-        "HD": "Liều tải, sau đó liều sau HD theo nồng độ",
-        "CRRT": "Theo AUC/TDM và tốc độ lọc"
+        ">=50": "Duy trì theo AUC, thường q8–12h tùy PK.",
+        "30-49": "Giãn khoảng cách q24h hoặc theo nồng độ.",
+        "15-29": "Theo nồng độ; thường q24–48h.",
+        "<15": "Liều theo nồng độ; không lặp liều khi chưa có mức thuốc nếu nguy cơ tích lũy.",
+        "HD": "Liều nạp, sau đó liều sau HD theo nồng độ trước lọc hoặc sau lọc.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và thông số CRRT."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Hoàn nguyên bằng nước cất pha tiêm, pha loãng tiếp với NaCl 0,9% hoặc Glucose 5%; nồng độ thường ≤5 mg/mL ngoại vi.",
+      "toc_do": "Tốc độ tối đa thường 10 mg/phút; 1 g truyền ít nhất 60 phút, liều lớn truyền lâu hơn.",
+      "luu_y": "Ưu tiên theo dõi AUC24/MIC 400–600 khi điều trị nhiễm MRSA nặng; theo dõi AKI."
     },
     "tdm": {
       "can": true,
-      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
-      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+      "muc_tieu": "AUC24/MIC 400–600 cho MRSA nặng; hoặc trough theo phác đồ khi chưa tính AUC."
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày khi nặng",
+      "Nồng độ vancomycin/AUC",
+      "Phản ứng truyền",
+      "Thính lực nếu kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "AKI",
+      "Vancomycin infusion reaction",
+      "Giảm bạch cầu khi kéo dài"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1860,60 +2794,85 @@
     "hoat_chat": "Vancomycin",
     "ham_luong_nong_do": "500mg",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Glycopeptide",
-    "aware": "Watch/Reserve tùy chỉ định",
+    "nhom_khang_sinh": "Glycopeptid",
+    "aware": "Watch/Reserve tùy MRSA",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Piperacillin/tazobactam",
-        "muc_do": "Moderate/Major",
-        "canh_bao": "Nhiều dữ liệu ghi nhận tăng nguy cơ tổn thương thận cấp khi phối hợp.",
-        "xu_tri": "Theo dõi SCr sát; cân nhắc beta-lactam khác khi phù hợp."
-      },
-      {
-        "cap": "Thuốc độc thận khác",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ AKI.",
-        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+        "canh_bao": "Tăng nguy cơ AKI; theo dõi SCr hằng ngày ở người nguy cơ.",
+        "xu_tri": "Tăng nguy cơ AKI; theo dõi SCr hằng ngày ở người nguy cơ."
       },
       {
-        "cap": "Thuốc độc tai/loop diuretic",
+        "cap": "Aminoglycosid/amphotericin B/colistin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc thận/độc tai; tránh nếu có thể.",
+        "xu_tri": "Tăng độc thận/độc tai; tránh nếu có thể."
+      },
+      {
+        "cap": "Lợi tiểu quai",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ độc tai.",
-        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+        "canh_bao": "Tăng độc tai/độc thận; theo dõi.",
+        "xu_tri": "Tăng độc tai/độc thận; theo dõi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Liều tải 20–30 mg/kg IV; duy trì theo AUC/MIC hoặc nồng độ đáy và chức năng thận.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "IV: liều nạp 20–25 mg/kg theo cân nặng thực tế trong nhiễm nặng; duy trì 15–20 mg/kg mỗi 8–12 giờ, chỉnh theo AUC/TDM và chức năng thận.",
+      "oda_keo_dai": "Không áp dụng ODA. Truyền chậm để giảm phản ứng truyền; không tiêm nhanh.",
       "hieu_chinh_crcl": {
-        ">=50": "Theo AUC/CrCl, thường mỗi 8–12 giờ tùy cân nặng và nhiễm khuẩn",
-        "30-49": "Theo AUC/nồng độ; thường kéo dài khoảng cách",
-        "15-29": "Theo AUC/nồng độ; thường mỗi 24–48 giờ",
-        "<15": "Theo nồng độ; không dùng lịch cố định nếu chưa TDM",
-        "HD": "Liều tải, sau đó liều sau HD theo nồng độ",
-        "CRRT": "Theo AUC/TDM và tốc độ lọc"
+        ">=50": "Duy trì theo AUC, thường q8–12h tùy PK.",
+        "30-49": "Giãn khoảng cách q24h hoặc theo nồng độ.",
+        "15-29": "Theo nồng độ; thường q24–48h.",
+        "<15": "Liều theo nồng độ; không lặp liều khi chưa có mức thuốc nếu nguy cơ tích lũy.",
+        "HD": "Liều nạp, sau đó liều sau HD theo nồng độ trước lọc hoặc sau lọc.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và thông số CRRT."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Hoàn nguyên bằng nước cất pha tiêm, pha loãng tiếp với NaCl 0,9% hoặc Glucose 5%; nồng độ thường ≤5 mg/mL ngoại vi.",
+      "toc_do": "Tốc độ tối đa thường 10 mg/phút; 1 g truyền ít nhất 60 phút, liều lớn truyền lâu hơn.",
+      "luu_y": "Ưu tiên theo dõi AUC24/MIC 400–600 khi điều trị nhiễm MRSA nặng; theo dõi AKI."
     },
     "tdm": {
       "can": true,
-      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
-      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+      "muc_tieu": "AUC24/MIC 400–600 cho MRSA nặng; hoặc trough theo phác đồ khi chưa tính AUC."
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày khi nặng",
+      "Nồng độ vancomycin/AUC",
+      "Phản ứng truyền",
+      "Thính lực nếu kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "AKI",
+      "Vancomycin infusion reaction",
+      "Giảm bạch cầu khi kéo dài"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   },
   {
@@ -1923,60 +2882,85 @@
     "hoat_chat": "Vancomycin",
     "ham_luong_nong_do": "500mg",
     "duong_dung": "Tiêm",
-    "nhom_khang_sinh": "Glycopeptide",
-    "aware": "Watch/Reserve tùy chỉ định",
+    "nhom_khang_sinh": "Glycopeptid",
+    "aware": "Watch/Reserve tùy MRSA",
+    "chi_dinh_goi_y": [
+      "Theo phác đồ điều trị nhiễm khuẩn của bệnh viện và kháng sinh đồ khi có.",
+      "Ưu tiên đánh giá ổ nhiễm, mức độ nặng, tiền sử dị ứng, chức năng thận/gan trước khi dùng."
+    ],
+    "chong_chi_dinh": [
+      "Tiền sử quá mẫn với hoạt chất hoặc kháng sinh cùng nhóm"
+    ],
     "canh_bao_tuong_tac": [
       {
         "cap": "Piperacillin/tazobactam",
-        "muc_do": "Moderate/Major",
-        "canh_bao": "Nhiều dữ liệu ghi nhận tăng nguy cơ tổn thương thận cấp khi phối hợp.",
-        "xu_tri": "Theo dõi SCr sát; cân nhắc beta-lactam khác khi phù hợp."
-      },
-      {
-        "cap": "Thuốc độc thận khác",
         "muc_do": "Major",
-        "canh_bao": "Tăng nguy cơ AKI.",
-        "xu_tri": "Theo dõi SCr, nước tiểu; tránh phối hợp không cần thiết."
+        "canh_bao": "Tăng nguy cơ AKI; theo dõi SCr hằng ngày ở người nguy cơ.",
+        "xu_tri": "Tăng nguy cơ AKI; theo dõi SCr hằng ngày ở người nguy cơ."
       },
       {
-        "cap": "Thuốc độc tai/loop diuretic",
+        "cap": "Aminoglycosid/amphotericin B/colistin",
+        "muc_do": "Major",
+        "canh_bao": "Tăng độc thận/độc tai; tránh nếu có thể.",
+        "xu_tri": "Tăng độc thận/độc tai; tránh nếu có thể."
+      },
+      {
+        "cap": "Lợi tiểu quai",
         "muc_do": "Moderate",
-        "canh_bao": "Tăng nguy cơ độc tai.",
-        "xu_tri": "Theo dõi thính lực/tiền đình khi dùng kéo dài."
+        "canh_bao": "Tăng độc tai/độc thận; theo dõi.",
+        "xu_tri": "Tăng độc tai/độc thận; theo dõi."
       }
     ],
     "lieu_goi_y": {
-      "lieu_truyen_thong": "Liều tải 20–30 mg/kg IV; duy trì theo AUC/MIC hoặc nồng độ đáy và chức năng thận.",
-      "oda_keo_dai": "Cần nhập nếu áp dụng",
+      "lieu_truyen_thong": "IV: liều nạp 20–25 mg/kg theo cân nặng thực tế trong nhiễm nặng; duy trì 15–20 mg/kg mỗi 8–12 giờ, chỉnh theo AUC/TDM và chức năng thận.",
+      "oda_keo_dai": "Không áp dụng ODA. Truyền chậm để giảm phản ứng truyền; không tiêm nhanh.",
       "hieu_chinh_crcl": {
-        ">=50": "Theo AUC/CrCl, thường mỗi 8–12 giờ tùy cân nặng và nhiễm khuẩn",
-        "30-49": "Theo AUC/nồng độ; thường kéo dài khoảng cách",
-        "15-29": "Theo AUC/nồng độ; thường mỗi 24–48 giờ",
-        "<15": "Theo nồng độ; không dùng lịch cố định nếu chưa TDM",
-        "HD": "Liều tải, sau đó liều sau HD theo nồng độ",
-        "CRRT": "Theo AUC/TDM và tốc độ lọc"
+        ">=50": "Duy trì theo AUC, thường q8–12h tùy PK.",
+        "30-49": "Giãn khoảng cách q24h hoặc theo nồng độ.",
+        "15-29": "Theo nồng độ; thường q24–48h.",
+        "<15": "Liều theo nồng độ; không lặp liều khi chưa có mức thuốc nếu nguy cơ tích lũy.",
+        "HD": "Liều nạp, sau đó liều sau HD theo nồng độ trước lọc hoặc sau lọc.",
+        "CRRT": "Liều nạp đầy đủ; duy trì theo AUC/nồng độ và thông số CRRT."
       }
     },
     "cach_pha_truyen": {
-      "dung_moi": "NaCl 0,9% hoặc Glucose 5% nếu tương thích theo tờ hướng dẫn sử dụng",
-      "toc_do": "Theo hoạt chất; mặc định kiểm tra tờ HDSD trước khi truyền",
-      "luu_y": "Không pha chung đường truyền khi chưa kiểm tra tương hợp."
+      "dung_moi": "Hoàn nguyên bằng nước cất pha tiêm, pha loãng tiếp với NaCl 0,9% hoặc Glucose 5%; nồng độ thường ≤5 mg/mL ngoại vi.",
+      "toc_do": "Tốc độ tối đa thường 10 mg/phút; 1 g truyền ít nhất 60 phút, liều lớn truyền lâu hơn.",
+      "luu_y": "Ưu tiên theo dõi AUC24/MIC 400–600 khi điều trị nhiễm MRSA nặng; theo dõi AKI."
     },
     "tdm": {
       "can": true,
-      "muc_tieu": "Vancomycin: ưu tiên AUC24/MIC 400–600 khi có điều kiện; aminoglycoside: Cmax/Cmin theo chỉ định.",
-      "ghi_chu": "TDM bắt buộc/ưu tiên cao, đặc biệt suy thận, ICU, béo phì, HD/CRRT."
+      "muc_tieu": "AUC24/MIC 400–600 cho MRSA nặng; hoặc trough theo phác đồ khi chưa tính AUC."
     },
-    "luu_y_quan_trong": [
-      "Dữ liệu seed cần được Dược lâm sàng/Hội đồng thuốc và điều trị phê duyệt trước khi dùng chính thức.",
-      "Tính CrCl nên dùng Cockcroft–Gault cho hiệu chỉnh liều thuốc; cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
-      "Theo dõi SCr, nước tiểu, AST/ALT, CBC hoặc điện giải tùy hoạt chất và thời gian điều trị."
+    "theo_doi": [
+      "SCr hằng ngày khi nặng",
+      "Nồng độ vancomycin/AUC",
+      "Phản ứng truyền",
+      "Thính lực nếu kéo dài"
     ],
-    "trang_thai_du_lieu": "seed-can-ra-soat",
+    "adr_can_luu_y": [
+      "AKI",
+      "Vancomycin infusion reaction",
+      "Giảm bạch cầu khi kéo dài"
+    ],
+    "luu_y_quan_trong": [
+      "Tính CrCl theo Cockcroft–Gault cho hiệu chỉnh liều người lớn, cân nhắc cân nặng hiệu chỉnh ở người béo phì.",
+      "Liều cuối cùng phải theo mức độ nhiễm khuẩn, MIC/kháng sinh đồ, chức năng thận động học và phác đồ đã được Hội đồng thuốc & điều trị phê duyệt."
+    ],
+    "trang_thai_du_lieu": "Bản V3 tham khảo đã thay dữ liệu seed; cần Khoa Dược/Hội đồng thuốc phê duyệt trước khi dùng chính thức.",
+    "ngon_tham_khao": [
+      "BYT-708-QD-BYT",
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
+    ],
     "nguon_tham_khao": [
       "BYT-708-QD-BYT",
-      "BYT-DTQG",
-      "BYT-5631-QD-BYT"
+      "BYT-5631-QD-BYT",
+      "Duoc-thu-Quoc-gia-VN",
+      "UCSF-IDMP",
+      "Stanford-ABX-Dosing"
     ]
   }
 ]
