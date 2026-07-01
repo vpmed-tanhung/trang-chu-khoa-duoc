@@ -1,137 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hệ thống Hỗ trợ – Dược lâm sàng VPMED Tân Hưng</title>
-  <meta name="description" content="Hệ thống hỗ trợ dược lâm sàng Khoa Dược - Bệnh viện VPMED Tân Hưng: tra cứu kháng sinh, tính liều, đánh giá phần mềm và tài liệu chuyên môn." />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#075f9f">
+  <title>Hệ thống Hỗ trợ Dược lâm sàng | VPMED Tân Hưng</title>
+  <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="brand">
-      <div class="brand-logo"><img src="images/logo-vpmed-tanhung.png" alt="Logo Bệnh viện VPMED Tân Hưng" /></div>
-      <div class="brand-copy">
-        <a class="brand-home" href="#home" aria-label="Trang chủ">
-          <strong>Hệ thống Hỗ trợ <span class="title-separator">–</span> Dược lâm sàng</strong>
-          <span>Bệnh viện VPMED Tân Hưng</span>
-        </a>
-        <a class="brand-facebook" href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung" target="_blank" rel="noopener noreferrer">Facebook Khoa Dược</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#home" data-go="home">
+      <img class="brand-logo" src="assets/logo-vpmed.png" alt="Logo Bệnh viện VPMED Tân Hưng">
+      <div><strong>Hệ thống Hỗ trợ – Dược lâm sàng</strong><span>Bệnh viện VPMED Tân Hưng</span></div>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Mở menu">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <button data-view="home" class="active">Trang chủ</button>
+      <button data-view="dose">Tính liều & CrCl/eGFR</button>
+      <button data-view="antibiotics">Kháng sinh nội trú</button>
+      <button data-view="interactions">Tương tác thuốc</button>
+      <a class="nav-evaluation" href="https://vpmed-tanhung.github.io/phieu-danh-gia-khang-sinh/" target="_blank" rel="noopener">Đánh giá</a>
+      <a class="facebook-text-link" href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener noreferrer">Facebook Khoa Dược</a>
+      <button data-view="sources">Nguồn</button>
+    </nav>
+  </div>
+</header>
+
+<main class="app-shell">
+  <section class="view active" id="view-home">
+    <div class="hero-grid">
+      <div class="hero-panel">
+        <div class="eyebrow">Khoa Dược · Dược lâm sàng · Quản lý sử dụng kháng sinh</div>
+        <h1>Một hệ thống duy nhất cho tra cứu và sử dụng kháng sinh an toàn</h1>
+        <p>Tính CrCl, tra cứu liều theo chức năng thận, xem hồ sơ kháng sinh nội trú, kiểm tra tương tác và mở nguồn chuyên môn ngay trong cùng một giao diện.</p>
+        <div class="hero-actions">
+          <button class="btn btn-light" data-open="dose">Mở công cụ tính liều</button>
+          <button class="btn btn-ghost" data-open="antibiotics">Tra cứu kháng sinh</button>
+        </div>
+      </div>
+      <div class="stat-stack">
+        <article><strong id="statDrugs">0</strong><span>kháng sinh nội trú</span></article>
+        <article><strong id="statInteractions">0</strong><span>cặp tương tác</span></article>
+        <article><strong>CrCl + eGFR</strong><span>Cockcroft–Gault và CKD-EPI 2021</span></article>
       </div>
     </div>
-    <button class="menu-toggle" type="button" aria-label="Mở menu">☰</button>
-    <nav class="nav">
-      <a href="#apps">Ứng dụng</a>
-      <a href="#khang-sinh">Tra cứu kháng sinh</a>
-      <a href="interactions.html">Tương tác thuốc</a>
-      <a class="admin-nav-link" href="admin-login.html" aria-label="Cập nhật thuốc mới - yêu cầu đăng nhập">🔒 Cập nhật thuốc mới</a>
-    </nav>
-  </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">Khoa Dược · Dược lâm sàng · Quản lý sử dụng kháng sinh</p>
-        <h1>Cổng hỗ trợ tra cứu và sử dụng kháng sinh an toàn</h1>
-        <p class="hero-text">Tập trung các công cụ phục vụ hiệu chỉnh liều theo chức năng thận, tra cứu danh mục kháng sinh nội trú, cảnh báo tương tác quan trọng, pha truyền và TDM.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="https://vpmed-tanhung.github.io/tinh-lieu-khang-sinh/" target="_blank" rel="noopener">Mở công cụ tính liều</a>
-          <a class="btn outline" href="#khang-sinh">Tra cứu tại trang</a>
-        </div>
+    <section class="section-card">
+      <div class="section-heading"><div><span class="kicker">Ứng dụng chính</span><h2>Chọn công cụ cần sử dụng</h2></div></div>
+      <div class="feature-grid">
+        <button class="feature-card" data-open="dose"><span class="feature-icon">🧮</span><b>Tính liều kháng sinh & CrCl/eGFR</b><small>Tính Cockcroft–Gault, eGFR CKD-EPI 2021, gợi ý theo thận và lưu lịch sử.</small><em>Đang hoạt động</em></button>
+        <button class="feature-card" data-open="antibiotics"><span class="feature-icon">💊</span><b>Danh mục kháng sinh nội trú</b><small>Tra cứu từng biệt dược, hoạt chất, liều, pha truyền, ADR và TDM.</small><em>Hồ sơ chuyên môn</em></button>
+        <button class="feature-card" data-open="interactions"><span class="feature-icon">⚠️</span><b>Kiểm tra tương tác thuốc</b><small>Kiểm tra nhanh hai thuốc hoặc tìm trong toàn bộ danh mục tương tác.</small><em>Đang hoạt động</em></button>
+        <button class="feature-card" data-open="sources"><span class="feature-icon">📚</span><b>Nguồn dữ liệu hệ thống</b><small>Mở các tệp nội bộ và xem nguyên tắc ưu tiên nguồn chuyên môn.</small><em>Đã đồng bộ</em></button>
       </div>
-      <aside class="hero-panel">
-        <div class="metric"><b id="metricTotal">34</b><span>kháng sinh nội trú</span></div>
-        <div class="metric"><b>CrCl</b><span>hiệu chỉnh liều người lớn</span></div>
-        <div class="metric"><b>TDM</b><span>aminoglycosid, vancomycin, colistin</span></div>
+    </section>
+  </section>
+
+  <section class="view" id="view-dose">
+    <div class="page-title"><div><span class="kicker">Công cụ lâm sàng</span><h1>Tính liều kháng sinh cho bệnh nhân suy thận</h1><p>Tính đồng thời CrCl Cockcroft–Gault và eGFR CKD-EPI 2021 để hỗ trợ đánh giá chức năng thận và lựa chọn ngưỡng liều phù hợp.</p></div></div>
+    <div class="dose-layout">
+      <aside class="form-card">
+        <h3>Thông tin bệnh nhân</h3>
+        <label>Tên bệnh nhân<input id="pn" placeholder="VD: Nguyễn Văn A"></label>
+        <div class="form-row"><label>Tuổi<input id="age" type="number" min="18" placeholder="65"></label><label>Cân nặng (kg)<input id="wt" type="number" min="1" step="0.1" placeholder="60"></label></div>
+        <label>Chiều cao (cm) <small class="optional-note">không bắt buộc – dùng để quy đổi eGFR về mL/phút khi cần đánh giá liều</small><input id="ht" type="number" min="80" max="250" step="0.1" placeholder="165"></label>
+        <div class="form-row"><label>Giới tính<select id="sex"><option value="m">Nam</option><option value="f">Nữ</option></select></label><label>Creatinine (µmol/L)<input id="scr" type="number" min="1" step="0.1" placeholder="90"></label></div>
+        <label>Kháng sinh<select id="drug"></select></label>
+        <label class="checkline"><input id="dialysis" type="checkbox"> Bệnh nhân đang lọc máu (HD/CRRT)</label>
+        <button class="btn btn-primary full" id="calc">Tính CrCl, eGFR và gợi ý liều</button>
       </aside>
+      <div class="dose-main">
+        <div id="output" class="empty-state"><div>🧪</div><b>Chưa có kết quả</b><span>Nhập thông tin bệnh nhân và chọn kháng sinh để bắt đầu.</span></div>
+        <section class="section-card history-card">
+          <div class="section-heading"><div><span class="kicker">Lịch sử tra cứu</span><h2>Đã lưu trên thiết bị này</h2></div><div class="heading-actions"><button class="btn btn-soft" id="exportHist">Xuất CSV</button><button class="btn btn-danger-soft" id="clear">Xóa lịch sử</button></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>Bệnh nhân</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="view" id="view-antibiotics">
+    <div class="page-title"><div><span class="kicker">Tra cứu nhanh</span><h1>Danh mục kháng sinh điều trị nội trú</h1><p>Mỗi biệt dược là một hồ sơ riêng, đồng bộ từ danh mục Khoa Dược cung cấp.</p></div></div>
+    <section class="section-card compact">
+      <div class="filter-grid"><label>Tìm kháng sinh<input id="q" placeholder="Nhập biệt dược, hoạt chất, nhóm hoặc hàm lượng..."></label><label>Lọc theo nhóm<select id="group"><option value="">Tất cả nhóm</option></select></label></div>
+      <div class="directory"><div class="drug-list" id="drugList"></div><div class="profile" id="profile"></div></div>
     </section>
+  </section>
 
-    <section id="apps" class="section">
-      <div class="section-head">
-        <p class="eyebrow">Ứng dụng chính</p>
-        <h2>Chọn công cụ cần sử dụng</h2>
-      </div>
-      <div class="app-grid">
-        <article class="app-card">
-          <div class="app-icon">🧮</div>
-          <h3>Tính liều kháng sinh & CrCl</h3>
-          <p>Hỗ trợ tính Cockcroft–Gault và hiệu chỉnh liều kháng sinh cho bệnh nhân suy thận.</p>
-          <span class="status active">Đang hoạt động</span>
-          <a class="card-link" href="https://vpmed-tanhung.github.io/tinh-lieu-khang-sinh/" target="_blank" rel="noopener">Mở ứng dụng</a>
-        </article>
-        <article class="app-card">
-          <div class="app-icon">📋</div>
-          <h3>Phiếu đánh giá phần mềm</h3>
-          <p>Thu thập phản hồi của bác sĩ, dược sĩ và nhân viên y tế để cải tiến công cụ.</p>
-          <span class="status active">Đang hoạt động</span>
-          <a class="card-link" href="https://vpmed-tanhung.github.io/phieu-danh-gia-khang-sinh/" target="_blank" rel="noopener">Gửi đánh giá</a>
-        </article>
-        <article class="app-card">
-          <div class="app-icon">💊</div>
-          <h3>Danh mục kháng sinh nội trú</h3>
-          <p>Tra cứu hoạt chất, liều, CrCl, HD/CRRT, tương tác, pha truyền, TDM và theo dõi.</p>
-          <span class="status active">Hồ sơ chuyên môn</span>
-          <a class="card-link" href="#khang-sinh">Tra cứu tại trang</a>
-        </article>
-
-        <article class="app-card">
-          <div class="app-icon">⚠️</div>
-          <h3>Kiểm tra tương tác thuốc</h3>
-          <p>Tra cứu danh mục tương tác chống chỉ định, hậu quả, cơ chế và cách xử trí theo dữ liệu Khoa Dược cung cấp.</p>
-          <span class="status active">Đang hoạt động</span>
-          <a class="card-link" href="interactions.html">Mở tra cứu</a>
-        </article>
-      </div>
+  <section class="view" id="view-interactions">
+    <div class="page-title stats-title"><div><span class="kicker">Danh mục tương tác chống chỉ định</span><h1>Kiểm tra tương tác thuốc</h1><p>Nhập biệt dược hoặc hoạt chất; hệ thống sẽ tự quy đổi tên khi có dữ liệu tương ứng.</p></div><div class="mini-stats"><article><strong id="icount">0</strong><span>cặp tương tác</span></article><article><strong id="mcount">0</strong><span>thuốc/hoạt chất</span></article></div></div>
+    <section class="section-card">
+      <div class="section-heading"><div><span class="kicker">Kiểm tra nhanh</span><h2>Nhập hai thuốc cần kiểm tra</h2></div></div>
+      <div class="pair"><label>Thuốc thứ nhất<input id="a" list="meds" placeholder="Ví dụ: Ceftriaxon"></label><button class="swap" id="swap" title="Đổi vị trí">⇄</button><label>Thuốc thứ hai<input id="b" list="meds" placeholder="Ví dụ: Calci clorid"></label><button class="btn btn-primary" id="check">Kiểm tra</button></div>
+      <datalist id="meds"></datalist>
+      <div class="result" id="result">Nhập hai thuốc rồi bấm <b>Kiểm tra</b>.</div>
     </section>
+    <section class="section-card">
+      <div class="section-heading"><div><span class="kicker">Danh mục đầy đủ</span><h2>Tra cứu tất cả tương tác</h2></div></div>
+      <label class="search-wide">Tìm theo tên thuốc, hậu quả, cơ chế hoặc cách xử trí<input id="iq" placeholder="Nhập từ khóa..."></label>
+      <div class="int-list" id="ilist"></div>
+    </section>
+  </section>
 
-    <section id="khang-sinh" class="section search-section">
-      <div class="section-head">
-        <p class="eyebrow">Tra cứu nhanh</p>
-        <h2>Danh mục kháng sinh điều trị nội trú</h2>
-        <p class="section-desc">Tìm theo biệt dược hoặc hoạt chất. Mỗi biệt dược là một hồ sơ riêng; dữ liệu hiệu chỉnh liều được trình bày chi tiết theo CrCl và phương thức lọc máu khi có nguồn phù hợp.</p>
-      </div>
-
-      <div class="search-toolbar">
-        <div class="search-box">
-          <label for="abxSearch">Tìm kháng sinh</label>
-          <input id="abxSearch" list="abxList" type="search" placeholder="Ví dụ: meropenem, vancomycin, ceftriaxone..." autocomplete="off" />
-          <datalist id="abxList"></datalist>
-        </div>
-        <div class="filter-box">
-          <label for="groupFilter">Lọc theo nhóm</label>
-          <select id="groupFilter"><option value="">Tất cả nhóm</option></select>
-        </div>
-      </div>
-
-      <div class="browser-layout">
-        <aside id="abxListPanel" class="drug-list">Đang tải danh mục...</aside>
-        <div id="abxResult" class="result-box">Đang tải dữ liệu kháng sinh...</div>
+  <section class="view" id="view-sources">
+    <div class="page-title"><div><span class="kicker">Nguồn dữ liệu chuyên môn</span><h1>Nguồn và nguyên tắc sử dụng</h1><p>Tất cả tệp được gom về cùng hệ thống và truy cập từ một nơi.</p></div></div>
+    <section class="section-card">
+      <div class="alert"><b>Nguyên tắc ưu tiên:</b> tờ hướng dẫn sử dụng được phê duyệt, hướng dẫn chuyên môn còn hiệu lực của Bộ Y tế và quy trình được Hội đồng Thuốc & Điều trị phê duyệt. Bảng chỉnh liều năm 2020 chỉ dùng làm tài liệu nền đối chiếu.</div>
+      <div class="source-grid">
+        <article class="source-card"><div>📗</div><h3>Danh mục kháng sinh nội trú</h3><p>Biệt dược, hoạt chất, hàm lượng và đường dùng của bệnh viện.</p><a class="btn btn-soft" href="sources/Danh%20mục%20thuốc%20kháng%20sinh%20điều%20trị%20nội%20trú(1).xlsx">Mở tệp Excel</a></article>
+        <article class="source-card"><div>📙</div><h3>Danh mục tương tác chống chỉ định</h3><p>Cặp tương tác, hậu quả, cơ chế, xử trí và nguồn tham khảo.</p><a class="btn btn-soft" href="sources/Dm%20TT%20CCĐ(1).xls">Mở tệp Excel</a></article>
+        
+        <article class="source-card"><div>🏛️</div><h3>Nguồn quản lý nhà nước</h3><p>Đối chiếu tờ HDSD đúng chế phẩm, Quyết định 5631/QĐ-BYT và Quyết định 5948/QĐ-BYT.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://dav.gov.vn/">Cục Quản lý Dược</a><a class="btn btn-soft" target="_blank" rel="noopener" href="https://moh.gov.vn/">Cổng Bộ Y tế</a></article><article class="source-card"><div>🩺</div><h3>KDIGO 2024</h3><p>Phân loại G1–G5 theo eGFR, đánh giá CKD theo eGFR và albumin niệu, cùng nguyên tắc quản lý thuốc trong bệnh thận mạn.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kdigo.org/guidelines/ckd-evaluation-and-management/kdigo-2024-ckd-guideline/">Mở hướng dẫn</a></article>
       </div>
     </section>
+  </section>
+</main>
 
-    <section id="nguon-du-lieu" class="section info-panel public-info">
-      <div>
-        <p class="eyebrow">Nguồn dữ liệu chuyên môn</p>
-        <h2>Khuyến cáo sử dụng</h2>
-      </div>
-      <div class="source-content">
-        <p>Dữ liệu danh mục kháng sinh nội trú được trình bày theo cấu trúc hồ sơ chuyên môn cho từng thuốc/biệt dược. Nội dung ưu tiên từ tài liệu Bộ Y tế; các phần như truyền kéo dài, HD/CRRT hoặc TDM được đối chiếu thêm nguồn dược lâm sàng quốc tế và cần được phê duyệt nội bộ trước khi ban hành thành hướng dẫn bệnh viện.</p>
-        <ul>
-          <li>Hướng dẫn sử dụng kháng sinh ban hành kèm Quyết định 708/QĐ-BYT.</li>
-          <li>Hướng dẫn quản lý sử dụng kháng sinh trong bệnh viện ban hành kèm Quyết định 5631/QĐ-BYT.</li>
-          <li>Dược thư Quốc gia Việt Nam, UCSF IDMP, Stanford Antimicrobial Dosing Guide.</li>
-        </ul>
-        <p class="warning-note"><b>Lưu ý:</b> Công cụ hỗ trợ tra cứu, không thay thế đánh giá lâm sàng. Cần phê duyệt nội bộ trước khi dùng như khuyến cáo chính thức của bệnh viện.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <strong>Khoa Dược · Bệnh viện VPMED Tân Hưng</strong>
-    <span>Hệ thống hỗ trợ dược lâm sàng và quản lý sử dụng kháng sinh</span>
-  </footer>
-
-  <script src="js/data-fallback.js"></script>
-  <script src="js/app.js"></script>
+<footer class="site-footer">
+  <div>© 2026 Khoa Dược · Bệnh viện VPMED Tân Hưng</div>
+  <div><a href="https://vpmed-tanhung.github.io/phieu-danh-gia-khang-sinh/" target="_blank" rel="noopener">Phiếu đánh giá phần mềm</a> · <a href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener noreferrer">Facebook Khoa Dược</a> · Công cụ hỗ trợ, không thay thế đánh giá lâm sàng.</div>
+</footer>
+<script src="assets/data.js"></script>
+<script src="assets/clinical_updates.js"></script>
+<script src="assets/clinical_details.js"></script>
+<script src="assets/clinical_details_v2.js"></script>
+<script src="assets/clinical_details_v3.js"></script>
+<script src="assets/clinical_dosing.js"></script>
+<script src="assets/unified.js"></script>
 </body>
 </html>
