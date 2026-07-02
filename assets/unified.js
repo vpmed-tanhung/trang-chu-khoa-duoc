@@ -151,3 +151,20 @@ if($('#diseaseList')){
   $('#diseaseQ').oninput=()=>{renderDiseaseList();const f=diseaseFiltered();if(f.length&&!f.some(x=>x.id===selectedDisease)){selectedDisease=f[0].id;renderDiseaseProfile()}};
   $('#diseaseGroup').onchange=$('#diseaseQ').oninput;
 }
+
+// Nút quay lại Trang chủ cho tất cả các phần chức năng.
+(function addHomeBackButtons(){
+  document.querySelectorAll('.view:not(#view-home)').forEach(view=>{
+    if(view.querySelector(':scope > .back-home-wrap')) return;
+    const wrap=document.createElement('div');
+    wrap.className='back-home-wrap';
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='back-home-btn';
+    button.setAttribute('aria-label','Quay lại Trang chủ');
+    button.innerHTML='<span aria-hidden="true">←</span> Quay lại Trang chủ';
+    button.addEventListener('click',()=>showView('home'));
+    wrap.appendChild(button);
+    view.prepend(wrap);
+  });
+})();

@@ -51,3 +51,11 @@
 .disease-sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.disease-sources article{display:flex;flex-direction:column;gap:6px;border:1px solid #d7e5ef;border-radius:10px;padding:12px;background:#fff}.disease-sources span{font-size:13px;color:#5b7184}.disease-sources a{font-weight:700;color:#006eb7}
 .clinical-disclaimer{margin-top:16px;border:1px solid #efc66d;background:#fff8e8;border-radius:12px;padding:13px;line-height:1.5;color:#684600}
 @media(max-width:900px){.disease-layout{grid-template-columns:1fr}.disease-list{max-height:310px}.disease-filters{grid-template-columns:1fr}.disease-grid{grid-template-columns:1fr}.disease-grid section.wide{grid-column:auto}}
+
+/* Nút quay lại Trang chủ — chỉ bổ sung, không thay đổi nội dung hiện có */
+.back-home-wrap{display:flex;align-items:center;margin:0 0 14px}
+.back-home-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--blue);padding:10px 14px;border-radius:10px;font-weight:800;box-shadow:0 5px 16px rgba(31,74,108,.08);transition:transform .18s ease,background .18s ease,border-color .18s ease}
+.back-home-btn:hover{background:var(--cyan);border-color:#a9d4ec;transform:translateY(-1px)}
+.back-home-btn:focus-visible{outline:3px solid rgba(11,125,195,.25);outline-offset:2px}
+.back-home-btn span{font-size:19px;line-height:1}
+@media(max-width:640px){.back-home-wrap{margin-bottom:10px}.back-home-btn{width:100%;justify-content:center;padding:11px 14px}}
