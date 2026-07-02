@@ -4,7 +4,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&
 const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim();
 function showView(name){$$('.view').forEach(v=>v.classList.remove('active'));$('#view-'+name)?.classList.add('active');$$('.main-nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===name));history.replaceState(null,'','#'+name);$('#mainNav').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'})}
 $$('[data-view]').forEach(b=>b.onclick=()=>showView(b.dataset.view));$$('[data-open]').forEach(b=>b.onclick=()=>showView(b.dataset.open));$$('[data-go]').forEach(b=>b.onclick=e=>{e.preventDefault();showView(b.dataset.go)});$('#menuBtn').onclick=()=>$('#mainNav').classList.toggle('open');
-const initial=location.hash.replace('#','');if(['home','dose','antibiotics','interactions','sources'].includes(initial))showView(initial);
+const initial=location.hash.replace('#','');if(['home','dose','antibiotics','diseases','interactions','sources'].includes(initial))showView(initial);
 $('#statDrugs').textContent=D.length;$('#statInteractions').textContent=I.length;
 
 // Antibiotics
@@ -106,3 +106,48 @@ function intCard(x){return `<div class="int"><b>${esc(x.name)}</b><span class="h
 function attachInt(){$$('.int').forEach(e=>e.onclick=()=>e.classList.toggle('open'))}
 function renderInteractions(){const q=norm($('#iq').value),f=I.filter(x=>!q||norm(Object.values(x).join(' ')).includes(q));$('#ilist').innerHTML=f.map(intCard).join('')||'<div class="alert">Không có kết quả.</div>';attachInt()}
 $('#iq').oninput=renderInteractions;renderInteractions();$('#swap').onclick=()=>{const t=$('#a').value;$('#a').value=$('#b').value;$('#b').value=t};$('#check').onclick=()=>{const a=$('#a').value,b=$('#b').value;if(!a||!b){$('#result').innerHTML='Vui lòng nhập đủ hai thuốc.';return}const m=I.filter(x=>matchPair(a,b,x));$('#result').innerHTML=m.length?m.map(intCard).join(''):'<b>Chưa tìm thấy cặp tương tác trong danh mục hiện có.</b><br>Không đồng nghĩa phối hợp an toàn; cần kiểm tra thêm tờ HDSD và nguồn chuyên môn.';attachInt()};
+
+
+// Antibiotics by disease
+const DX=window.VPMED_DISEASES||[];
+let selectedDisease=DX[0]?.id;
+function diseaseGroups(){
+  const el=$('#diseaseGroup'); if(!el)return;
+  const vals=[...new Set(DX.map(x=>x.group).filter(Boolean))].sort();
+  el.innerHTML='<option value="">Tất cả nhóm</option>'+vals.map(x=>`<option>${esc(x)}</option>`).join('');
+}
+function diseaseFiltered(){
+  const q=norm($('#diseaseQ')?.value||''),g=$('#diseaseGroup')?.value||'';
+  return DX.filter(x=>(!g||x.group===g)&&(!q||norm([x.name,x.group,x.pathogens,(x.recognition||[]).join(' ')].join(' ')).includes(q)));
+}
+function renderDiseaseList(){
+  const box=$('#diseaseList'); if(!box)return;
+  const f=diseaseFiltered();
+  box.innerHTML=f.map(x=>`<button class="disease-item ${x.id===selectedDisease?'active':''}" data-disease="${esc(x.id)}"><span>${esc(x.group)}</span><b>${esc(x.name)}</b><small>${esc(x.severity)}</small></button>`).join('')||'<div class="alert">Không tìm thấy bệnh lý phù hợp.</div>';
+  $$('.disease-item').forEach(b=>b.onclick=()=>{selectedDisease=b.dataset.disease;renderDiseaseList();renderDiseaseProfile()});
+}
+function sourceCards(src){return `<div class="disease-sources">${(src||[]).map(x=>`<article><b>${esc(x[0])}</b><span>${esc(x[1])}</span><a href="${esc(x[2])}" target="_blank" rel="noopener">Mở nguồn ↗</a></article>`).join('')}</div>`}
+function renderDiseaseProfile(){
+  const box=$('#diseaseProfile');if(!box)return;
+  const d=DX.find(x=>x.id===selectedDisease)||diseaseFiltered()[0];
+  if(!d){box.innerHTML='<div class="alert">Chưa có dữ liệu.</div>';return}
+  selectedDisease=d.id;
+  box.innerHTML=`<div class="disease-head"><span class="kicker">${esc(d.group)}</span><h2>${esc(d.name)}</h2><div class="severity-pill">Mức độ: ${esc(d.severity)}</div></div>
+  <div class="disease-grid">
+    <section><h3>Nhận diện và đánh giá ban đầu</h3>${detailList(d.recognition)}</section>
+    <section><h3>Xét nghiệm và bệnh phẩm</h3>${detailList(d.tests)}</section>
+    <section><h3>Tác nhân thường gặp</h3><p>${esc(d.pathogens)}</p></section>
+    <section class="wide"><h3>Kháng sinh kinh nghiệm ưu tiên</h3>${detailList(d.first)}<div class="renal-link"><b>Hiệu chỉnh liều:</b> sau khi chọn thuốc, mở <button data-disease-dose>Tính liều & CrCl/eGFR</button> để áp dụng đúng CrCl của bệnh nhân.</div></section>
+    <section><h3>Lựa chọn thay thế / tình huống đặc biệt</h3>${detailList(d.alternatives)}</section>
+    <section><h3>Thời gian điều trị tham khảo</h3><p>${esc(d.duration)}</p></section>
+    <section class="wide"><h3>Đánh giá lại, xuống thang và chuyển uống</h3><p>${esc(d.deescalation)}</p></section>
+    <section class="wide"><h3>Nguồn chuyên môn</h3>${sourceCards(d.sources)}</section>
+  </div>
+  <div class="clinical-disclaimer"><b>Kiểm tra trước khi kê đơn:</b> dị ứng, thai kỳ, chức năng gan thận, lọc máu, tương tác, nguy cơ C. difficile, bệnh phẩm/vi sinh, kiểm soát ổ nhiễm và thuốc sẵn có trong danh mục. Không dùng phác đồ này thay thế đánh giá của bác sĩ điều trị.</div>`;
+  box.querySelector('[data-disease-dose]')?.addEventListener('click',()=>showView('dose'));
+}
+if($('#diseaseList')){
+  diseaseGroups();renderDiseaseList();renderDiseaseProfile();
+  $('#diseaseQ').oninput=()=>{renderDiseaseList();const f=diseaseFiltered();if(f.length&&!f.some(x=>x.id===selectedDisease)){selectedDisease=f[0].id;renderDiseaseProfile()}};
+  $('#diseaseGroup').onchange=$('#diseaseQ').oninput;
+}

@@ -36,3 +36,18 @@
 .kidney-metric small{color:#546e7f;font-weight:700}
 .egfr-absolute{margin:5px 0 7px;padding:7px 9px;border-radius:8px;background:rgba(255,255,255,.65)}
 @media(max-width:820px){.kidney-metrics{grid-template-columns:1fr}.kidney-metric strong{font-size:25px}}
+
+/* Antibiotics by disease */
+.disease-warning{border-left:5px solid #e6a700;background:#fff9e8;color:#664600;margin-bottom:16px}
+.disease-filters{display:grid;grid-template-columns:1fr 260px;gap:14px;margin-bottom:14px}
+.disease-filters label{font-weight:700;color:#073b68}.disease-filters input,.disease-filters select{margin-top:7px;width:100%}
+.disease-layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px;min-height:650px}
+.disease-list{border:1px solid #cfe0ee;border-radius:16px;padding:8px;overflow:auto;max-height:720px;background:#f7fbfe}
+.disease-item{display:block;width:100%;text-align:left;border:1px solid transparent;background:#fff;border-radius:13px;padding:13px 14px;margin-bottom:8px;cursor:pointer;color:#063d6e}
+.disease-item:hover,.disease-item.active{border-color:#1687c9;background:#eef8ff}.disease-item span{display:block;text-transform:uppercase;font-size:11px;letter-spacing:.08em;color:#5080a2;font-weight:800}.disease-item b{display:block;font-size:16px;margin:4px 0}.disease-item small{color:#60788d}
+.disease-profile{border:1px solid #cfe0ee;border-radius:16px;padding:20px;background:#fff}.disease-head{border-bottom:1px solid #dce8f2;padding-bottom:14px;margin-bottom:16px}.disease-head h2{margin:5px 0 10px;color:#053e70}.severity-pill{display:inline-block;border-radius:999px;background:#e9f5fd;color:#075f9f;font-weight:700;padding:7px 12px}
+.disease-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.disease-grid section{border:1px solid #d6e4ef;border-radius:14px;padding:16px;background:#fbfdff}.disease-grid section.wide{grid-column:1/-1}.disease-grid h3{margin:0 0 10px;color:#075f9f;font-size:17px}.disease-grid p{line-height:1.6}.disease-grid ul{margin:0;padding-left:22px}.disease-grid li{margin:7px 0;line-height:1.5}
+.renal-link{margin-top:13px;padding:11px 12px;border-radius:10px;background:#eef8ff}.renal-link button{border:0;background:none;color:#006eb7;text-decoration:underline;font-weight:800;cursor:pointer}
+.disease-sources{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}.disease-sources article{display:flex;flex-direction:column;gap:6px;border:1px solid #d7e5ef;border-radius:10px;padding:12px;background:#fff}.disease-sources span{font-size:13px;color:#5b7184}.disease-sources a{font-weight:700;color:#006eb7}
+.clinical-disclaimer{margin-top:16px;border:1px solid #efc66d;background:#fff8e8;border-radius:12px;padding:13px;line-height:1.5;color:#684600}
+@media(max-width:900px){.disease-layout{grid-template-columns:1fr}.disease-list{max-height:310px}.disease-filters{grid-template-columns:1fr}.disease-grid{grid-template-columns:1fr}.disease-grid section.wide{grid-column:auto}}
