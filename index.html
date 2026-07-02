@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#075f9f">
   <title>Hệ thống Hỗ trợ Dược lâm sàng | VPMED Tân Hưng</title>
   <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/hepatotoxicity.css">
 </head>
 <body>
 <header class="topbar">
@@ -41,6 +42,7 @@
         <button class="feature-card" data-open="antibiotics"><span class="feature-icon">💊</span><b>Danh mục kháng sinh nội trú</b><small>Tra cứu từng biệt dược, hoạt chất, liều, pha truyền, ADR và TDM.</small><em>Hồ sơ chuyên môn</em></button>
         <button class="feature-card" data-open="diseases"><span class="feature-icon">🩺</span><b>Kháng sinh theo bệnh lý</b><small>Tra cứu phác đồ kinh nghiệm cho các hội chứng nhiễm khuẩn thường gặp, liên kết liều theo chức năng thận.</small><em>Tham khảo chuyên môn</em></button>
         <button class="feature-card" data-open="interactions"><span class="feature-icon">⚠️</span><b>Kiểm tra tương tác thuốc</b><small>Kiểm tra nhanh hai thuốc hoặc tìm trong toàn bộ danh mục tương tác.</small><em>Đang hoạt động</em></button>
+        <button class="feature-card hepatotoxic-feature" data-open="hepatotoxicity"><span class="feature-icon">🫀</span><b>Thuốc có nguy cơ gây độc gan</b><small>Tra cứu thuốc trong kho nội trú, mức cảnh báo, nguy cơ chính và khuyến nghị theo dõi chức năng gan.</small><em>Danh mục nội bộ</em></button>
         <button class="feature-card" data-open="sources"><span class="feature-icon">📚</span><b>Nguồn dữ liệu hệ thống</b><small>Mở các tệp nội bộ và xem nguyên tắc ưu tiên nguồn chuyên môn.</small><em>Đã đồng bộ</em></button>
       </div>
     </section>
@@ -114,6 +116,28 @@
     </section>
   </section>
 
+
+  <section class="view" id="view-hepatotoxicity">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
+    <div class="page-title"><div><span class="kicker">An toàn sử dụng thuốc</span><h1>Thuốc có nguy cơ gây độc gan</h1><p>Danh sách được sàng lọc từ kho thuốc nội trú để hỗ trợ rà soát y lệnh, nhận diện nguy cơ và theo dõi chức năng gan.</p></div></div>
+    <section class="section-card liver-warning"><b>Lưu ý chuyên môn:</b> “Có nguy cơ gây độc gan” không đồng nghĩa với chống chỉ định tuyệt đối. Cần đánh giá bệnh gan nền, liều, thời gian sử dụng, thuốc phối hợp và diễn biến AST, ALT, ALP, bilirubin, INR. Khi nghi ngờ tổn thương gan do thuốc, cần loại trừ các nguyên nhân khác và xử trí theo tình trạng lâm sàng.</section>
+    <div class="liver-summary">
+      <article><strong id="liverTotal">0</strong><span>thuốc/chế phẩm</span></article>
+      <article><strong id="liverHigh">0</strong><span>cảnh báo cao</span></article>
+      <article><strong id="liverFollow">0</strong><span>cần theo dõi</span></article>
+    </div>
+    <section class="section-card compact">
+      <div class="liver-filters">
+        <label>Tìm thuốc hoặc hoạt chất<input id="liverQ" placeholder="Ví dụ: paracetamol, Dalekine, diclofenac..."></label>
+        <label>Mức cảnh báo<select id="liverLevel"><option value="">Tất cả mức</option><option value="Cao">Cao</option><option value="Trung bình–cao">Trung bình–cao</option><option value="Theo dõi">Theo dõi</option><option value="Hiếm">Hiếm</option><option value="Hóa trị">Hóa trị – theo dõi</option></select></label>
+      </div>
+      <div class="liver-toolbar"><span id="liverResultCount">0 kết quả</span><button type="button" class="btn btn-soft" id="liverExpandAll">Mở tất cả</button></div>
+      <div class="liver-list" id="liverList"></div>
+    </section>
+  </section>
+
   <section class="view" id="view-sources">
     <div class="back-home-wrap">
       <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
@@ -150,6 +174,7 @@
 <script src="assets/diseases.js"></script>
 <script src="assets/unified.js"></script>
 <script src="assets/disease_updates_2026.js"></script>
+<script src="assets/hepatotoxicity.js"></script>
 <script src="evaluation-embed.js"></script>
 </body>
 </html>
