@@ -15,7 +15,7 @@
 <div class="wrap">
   <div class="topbar">
     <div class="brand"><img src="https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/assets/logo-vpmed.png" alt="Logo VPMED"><div><strong>Hệ thống Hỗ trợ – Dược lâm sàng</strong><small>Bệnh viện VPMED Tân Hưng</small></div></div>
-    <nav class="nav"><a href="https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/">Trang chủ</a><a href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener">Facebook Khoa Dược</a></nav>
+    <nav class="nav"><a href="#" data-close-evaluation>Trang chủ</a><a href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener">Facebook Khoa Dược</a></nav>
   </div>
 
   <header class="hero"><h1>Đánh giá nhanh hệ thống kháng sinh</h1><p>4 tiêu chí cốt lõi, hoàn thành trong khoảng 30–60 giây.</p></header>
@@ -51,7 +51,7 @@
   </form>
 
   <div class="status" id="statusBox" role="status" aria-live="polite"></div>
-  <footer class="footer">© 2026 Khoa Dược · Bệnh viện VPMED Tân Hưng · <a href="https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/">Quay lại hệ thống</a></footer>
+  <footer class="footer">© 2026 Khoa Dược · Bệnh viện VPMED Tân Hưng · <a href="#" data-close-evaluation>Quay lại hệ thống</a></footer>
 </div>
 <script>
 const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzxNcznQSlUQ8v33EeM83CgDYjvTW2-0PBQPqMCaFc9bAE-TWujjkmNstuWUz3DQVQX/exec';
@@ -66,6 +66,17 @@ function resetForm(){document.getElementById('evalForm').reset();Object.keys(rat
 function showStatus(ok,title,text){const box=document.getElementById('statusBox');box.className='status'+(ok?'':' error');box.style.display='block';box.innerHTML=`<div class="section-title">${esc(title)}</div><p>${esc(text)}</p>`;box.scrollIntoView({behavior:'smooth',block:'center'})}
 document.getElementById('evalForm').addEventListener('submit',async e=>{e.preventDefault();if(!val('department')){document.getElementById('department').focus();showStatus(false,'Chưa thể gửi','Vui lòng nhập Khoa/Phòng.');return}if(Object.values(ratings).some(x=>x===0)){document.getElementById('ratingError').style.display='block';document.getElementById('ratings').scrollIntoView({behavior:'smooth'});return}const data=collect();setLoading(true);const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),signal:controller.signal,keepalive:true});showStatus(true,'Đã gửi đánh giá','Cảm ơn bạn đã phản hồi.');resetForm()}catch(err){showStatus(false,'Chưa xác nhận được kết quả gửi','Vui lòng kiểm tra kết nối và thử lại.')}finally{clearTimeout(timer);setLoading(false)}});
 document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Xóa toàn bộ nội dung đang nhập?'))resetForm()});
+
+function closeEvaluation(){
+  if(window.parent && window.parent !== window){
+    window.parent.postMessage({type:'close-evaluation-modal'}, window.location.origin);
+  }else{
+    window.location.href='https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/';
+  }
+}
+document.querySelectorAll('[data-close-evaluation]').forEach(link=>{
+  link.addEventListener('click',e=>{e.preventDefault();closeEvaluation()});
+});
 init();
 </script>
 </body>

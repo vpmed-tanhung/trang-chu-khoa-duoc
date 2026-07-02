@@ -51,6 +51,10 @@
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modal.classList.contains('is-open')) close();
     });
+    window.addEventListener('message', (event) => {
+      if (event.origin !== window.location.origin) return;
+      if (event.data && event.data.type === 'close-evaluation-modal') close();
+    });
   }
 
   function openEvaluation(event) {
