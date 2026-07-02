@@ -26,20 +26,11 @@
 
 <main class="app-shell">
   <section class="view active" id="view-home">
-    <div class="hero-grid">
+    <div class="hero-grid hero-grid-single">
       <div class="hero-panel">
         <div class="eyebrow">Khoa Dược · Dược lâm sàng · Quản lý sử dụng kháng sinh</div>
-        <h1>Một hệ thống duy nhất cho tra cứu và sử dụng kháng sinh an toàn</h1>
-        <p>Tính CrCl, tra cứu liều theo chức năng thận, xem hồ sơ kháng sinh nội trú, kiểm tra tương tác và mở nguồn chuyên môn ngay trong cùng một giao diện.</p>
-        <div class="hero-actions">
-          <button class="btn btn-light" data-open="dose">Mở công cụ tính liều</button>
-          <button class="btn btn-ghost" data-open="antibiotics">Tra cứu kháng sinh</button>
-        </div>
-      </div>
-      <div class="stat-stack">
-        <article><strong id="statDrugs">0</strong><span>kháng sinh nội trú</span></article>
-        <article><strong id="statInteractions">0</strong><span>cặp tương tác</span></article>
-        <article><strong>CrCl + eGFR</strong><span>Cockcroft–Gault và CKD-EPI 2021</span></article>
+        <h1>Hệ thống hỗ trợ sử dụng kháng sinh an toàn</h1>
+        <p>Tập trung các công cụ dược lâm sàng thiết yếu: tính CrCl/eGFR và gợi ý hiệu chỉnh liều, tra cứu kháng sinh nội trú, phác đồ theo bệnh lý, tương tác thuốc và nguồn chuyên môn. Chọn chức năng cần sử dụng tại mục “Ứng dụng chính” bên dưới.</p>
       </div>
     </div>
 
@@ -56,6 +47,9 @@
   </section>
 
   <section class="view" id="view-dose">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
     <div class="page-title"><div><span class="kicker">Công cụ lâm sàng</span><h1>Tính liều kháng sinh cho bệnh nhân suy thận</h1><p>Tính đồng thời CrCl Cockcroft–Gault và eGFR CKD-EPI 2021 để hỗ trợ đánh giá chức năng thận và lựa chọn ngưỡng liều phù hợp.</p></div></div>
     <div class="dose-layout">
       <aside class="form-card">
@@ -79,6 +73,9 @@
   </section>
 
   <section class="view" id="view-antibiotics">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
     <div class="page-title"><div><span class="kicker">Tra cứu nhanh</span><h1>Danh mục kháng sinh điều trị nội trú</h1><p>Mỗi biệt dược là một hồ sơ riêng, đồng bộ từ danh mục Khoa Dược cung cấp.</p></div></div>
     <section class="section-card compact">
       <div class="filter-grid"><label>Tìm kháng sinh<input id="q" placeholder="Nhập biệt dược, hoạt chất, nhóm hoặc hàm lượng..."></label><label>Lọc theo nhóm<select id="group"><option value="">Tất cả nhóm</option></select></label></div>
@@ -88,6 +85,9 @@
 
 
   <section class="view" id="view-diseases">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
     <div class="page-title"><div><span class="kicker">Hỗ trợ lựa chọn kháng sinh</span><h1>Kháng sinh theo bệnh lý</h1><p>Tra cứu phác đồ kinh nghiệm cho người lớn theo hội chứng nhiễm khuẩn thường gặp. Cần lấy bệnh phẩm trước kháng sinh khi có thể, đánh giá mức độ nặng, nguy cơ vi khuẩn đa kháng, dị ứng và chức năng thận.</p></div></div>
     <section class="section-card disease-warning"><b>Phạm vi sử dụng:</b> Nội dung là khung tham khảo để xây dựng hướng dẫn tại bệnh viện, ưu tiên tài liệu Bộ Y tế và danh mục thuốc nội trú. Phác đồ chính thức cần được Hội đồng Thuốc & Điều trị phê duyệt và cập nhật theo kháng sinh đồ của bệnh viện.</section>
     <section class="section-card compact">
@@ -97,6 +97,9 @@
   </section>
 
   <section class="view" id="view-interactions">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
     <div class="page-title stats-title"><div><span class="kicker">Danh mục tương tác chống chỉ định</span><h1>Kiểm tra tương tác thuốc</h1><p>Nhập biệt dược hoặc hoạt chất; hệ thống sẽ tự quy đổi tên khi có dữ liệu tương ứng.</p></div><div class="mini-stats"><article><strong id="icount">0</strong><span>cặp tương tác</span></article><article><strong id="mcount">0</strong><span>thuốc/hoạt chất</span></article></div></div>
     <section class="section-card">
       <div class="section-heading"><div><span class="kicker">Kiểm tra nhanh</span><h2>Nhập hai thuốc cần kiểm tra</h2></div></div>
@@ -112,13 +115,15 @@
   </section>
 
   <section class="view" id="view-sources">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
     <div class="page-title"><div><span class="kicker">Nguồn dữ liệu chuyên môn</span><h1>Nguồn chính thức và nguyên tắc sử dụng</h1><p>Các nội dung trong hệ thống được ưu tiên đối chiếu từ văn bản, hướng dẫn chuyên môn và cơ sở dữ liệu do Bộ Y tế hoặc đơn vị trực thuộc Bộ Y tế công bố.</p></div></div>
     <section class="section-card">
       <div class="alert"><b>Thứ tự ưu tiên khi sử dụng:</b> (1) tờ hướng dẫn sử dụng đã được phê duyệt của đúng thuốc, hàm lượng và dạng bào chế; (2) hướng dẫn chẩn đoán, điều trị và hướng dẫn chuyên môn còn hiệu lực của Bộ Y tế; (3) Dược thư Quốc gia Việt Nam; (4) quy trình chuyên môn được Hội đồng Thuốc và Điều trị của bệnh viện phê duyệt. Thông tin trên website là công cụ hỗ trợ và cần được đối chiếu với tình trạng lâm sàng thực tế.</div>
       <div class="source-grid">
         <article class="source-card"><div>💊</div><h3>Tờ hướng dẫn sử dụng thuốc đã được phê duyệt</h3><p>Nguồn ưu tiên để xác minh chỉ định, chống chỉ định, liều dùng, cách pha, tốc độ truyền, tương tác, ADR và điều kiện bảo quản của từng chế phẩm.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://dichvucong.dav.gov.vn/">Tra cứu tại Cục Quản lý Dược</a></article>
         <article class="source-card"><div>📘</div><h3>Quyết định 708/QĐ-BYT</h3><p>Hướng dẫn sử dụng kháng sinh của Bộ Y tế, gồm nguyên tắc lựa chọn kháng sinh, PK/PD và sử dụng kháng sinh theo nhóm bệnh.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/van-ban/tai-lieu-huong-dan-su-dung-khang-sinh.html">Mở tài liệu chính thức</a></article>
-        <article class="source-card"><div>🏥</div><h3>Quyết định 5631/QĐ-BYT</h3><p>Hướng dẫn thực hiện quản lý sử dụng kháng sinh trong bệnh viện, làm nền tảng cho xây dựng phác đồ, giám sát và đánh giá sử dụng kháng sinh.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://moh.gov.vn/home?_101_struts_action=%2Fasset_publisher%2Fview_content&_101_type=content&_101_urlTitle=nganh-y-te-thanh-pho-ho-chi-minh-va-ai-hoc-sydney-hop-tac-trien-khai-chuong-trinh-nang-cao-nang-luc-quan-ly-su-dung-khang-sinh-tai-cac-benh-vien-a-kho&p_p_id=101&p_p_lifecycle=0&p_p_mode=view&p_p_state=maximized">Xem thông tin Bộ Y tế</a></article>
         <article class="source-card"><div>⚠️</div><h3>Quyết định 5948/QĐ-BYT</h3><p>Danh mục tương tác thuốc chống chỉ định trong thực hành lâm sàng tại các cơ sở khám bệnh, chữa bệnh.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html">Mở tài liệu chính thức</a></article>
         <article class="source-card"><div>🛡️</div><h3>Quyết định 29/QĐ-BYT</h3><p>Hướng dẫn giám sát phản ứng có hại của thuốc tại các cơ sở khám bệnh, chữa bệnh.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html">Mở hướng dẫn ADR</a></article>
         <article class="source-card"><div>🩺</div><h3>Quyết định 2388/QĐ-BYT năm 2024</h3><p>Hướng dẫn chẩn đoán và điều trị bệnh thận mạn và một số bệnh lý thận; dùng cho đánh giá eGFR, phân loại chức năng thận và theo dõi người bệnh.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/phac-do/quyet-dinh-so-2388-qd-byt-ngay-12-8-2024-ve-viec-ban-hanh-tai-lieu-chuyen-mon-huong-dan-chan-doan-va-dieu-tri-benh-than-.html?categoryId=101796520">Mở tài liệu chính thức</a></article>
