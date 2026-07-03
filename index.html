@@ -56,19 +56,19 @@
     <div class="dose-layout">
       <aside class="form-card">
         <h3>Thông tin bệnh nhân</h3>
-        <label>Tên bệnh nhân<input id="pn" placeholder="VD: Nguyễn Văn A"></label>
         <div class="form-row"><label>Tuổi<input id="age" type="number" min="18" placeholder="65"></label><label>Cân nặng (kg)<input id="wt" type="number" min="1" step="0.1" placeholder="60"></label></div>
         <label>Chiều cao (cm) <small class="optional-note">không bắt buộc – dùng để quy đổi eGFR về mL/phút khi cần đánh giá liều</small><input id="ht" type="number" min="80" max="250" step="0.1" placeholder="165"></label>
         <div class="form-row"><label>Giới tính<select id="sex"><option value="m">Nam</option><option value="f">Nữ</option></select></label><label>Creatinine (µmol/L)<input id="scr" type="number" min="1" step="0.1" placeholder="90"></label></div>
         <label>Kháng sinh<select id="drug"></select></label>
         <label class="checkline"><input id="dialysis" type="checkbox"> Bệnh nhân đang lọc máu (HD/CRRT)</label>
         <button class="btn btn-primary full" id="calc">Tính CrCl, eGFR và gợi ý liều</button>
+        <button type="button" class="btn btn-soft full" id="resetForm" style="margin-top:8px">↺ Làm mới để tính cho bệnh nhân khác</button>
       </aside>
       <div class="dose-main">
-        <div id="output" class="empty-state"><div>🧪</div><b>Chưa có kết quả</b><span>Nhập thông tin bệnh nhân và chọn kháng sinh để bắt đầu.</span></div>
+        <div id="output" class="empty-state"><div>🧪</div><b>Chưa có kết quả</b><span>Nhập tuổi, cân nặng, creatinine và chọn kháng sinh để bắt đầu.</span></div>
         <section class="section-card history-card">
           <div class="section-heading"><div><span class="kicker">Lịch sử tra cứu</span><h2>Đã lưu trên thiết bị này</h2></div><div class="heading-actions"><button class="btn btn-soft" id="exportHist">Xuất CSV</button><button class="btn btn-danger-soft" id="clear">Xóa lịch sử</button></div></div>
-          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>Bệnh nhân</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
+          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
         </section>
       </div>
     </div>
@@ -153,8 +153,8 @@
         <article class="source-card"><div>🩺</div><h3>Quyết định 2388/QĐ-BYT năm 2024</h3><p>Hướng dẫn chẩn đoán và điều trị bệnh thận mạn và một số bệnh lý thận; dùng cho đánh giá eGFR, phân loại chức năng thận và theo dõi người bệnh.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/phac-do/quyet-dinh-so-2388-qd-byt-ngay-12-8-2024-ve-viec-ban-hanh-tai-lieu-chuyen-mon-huong-dan-chan-doan-va-dieu-tri-benh-than-.html?categoryId=101796520">Mở tài liệu chính thức</a></article>
         <article class="source-card"><div>📋</div><h3>Thông tư 21/2013/TT-BYT</h3><p>Quy định tổ chức và hoạt động của Hội đồng Thuốc và Điều trị trong bệnh viện; là căn cứ rà soát danh mục thuốc và phê duyệt hướng dẫn điều trị nội bộ.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/van-ban/thong-tu-so-21-2013-tt-byt-ngay-08-08-2013-cua-bo-y-te-quy-dinh-ve-to-chuc-va-hoat-dong-cua-hoi-dong-thuoc-va-dieu-tri-t.html">Mở văn bản chính thức</a></article>
         <article class="source-card"><div>📚</div><h3>Thư viện hướng dẫn chẩn đoán, điều trị</h3><p>Kho hướng dẫn chuyên môn do Cục Quản lý Khám, chữa bệnh công bố; dùng để cập nhật phác đồ theo từng bệnh lý.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/phac-do">Mở thư viện Bộ Y tế</a></article>
-        <article class="source-card"><div>📗</div><h3>Danh mục kháng sinh nội trú của bệnh viện</h3><p>Danh sách biệt dược, hoạt chất, hàm lượng và đường dùng hiện có tại Bệnh viện VPMED Tân Hưng.</p><a class="btn btn-soft" href="sources/Danh%20mục%20thuốc%20kháng%20sinh%20điều%20trị%20nội%20trú(1).xlsx">Mở tệp Excel</a></article>
-        <article class="source-card"><div>📙</div><h3>Danh mục tương tác chống chỉ định nội bộ</h3><p>Dữ liệu được chuẩn hóa từ danh mục tương tác chống chỉ định, gồm hậu quả, cơ chế, cách xử trí và nguồn tham khảo.</p><a class="btn btn-soft" href="sources/Dm%20TT%20CCĐ(1).xls">Mở tệp Excel</a></article>
+        <article class="source-card"><div>📗</div><h3>Danh mục kháng sinh nội trú của bệnh viện</h3><p>Danh sách biệt dược, hoạt chất, hàm lượng và đường dùng hiện có tại Bệnh viện VPMED Tân Hưng.</p><span class="btn btn-soft" style="opacity:.6;cursor:not-allowed" title="Tệp gốc đang bị thiếu trong kho dữ liệu, cần tải lại lên thư mục sources/">Tệp tạm thời không khả dụng</span></article>
+        <article class="source-card"><div>📙</div><h3>Danh mục tương tác chống chỉ định nội bộ</h3><p>Dữ liệu được chuẩn hóa từ danh mục tương tác chống chỉ định, gồm hậu quả, cơ chế, cách xử trí và nguồn tham khảo.</p><a class="btn btn-soft" href="sources/dm-tt-ccd.xls">Mở tệp Excel</a></article>
       </div>
       <div class="alert source-note"><b>Ngày rà soát nguồn:</b> 02/07/2026. Khi văn bản mới được ban hành hoặc văn bản hiện hành bị thay thế, dữ liệu lâm sàng cần được cập nhật và trình Hội đồng Thuốc và Điều trị xem xét trước khi áp dụng chính thức.</div>
     </section>
