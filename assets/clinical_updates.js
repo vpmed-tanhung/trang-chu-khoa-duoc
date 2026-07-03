@@ -22,7 +22,7 @@
     const c=classInfo[type(d.active)]||classInfo.betalactam;
     d.mechanism=c.mechanism; d.pkpd=c.pkpd; d.contra=c.contra; d.adr=c.adr; d.tdm=c.tdm; d.notes=c.notes;
     d.indications=['Chỉ sử dụng theo chẩn đoán nhiễm khuẩn, vị trí nhiễm, mức độ nặng, dữ liệu vi sinh và kháng sinh đồ.','Ưu tiên phác đồ/hướng dẫn của bệnh viện đã được Hội đồng Thuốc & Điều trị phê duyệt.'];
-    d.sources=[...commonSources,{title:'Bảng chỉnh liều kháng sinh/kháng nấm – BV Đại học Y Hà Nội (2020)',note:'Chỉ là tài liệu nền để đối chiếu CrCl, HD và CRRT; không tự động thay thế tờ HDSD hoặc hướng dẫn hiện hành.',url:'sources/bang-chinh-lieu-khang-sinh-khang-nam.pdf'}];
+    d.sources=[...commonSources,{title:'Bảng chỉnh liều kháng sinh/kháng nấm – BV Đại học Y Hà Nội (2020)',note:'Chỉ là tài liệu nền để đối chiếu CrCl, HD và CRRT; không tự động thay thế tờ HDSD hoặc hướng dẫn hiện hành.',url:'sources/FILE_20210311_105810_BẢNG%20CHỈNH%20LIỀU%20KHÁNG%20SINH,%20KHÁNG%20NẤM_HSCC_21.05.2020_final(2).pdf'}];
     d.reviewed='01/07/2026';
   });
 })();

@@ -59,3 +59,32 @@
 .back-home-btn:focus-visible{outline:3px solid rgba(11,125,195,.25);outline-offset:2px}
 .back-home-btn span{font-size:19px;line-height:1}
 @media(max-width:640px){.back-home-wrap{margin-bottom:10px}.back-home-btn{width:100%;justify-content:center;padding:11px 14px}}
+
+/* Nội dung giới thiệu Trang chủ */
+.hero-intro{
+  max-width: 900px;
+  color: rgba(255,255,255,.96);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.hero-intro p{
+  margin: 0 0 10px;
+}
+.hero-intro ul{
+  margin: 8px 0 14px 20px;
+  padding: 0;
+}
+.hero-intro li{
+  margin: 5px 0;
+}
+.hero-intro strong{
+  color: #fff;
+}
+
+/* Danh mục 633 cặp tương tác - Quyết định 5948/QĐ-BYT */
+.int-title{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.int-title>b{flex:1;min-width:260px}
+.int-stt{color:#64748b;font-size:12px}
+.interaction-level{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900}
+.interaction-level.contra{background:#fee4e2;color:#b42318}
+.interaction-level.conditional{background:#fff1d6;color:#9a5b00}

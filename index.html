@@ -7,6 +7,7 @@
   <title>Hệ thống Hỗ trợ Dược lâm sàng | VPMED Tân Hưng</title>
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/hepatotoxicity.css">
+  <link rel="stylesheet" href="assets/pregnancy_lactation.css">
 </head>
 <body>
 <header class="topbar">
@@ -29,9 +30,19 @@
   <section class="view active" id="view-home">
     <div class="hero-grid hero-grid-single">
       <div class="hero-panel">
-        <div class="eyebrow">Khoa Dược · Dược lâm sàng · Quản lý sử dụng kháng sinh</div>
-        <h1>Hệ thống hỗ trợ sử dụng kháng sinh an toàn</h1>
-        <p>Tập trung các công cụ dược lâm sàng thiết yếu: tính CrCl/eGFR và gợi ý hiệu chỉnh liều, tra cứu kháng sinh nội trú, phác đồ theo bệnh lý, tương tác thuốc và nguồn chuyên môn. Chọn chức năng cần sử dụng tại mục “Ứng dụng chính” bên dưới.</p>
+        <div class="eyebrow">Khoa Dược · Dược lâm sàng · An toàn và hợp lý trong sử dụng thuốc</div>
+        <h1>Hệ thống hỗ trợ sử dụng thuốc<br>an toàn và hợp lý</h1>
+        <div class="hero-intro">
+          <p>Hệ thống hỗ trợ nhân viên y tế tra cứu và đánh giá thông tin sử dụng thuốc trong thực hành lâm sàng.</p>
+          <p>Các chức năng chính gồm:</p>
+          <ul>
+            <li>Đánh giá chức năng thận và hỗ trợ hiệu chỉnh liều thuốc.</li>
+            <li>Tra cứu kháng sinh nội trú và phác đồ điều trị theo bệnh lý.</li>
+            <li>Kiểm tra tương tác thuốc và cảnh báo nguy cơ độc gan.</li>
+            <li>Tra cứu sử dụng thuốc trong thai kỳ và thời kỳ cho con bú.</li>
+          </ul>
+          <p>Chọn chức năng phù hợp tại mục <strong>“Ứng dụng chính”</strong> bên dưới.</p>
+        </div>
       </div>
     </div>
 
@@ -43,6 +54,7 @@
         <button class="feature-card" data-open="diseases"><span class="feature-icon">🩺</span><b>Kháng sinh theo bệnh lý</b><small>Tra cứu phác đồ kinh nghiệm cho các hội chứng nhiễm khuẩn thường gặp, liên kết liều theo chức năng thận.</small><em>Tham khảo chuyên môn</em></button>
         <button class="feature-card" data-open="interactions"><span class="feature-icon">⚠️</span><b>Kiểm tra tương tác thuốc</b><small>Kiểm tra nhanh hai thuốc hoặc tìm trong toàn bộ danh mục tương tác.</small><em>Đang hoạt động</em></button>
         <button class="feature-card hepatotoxic-feature" data-open="hepatotoxicity"><span class="feature-icon">🫀</span><b>Thuốc có nguy cơ gây độc gan</b><small>Tra cứu thuốc trong kho nội trú, mức cảnh báo, nguy cơ chính và khuyến nghị theo dõi chức năng gan.</small><em>Danh mục nội bộ</em></button>
+        <button class="feature-card pregnancy-feature" data-open="pregnancy-lactation"><span class="feature-icon">🤰</span><b>Thuốc dùng khi có thai & cho con bú</b><small>Tra cứu 151 hoạt chất/nhóm theo tài liệu nội bộ, kèm phân loại FDA/TGA và liên kết đối chiếu hiện hành.</small><em>Tra cứu đối tượng đặc biệt</em></button>
         <button class="feature-card" data-open="sources"><span class="feature-icon">📚</span><b>Nguồn dữ liệu hệ thống</b><small>Mở các tệp nội bộ và xem nguyên tắc ưu tiên nguồn chuyên môn.</small><em>Đã đồng bộ</em></button>
       </div>
     </section>
@@ -56,19 +68,19 @@
     <div class="dose-layout">
       <aside class="form-card">
         <h3>Thông tin bệnh nhân</h3>
+        <label>Tên bệnh nhân<input id="pn" placeholder="VD: Nguyễn Văn A"></label>
         <div class="form-row"><label>Tuổi<input id="age" type="number" min="18" placeholder="65"></label><label>Cân nặng (kg)<input id="wt" type="number" min="1" step="0.1" placeholder="60"></label></div>
         <label>Chiều cao (cm) <small class="optional-note">không bắt buộc – dùng để quy đổi eGFR về mL/phút khi cần đánh giá liều</small><input id="ht" type="number" min="80" max="250" step="0.1" placeholder="165"></label>
         <div class="form-row"><label>Giới tính<select id="sex"><option value="m">Nam</option><option value="f">Nữ</option></select></label><label>Creatinine (µmol/L)<input id="scr" type="number" min="1" step="0.1" placeholder="90"></label></div>
         <label>Kháng sinh<select id="drug"></select></label>
         <label class="checkline"><input id="dialysis" type="checkbox"> Bệnh nhân đang lọc máu (HD/CRRT)</label>
         <button class="btn btn-primary full" id="calc">Tính CrCl, eGFR và gợi ý liều</button>
-        <button type="button" class="btn btn-soft full" id="resetForm" style="margin-top:8px">↺ Làm mới để tính cho bệnh nhân khác</button>
       </aside>
       <div class="dose-main">
-        <div id="output" class="empty-state"><div>🧪</div><b>Chưa có kết quả</b><span>Nhập tuổi, cân nặng, creatinine và chọn kháng sinh để bắt đầu.</span></div>
+        <div id="output" class="empty-state"><div>🧪</div><b>Chưa có kết quả</b><span>Nhập thông tin bệnh nhân và chọn kháng sinh để bắt đầu.</span></div>
         <section class="section-card history-card">
           <div class="section-heading"><div><span class="kicker">Lịch sử tra cứu</span><h2>Đã lưu trên thiết bị này</h2></div><div class="heading-actions"><button class="btn btn-soft" id="exportHist">Xuất CSV</button><button class="btn btn-danger-soft" id="clear">Xóa lịch sử</button></div></div>
-          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
+          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>Bệnh nhân</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
         </section>
       </div>
     </div>
@@ -102,7 +114,7 @@
     <div class="back-home-wrap">
       <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
     </div>
-    <div class="page-title stats-title"><div><span class="kicker">Danh mục tương tác chống chỉ định</span><h1>Kiểm tra tương tác thuốc</h1><p>Nhập biệt dược hoặc hoạt chất; hệ thống sẽ tự quy đổi tên khi có dữ liệu tương ứng.</p></div><div class="mini-stats"><article><strong id="icount">0</strong><span>cặp tương tác</span></article><article><strong id="mcount">0</strong><span>thuốc/hoạt chất</span></article></div></div>
+    <div class="page-title stats-title"><div><span class="kicker">633 cặp tương tác chống chỉ định</span><h1>Kiểm tra tương tác thuốc</h1><p>Tra cứu 633 cặp tương tác thuốc chống chỉ định theo từng hoạt chất trong Quyết định 5948/QĐ-BYT. Có thể nhập biệt dược hoặc hoạt chất; hệ thống tự quy đổi khi có dữ liệu tương ứng.</p></div><div class="mini-stats"><article><strong id="icount">0</strong><span>cặp tương tác</span></article><article><strong id="mcount">0</strong><span>thuốc/hoạt chất</span></article></div></div>
     <section class="section-card">
       <div class="section-heading"><div><span class="kicker">Kiểm tra nhanh</span><h2>Nhập hai thuốc cần kiểm tra</h2></div></div>
       <div class="pair"><label>Thuốc thứ nhất<input id="a" list="meds" placeholder="Ví dụ: Ceftriaxon"></label><button class="swap" id="swap" title="Đổi vị trí">⇄</button><label>Thuốc thứ hai<input id="b" list="meds" placeholder="Ví dụ: Calci clorid"></label><button class="btn btn-primary" id="check">Kiểm tra</button></div>
@@ -138,6 +150,34 @@
     </section>
   </section>
 
+  <section class="view" id="view-pregnancy-lactation">
+    <div class="back-home-wrap"><button type="button" class="back-home-btn" data-go="home"><span aria-hidden="true">←</span> Quay lại Trang chủ</button></div>
+    <div class="page-title"><div><span class="kicker">Dược lâm sàng cho đối tượng đặc biệt</span><h1>Sử dụng thuốc cho phụ nữ có thai và phụ nữ cho con bú</h1></div></div>
+    <section class="section-card pl-alert"><b>Chuẩn đánh giá hiện hành:</b> sử dụng FDA PLLR để trình bày nguy cơ trong thai kỳ và thời kỳ cho con bú. Phân loại FDA A/B/C/D/X chỉ được giữ ở mức tham khảo lịch sử; TGA A, B1, B2, B3, C, D và X là hệ thống phân loại bổ trợ.</section>
+    <section class="section-card pl-warning"><b>Cảnh báo:</b> Không coi toàn bộ nội dung PDF là dữ liệu mới nhất. Trước khi ra quyết định, phải đối chiếu tờ hướng dẫn sử dụng được phê duyệt của đúng chế phẩm và nguồn hiện hành được liên kết tại từng dòng.</section>
+    <div class="pl-summary"><article><strong id="plTotal">0</strong><span>hoạt chất/nhóm tra cứu</span></article><article><strong id="plPregAvoid">0</strong><span>mục tránh/chống chỉ định khi có thai</span></article><article><strong id="plLactAvoid">0</strong><span>mục tránh/chống chỉ định khi cho bú</span></article></div>
+    <section class="section-card compact">
+      <div class="pl-filters">
+        <label>Tìm hoạt chất/biệt dược<input id="plQ" placeholder="Ví dụ: paracetamol, ceftriaxon..."></label>
+        <label>Nhóm thuốc<select id="plCategory"><option value="">Tất cả nhóm</option></select></label>
+        <label>Đối tượng<select id="plPopulation"><option value="all">Cả hai</option><option value="pregnancy">Có thai</option><option value="lactation">Cho con bú</option></select></label>
+        <label>FDA/TGA<select id="plClass"><option value="">Tất cả</option><option>A</option><option>B</option><option>B1</option><option>B2</option><option>B3</option><option>C</option><option>D</option><option>X</option><option>NA</option><option>Không nêu</option></select></label>
+        <label>Mức khuyến cáo<select id="plRisk"><option value="">Tất cả</option><option value="avoid">Tránh/Chống chỉ định</option><option value="caution">Thận trọng/Cân nhắc</option><option value="ok">Có thể sử dụng</option><option value="unknown">Thiếu dữ liệu</option></select></label>
+      </div>
+      <div class="pl-toolbar"><span id="plCount">0 kết quả</span></div>
+      <div class="pl-table-wrap"><table class="pl-table"><thead><tr><th>Hoạt chất / Tên thuốc</th><th>Đánh giá hiện hành và phân loại tham khảo</th><th>Phụ nữ có thai</th><th>Phụ nữ cho con bú</th></tr></thead><tbody id="plBody"></tbody></table></div>
+    </section>
+    <section class="section-card"><div class="section-heading"><div><span class="kicker">Nguồn đang hoạt động</span><h2>Nguồn đối chiếu đã kiểm tra</h2></div></div>
+      <div class="pl-source-grid">
+        <article class="pl-source-card"><h3>Tài liệu PDF nội bộ</h3><p>Nguyên bản tài liệu anh cung cấp.</p><a target="_blank" href="sources/thuoc-thai-ky-cho-con-bu-noi-bo.pdf">Mở PDF</a></article>
+        <article class="pl-source-card"><h3>Cục Quản lý Dược – Bộ Y tế</h3><p>Tra cứu số đăng ký và tờ hướng dẫn sử dụng của đúng chế phẩm.</p><a target="_blank" rel="noopener" href="https://dichvucong.dav.gov.vn/">Mở nguồn</a></article>
+        <article class="pl-source-card"><h3>TGA Pregnancy Database</h3><p>Cơ sở dữ liệu phân loại thai kỳ chính thức của Úc.</p><a target="_blank" rel="noopener" href="https://www.tga.gov.au/resources/health-professional-information-and-resources/australian-categorisation-system-prescribing-medicines-pregnancy/prescribing-medicines-pregnancy-database">Mở nguồn</a></article>
+        <article class="pl-source-card"><h3>FDA PLLR – chuẩn hiện hành</h3><p>Đánh giá theo Risk Summary, Clinical Considerations và Data; không dùng A/B/C/D/X làm kết luận chính.</p><a target="_blank" rel="noopener" href="https://www.fda.gov/drugs/labeling-information-drug-products/pregnancy-and-lactation-labeling-resources">Mở nguồn</a></article>
+        <article class="pl-source-card"><h3>DailyMed</h3><p>Nhãn thuốc do NLM cung cấp từ dữ liệu nộp FDA.</p><a target="_blank" rel="noopener" href="https://dailymed.nlm.nih.gov/dailymed/">Mở nguồn</a></article>
+      </div>
+    </section>
+  </section>
+
   <section class="view" id="view-sources">
     <div class="back-home-wrap">
       <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
@@ -154,7 +194,7 @@
         <article class="source-card"><div>📋</div><h3>Thông tư 21/2013/TT-BYT</h3><p>Quy định tổ chức và hoạt động của Hội đồng Thuốc và Điều trị trong bệnh viện; là căn cứ rà soát danh mục thuốc và phê duyệt hướng dẫn điều trị nội bộ.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/van-ban/thong-tu-so-21-2013-tt-byt-ngay-08-08-2013-cua-bo-y-te-quy-dinh-ve-to-chuc-va-hoat-dong-cua-hoi-dong-thuoc-va-dieu-tri-t.html">Mở văn bản chính thức</a></article>
         <article class="source-card"><div>📚</div><h3>Thư viện hướng dẫn chẩn đoán, điều trị</h3><p>Kho hướng dẫn chuyên môn do Cục Quản lý Khám, chữa bệnh công bố; dùng để cập nhật phác đồ theo từng bệnh lý.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/phac-do">Mở thư viện Bộ Y tế</a></article>
         <article class="source-card"><div>📗</div><h3>Danh mục kháng sinh nội trú của bệnh viện</h3><p>Danh sách biệt dược, hoạt chất, hàm lượng và đường dùng hiện có tại Bệnh viện VPMED Tân Hưng.</p><a class="btn btn-soft" href="sources/danh-muc-khang-sinh-noi-tru.xlsx">Mở tệp Excel</a></article>
-        <article class="source-card"><div>📙</div><h3>Danh mục tương tác chống chỉ định nội bộ</h3><p>Dữ liệu được chuẩn hóa từ danh mục tương tác chống chỉ định, gồm hậu quả, cơ chế, cách xử trí và nguồn tham khảo.</p><a class="btn btn-soft" href="sources/dm-tt-ccd.xls">Mở tệp Excel</a></article>
+        <article class="source-card"><div>📙</div><h3>633 cặp tương tác chống chỉ định nội bộ</h3><p>Dữ liệu được chuẩn hóa từ danh mục tương tác chống chỉ định, gồm hậu quả, cơ chế, cách xử trí và nguồn tham khảo.</p><a class="btn btn-soft" href="sources/danh-muc-tuong-tac-chong-chi-dinh.xls">Mở tệp Excel</a></article>
       </div>
       <div class="alert source-note"><b>Ngày rà soát nguồn:</b> 02/07/2026. Khi văn bản mới được ban hành hoặc văn bản hiện hành bị thay thế, dữ liệu lâm sàng cần được cập nhật và trình Hội đồng Thuốc và Điều trị xem xét trước khi áp dụng chính thức.</div>
     </section>
@@ -175,6 +215,7 @@
 <script src="assets/unified.js"></script>
 <script src="assets/disease_updates_2026.js"></script>
 <script src="assets/hepatotoxicity.js"></script>
+<script src="assets/pregnancy_lactation.js"></script>
 <script src="evaluation-embed.js"></script>
 </body>
 </html>
