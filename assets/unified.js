@@ -92,8 +92,30 @@ $('#q').oninput=()=>{renderDrugList();const f=filtered();if(f.length&&!f.some(x=
 // Dose
 $('#drug').innerHTML=D.map(x=>`<option value="${x.id}">${esc(x.brand)} — ${esc(x.active)}</option>`).join('');const KEY='vpmed_dose_history_v6';try{localStorage.removeItem('vpmed_dose_history_v5');localStorage.removeItem('vpmed_dose_history_v4');localStorage.removeItem('vpmed_dose_history_v3')}catch{}
 function loadHist(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
-function saveHist(a){localStorage.setItem(KEY,JSON.stringify(a.slice(0,100)))}
-function renderHist(){const h=loadHist();$('#hist').innerHTML=h.map(x=>`<tr><td>${esc(x.time)}</td><td>${esc(x.crcl)} mL/ph</td><td>${esc(x.egfr||'—')}</td><td>${esc(x.drug)}</td><td>${esc(x.advice)}</td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center">Chưa có lịch sử</td></tr>'}
+function loadHist(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
+
+const HISTORY_WEB_APP_URL='https://script.google.com/macros/s/AKfycbwgt3wEKmSUlVCHvReMsRo1bW8QBsHyPYq-FUAPztD4uibx-Rv-u1HnTO4aJM45d4hC0w/exec';
+
+function sendHistToSheet(x){
+  if(!x)return;
+  fetch(HISTORY_WEB_APP_URL,{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body:JSON.stringify({
+      time:x.time||new Date().toLocaleString('vi-VN'),
+      crcl:x.crcl||'',
+      egfr:x.egfr||'',
+      drug:x.drug||'',
+      advice:x.advice||''
+    })
+  }).catch(()=>{});
+}
+
+function saveHist(a){
+  localStorage.setItem(KEY,JSON.stringify(a.slice(0,100)));
+  if(a&&a[0])sendHistToSheet(a[0]);
+}
 renderHist();$('#clear').onclick=()=>{if(confirm('Xóa toàn bộ lịch sử trên thiết bị này?')){saveHist([]);renderHist()}};
 $('#exportHist').onclick=()=>{const h=loadHist();if(!h.length){alert('Chưa có lịch sử để xuất.');return}const rows=[['Thời gian','CrCl','eGFR','Thuốc','Gợi ý'],...h.map(x=>[x.time,x.crcl,x.egfr||'',x.drug,x.advice])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='lich-su-tra-cuu-khang-sinh.csv';a.click();URL.revokeObjectURL(a.href)};
 $('#drug').addEventListener('change',()=>{const d=D.find(x=>String(x.id)===String($('#drug').value));$('#output').className='empty-state';$('#output').innerHTML=`<div>💊</div><b>Đã chọn ${esc(d?.brand||'kháng sinh')}</b><span>Bấm “Tính CrCl và gợi ý liều” để cập nhật đúng thuốc đang chọn.</span>`});
