@@ -61,6 +61,11 @@
       .clinical-actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.clinical-btn{border:0;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer;background:#0f766e;color:white}.clinical-btn.secondary{background:#eaf2fb;color:#075985}.clinical-btn.danger{background:#fee2e2;color:#991b1b}
       .clinical-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.clinical-form label{font-weight:800;color:#334155;font-size:13px}.clinical-form input,.clinical-form select,.clinical-form textarea{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:12px;padding:10px;font-size:15px;background:#fff}.clinical-form textarea{min-height:84px;resize:vertical}.clinical-wide{grid-column:1/-1}
       .clinical-table{width:100%;border-collapse:separate;border-spacing:0 8px}.clinical-table th{font-size:12px;text-transform:uppercase;letter-spacing:.03em;color:#64748b;text-align:left;padding:0 8px}.clinical-table td{background:#fff;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:10px 8px;vertical-align:top}.clinical-table td:first-child{border-left:1px solid #e2e8f0;border-radius:12px 0 0 12px}.clinical-table td:last-child{border-right:1px solid #e2e8f0;border-radius:0 12px 12px 0}.clinical-badge{display:inline-block;border-radius:999px;padding:4px 9px;font-weight:800;font-size:12px;background:#e0f2fe;color:#075985}.clinical-badge.draft{background:#fef3c7;color:#92400e}.clinical-badge.approved{background:#dcfce7;color:#166534}.clinical-badge.outdated{background:#fee2e2;color:#991b1b}.clinical-small{font-size:12px;color:#64748b}.clinical-source-list a{color:#0f766e;font-weight:800}.clinical-alert{border-left:5px solid #0f766e;background:#f0fdfa;padding:12px;border-radius:12px;color:#134e4a}.clinical-filter{margin:8px 0 12px;display:flex;gap:10px;flex-wrap:wrap}.clinical-filter input,.clinical-filter select{border:1px solid #cbd5e1;border-radius:12px;padding:10px;min-width:220px}
+
+      .vpmed-admin-tile{display:flex!important;align-items:flex-start;gap:14px;text-decoration:none!important;color:inherit!important;background:linear-gradient(135deg,#f0fdfa 0%,#eff6ff 55%,#ffffff 100%);border:1px solid #bfe7e1;border-radius:22px;padding:18px;box-shadow:0 14px 34px rgba(15,118,110,.10);min-height:150px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-sizing:border-box;position:relative;overflow:hidden}
+      .vpmed-admin-tile:before{content:"";position:absolute;right:-36px;top:-36px;width:120px;height:120px;border-radius:999px;background:rgba(15,118,110,.08)}
+      .vpmed-admin-tile:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(15,118,110,.18);border-color:#14b8a6}.vpmed-admin-icon{width:52px;height:52px;border-radius:18px;background:#0f766e;color:white;display:grid;place-items:center;font-size:25px;box-shadow:0 10px 20px rgba(15,118,110,.22);flex:0 0 auto}.vpmed-admin-body{position:relative;z-index:1}.vpmed-admin-title{font-size:17px;font-weight:900;color:#075985;margin-bottom:7px;line-height:1.25}.vpmed-admin-desc{font-size:13px;line-height:1.5;color:#475569;margin-bottom:12px}.vpmed-admin-pill{display:inline-flex;align-items:center;border-radius:999px;background:#dcfce7;color:#166534;border:1px solid #86efac;padding:6px 10px;font-size:12px;font-weight:900}.vpmed-admin-entry-wrap{max-width:1180px;margin:22px auto;padding:0 16px}.vpmed-admin-grid-host .vpmed-admin-tile{margin:0}
+      @media(max-width:720px){.vpmed-admin-tile{min-height:auto;padding:15px}.vpmed-admin-icon{width:44px;height:44px;border-radius:15px;font-size:22px}}
       @media(max-width:860px){.clinical-grid,.clinical-form{grid-template-columns:1fr}.clinical-admin-wrap{padding:0 10px}.clinical-table{font-size:13px}.clinical-hero h2{font-size:22px}}
     `;
     const st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
@@ -68,19 +73,47 @@
 
   function createNavHook(){
     if(document.getElementById('clinicalAdminEntry')) return;
+    addStyles();
     const href = 'cap-nhat-du-lieu.html';
-    const cardHtml = `
-      <a id="clinicalAdminEntry" href="${href}" style="text-decoration:none;color:inherit;display:block">
-        <div style="border:1px solid #dbeafe;background:linear-gradient(135deg,#ecfeff,#f8fafc);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 8px 20px rgba(15,23,42,.06)">
-          <div style="font-weight:900;color:#0f766e;font-size:18px;margin-bottom:6px">Cập nhật dữ liệu chuyên môn</div>
-          <div style="color:#334155;line-height:1.45;font-size:14px">Khu vực phân quyền cho Khoa Dược: thêm thuốc mới, cập nhật nguồn Bộ Y tế, liều dùng, ADR, tương tác và nhật ký rà soát.</div>
-          <div style="margin-top:10px;display:inline-block;border-radius:999px;background:#0f766e;color:#fff;padding:7px 12px;font-weight:800;font-size:13px">Vào khu vực quản trị</div>
-        </div>
-      </a>`;
-    const navCandidates = $$('.nav, nav, .menu, .app-grid, .cards, .tools-grid, .grid, .module-grid, .home-grid');
-    const home = $('#home') || $('.container') || $('main') || document.body;
-    const wrap = document.createElement('div'); wrap.innerHTML = cardHtml;
-    if(navCandidates[0]) navCandidates[0].appendChild(wrap.firstElementChild); else home.prepend(wrap.firstElementChild);
+    const card = document.createElement('a');
+    card.id = 'clinicalAdminEntry';
+    card.href = href;
+    card.className = 'vpmed-admin-tile';
+    card.innerHTML = `
+      <div class="vpmed-admin-icon">🛡️</div>
+      <div class="vpmed-admin-body">
+        <div class="vpmed-admin-title">Cập nhật dữ liệu chuyên môn</div>
+        <div class="vpmed-admin-desc">Phân quyền Khoa Dược · thuốc mới · nguồn Bộ Y tế · nhật ký rà soát</div>
+        <span class="vpmed-admin-pill">Khu vực quản trị</span>
+      </div>`;
+
+    const looksLikeHeader = el => {
+      const txt = (el?.className || '') + ' ' + (el?.id || '') + ' ' + (el?.tagName || '');
+      return /header|top|navbar|nav|menu/i.test(txt) || el?.tagName?.toLowerCase()==='nav';
+    };
+    const candidates = Array.from(document.querySelectorAll('.app-grid,.apps-grid,.tools-grid,.tool-grid,.module-grid,.home-grid,.cards,.grid'))
+      .filter(el => !looksLikeHeader(el) && el.offsetParent !== null);
+    let target = candidates.find(el => el.children.length >= 2) || candidates[0];
+
+    if(!target){
+      const headings = Array.from(document.querySelectorAll('h1,h2,h3'));
+      const h = headings.find(x => /chọn công cụ|ứng dụng chính|công cụ cần sử dụng/i.test(x.textContent||''));
+      if(h){
+        const section = h.closest('section, .section, .container, main') || h.parentElement;
+        target = section?.querySelector('.grid,.cards,.app-grid,.apps-grid,.tools-grid,.module-grid');
+      }
+    }
+
+    if(target){
+      target.appendChild(card);
+      target.classList.add('vpmed-admin-grid-host');
+    }else{
+      const box = document.createElement('section');
+      box.className = 'vpmed-admin-entry-wrap';
+      box.appendChild(card);
+      const main = document.querySelector('main') || document.querySelector('.container') || document.body;
+      main.appendChild(box);
+    }
   }
 
   function getSession(){ return loadLocal(LOGIN_KEY, null); }
