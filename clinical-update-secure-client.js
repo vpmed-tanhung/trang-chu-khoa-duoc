@@ -15,25 +15,6 @@
   const esc = (s='')=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
   const statusLabel = s => ({draft:'Bản nháp',reviewed:'Đã rà soát',approved:'Đã duyệt',outdated:'Cần cập nhật',reference:'Tham khảo'}[s]||s||'Bản nháp');
 
-
-  const STATIC_SOURCES = [
-    {title:'Cục Quản lý Dược - Công bố thuốc', category:'Số đăng ký, Tờ HDSD, Thông tin thuốc', url:'https://dichvucong.dav.gov.vn/congbothuoc/index'},
-    {title:'Cục Quản lý Khám, chữa bệnh - Hướng dẫn chuyên môn', category:'Hướng dẫn chẩn đoán điều trị, Phác đồ', url:'https://kcb.vn/phac-do'},
-    {title:'Quyết định 708/QĐ-BYT - Hướng dẫn sử dụng kháng sinh', category:'Kháng sinh, Phác đồ, Nguyên tắc sử dụng', url:'https://kcb.vn/upload/2005611/20210723/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng-kh%C3%A1ng-sinh-C%E1%BA%ADp-nh%E1%BA%ADt-l%E1%BA%A7n-cu%E1%BB%91i-khi-in-09.01.2015.pdf'},
-    {title:'Quyết định 5948/QĐ-BYT - Tương tác thuốc chống chỉ định', category:'Tương tác thuốc, Chống chỉ định phối hợp', url:'https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html'},
-    {title:'Quyết định 29/QĐ-BYT - Giám sát ADR', category:'ADR, Cảnh báo an toàn thuốc', url:'https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html'}
-  ];
-
-  function renderSourcesHtml(sources){
-    const arr = (sources && sources.length) ? sources : STATIC_SOURCES;
-    return `<h3>Nguồn tham khảo</h3><div class="source-grid">${arr.map(src=>`<div class="source-item"><strong>${esc(src.title||src.name||'Nguồn tham khảo')}</strong><div class="clinical-small">${esc(src.category||src.description||'Nguồn đối chiếu chuyên môn')}</div>${src.url?`<a href="${esc(src.url)}" target="_blank" rel="noopener">Mở nguồn →</a>`:''}</div>`).join('')}</div>`;
-  }
-
-  function renderSources(sources){
-    const box = $('#sources');
-    if(box) box.innerHTML = renderSourcesHtml(sources);
-  }
-
   function addStyles(){
     if($('#vpmedSecureStyle')) return;
     const css = `
@@ -95,7 +76,7 @@
 
   async function renderApp(root){
     const user = JSON.parse(sessionStorage.getItem(USER_KEY)||'{}');
-    root.innerHTML = `${renderTopbar()}<div class="clinical-hero compact"><div><h2>Quản trị dữ liệu thực hành lâm sàng</h2><p>Cập nhật hồ sơ thuốc, hiệu chỉnh liều, cảnh báo an toàn và nguồn tham khảo đã đối chiếu. Dữ liệu chỉ nên công bố khi đã được rà soát nội bộ.</p></div><div class="clinical-actions"><span class="clinical-badge approved">${esc(user.displayName||user.username)} · ${esc(user.role)}</span><button class="clinical-btn secondary" id="logout">Đăng xuất</button></div></div><div class="clinical-dashboard"><div class="clinical-card clinical-primary-card"><div class="clinical-section-title"><h3>Thêm / cập nhật hồ sơ thuốc</h3><span class="clinical-badge draft">Chờ duyệt trước khi công bố</span></div><div class="clinical-alert">Chỉ nhập dữ liệu khi đã đối chiếu đúng tên thuốc, hoạt chất, hàm lượng, dạng bào chế và nguồn. Nên ghi rõ ngày tra cứu và phần thông tin áp dụng.</div><form id="f" class="clinical-form"><div><label>Tên thuốc / biệt dược</label><input id="brand" required placeholder="Ví dụ: Ceftriaxone 1g"></div><div><label>Hoạt chất</label><input id="active" required placeholder="Ví dụ: Ceftriaxone"></div><div><label>Hàm lượng</label><input id="strength" placeholder="Ví dụ: 1g"></div><div><label>Dạng bào chế / đường dùng</label><input id="route" placeholder="Ví dụ: bột pha tiêm IV/IM"></div><div><label>Nhóm thuốc</label><input id="group" placeholder="Ví dụ: Cephalosporin thế hệ 3"></div><div><label>Trạng thái</label><select id="status"><option value="draft">Bản nháp</option><option value="reviewed">Đã rà soát</option><option value="approved">Đã duyệt</option><option value="outdated">Cần cập nhật</option><option value="reference">Tham khảo</option></select></div><div class="clinical-wide"><label>Liều người lớn thông thường</label><textarea id="dose" placeholder="Ghi liều theo chỉ định chính; nêu rõ nếu phụ thuộc bệnh lý hoặc mức độ nhiễm khuẩn."></textarea></div><div><label>CrCl ≥50</label><textarea id="r50" placeholder="Không cần hiệu chỉnh / ghi liều cụ thể nếu có."></textarea></div><div><label>CrCl 30–49</label><textarea id="r30" placeholder="Ghi liều và khoảng cách dùng."></textarea></div><div><label>CrCl 15–29</label><textarea id="r15" placeholder="Ghi liều và khoảng cách dùng."></textarea></div><div><label>CrCl &lt;15 / HD / CRRT</label><textarea id="rhd" placeholder="Tách rõ &lt;15, chạy thận nhân tạo, CRRT nếu có dữ liệu."></textarea></div><div class="clinical-wide"><label>Cảnh báo an toàn</label><textarea id="warn" placeholder="Ghi độc gan, độc thận, ADR quan trọng, tương tác chống chỉ định hoặc lưu ý theo dõi."></textarea></div><div class="clinical-wide"><label>Nguồn đối chiếu</label><textarea id="src" placeholder="Ví dụ: Tờ HDSD được Cục QLD phê duyệt; QĐ 708/QĐ-BYT; QĐ 5948/QĐ-BYT; Dược thư Quốc gia..."></textarea></div><div class="clinical-actions clinical-wide"><button class="clinical-btn" type="submit">Lưu dữ liệu</button><button class="clinical-btn secondary" type="reset">Xóa form</button></div></form><div id="saveMsg" class="clinical-save-msg"></div></div><aside class="clinical-side"><div id="sources" class="clinical-card">${renderSourcesHtml(STATIC_SOURCES)}</div><div class="clinical-card"><h3>Nhật ký cập nhật</h3><div id="logs"><p>Đang tải...</p></div></div></aside></div><div class="clinical-card"><div class="clinical-section-title"><h3>Danh sách thuốc</h3><div class="clinical-actions" style="margin:0"><button class="clinical-btn secondary" id="reload">Tải lại</button><button class="clinical-btn secondary" id="exportApproved">Xuất dữ liệu đã duyệt</button></div></div><div id="list"><p>Đang tải...</p></div></div>`;
+    root.innerHTML = `${renderTopbar()}<div class="clinical-hero compact"><div><h2>Quản trị dữ liệu thực hành lâm sàng</h2><p>Cập nhật hồ sơ thuốc, hiệu chỉnh liều, cảnh báo an toàn và nguồn tham khảo đã đối chiếu. Dữ liệu chỉ nên công bố khi đã được rà soát nội bộ.</p></div><div class="clinical-actions"><span class="clinical-badge approved">${esc(user.displayName||user.username)} · ${esc(user.role)}</span><button class="clinical-btn secondary" id="logout">Đăng xuất</button></div></div><div class="clinical-dashboard"><div class="clinical-card clinical-primary-card"><div class="clinical-section-title"><h3>Thêm / cập nhật hồ sơ thuốc</h3><span class="clinical-badge draft">Chờ duyệt trước khi công bố</span></div><div class="clinical-alert">Chỉ nhập dữ liệu khi đã đối chiếu đúng tên thuốc, hoạt chất, hàm lượng, dạng bào chế và nguồn. Nên ghi rõ ngày tra cứu và phần thông tin áp dụng.</div><form id="f" class="clinical-form"><div><label>Tên thuốc / biệt dược</label><input id="brand" required placeholder="Ví dụ: Ceftriaxone 1g"></div><div><label>Hoạt chất</label><input id="active" required placeholder="Ví dụ: Ceftriaxone"></div><div><label>Hàm lượng</label><input id="strength" placeholder="Ví dụ: 1g"></div><div><label>Dạng bào chế / đường dùng</label><input id="route" placeholder="Ví dụ: bột pha tiêm IV/IM"></div><div><label>Nhóm thuốc</label><input id="group" placeholder="Ví dụ: Cephalosporin thế hệ 3"></div><div><label>Trạng thái</label><select id="status"><option value="draft">Bản nháp</option><option value="reviewed">Đã rà soát</option><option value="approved">Đã duyệt</option><option value="outdated">Cần cập nhật</option><option value="reference">Tham khảo</option></select></div><div class="clinical-wide"><label>Liều người lớn thông thường</label><textarea id="dose" placeholder="Ghi liều theo chỉ định chính; nêu rõ nếu phụ thuộc bệnh lý hoặc mức độ nhiễm khuẩn."></textarea></div><div><label>CrCl ≥50</label><textarea id="r50" placeholder="Không cần hiệu chỉnh / ghi liều cụ thể nếu có."></textarea></div><div><label>CrCl 30–49</label><textarea id="r30" placeholder="Ghi liều và khoảng cách dùng."></textarea></div><div><label>CrCl 15–29</label><textarea id="r15" placeholder="Ghi liều và khoảng cách dùng."></textarea></div><div><label>CrCl &lt;15 / HD / CRRT</label><textarea id="rhd" placeholder="Tách rõ &lt;15, chạy thận nhân tạo, CRRT nếu có dữ liệu."></textarea></div><div class="clinical-wide"><label>Cảnh báo an toàn</label><textarea id="warn" placeholder="Ghi độc gan, độc thận, ADR quan trọng, tương tác chống chỉ định hoặc lưu ý theo dõi."></textarea></div><div class="clinical-wide"><label>Nguồn đối chiếu</label><textarea id="src" placeholder="Ví dụ: Tờ HDSD được Cục QLD phê duyệt; QĐ 708/QĐ-BYT; QĐ 5948/QĐ-BYT; Dược thư Quốc gia..."></textarea></div><div class="clinical-actions clinical-wide"><button class="clinical-btn" type="submit">Lưu dữ liệu</button><button class="clinical-btn secondary" type="reset">Xóa form</button></div></form><div id="saveMsg" class="clinical-save-msg"></div></div><aside class="clinical-side"><div id="sources" class="clinical-card"><h3>Nguồn tham khảo</h3><p>Đang tải...</p></div></aside></div><div class="clinical-card"><div class="clinical-section-title"><h3>Danh sách thuốc</h3><div class="clinical-actions" style="margin:0"><button class="clinical-btn secondary" id="reload">Tải lại</button><button class="clinical-btn secondary" id="exportApproved">Xuất dữ liệu đã duyệt</button></div></div><div id="list"><p>Đang tải...</p></div></div>`;
     $('#logout').onclick=async()=>{try{await api('logout')}catch(e){} sessionStorage.clear(); renderLogin(root);};
     $('#f').onsubmit=saveDrug;
     $('#reload').onclick=()=>loadAll(true);
@@ -124,7 +105,6 @@
   function renderDashboardData(data, fromCache){
     renderSources(data.sources||[]);
     renderList(data.drugs||[]);
-    $('#logs').innerHTML = (data.logs||[]).map(l=>`<div class="log-item clinical-small"><strong>${esc(l.time)}</strong> · ${esc(l.user)} · ${esc(l.action)}<br>${esc(l.detail)}</div>`).join('') || '<div class="empty-state">Chưa có nhật ký.</div>';
     const list = $('#list');
     if(fromCache && list){
       const note=document.createElement('div');
@@ -145,9 +125,8 @@
     }
     if(!force && cached){ renderDashboardData(cached, true); }
     else {
-      renderSources(STATIC_SOURCES);
-      $('#list').innerHTML='<div class="empty-state">Đang đồng bộ dữ liệu thuốc...</div>';
-      $('#logs').innerHTML='<div class="empty-state">Đang tải...</div>';
+      $('#sources').innerHTML='<h3>Nguồn tham khảo</h3><div class="empty-state">Đang tải...</div>';
+      $('#list').innerHTML='<div class="empty-state">Đang tải...</div>';
     }
     try{
       const data = await api('getAdminDashboard');
@@ -156,7 +135,6 @@
     }catch(e){
       if(!cached){
         $('#list').innerHTML='<div class="empty-state">Không tải được dữ liệu. Kiểm tra Apps Script đã Deploy New version chưa.<br>'+esc(e.message)+'</div>';
-        $('#logs').innerHTML='<div class="empty-state">Không tải được nhật ký.</div>';
       }
     }
   }
