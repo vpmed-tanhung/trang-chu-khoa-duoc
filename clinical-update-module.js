@@ -20,7 +20,7 @@
     const st = document.createElement('style');
     st.id = 'vpmedAdminTileStyle';
     st.textContent = `
-      .vpmed-admin-tile{display:flex!important;align-items:flex-start;gap:14px;text-decoration:none!important;color:inherit!important;background:linear-gradient(135deg,#f0fdfa 0%,#eff6ff 55%,#ffffff 100%);border:1px solid #bfe7e1;border-radius:22px;padding:18px;box-shadow:0 14px 34px rgba(15,118,110,.10);min-height:150px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-sizing:border-box;position:relative;overflow:hidden}
+      .vpmed-admin-tile{display:flex!important;align-items:flex-start;gap:14px;text-decoration:none!important;color:inherit!important;background:linear-gradient(135deg,#f0fdfa 0%,#eff6ff 55%,#ffffff 100%);border:1px solid #bfe7e1;border-radius:22px;padding:18px;box-shadow:0 14px 34px rgba(15,118,110,.10);min-height:110px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-sizing:border-box;position:relative;overflow:hidden}
       .vpmed-admin-tile:before{content:"";position:absolute;right:-36px;top:-36px;width:120px;height:120px;border-radius:999px;background:rgba(15,118,110,.08)}
       .vpmed-admin-tile:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(15,118,110,.18);border-color:#14b8a6}
       .vpmed-admin-icon{width:52px;height:52px;border-radius:18px;background:#0f766e;color:white;display:grid;place-items:center;font-size:25px;box-shadow:0 10px 20px rgba(15,118,110,.22);flex:0 0 auto}
@@ -46,8 +46,7 @@
       <div class="vpmed-admin-icon">🛡️</div>
       <div class="vpmed-admin-body">
         <div class="vpmed-admin-title">Cập nhật dữ liệu chuyên môn</div>
-        <div class="vpmed-admin-desc">Khu vực phân quyền của Khoa Dược để cập nhật thuốc, nguồn tham khảo và dữ liệu đã rà soát.</div>
-        <span class="vpmed-admin-pill">Khu vực quản trị</span>
+        <span class="vpmed-admin-pill">Đăng nhập</span>
       </div>`;
     return a;
   }
