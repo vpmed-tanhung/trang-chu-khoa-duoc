@@ -23,9 +23,9 @@
       .vpmed-admin-tile{display:flex!important;align-items:flex-start;gap:14px;text-decoration:none!important;color:inherit!important;background:linear-gradient(135deg,#f0fdfa 0%,#eff6ff 55%,#ffffff 100%);border:1px solid #bfe7e1;border-radius:22px;padding:18px;box-shadow:0 14px 34px rgba(15,118,110,.10);min-height:110px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;box-sizing:border-box;position:relative;overflow:hidden}
       .vpmed-admin-tile:before{content:"";position:absolute;right:-36px;top:-36px;width:120px;height:120px;border-radius:999px;background:rgba(15,118,110,.08)}
       .vpmed-admin-tile:hover{transform:translateY(-3px);box-shadow:0 18px 42px rgba(15,118,110,.18);border-color:#14b8a6}
-      .vpmed-admin-icon{width:52px;height:52px;border-radius:18px;background:#0f766e;color:white;display:grid;place-items:center;font-size:25px;box-shadow:0 10px 20px rgba(15,118,110,.22);flex:0 0 auto}
+      .vpmed-admin-icon{width:72px;height:52px;border-radius:16px;background:#fff;display:grid;place-items:center;box-shadow:0 10px 20px rgba(15,118,110,.14);flex:0 0 auto;padding:6px;border:1px solid #dbeafe}.vpmed-admin-icon img{max-width:100%;max-height:100%;object-fit:contain;display:block}
       .vpmed-admin-body{position:relative;z-index:1}.vpmed-admin-title{font-size:17px;font-weight:900;color:#075985;margin-bottom:7px;line-height:1.25}.vpmed-admin-desc{font-size:13px;line-height:1.5;color:#475569;margin-bottom:12px}.vpmed-admin-pill{display:inline-flex;align-items:center;border-radius:999px;background:#dcfce7;color:#166534;border:1px solid #86efac;padding:6px 10px;font-size:12px;font-weight:900}.vpmed-admin-entry-wrap{max-width:1180px;margin:22px auto;padding:0 16px}.vpmed-admin-grid-host .vpmed-admin-tile{margin:0}
-      @media(max-width:720px){.vpmed-admin-tile{min-height:auto;padding:15px}.vpmed-admin-icon{width:44px;height:44px;border-radius:15px;font-size:22px}}
+      @media(max-width:720px){.vpmed-admin-tile{min-height:auto;padding:15px}.vpmed-admin-icon{width:64px;height:46px;border-radius:14px}}
     `;
     document.head.appendChild(st);
   }
@@ -43,7 +43,7 @@
     a.href = 'cap-nhat-du-lieu.html';
     a.className = 'vpmed-admin-tile';
     a.innerHTML = `
-      <div class="vpmed-admin-icon">🛡️</div>
+      <div class="vpmed-admin-icon"><img src="assets/logo-vpmed.png" alt="VPMED"></div>
       <div class="vpmed-admin-body">
         <div class="vpmed-admin-title">Cập nhật dữ liệu chuyên môn</div>
         <span class="vpmed-admin-pill">Đăng nhập</span>
