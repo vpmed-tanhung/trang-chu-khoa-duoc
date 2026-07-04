@@ -8,7 +8,7 @@
 (function(){
   'use strict';
 
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCBsaJ-L0P9NJ4Qc5Wp6NF69Y-nYS0DZTWAREwSYk16PnStauF90T3X0dcI1QkhWLL/exec';
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzNUD8GsDCbDh4ftfjXMVWk1WG7V3N1DPHLvg46Z44KXZGrdG5YbO1wtyKoEoGiqcAL/exec';
   const CACHE_KEY = 'vpmed_approved_clinical_data_v2_silent';
   const CACHE_TIME_KEY = 'vpmed_approved_clinical_data_v2_silent_time';
   const CACHE_TTL_MS = 24 * 60 * 60 * 1000;

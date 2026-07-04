@@ -4,7 +4,7 @@
 (function(){
   'use strict';
 
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCBsaJ-L0P9NJ4Qc5Wp6NF69Y-nYS0DZTWAREwSYk16PnStauF90T3X0dcI1QkhWLL/exec';
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzNUD8GsDCbDh4ftfjXMVWk1WG7V3N1DPHLvg46Z44KXZGrdG5YbO1wtyKoEoGiqcAL/exec';
   const TOKEN_KEY = 'vpmed_apps_script_token_v1';
   const USER_KEY = 'vpmed_apps_script_user_v1';
   const ADMIN_CACHE_KEY = 'vpmed_admin_dashboard_cache_v2';
