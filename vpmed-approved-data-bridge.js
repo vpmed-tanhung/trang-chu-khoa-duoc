@@ -82,10 +82,94 @@
     ensureDatalist();
     attachDrugInputs();
     removeLegacyPanels();
+    mergeIntoCalculators(state.drugs);
 
     document.dispatchEvent(new CustomEvent('vpmed:approvedDataReady', {
       detail: {drugs: state.drugs, sources: state.sources, updatedAt: state.updatedAt}
     }));
+  }
+
+  // ---- Đẩy thuốc ĐÃ DUYỆT vào đúng dữ liệu mà máy tính liều / tra tương tác đang dùng ----
+  // Máy tính liều (assets/unified.js) đọc window.VPMED_DRUGS và window.VPMED_INTERACTIONS.
+  // Ta không thay cả mảng (sẽ làm mất tham chiếu D/I mà unified.js đã giữ), mà chỉ
+  // thêm mới / cập nhật từng phần tử để mảng gốc (cùng tham chiếu) tự động phản ánh thay đổi.
+
+  function renalArrayFromForm(rd){
+    rd = rd || {};
+    const rows = [
+      ['CrCl ≥ 50 mL/phút', rd.crcl_ge_50],
+      ['CrCl 30–49 mL/phút', rd.crcl_30_49],
+      ['CrCl 15–29 mL/phút', rd.crcl_15_29],
+      ['CrCl < 15 mL/phút', rd.crcl_lt_15]
+    ];
+    return rows.filter(r => r[1]).map(r => `${r[0]}: ${r[1]}`);
+  }
+
+  function toCalcDrug(d){
+    const idBase = norm([d.brandName, d.activeIngredient].filter(Boolean).join(' '));
+    const isApproved = !d.review || !d.review.status || d.review.status === 'approved';
+    return {
+      id: 'apr-' + (idBase || Math.random().toString(36).slice(2)),
+      brand: d.brandName || '',
+      active: d.activeIngredient || '',
+      strength: d.strength || '',
+      route: d.route || '',
+      group: d.clinicalGroup || '',
+      standard: d.adultDose || '',
+      renal: renalArrayFromForm(d.renalDose),
+      hd: (d.renalDose && (d.renalDose.hd || d.renalDose.crcl_lt_15)) || '',
+      crrt: (d.renalDose && (d.renalDose.crrt || d.renalDose.crcl_lt_15)) || '',
+      renalVerified: isApproved ? 'Đã duyệt qua quy trình cập nhật dữ liệu chuyên môn' : 'Chưa xác minh đầy đủ',
+      adr: Array.isArray(d.importantAdr) ? d.importantAdr.join('; ') : (d.importantAdr || ''),
+      contra: d.hepaticRisk || '',
+      notes: d.clinicalNotes || '',
+      clinicalSourceNote: (d.sources || []).map(s => s.title).filter(Boolean).join('; ') || undefined,
+      _vpmedApproved: true
+    };
+  }
+
+  function mergeIntoCalculators(drugs){
+    if(!Array.isArray(window.VPMED_DRUGS)) window.VPMED_DRUGS = [];
+    const list = window.VPMED_DRUGS;
+    let changed = false;
+
+    (drugs || []).forEach(raw => {
+      // Chỉ những bản ghi đã qua bước "Duyệt" (approved) mới được đẩy vào công cụ đang dùng thật.
+      if(raw.review && raw.review.status && raw.review.status !== 'approved') return;
+      if(!raw.brandName && !raw.activeIngredient) return;
+
+      const item = toCalcDrug(raw);
+      const idx = list.findIndex(x => String(x.id) === String(item.id));
+      if(idx >= 0){ Object.assign(list[idx], item); }
+      else { list.push(item); }
+      changed = true;
+    });
+
+    if(changed) refreshCalculatorUI();
+  }
+
+  function refreshCalculatorUI(){
+    try{
+      const sel = $('#drug');
+      if(sel){
+        const cur = sel.value;
+        sel.innerHTML = window.VPMED_DRUGS.map(x => `<option value="${esc(x.id)}">${esc(x.brand)} — ${esc(x.active)}</option>`).join('');
+        if(cur) sel.value = cur;
+      }
+      const groupSel = $('#group');
+      if(groupSel){
+        const groups = [...new Set(window.VPMED_DRUGS.map(x => x.group).filter(Boolean))].sort();
+        groupSel.innerHTML = '<option value="">Tất cả nhóm</option>' + groups.map(g => `<option>${esc(g)}</option>`).join('');
+      }
+      const medsBox = $('#meds');
+      if(medsBox){
+        const interactions = Array.isArray(window.VPMED_INTERACTIONS) ? window.VPMED_INTERACTIONS : [];
+        const names = new Set();
+        window.VPMED_DRUGS.forEach(x => { if(x.brand) names.add(x.brand); if(x.active) names.add(x.active); });
+        interactions.forEach(x => { if(x.drug1) names.add(x.drug1); if(x.drug2) names.add(x.drug2); });
+        medsBox.innerHTML = [...names].sort((a,b)=>a.localeCompare(b,'vi')).map(x => `<option value="${esc(x)}">`).join('');
+      }
+    }catch(e){ /* các module chưa dựng UI ở thời điểm này, bỏ qua và thử lại lần cập nhật sau */ }
   }
 
   async function apiPublic(){
