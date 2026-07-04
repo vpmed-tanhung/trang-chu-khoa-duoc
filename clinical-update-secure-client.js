@@ -7,6 +7,9 @@
   const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCBsaJ-L0P9NJ4Qc5Wp6NF69Y-nYS0DZTWAREwSYk16PnStauF90T3X0dcI1QkhWLL/exec';
   const TOKEN_KEY = 'vpmed_apps_script_token_v1';
   const USER_KEY = 'vpmed_apps_script_user_v1';
+  const ADMIN_CACHE_KEY = 'vpmed_admin_dashboard_cache_v2';
+  const ADMIN_CACHE_TIME_KEY = 'vpmed_admin_dashboard_cache_time_v2';
+  const ADMIN_CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
   const $ = (s,r=document)=>r.querySelector(s);
   const esc = (s='')=>String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
@@ -25,10 +28,28 @@
   async function api(action, payload={}){
     if(!WEB_APP_URL || WEB_APP_URL.includes('DAN_URL')) throw new Error('Chưa cấu hình WEB_APP_URL trong clinical-update-secure-client.js');
     const token = sessionStorage.getItem(TOKEN_KEY) || '';
-    const res = await fetch(WEB_APP_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'}, body:JSON.stringify({action, token, ...payload})});
-    const data = await res.json();
-    if(!data.ok) throw new Error(data.message || 'Lỗi Apps Script');
-    return data;
+    const controller = new AbortController();
+    const timer = setTimeout(()=>controller.abort(), 12000);
+    try{
+      const res = await fetch(WEB_APP_URL, {
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({action, token, ...payload}),
+        signal:controller.signal,
+        cache:'no-store'
+      });
+      const text = await res.text();
+      let data;
+      try{ data = JSON.parse(text); }
+      catch(e){ throw new Error('Apps Script chưa trả JSON hợp lệ. Hãy kiểm tra Deploy → New version → Deploy và quyền Anyone with the link.'); }
+      if(!data.ok) throw new Error(data.message || 'Lỗi Apps Script');
+      return data;
+    }catch(err){
+      if(err && err.name==='AbortError') throw new Error('Apps Script phản hồi quá lâu. Kiểm tra link /exec, quyền triển khai và tạo New version.');
+      throw err;
+    }finally{
+      clearTimeout(timer);
+    }
   }
 
   function mount(){
@@ -58,9 +79,9 @@
     root.innerHTML = `${renderTopbar()}<div class="clinical-hero compact"><div><h2>Quản trị dữ liệu thực hành lâm sàng</h2><p>Cập nhật hồ sơ thuốc, hiệu chỉnh liều, cảnh báo an toàn và nguồn tham khảo đã đối chiếu. Dữ liệu chỉ nên công bố khi đã được rà soát nội bộ.</p></div><div class="clinical-actions"><span class="clinical-badge approved">${esc(user.displayName||user.username)} · ${esc(user.role)}</span><button class="clinical-btn secondary" id="logout">Đăng xuất</button></div></div><div class="clinical-dashboard"><div class="clinical-card clinical-primary-card"><div class="clinical-section-title"><h3>Thêm / cập nhật hồ sơ thuốc</h3><span class="clinical-badge draft">Chờ duyệt trước khi công bố</span></div><div class="clinical-alert">Chỉ nhập dữ liệu khi đã đối chiếu đúng tên thuốc, hoạt chất, hàm lượng, dạng bào chế và nguồn. Nên ghi rõ ngày tra cứu và phần thông tin áp dụng.</div><form id="f" class="clinical-form"><div><label>Tên thuốc / biệt dược</label><input id="brand" required placeholder="Ví dụ: Ceftriaxone 1g"></div><div><label>Hoạt chất</label><input id="active" required placeholder="Ví dụ: Ceftriaxone"></div><div><label>Hàm lượng</label><input id="strength" placeholder="Ví dụ: 1g"></div><div><label>Dạng bào chế / đường dùng</label><input id="route" placeholder="Ví dụ: bột pha tiêm IV/IM"></div><div><label>Nhóm thuốc</label><input id="group" placeholder="Ví dụ: Cephalosporin thế hệ 3"></div><div><label>Trạng thái</label><select id="status"><option value="draft">Bản nháp</option><option value="reviewed">Đã rà soát</option><option value="approved">Đã duyệt</option><option value="outdated">Cần cập nhật</option><option value="reference">Tham khảo</option></select></div><div class="clinical-wide"><label>Liều người lớn thông thường</label><textarea id="dose" placeholder="Ghi liều theo chỉ định chính; nêu rõ nếu phụ thuộc bệnh lý hoặc mức độ nhiễm khuẩn."></textarea></div><div><label>CrCl ≥50</label><textarea id="r50" placeholder="Không cần hiệu chỉnh / ghi liều cụ thể nếu có."></textarea></div><div><label>CrCl 30–49</label><textarea id="r30" placeholder="Ghi liều và khoảng cách dùng."></textarea></div><div><label>CrCl 15–29</label><textarea id="r15" placeholder="Ghi liều và khoảng cách dùng."></textarea></div><div><label>CrCl &lt;15 / HD / CRRT</label><textarea id="rhd" placeholder="Tách rõ &lt;15, chạy thận nhân tạo, CRRT nếu có dữ liệu."></textarea></div><div class="clinical-wide"><label>Cảnh báo an toàn</label><textarea id="warn" placeholder="Ghi độc gan, độc thận, ADR quan trọng, tương tác chống chỉ định hoặc lưu ý theo dõi."></textarea></div><div class="clinical-wide"><label>Nguồn đối chiếu</label><textarea id="src" placeholder="Ví dụ: Tờ HDSD được Cục QLD phê duyệt; QĐ 708/QĐ-BYT; QĐ 5948/QĐ-BYT; Dược thư Quốc gia..."></textarea></div><div class="clinical-actions clinical-wide"><button class="clinical-btn" type="submit">Lưu dữ liệu</button><button class="clinical-btn secondary" type="reset">Xóa form</button></div></form><div id="saveMsg" class="clinical-save-msg"></div></div><aside class="clinical-side"><div id="sources" class="clinical-card"><h3>Nguồn tham khảo</h3><p>Đang tải...</p></div><div class="clinical-card"><h3>Nhật ký cập nhật</h3><div id="logs"><p>Đang tải...</p></div></div></aside></div><div class="clinical-card"><div class="clinical-section-title"><h3>Danh sách thuốc</h3><div class="clinical-actions" style="margin:0"><button class="clinical-btn secondary" id="reload">Tải lại</button><button class="clinical-btn secondary" id="exportApproved">Xuất dữ liệu đã duyệt</button></div></div><div id="list"><p>Đang tải...</p></div></div>`;
     $('#logout').onclick=async()=>{try{await api('logout')}catch(e){} sessionStorage.clear(); renderLogin(root);};
     $('#f').onsubmit=saveDrug;
-    $('#reload').onclick=loadAll;
+    $('#reload').onclick=()=>loadAll(true);
     $('#exportApproved').onclick=exportApproved;
-    loadAll();
+    loadAll(false);
   }
 
   function formDrug(){
@@ -71,24 +92,60 @@
   async function saveDrug(e){
     e.preventDefault();
     $('#saveMsg').textContent='Đang lưu...';
-    try{ await api('saveDrug',{drug:formDrug()}); $('#saveMsg').textContent='Đã lưu dữ liệu.'; $('#f').reset(); loadAll(); }
+    try{ await api('saveDrug',{drug:formDrug()}); $('#saveMsg').textContent='Đã lưu dữ liệu.'; $('#f').reset(); loadAll(true); }
     catch(err){ $('#saveMsg').textContent=err.message; }
   }
 
-  async function loadAll(){
+  function getAdminCache(){
+    try{ const raw=localStorage.getItem(ADMIN_CACHE_KEY); return raw?JSON.parse(raw):null; }catch(e){ return null; }
+  }
+  function setAdminCache(data){
+    try{ localStorage.setItem(ADMIN_CACHE_KEY, JSON.stringify(data)); localStorage.setItem(ADMIN_CACHE_TIME_KEY, String(Date.now())); }catch(e){}
+  }
+  function renderDashboardData(data, fromCache){
+    renderSources(data.sources||[]);
+    renderList(data.drugs||[]);
+    $('#logs').innerHTML = (data.logs||[]).map(l=>`<div class="log-item clinical-small"><strong>${esc(l.time)}</strong> · ${esc(l.user)} · ${esc(l.action)}<br>${esc(l.detail)}</div>`).join('') || '<div class="empty-state">Chưa có nhật ký.</div>';
+    const list = $('#list');
+    if(fromCache && list){
+      const note=document.createElement('div');
+      note.className='clinical-small';
+      note.style.marginTop='8px';
+      note.textContent='Đang dùng dữ liệu đã lưu tạm; bấm “Tải lại” khi cần đồng bộ mới.';
+      list.appendChild(note);
+    }
+  }
+  async function loadAll(force){
+    const cached = getAdminCache();
+    const t = Number(localStorage.getItem(ADMIN_CACHE_TIME_KEY)||0);
+    if(!force && cached && Date.now()-t<ADMIN_CACHE_TTL_MS){
+      renderDashboardData(cached, true);
+      // cập nhật nền, không chặn giao diện
+      api('getAdminDashboard').then(fresh=>{ setAdminCache(fresh); renderDashboardData(fresh, false); }).catch(()=>{});
+      return;
+    }
+    if(!force && cached){ renderDashboardData(cached, true); }
+    else {
+      $('#sources').innerHTML='<h3>Nguồn tham khảo</h3><div class="empty-state">Đang tải...</div>';
+      $('#list').innerHTML='<div class="empty-state">Đang tải...</div>';
+      $('#logs').innerHTML='<div class="empty-state">Đang tải...</div>';
+    }
     try{
-      const [src, drugs, logs] = await Promise.all([api('getSources'), api('listDrugs'), api('getLogs')]);
-      const sources = src.sources || [];
-      $('#sources').innerHTML = '<div class="clinical-section-title"><h3>Nguồn chính thức</h3><span class="clinical-badge reference">'+sources.length+' nguồn</span></div>' + (sources.length ? '<div class="source-grid">' + sources.map(s=>`<div class="source-item"><strong>${esc(s.name)}</strong><div class="clinical-small">${esc((s.scope||[]).join(', '))}</div><a href="${esc(s.url)}" target="_blank" rel="noopener">Mở nguồn →</a></div>`).join('') + '</div>' : '<div class="empty-state">Chưa có danh sách nguồn.</div>');
-      renderList(drugs.drugs||[]);
-      $('#logs').innerHTML = (logs.logs||[]).map(l=>`<div class="log-item clinical-small"><strong>${esc(l.time)}</strong> · ${esc(l.user)} · ${esc(l.action)}<br>${esc(l.detail)}</div>`).join('') || '<div class="empty-state">Chưa có nhật ký.</div>';
-    }catch(e){ $('#list').innerHTML='<div class="empty-state">'+esc(e.message)+'</div>'; }
+      const data = await api('getAdminDashboard');
+      setAdminCache(data);
+      renderDashboardData(data, false);
+    }catch(e){
+      if(!cached){
+        $('#list').innerHTML='<div class="empty-state">Không tải được dữ liệu. Kiểm tra Apps Script đã Deploy New version chưa.<br>'+esc(e.message)+'</div>';
+        $('#logs').innerHTML='<div class="empty-state">Không tải được nhật ký.</div>';
+      }
+    }
   }
 
   function renderList(drugs){
     if(!drugs.length){ $('#list').innerHTML='<div class="empty-state">Chưa có dữ liệu thuốc.</div>'; return; }
     $('#list').innerHTML = `<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Thuốc</th><th>Liều/thận</th><th>Nguồn</th><th>Trạng thái</th><th>Duyệt</th></tr></thead><tbody>${drugs.map(d=>`<tr><td><strong>${esc(d.brandName)}</strong><div class="clinical-small">${esc(d.activeIngredient)} · ${esc(d.strength||'')} · ${esc(d.route||'')}</div></td><td><div>${esc(d.adultDose||'')}</div><div class="clinical-small">≥50: ${esc(d.renalDose?.crcl_ge_50||'—')}<br>30–49: ${esc(d.renalDose?.crcl_30_49||'—')}<br>15–29: ${esc(d.renalDose?.crcl_15_29||'—')}</div></td><td class="clinical-small">${esc((d.sources||[]).map(s=>s.title).join('; '))}</td><td><span class="clinical-badge ${esc(d.review?.status||'draft')}">${esc(statusLabel(d.review?.status))}</span></td><td><div class="clinical-actions" style="margin:0"><button class="clinical-btn secondary" data-id="${esc(d.id||d.localId)}" data-status="approved">Duyệt</button><button class="clinical-btn danger" data-id="${esc(d.id||d.localId)}" data-status="outdated">Cần cập nhật</button></div></td></tr>`).join('')}</tbody></table></div>`;
-    document.querySelectorAll('[data-status]').forEach(btn=>btn.onclick=async()=>{try{await api('approveDrug',{id:btn.dataset.id,status:btn.dataset.status});loadAll();}catch(e){alert(e.message)}});
+    document.querySelectorAll('[data-status]').forEach(btn=>btn.onclick=async()=>{try{await api('approveDrug',{id:btn.dataset.id,status:btn.dataset.status});loadAll(true);}catch(e){alert(e.message)}});
   }
 
   async function exportApproved(){

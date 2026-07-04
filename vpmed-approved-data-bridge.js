@@ -12,7 +12,7 @@
   const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwCBsaJ-L0P9NJ4Qc5Wp6NF69Y-nYS0DZTWAREwSYk16PnStauF90T3X0dcI1QkhWLL/exec';
   const CACHE_KEY = 'vpmed_approved_clinical_data_v1';
   const CACHE_TIME_KEY = 'vpmed_approved_clinical_data_time_v1';
-  const CACHE_TTL_MS = 10 * 60 * 1000;
+  const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
   const $ = (s,r=document)=>r.querySelector(s);
   const $$ = (s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -35,14 +35,19 @@
   }
 
   function apiPublic(){
-    return fetch(WEB_APP_URL, {
-      method:'POST',
-      headers:{'Content-Type':'text/plain;charset=utf-8'},
-      body:JSON.stringify({action:'getApprovedClinicalData'})
-    }).then(r=>r.json()).then(j=>{
-      if(!j.ok) throw new Error(j.message||'Không tải được dữ liệu đã duyệt.');
-      return j;
-    });
+    const controller = new AbortController();
+    const timer = setTimeout(()=>controller.abort(), 10000);
+    const url = WEB_APP_URL + (WEB_APP_URL.includes('?') ? '&' : '?') + 'action=getApprovedClinicalData';
+    return fetch(url, {method:'GET', cache:'no-store', signal:controller.signal})
+      .then(r=>r.text())
+      .then(text=>{
+        let j;
+        try{ j = JSON.parse(text); }
+        catch(e){ throw new Error('Apps Script chưa trả dữ liệu hợp lệ.'); }
+        if(!j.ok) throw new Error(j.message||'Không tải được dữ liệu đã duyệt.');
+        return j;
+      })
+      .finally(()=>clearTimeout(timer));
   }
 
   function normalizeDrug(d){
