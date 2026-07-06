@@ -1,83 +1,204 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0b63a5">
-<title>Đánh giá nhanh hệ thống hỗ trợ sử dụng kháng sinh</title>
+<title>Phiếu đánh giá hệ thống kháng sinh | VPMED Tân Hưng</title>
 <style>
-:root{--primary:#0b63a5;--primary-dark:#064675;--bg:#eef5fb;--card:#fff;--text:#102033;--muted:#64748b;--border:#d6e3f0;--ok:#15803d;--danger:#b91c1c;--soft:#f7fbff}
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Helvetica Neue",sans-serif;background:linear-gradient(135deg,#e8f2ff,#f8fafc);color:var(--text);line-height:1.45}.wrap{max-width:860px;margin:auto;padding:14px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.brand{display:flex;align-items:center;gap:10px}.brand img{width:82px;height:48px;object-fit:contain;background:#fff;border-radius:10px;padding:3px}.brand strong{display:block;color:var(--primary-dark);font-size:16px}.brand small{display:block;color:var(--muted)}.nav{display:flex;gap:10px}.nav a{color:var(--primary-dark);font-weight:700;font-size:14px}.hero,.card,.intro,.status{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:0 10px 28px rgba(15,23,42,.06)}.hero{padding:20px;margin-bottom:12px}.hero h1{margin:0 0 5px;color:var(--primary-dark);font-size:28px}.hero p{margin:0;color:var(--muted)}.intro{padding:12px 15px;margin-bottom:12px;background:#f0f8ff}.card{padding:17px;margin-bottom:12px}.section-title{font-size:18px;font-weight:900;color:var(--primary-dark);margin-bottom:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.form-group{margin-bottom:12px}.form-group:last-child{margin-bottom:0}label{display:block;font-weight:800;margin-bottom:6px}input,select,textarea{width:100%;border:1px solid var(--border);border-radius:11px;padding:11px 12px;background:#fff;font:inherit;color:var(--text)}textarea{min-height:90px;resize:vertical}.required{color:var(--danger)}.hint{font-size:13px;color:var(--muted)}.rating-row{display:grid;grid-template-columns:minmax(210px,1fr) auto 48px;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #e7eef6}.rating-row:last-child{border-bottom:0}.stars{display:flex;gap:4px}.star{font-size:27px;color:#cbd5e1;cursor:pointer;line-height:1;user-select:none}.star.active{color:#f59e0b}.score{font-weight:900;color:var(--primary);text-align:right}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:none;border-radius:12px;padding:13px 18px;font-weight:900;cursor:pointer;font-size:16px}.btn-primary{background:var(--primary);color:#fff}.btn-secondary{background:#eaf2fb;color:var(--primary-dark)}.btn:disabled{opacity:.65}.spinner{display:none;width:22px;height:22px;border:3px solid #dbeafe;border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.invalid-note{display:none;color:var(--danger);font-weight:700;font-size:13px;margin-top:8px}.status{display:none;padding:16px;border-left:6px solid var(--ok)}.status.error{border-left-color:var(--danger);background:#fef2f2}.footer{text-align:center;color:var(--muted);font-size:13px;margin:16px 0}.footer a{color:var(--primary);font-weight:700}
-@media(max-width:700px){.wrap{padding:9px}.topbar{align-items:flex-start;flex-direction:column}.hero h1{font-size:22px}.grid{grid-template-columns:1fr}.rating-row{grid-template-columns:1fr}.score{text-align:left}.nav{width:100%}.nav a{flex:1;text-align:center}.card{padding:14px}.brand img{width:72px;height:44px}}
+:root{--blue:#075985;--brand:#007f7a;--bg:#eef8fc;--line:#cfe3f5;--soft:#f8fbff}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#eef8fc,#f8fcff);font-family:Arial,Helvetica,sans-serif;color:#003b63}
+.wrap{max-width:940px;margin:0 auto;padding:18px}
+.header{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-bottom:14px}
+.brand{display:flex;gap:12px;align-items:center}
+.brand img{width:88px;height:auto;background:white;border-radius:8px}
+.brand h1{font-size:18px;margin:0}
+.brand p{margin:4px 0 0;color:#64748b}
+.nav a{font-weight:700;color:#075985;margin-left:12px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;margin:12px 0;box-shadow:0 10px 28px rgba(2,80,120,.08)}
+.hero h2{font-size:28px;margin:0 0 8px;color:#075985}
+.hero p{margin:0;color:#4b6380}
+.note{background:#effcf9;border:1px solid #99f6e4;border-radius:14px;padding:12px;font-weight:700}
+h3{margin:0 0 14px;color:#075985}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{font-weight:700;display:block;margin-bottom:6px}
+input,select,textarea{width:100%;border:1px solid #bfd7ec;border-radius:12px;padding:12px;font:inherit;background:#fff}
+textarea{min-height:88px;resize:vertical}
+small{color:#64748b}
+.rating-row{display:grid;grid-template-columns:1fr auto 44px;gap:12px;align-items:center;border-bottom:1px solid #e2edf8;padding:11px 0}
+.rating-title{font-weight:700;color:#0f2742}
+.stars{display:flex;gap:3px}
+.star{border:0;background:transparent;font-size:26px;color:#cbd5e1;cursor:pointer;padding:0 2px}
+.star.active{color:#f59e0b}
+.score{font-weight:800;color:#075985;text-align:right}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+button{border:0;border-radius:14px;padding:13px 20px;font-weight:800;cursor:pointer}
+.primary{background:#0b79bd;color:white}
+.secondary{background:#eaf6ff;color:#075985;border:1px solid #bfdbfe}
+.status{display:none;margin-top:12px;border-radius:14px;padding:14px;line-height:1.5}
+.status.ok{display:block;background:#ecfdf5;border:1px solid #86efac;color:#166534}
+.status.err{display:block;background:#fff1f2;border:1px solid #fca5a5;color:#991b1b}
+.required{color:#dc2626}
+@media(max-width:720px){.grid,.rating-row{grid-template-columns:1fr}.header{display:block}.nav{margin-top:10px}.stars{justify-content:flex-start}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar">
-    <div class="brand"><img src="https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/assets/logo-vpmed.png" alt="Logo VPMED"><div><strong>Hệ thống Hỗ trợ – Dược lâm sàng</strong><small>Bệnh viện VPMED Tân Hưng</small></div></div>
-    <nav class="nav"><a href="#" data-close-evaluation>Trang chủ</a><a href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener">Facebook Khoa Dược</a></nav>
-  </div>
-
-  <header class="hero"><h1>Đánh giá nhanh hệ thống kháng sinh</h1><p>4 tiêu chí cốt lõi, hoàn thành trong khoảng 30–60 giây.</p></header>
-  <div class="intro"><strong>Mục đích:</strong> ghi nhận trải nghiệm thực tế và phát hiện nội dung chuyên môn cần rà soát.</div>
-
-  <form id="evalForm" novalidate>
-    <section class="card">
-      <div class="section-title">1. Thông tin người đánh giá</div>
-      <div class="grid">
-        <div class="form-group"><label for="department">Khoa/Phòng <span class="required">*</span></label><input id="department" required placeholder="Ví dụ: Nội tổng hợp"></div>
-        <div class="form-group"><label for="role">Chức danh</label><select id="role"><option>Bác sĩ điều trị</option><option>Bác sĩ nội trú</option><option>Bác sĩ hồi sức</option><option>Dược sĩ lâm sàng</option><option>Điều dưỡng</option><option>Khác</option></select></div>
+  <header class="header">
+    <div class="brand">
+      <img src="assets/logo-vpmed.png" alt="Logo VPMED">
+      <div>
+        <h1>Hệ thống Hỗ trợ – Dược lâm sàng</h1>
+        <p>Bệnh viện VPMED Tân Hưng</p>
       </div>
-      <div class="form-group"><label for="doctorName">Họ tên <span class="hint">(không bắt buộc)</span></label><input id="doctorName" autocomplete="name" placeholder="Có thể để trống"></div>
+    </div>
+    <nav class="nav">
+      <a href="https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/">Trang chủ</a>
+      <a href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener">Facebook Khoa Dược</a>
+    </nav>
+  </header>
+
+  <section class="card hero">
+    <h2>Đánh giá hệ thống hỗ trợ sử dụng kháng sinh</h2>
+    <p>Phiếu dùng để lấy ý kiến bác sĩ/dược sĩ nhằm hoàn thiện web trước khi tổng hợp báo cáo trình Hội đồng Thuốc & Điều trị.</p>
+  </section>
+
+  <div class="note">Mục tiêu: ghi nhận trải nghiệm thực tế, phát hiện lỗi và các nội dung chuyên môn cần rà soát.</div>
+
+  <form id="evalForm">
+    <section class="card">
+      <h3>1. Thông tin người đánh giá</h3>
+      <div class="grid">
+        <div><label>Khoa/Phòng <span class="required">*</span></label><input id="khoaPhong" placeholder="Ví dụ: Nội tổng hợp" required></div>
+        <div><label>Chức danh</label><select id="chucDanh"><option>Bác sĩ điều trị</option><option>Dược sĩ lâm sàng</option><option>Điều dưỡng</option><option>Khác</option></select></div>
+        <div><label>Họ tên <small>(không bắt buộc)</small></label><input id="hoTen" placeholder="Có thể để trống"></div>
+        <div><label>Tần suất sử dụng kháng sinh</label><select id="tanSuat"><option>Thường xuyên</option><option>Thỉnh thoảng</option><option>Ít khi</option></select></div>
+      </div>
     </section>
 
     <section class="card">
-      <div class="section-title">2. Chấm điểm 1–5</div>
-      <div class="hint">1 = Chưa đạt · 3 = Chấp nhận được · 5 = Rất tốt</div>
-      <div id="ratings"></div>
-      <div class="invalid-note" id="ratingError">Vui lòng chấm đủ 4 tiêu chí.</div>
+      <h3>2. Chấm điểm tiêu chí 1–5</h3>
+      <small>1 = Chưa phù hợp · 3 = Chấp nhận được · 5 = Rất tốt</small>
+      <div id="ratingBox"></div>
     </section>
 
     <section class="card">
-      <div class="section-title">3. Góp ý</div>
-      <div class="form-group"><label for="feedback">Góp ý hoặc lỗi đã gặp <span class="hint">(không bắt buộc)</span></label><textarea id="feedback" placeholder="Ghi ngắn gọn nội dung cần cải thiện..."></textarea></div>
-      <div class="form-group"><label for="accuracyIssue">Thông tin chuyên môn cần rà soát <span class="hint">(nếu có)</span></label><textarea id="accuracyIssue" placeholder="Ví dụ: liều, pha truyền, tương tác, chống chỉ định, nguồn..."></textarea></div>
+      <h3>3. Câu hỏi chọn nhanh</h3>
+      <div class="grid">
+        <div><label>Anh/chị có sẵn sàng sử dụng công cụ này không?</label><select id="sanSang"><option>Có</option><option>Có, nhưng cần chỉnh sửa thêm</option><option>Chưa</option></select></div>
+        <div><label>Anh/chị có đề xuất triển khai dùng thử tại khoa/phòng không?</label><select id="deXuat"><option>Có</option><option>Cân nhắc sau khi chỉnh sửa</option><option>Chưa</option></select></div>
+      </div>
+      <div style="margin-top:12px"><label>Nội dung hữu ích nhất của công cụ</label><select id="huuIch"><option>Tính CrCl/eGFR</option><option>Hiệu chỉnh liều kháng sinh</option><option>Tra cứu danh mục kháng sinh</option><option>Kiểm tra tương tác thuốc</option><option>Thông tin an toàn thuốc</option><option>Nguồn tham khảo</option><option>Khác</option></select></div>
     </section>
 
     <section class="card">
-      <div class="actions"><button id="submitBtn" class="btn btn-primary" type="submit">Gửi đánh giá</button><button id="resetBtn" class="btn btn-secondary" type="button">Nhập lại</button><div class="spinner" id="spinner"></div></div>
-      <div class="hint" style="margin-top:9px">Phiếu chỉ gửi các trường cần thiết; không thu thập thiết bị, UserAgent hoặc địa chỉ trang.</div>
+      <h3>4. Góp ý hoàn thiện</h3>
+      <label>Góp ý hoặc lỗi gặp phải <small>(không bắt buộc)</small></label>
+      <textarea id="gopY" placeholder="Ví dụ: không tìm thấy thuốc, giao diện khó nhìn, thao tác chậm, lỗi trên điện thoại..."></textarea>
+
+      <label style="margin-top:12px">Nội dung chuyên môn cần rà soát <small>(nếu có)</small></label>
+      <textarea id="chuyenMon" placeholder="Ví dụ: liều dùng, hiệu chỉnh liều theo CrCl, HD/CRRT, pha truyền, tương tác, chống chỉ định, ADR, nguồn tham khảo..."></textarea>
+
+      <label style="margin-top:12px">Đề xuất chức năng cần bổ sung <small>(nếu có)</small></label>
+      <textarea id="chucNang" placeholder="Ví dụ: thêm bệnh lý, thêm nhóm thuốc khác, in phiếu, lưu bệnh nhân, cảnh báo tự động..."></textarea>
+    </section>
+
+    <section class="card">
+      <div class="actions">
+        <button class="primary" type="submit" id="submitBtn">Gửi đánh giá</button>
+        <button class="secondary" type="button" id="resetBtn">Nhập lại</button>
+      </div>
+      <div id="statusBox" class="status"></div>
     </section>
   </form>
 
-  <div class="status" id="statusBox" role="status" aria-live="polite"></div>
-  <footer class="footer">© 2026 Khoa Dược · Bệnh viện VPMED Tân Hưng · <a href="#" data-close-evaluation>Quay lại hệ thống</a></footer>
+  <footer style="text-align:center;color:#64748b;margin:18px 0">© 2026 Khoa Dược · Bệnh viện VPMED Tân Hưng · <a href="#" onclick="history.back();return false;">Quay lại hệ thống</a></footer>
 </div>
+
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxRQhht_S6L_pZxKaDzf56lQv0cgTrh2R-OU9ya1ABnc1rmul45QHwCRmKJfEdTVPnFcg/exec';
-const ratingItems=['Giao diện và dễ sử dụng','Tốc độ và độ ổn định','Kết quả CrCl/eGFR và hiệu chỉnh liều','Thông tin thuốc, tương tác và pha truyền'];
-const ratings={};
-function esc(s){return String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function val(id){return document.getElementById(id)?.value?.trim()||''}
-function init(){const box=document.getElementById('ratings');ratingItems.forEach((name,idx)=>{ratings[name]=0;const row=document.createElement('div');row.className='rating-row';row.innerHTML=`<strong>${idx+1}. ${esc(name)}</strong><div class="stars" data-name="${esc(name)}">${[1,2,3,4,5].map(n=>`<span class="star" tabindex="0" role="button" data-score="${n}">★</span>`).join('')}</div><div class="score" id="score-${idx}">0/5</div>`;box.appendChild(row)});document.querySelectorAll('.stars').forEach((stars,idx)=>{const choose=e=>{const star=e.target.closest('.star');if(!star)return;const score=Number(star.dataset.score);ratings[stars.dataset.name]=score;stars.querySelectorAll('.star').forEach(s=>s.classList.toggle('active',Number(s.dataset.score)<=score));document.getElementById('score-'+idx).textContent=score+'/5';document.getElementById('ratingError').style.display='none'};stars.addEventListener('click',choose);stars.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.classList.contains('star')){e.preventDefault();choose(e)}})})}
-function collect(){return{doctorName:val('doctorName'),department:val('department'),role:val('role'),ratings:{...ratings},feedback:val('feedback'),accuracyIssue:val('accuracyIssue'),version:'Phiếu nhanh 2026.07'}}
-function setLoading(on){const b=document.getElementById('submitBtn');b.disabled=on;b.textContent=on?'Đang gửi...':'Gửi đánh giá';document.getElementById('spinner').style.display=on?'block':'none'}
-function resetForm(){document.getElementById('evalForm').reset();Object.keys(ratings).forEach(k=>ratings[k]=0);document.querySelectorAll('.star').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.score').forEach(s=>s.textContent='0/5');document.getElementById('ratingError').style.display='none';window.scrollTo({top:0,behavior:'smooth'})}
-function showStatus(ok,title,text){const box=document.getElementById('statusBox');box.className='status'+(ok?'':' error');box.style.display='block';box.innerHTML=`<div class="section-title">${esc(title)}</div><p>${esc(text)}</p>`;box.scrollIntoView({behavior:'smooth',block:'center'})}
-document.getElementById('evalForm').addEventListener('submit',async e=>{e.preventDefault();if(!val('department')){document.getElementById('department').focus();showStatus(false,'Chưa thể gửi','Vui lòng nhập Khoa/Phòng.');return}if(Object.values(ratings).some(x=>x===0)){document.getElementById('ratingError').style.display='block';document.getElementById('ratings').scrollIntoView({behavior:'smooth'});return}const data=collect();setLoading(true);const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),8000);try{await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(data),signal:controller.signal,keepalive:true});showStatus(true,'Đã gửi đánh giá','Cảm ơn bạn đã phản hồi.');resetForm()}catch(err){showStatus(false,'Chưa xác nhận được kết quả gửi','Vui lòng kiểm tra kết nối và thử lại.')}finally{clearTimeout(timer);setLoading(false)}});
-document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Xóa toàn bộ nội dung đang nhập?'))resetForm()});
 
-function closeEvaluation(){
-  if(window.parent && window.parent !== window){
-    window.parent.postMessage({type:'close-evaluation-modal'}, window.location.origin);
-  }else{
-    window.location.href='https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/';
+const criteria = [
+  'Giao diện dễ hiểu, dễ thao tác',
+  'Tốc độ phản hồi và độ ổn định',
+  'Tính tiện dụng trong thực hành lâm sàng',
+  'Kết quả CrCl/eGFR rõ ràng, dễ hiểu',
+  'Gợi ý hiệu chỉnh liều kháng sinh phù hợp',
+  'Danh mục kháng sinh nội trú dễ tra cứu',
+  'Thông tin an toàn thuốc đầy đủ: ADR, chống chỉ định, tương tác, pha truyền, TDM',
+  'Kiểm tra tương tác thuốc/chống chỉ định phối hợp',
+  'Nguồn tham khảo rõ ràng, đáng tin cậy',
+  'Mức độ sẵn sàng sử dụng thử tại bệnh viện'
+];
+
+const ratings = {};
+function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function renderRatings(){
+  const box=document.getElementById('ratingBox');
+  box.innerHTML=criteria.map((c,i)=>{
+    const key='tc'+(i+1);
+    ratings[key]=ratings[key]||0;
+    return `<div class="rating-row"><div class="rating-title">${i+1}. ${esc(c)}</div><div class="stars" data-key="${key}">${[1,2,3,4,5].map(v=>`<button type="button" class="star" data-v="${v}">★</button>`).join('')}</div><div class="score" id="score-${key}">0/5</div></div>`;
+  }).join('');
+  bindStars();
+}
+function bindStars(){
+  document.querySelectorAll('.stars').forEach(group=>{
+    group.querySelectorAll('.star').forEach(star=>{
+      star.onclick=()=>{
+        const key=group.dataset.key, v=Number(star.dataset.v);
+        ratings[key]=v;
+        group.querySelectorAll('.star').forEach(s=>s.classList.toggle('active',Number(s.dataset.v)<=v));
+        document.getElementById('score-'+key).textContent=v+'/5';
+      };
+    });
+  });
+}
+function val(id){return document.getElementById(id).value.trim()}
+function show(ok,msg){const b=document.getElementById('statusBox'); b.className='status '+(ok?'ok':'err'); b.textContent=msg}
+function resetForm(){
+  document.getElementById('evalForm').reset();
+  Object.keys(ratings).forEach(k=>ratings[k]=0);
+  renderRatings();
+  document.getElementById('statusBox').className='status';
+}
+async function submitEval(e){
+  e.preventDefault();
+  if(!val('khoaPhong')){show(false,'Vui lòng nhập Khoa/Phòng.');return}
+  const values=Object.values(ratings);
+  if(values.length<10 || values.some(v=>!v)){show(false,'Vui lòng chấm đủ 10 tiêu chí.');return}
+
+  const payload={
+    action:'submitEvaluation',
+    hoTen:val('hoTen'),
+    khoaPhong:val('khoaPhong'),
+    chucDanh:val('chucDanh'),
+    tanSuatSuDungKhangSinh:val('tanSuat'),
+    ratings,
+    sanSangSuDung:val('sanSang'),
+    deXuatTrienKhaiThu:val('deXuat'),
+    noiDungHuuIchNhat:val('huuIch'),
+    gopY_LoiGapPhai:val('gopY'),
+    noiDungChuyenMonCanRaSoat:val('chuyenMon'),
+    deXuatChucNangBoSung:val('chucNang'),
+    version:'VPMED Evaluation HĐT&ĐT v1'
+  };
+
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='Đang gửi...';
+  try{
+    const res=await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    show(true,'Đã gửi đánh giá. Xin cảm ơn.');
+    resetForm();
+  }catch(err){
+    show(false,'Chưa gửi được phiếu. Vui lòng kiểm tra kết nối hoặc Apps Script.');
+  }finally{
+    btn.disabled=false; btn.textContent='Gửi đánh giá';
   }
 }
-document.querySelectorAll('[data-close-evaluation]').forEach(link=>{
-  link.addEventListener('click',e=>{e.preventDefault();closeEvaluation()});
-});
-init();
+renderRatings();
+document.getElementById('evalForm').addEventListener('submit',submitEval);
+document.getElementById('resetBtn').addEventListener('click',resetForm);
 </script>
 </body>
 </html>
