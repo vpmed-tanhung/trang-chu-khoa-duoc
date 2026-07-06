@@ -1,85 +1,155 @@
+/* VPMED - evaluation-embed.js
+   BẢN THAY THẾ HOÀN TOÀN.
+   Mục tiêu: nút/link Đánh giá chỉ mở đúng phieu-danh-gia.html trong modal.
+   Không mở lại trang chủ/index.html trong khung.
+*/
 (function () {
   'use strict';
 
-  const FORM_URL = 'phieu-danh-gia.html';
-  const LINK_SELECTORS = [
-    'a.nav-evaluation',
-    'a[href*="phieu-danh-gia-khang-sinh"]'
-  ];
+  if (window.__VPMED_EVALUATION_EMBED_FINAL__) return;
+  window.__VPMED_EVALUATION_EMBED_FINAL__ = true;
 
-  function createModal() {
-    if (document.getElementById('evaluationEmbedModal')) return;
+  const EVAL_PATH = 'phieu-danh-gia.html';
+
+  function getEvalUrl() {
+    const url = new URL(EVAL_PATH, window.location.href);
+    url.searchParams.set('embed', '1');
+    url.searchParams.set('v', String(Date.now()));
+    return url.toString();
+  }
+
+  function ensureStyle() {
+    if (document.getElementById('vpmed-evaluation-final-style')) return;
 
     const style = document.createElement('style');
+    style.id = 'vpmed-evaluation-final-style';
     style.textContent = `
-      #evaluationEmbedModal{position:fixed;inset:0;z-index:99999;display:none;background:rgba(15,23,42,.62);padding:12px}
-      #evaluationEmbedModal.is-open{display:flex;align-items:center;justify-content:center}
-      #evaluationEmbedPanel{width:min(980px,100%);height:min(94vh,980px);background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.28);display:flex;flex-direction:column}
-      #evaluationEmbedHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid #dbe5ef;background:#fff}
-      #evaluationEmbedHeader strong{color:#064675;font:700 16px Arial,sans-serif}
-      #evaluationEmbedClose{border:0;border-radius:10px;background:#eaf2fb;color:#064675;font:700 15px Arial,sans-serif;padding:9px 13px;cursor:pointer}
-      #evaluationEmbedFrame{width:100%;height:100%;border:0;background:#eef5fb}
-      @media(max-width:700px){#evaluationEmbedModal{padding:0}#evaluationEmbedPanel{width:100%;height:100vh;border-radius:0}}
+      .vpmed-eval-backdrop{
+        position:fixed;
+        inset:0;
+        z-index:999999;
+        background:rgba(15,23,42,.60);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:16px;
+      }
+      .vpmed-eval-modal{
+        width:min(980px,96vw);
+        height:min(900px,92vh);
+        background:#ffffff;
+        border-radius:18px;
+        overflow:hidden;
+        box-shadow:0 28px 80px rgba(15,23,42,.34);
+        border:1px solid #dbeafe;
+        display:flex;
+        flex-direction:column;
+      }
+      .vpmed-eval-head{
+        flex:0 0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        padding:14px 18px;
+        border-bottom:1px solid #dbeafe;
+        background:#ffffff;
+        color:#075985;
+        font-weight:900;
+      }
+      .vpmed-eval-close{
+        border:0;
+        border-radius:12px;
+        padding:9px 14px;
+        font-weight:900;
+        background:#eaf6ff;
+        color:#075985;
+        cursor:pointer;
+      }
+      .vpmed-eval-frame{
+        flex:1 1 auto;
+        width:100%;
+        min-height:0;
+        border:0;
+        background:#eef8fc;
+      }
+      @media(max-width:720px){
+        .vpmed-eval-backdrop{padding:0}
+        .vpmed-eval-modal{width:100vw;height:100vh;border-radius:0}
+      }
     `;
     document.head.appendChild(style);
+  }
 
-    const modal = document.createElement('div');
-    modal.id = 'evaluationEmbedModal';
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-    modal.setAttribute('aria-label', 'Phiếu đánh giá phần mềm');
-    modal.innerHTML = `
-      <div id="evaluationEmbedPanel">
-        <div id="evaluationEmbedHeader">
-          <strong>Phiếu đánh giá phần mềm</strong>
-          <button type="button" id="evaluationEmbedClose" aria-label="Đóng phiếu đánh giá">Đóng</button>
+  function closeEvaluationModal() {
+    document.querySelectorAll('.vpmed-eval-backdrop,[data-vpmed-eval-modal="1"]').forEach(el => el.remove());
+    document.body.style.overflow = '';
+  }
+
+  function openEvaluationModal() {
+    ensureStyle();
+    closeEvaluationModal();
+
+    const backdrop = document.createElement('div');
+    backdrop.className = 'vpmed-eval-backdrop';
+    backdrop.setAttribute('data-vpmed-eval-modal', '1');
+
+    backdrop.innerHTML = `
+      <div class="vpmed-eval-modal" role="dialog" aria-modal="true" aria-label="Phiếu đánh giá">
+        <div class="vpmed-eval-head">
+          <div>Phiếu đánh giá hệ thống hỗ trợ lâm sàng của Khoa Dược</div>
+          <button type="button" class="vpmed-eval-close">Đóng</button>
         </div>
-        <iframe id="evaluationEmbedFrame" title="Phiếu đánh giá phần mềm" loading="lazy"></iframe>
+        <iframe class="vpmed-eval-frame" src="${getEvalUrl()}" title="Phiếu đánh giá"></iframe>
       </div>
     `;
-    document.body.appendChild(modal);
 
-    const close = () => {
-      modal.classList.remove('is-open');
-      document.body.style.overflow = '';
-    };
-
-    document.getElementById('evaluationEmbedClose').addEventListener('click', close);
-    modal.addEventListener('click', (event) => {
-      if (event.target === modal) close();
-    });
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && modal.classList.contains('is-open')) close();
-    });
-    window.addEventListener('message', (event) => {
-      if (event.origin !== window.location.origin) return;
-      if (event.data && event.data.type === 'close-evaluation-modal') close();
-    });
-  }
-
-  function openEvaluation(event) {
-    event.preventDefault();
-    createModal();
-    const modal = document.getElementById('evaluationEmbedModal');
-    const frame = document.getElementById('evaluationEmbedFrame');
-    if (!frame.src) frame.src = FORM_URL;
-    modal.classList.add('is-open');
+    document.body.appendChild(backdrop);
     document.body.style.overflow = 'hidden';
-  }
 
-  function bindLinks() {
-    const links = document.querySelectorAll(LINK_SELECTORS.join(','));
-    links.forEach((link) => {
-      if (link.dataset.evaluationEmbedded === '1') return;
-      link.dataset.evaluationEmbedded = '1';
-      link.removeAttribute('target');
-      link.addEventListener('click', openEvaluation);
+    backdrop.querySelector('.vpmed-eval-close').addEventListener('click', closeEvaluationModal);
+    backdrop.addEventListener('click', function (ev) {
+      if (ev.target === backdrop) closeEvaluationModal();
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bindLinks);
-  } else {
-    bindLinks();
+  function isEvaluationLinkOrButton(el) {
+    if (!el) return false;
+
+    const href = String(el.getAttribute('href') || '').toLowerCase();
+    const dataView = String(el.getAttribute('data-view') || '').toLowerCase();
+    const dataOpen = String(el.getAttribute('data-open') || '').toLowerCase();
+    const dataEval = String(el.getAttribute('data-evaluation') || '').toLowerCase();
+    const text = String(el.textContent || '').toLowerCase();
+
+    if (href.includes('phieu-danh-gia')) return true;
+    if (href.includes('danh-gia-khang-sinh')) return true;
+    if (href.includes('danh-gia')) return true;
+    if (dataView.includes('evaluation') || dataOpen.includes('evaluation') || dataEval) return true;
+
+    // Chỉ bắt chữ Đánh giá ở link/nút, không bắt nội dung tiêu đề trong trang.
+    if ((el.tagName === 'A' || el.tagName === 'BUTTON') && (text.includes('đánh giá') || text.includes('danh gia'))) return true;
+
+    return false;
   }
+
+  document.addEventListener('click', function (ev) {
+    const trigger = ev.target.closest('a,button,[data-view],[data-open],[data-evaluation]');
+    if (!isEvaluationLinkOrButton(trigger)) return;
+    if (trigger.classList && trigger.classList.contains('vpmed-eval-close')) return;
+
+    ev.preventDefault();
+    ev.stopPropagation();
+    openEvaluationModal();
+  }, true);
+
+  window.addEventListener('message', function (ev) {
+    if (ev && ev.data && ev.data.type === 'close-evaluation-modal') {
+      closeEvaluationModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') closeEvaluationModal();
+  });
 })();
