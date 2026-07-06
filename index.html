@@ -114,7 +114,12 @@
       <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
     </div>
     <div class="page-title stats-title"><div><span class="kicker">633 cặp tương tác chống chỉ định</span><h1>Kiểm tra tương tác thuốc</h1><p>Tra cứu 633 cặp tương tác thuốc chống chỉ định theo từng hoạt chất trong Quyết định 5948/QĐ-BYT. Có thể nhập biệt dược hoặc hoạt chất; hệ thống tự quy đổi khi có dữ liệu tương ứng.</p></div><div class="mini-stats"><article><strong id="icount">0</strong><span>cặp tương tác</span></article><article><strong id="mcount">0</strong><span>thuốc/hoạt chất</span></article></div></div>
-
+    <section class="section-card">
+      <div class="section-heading"><div><span class="kicker">Kiểm tra nhanh</span><h2>Nhập hai thuốc cần kiểm tra</h2></div></div>
+      <div class="pair"><label>Thuốc thứ nhất<input id="a" list="meds" placeholder="Ví dụ: Ceftriaxon"></label><button class="swap" id="swap" title="Đổi vị trí">⇄</button><label>Thuốc thứ hai<input id="b" list="meds" placeholder="Ví dụ: Calci clorid"></label><button class="btn btn-primary" id="check">Kiểm tra</button></div>
+      <datalist id="meds"></datalist>
+      <div class="result" id="result">Nhập hai thuốc rồi bấm <b>Kiểm tra</b>.</div>
+    </section>
     <section class="section-card">
       <div class="section-heading"><div><span class="kicker">Danh mục đầy đủ</span><h2>Tra cứu tất cả tương tác</h2></div></div>
       <label class="search-wide">Tìm theo tên thuốc, hậu quả, cơ chế hoặc cách xử trí<input id="iq" placeholder="Nhập từ khóa..."></label>
