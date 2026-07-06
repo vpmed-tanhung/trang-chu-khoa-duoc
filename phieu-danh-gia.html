@@ -133,6 +133,9 @@ const criteria = [
 
 const ratings = {};
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function val(id){return document.getElementById(id).value.trim()}
+function show(ok,msg){const b=document.getElementById('statusBox'); b.className='status '+(ok?'ok':'err'); b.textContent=msg}
+
 function renderRatings(){
   const box=document.getElementById('ratingBox');
   box.innerHTML=criteria.map((c,i)=>{
@@ -142,6 +145,7 @@ function renderRatings(){
   }).join('');
   bindStars();
 }
+
 function bindStars(){
   document.querySelectorAll('.stars').forEach(group=>{
     group.querySelectorAll('.star').forEach(star=>{
@@ -154,19 +158,27 @@ function bindStars(){
     });
   });
 }
-function val(id){return document.getElementById(id).value.trim()}
-function show(ok,msg){const b=document.getElementById('statusBox'); b.className='status '+(ok?'ok':'err'); b.textContent=msg}
+
 function resetForm(){
   document.getElementById('evalForm').reset();
   Object.keys(ratings).forEach(k=>ratings[k]=0);
   renderRatings();
   document.getElementById('statusBox').className='status';
 }
+
 async function submitEval(e){
   e.preventDefault();
-  if(!val('khoaPhong')){show(false,'Vui lòng nhập Khoa/Phòng.');return}
+
+  if(!val('khoaPhong')){
+    show(false,'Vui lòng nhập Khoa/Phòng.');
+    return;
+  }
+
   const values=Object.values(ratings);
-  if(values.length<10 || values.some(v=>!v)){show(false,'Vui lòng chấm đủ 10 tiêu chí.');return}
+  if(values.length<10 || values.some(v=>!v)){
+    show(false,'Vui lòng chấm đủ 10 tiêu chí.');
+    return;
+  }
 
   const payload={
     action:'submitEvaluation',
@@ -174,7 +186,7 @@ async function submitEval(e){
     khoaPhong:val('khoaPhong'),
     chucDanh:val('chucDanh'),
     tanSuatSuDungKhangSinh:val('tanSuat'),
-    ratings,
+    ratings:ratings,
     sanSangSuDung:val('sanSang'),
     deXuatTrienKhaiThu:val('deXuat'),
     noiDungHuuIchNhat:val('huuIch'),
@@ -185,17 +197,26 @@ async function submitEval(e){
   };
 
   const btn=document.getElementById('submitBtn');
-  btn.disabled=true; btn.textContent='Đang gửi...';
+  btn.disabled=true;
+  btn.textContent='Đang gửi...';
+
   try{
-    const res=await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload)});
+    await fetch(SCRIPT_URL,{
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(payload)
+    });
     show(true,'Đã gửi đánh giá. Xin cảm ơn.');
     resetForm();
   }catch(err){
     show(false,'Chưa gửi được phiếu. Vui lòng kiểm tra kết nối hoặc Apps Script.');
   }finally{
-    btn.disabled=false; btn.textContent='Gửi đánh giá';
+    btn.disabled=false;
+    btn.textContent='Gửi đánh giá';
   }
 }
+
 renderRatings();
 document.getElementById('evalForm').addEventListener('submit',submitEval);
 document.getElementById('resetBtn').addEventListener('click',resetForm);
