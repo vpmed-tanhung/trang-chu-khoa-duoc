@@ -427,3 +427,8 @@
 /* PET/CT: bảng kế hoạch chỉ giữ cột cần thiết */
 #view-petct-dose .batchWait{white-space:nowrap;font-weight:700;color:#334155}
 #view-petct-dose .batchNote{font-size:13px;color:#334155}
+
+/* PET/CT: ép nhập thời gian dạng 24h, tránh AM/PM theo trình duyệt */
+#view-petct-dose input[placeholder="HH:mm"]{
+  letter-spacing:.02em;
+}
