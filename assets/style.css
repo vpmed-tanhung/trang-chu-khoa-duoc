@@ -569,3 +569,20 @@
     grid-template-columns:1fr;
   }
 }
+
+/* PET/CT: chỉ số đường huyết và huyết áp theo từng BN */
+#view-petct-dose .batchBloodPressure{
+  min-width:115px;
+}
+
+/* PET/CT: hiển thị rõ cột Huyết áp */
+#view-petct-dose .table-wrap table{
+  min-width:1580px!important;
+}
+#view-petct-dose .batchBloodPressure{
+  min-width:125px!important;
+}
+#view-petct-dose th:nth-child(6),
+#view-petct-dose td:nth-child(6){
+  min-width:130px;
+}

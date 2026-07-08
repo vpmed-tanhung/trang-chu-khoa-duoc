@@ -232,7 +232,7 @@
   <div class="kpi"><b>Tổng liều cần đặt</b><span id="batchExtra">--</span><div class="small">Tại thời điểm nhận thuốc</div></div>
   <div class="kpi"><b>Tối thiểu khi nhận tại viện</b><span id="batchRequiredFirst">--</span><div class="small">Theo công thức Excel</div></div>
 </div>
-<div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>#</th><th>Mã/Tên BN</th><th>Tình trạng</th><th>Cân nặng kg</th><th>Đường huyết</th><th>Hệ số riêng</th><th>Giờ tiêm</th><th>Giờ chụp</th><th>Liều tại thời điểm tiêm</th><th>Liều cần có lúc nhận từ NCC</th><th>Thể tích rút</th><th>Ghi chú</th></tr></thead><tbody id="batchTableBody"></tbody></table></div>
+<div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>#</th><th>Mã/Tên BN</th><th>Tình trạng bệnh nhân</th><th>Cân nặng kg</th><th>Đường huyết (mmol/L)</th><th>Huyết áp (mmHg)</th><th>Hệ số riêng</th><th>Giờ tiêm</th><th>Giờ chụp</th><th>Liều tại thời điểm tiêm</th><th>Liều cần có lúc nhận từ NCC</th><th>Thể tích rút</th><th>Ghi chú</th></tr></thead><tbody id="batchTableBody"></tbody></table></div>
 <div class="tip" style="margin-top:10px">
   <b>Giải thích công thức kế hoạch liều:</b>
   <ol style="margin:8px 0 0 20px; padding:0; line-height:1.65">
@@ -241,7 +241,7 @@
     <li><b>Liều cần lúc nhận từ NCC</b> = liều tại thời điểm tiêm × POWER(2, thời gian chờ × 1440 / hằng số bán rã). Trên web thời gian đã đổi sang phút.</li>
     <li><b>Tổng liều cần đặt</b> = tổng liều cần lúc nhận từ NCC.</li>
     <li><b>Tối thiểu khi nhận tại viện</b> = tổng liều cần đặt / POWER(2, thời gian từ NCC đến viện / hằng số bán rã).</li>
-    <li><b>Thể tích rút</b> = liều cần lúc nhận từ NCC / nồng độ hoạt độ, chỉ hiện khi nhập nồng độ.</li><li><b>Tình trạng từng bệnh nhân</b> nhập ngay trong từng dòng cùng cân nặng. Hệ thống ghi chú kiểm tra đường huyết/protocol; nếu có hệ số riêng theo SOP thì nhập tại dòng bệnh nhân đó.</li>
+    <li><b>Thể tích rút</b> = liều cần lúc nhận từ NCC / nồng độ hoạt độ, chỉ hiện khi nhập nồng độ.</li><li><b>Tình trạng từng bệnh nhân</b> nhập ngay trong từng dòng cùng cân nặng. Hệ thống ghi chú kiểm tra chỉ số đường huyết, chỉ số huyết áp/protocol; nếu có hệ số riêng theo SOP thì nhập tại dòng bệnh nhân đó.</li>
   </ol>
   <div style="margin-top:8px"><b>Ghi chú:</b> nếu chưa nhập thời điểm nhận thuốc từ đơn vị bán, hệ thống tạm tính mốc 00:00.</div>
 </div>
@@ -255,16 +255,21 @@
   <div>
     <label>Tình trạng / chỉ định chính</label>
     <select id="singleCondition">
-      <option value="oncology" selected>Ung thư / PET toàn thân</option>
-      <option value="diabetes">Tiểu đường / tăng đường huyết</option>
-      <option value="cardiac">Tim mạch</option>
-      <option value="neuro">Thần kinh / não</option>
+      <option value="oncology" selected>Ung thư</option>
+      <option value="diabetes">Đái tháo đường</option>
+      <option value="hypertension">Bệnh tăng huyết áp</option>
+      <option value="cardiac">Bệnh tim mạch</option>
+      <option value="neuro">Bệnh thần kinh</option>
       <option value="other">Khác / theo chỉ định riêng</option>
     </select>
   </div>
   <div>
     <label>Đường huyết trước tiêm (mmol/L)</label>
     <input id="singleGlucose" type="number" step="0.1" placeholder="Nhập nếu có">
+  </div>
+  <div>
+    <label>Huyết áp trước chụp (mmHg)</label>
+    <input id="singleBloodPressure" type="text" inputmode="numeric" placeholder="VD: 130/80">
   </div>
   <div>
     <label>Ghi chú tình trạng</label>
@@ -798,11 +803,16 @@ function calc(){
   const alerts=[];
   const singleCond=document.getElementById('singleCondition')?.value;
   const singleGlu=parseFloat(document.getElementById('singleGlucose')?.value);
+  const singleBp=petctParseBloodPressure(document.getElementById('singleBloodPressure')?.value);
   if(singleCond==='diabetes'){
-    if(isFinite(singleGlu) && singleGlu>=11.1) alerts.push(alertBox('warn','Tiểu đường/tăng đường huyết: đường huyết ≥ 11,1 mmol/L, cần báo bác sĩ/YHHN và xử trí theo SOP trước tiêm FDG.'));
+    if(isFinite(singleGlu) && singleGlu>=11.1) alerts.push(alertBox('warn','Đái tháo đường: đường huyết ≥ 11,1 mmol/L, cần báo bác sĩ/YHHN và xử trí theo SOP trước tiêm FDG.'));
     else if(!isFinite(singleGlu)) alerts.push(alertBox('warn','Tiểu đường: cần nhập/kiểm tra đường huyết trước tiêm.'));
-  }else if(singleCond==='cardiac') alerts.push(alertBox('warn','Chỉ định tim mạch: kiểm tra protocol tim mạch riêng của đơn vị.'));
+  }
+  else if(singleCond==='hypertension') alerts.push(alertBox('warn','Bệnh tăng huyết áp: cần nhập/kiểm tra chỉ số huyết áp, thuốc đang dùng và triệu chứng kèm theo.'));
+  else if(singleCond==='cardiac') alerts.push(alertBox('warn','Chỉ định tim mạch: kiểm tra protocol tim mạch riêng của đơn vị.'));
   else if(singleCond==='neuro') alerts.push(alertBox('warn','Chỉ định thần kinh/não: cần nghỉ yên, hạn chế kích thích theo SOP.'));
+  if(singleBp && (singleBp.sys>=180 || singleBp.dia>=110)) alerts.push(alertBox('err','Huyết áp rất cao: cần báo bác sĩ/YHHN trước khi tiếp tục.'));
+  else if(singleBp && (singleBp.sys>=140 || singleBp.dia>=90)) alerts.push(alertBox('warn','Chỉ số huyết áp tăng: ghi nhận và theo dõi theo SOP.'));
   const hasSingleInput = (isFinite(W)&&W>0) || (isFinite(k)&&k>0) || isFinite(dt) || (isFinite(conc)&&conc>0) || (isFinite(preA)&&preA>0) || (isFinite(resA)&&resA>0);
   if(hasSingleInput){
     if(!isFinite(W)||W<=0) alerts.push(alertBox('err','Cần nhập cân nặng bệnh nhân.'));
@@ -848,15 +858,17 @@ function addBatchRows(n=5){
       <td><input class="batchName" type="text" placeholder="Mã/Tên"></td>
       <td>
         <select class="batchCondition">
-          <option value="oncology" selected>Ung thư/PET toàn thân</option>
-          <option value="diabetes">Tiểu đường/tăng đường huyết</option>
-          <option value="cardiac">Tim mạch</option>
-          <option value="neuro">Thần kinh/não</option>
+          <option value="oncology" selected>Ung thư</option>
+          <option value="diabetes">Đái tháo đường</option>
+          <option value="hypertension">Bệnh tăng huyết áp</option>
+          <option value="cardiac">Bệnh tim mạch</option>
+          <option value="neuro">Bệnh thần kinh</option>
           <option value="other">Khác</option>
         </select>
       </td>
       <td><input class="batchWeight" type="number" step="0.1" placeholder="kg"></td>
       <td><input class="batchGlucose" type="number" step="0.1" placeholder="mmol/L"></td>
+      <td><input class="batchBloodPressure" type="text" inputmode="numeric" placeholder="VD: 130/80"></td>
       <td><input class="batchFactorOverride" type="number" step="0.001" placeholder="mCi/kg"></td>
       <td class="batchInj">--</td>
       <td class="batchScan">--</td>
@@ -893,19 +905,19 @@ function petctConditionInfo(){
   const cond=document.getElementById('batchCondition')?.value||'oncology';
   const glucose=parseFloat(document.getElementById('batchGlucose')?.value);
   const clinicalNote=(document.getElementById('batchClinicalNote')?.value||'').trim();
-  const info={label:'Ung thư/PET toàn thân', note:'Tính liều theo cân nặng và hệ số liều đang nhập.', warn:[]};
+  const info={label:'Ung thư', note:'Tính liều theo cân nặng và hệ số liều đang nhập.', warn:[]};
   if(cond==='diabetes'){
-    info.label='Tiểu đường/tăng đường huyết';
+    info.label='Đái tháo đường';
     info.note='Cần kiểm tra đường huyết, thời điểm dùng insulin/thuốc hạ đường huyết và thời gian nhịn ăn theo SOP.';
     if(isFinite(glucose)){
       if(glucose>=11.1) info.warn.push('Đường huyết ≥ 11,1 mmol/L: báo bác sĩ/YHHN để cân nhắc xử trí hoặc hoãn theo SOP.');
       else if(glucose>=8.3) info.warn.push('Đường huyết tăng: cần ghi nhận và đối chiếu SOP trước tiêm.');
     }else info.warn.push('Chưa nhập đường huyết trước tiêm cho bệnh nhân tiểu đường.');
   }else if(cond==='cardiac'){
-    info.label='Tim mạch';
+    info.label='Bệnh tim mạch';
     info.note='Kiểm tra protocol tim mạch riêng của đơn vị; thời gian chờ/ghi hình có thể khác PET toàn thân.';
   }else if(cond==='neuro'){
-    info.label='Thần kinh/não';
+    info.label='Bệnh thần kinh';
     info.note='Cần nghỉ yên, hạn chế kích thích trước tiêm/ghi hình theo SOP.';
   }else if(cond==='other'){
     info.label='Khác';
@@ -916,21 +928,33 @@ function petctConditionInfo(){
 }
 
 
+
+function petctParseBloodPressure(v){
+  const txt=String(v||'').trim();
+  if(!txt) return {text:'', sys:NaN, dia:NaN};
+  const m=txt.match(/(\d{2,3})\s*[\/\-]\s*(\d{2,3})/);
+  if(!m) return {text:txt, sys:NaN, dia:NaN};
+  return {text:txt, sys:parseFloat(m[1]), dia:parseFloat(m[2])};
+}
+
 function petctPatientConditionInfo(cond, glucose, factorOverride, globalFactor){
-  const info={label:'Ung thư/PET toàn thân', warnings:[], note:'Tính theo hệ số liều đang áp dụng.'};
+  const info={label:'Ung thư', warnings:[], note:'Tính theo hệ số liều đang áp dụng.'};
   if(cond==='diabetes'){
-    info.label='Tiểu đường/tăng đường huyết';
-    info.note='Cần kiểm tra đường huyết, nhịn ăn và thời điểm dùng insulin/thuốc hạ đường huyết theo SOP.';
+    info.label='Đái tháo đường';
+    info.note='Cần kiểm tra chỉ số đường huyết, nhịn ăn và thời điểm dùng insulin/thuốc hạ đường huyết theo SOP.';
     if(isFinite(glucose)){
       if(glucose>=11.1) info.warnings.push('ĐH ≥ 11,1 mmol/L');
       else if(glucose>=8.3) info.warnings.push('ĐH tăng');
       else info.warnings.push('ĐH đã kiểm tra');
     }else info.warnings.push('thiếu ĐH');
+  }else if(cond==='hypertension'){
+    info.label='Bệnh tăng huyết áp';
+    info.note='Cần nhập chỉ số huyết áp, ghi nhận thuốc huyết áp đang dùng và triệu chứng kèm theo theo SOP.';
   }else if(cond==='cardiac'){
-    info.label='Tim mạch';
-    info.note='Kiểm tra protocol tim mạch riêng; có thể khác PET toàn thân về chuẩn bị/thời gian chờ.';
+    info.label='Bệnh tim mạch';
+    info.note='Ghi nhận chỉ số huyết áp, triệu chứng tim mạch và thuốc đang dùng; kiểm tra protocol riêng nếu có.';
   }else if(cond==='neuro'){
-    info.label='Thần kinh/não';
+    info.label='Bệnh thần kinh';
     info.note='Cần nghỉ yên, hạn chế kích thích trước tiêm/ghi hình theo SOP.';
   }else if(cond==='other'){
     info.label='Khác';
@@ -969,12 +993,13 @@ function calcBatchDose(){
     const w=parseFloat(tr.querySelector('.batchWeight')?.value);
     const cond=tr.querySelector('.batchCondition')?.value||'oncology';
     const glucose=parseFloat(tr.querySelector('.batchGlucose')?.value);
+    const bp=petctParseBloodPressure(tr.querySelector('.batchBloodPressure')?.value);
     const factorOverride=parseFloat(tr.querySelector('.batchFactorOverride')?.value);
     const {info, appliedFactor}=petctPatientConditionInfo(cond, glucose, factorOverride, globalFactor);
 
     if(isFinite(w)&&w>0&&isFinite(appliedFactor)&&appliedFactor>0){
       const doseAtInjection=unit==='mCiKg'?w*appliedFactor:(w*appliedFactor/37);
-      data.push({tr,idx,w,doseAtInjection,cond,glucose,appliedFactor,info});
+      data.push({tr,idx,w,doseAtInjection,cond,glucose,bp,appliedFactor,info});
     } else {
       ['batchInj','batchScan','batchTarget','batchPlanned','batchVol'].forEach(cls=>{
         const el=tr.querySelector('.'+cls); if(el) el.textContent='--';
@@ -1018,6 +1043,14 @@ function calcBatchDose(){
       const bits=[d.info.label];
       if(isFinite(waitMin)) bits.push(`chờ ${fmt(waitMin,0)} phút`);
       if(!isFinite(supplierMinRaw)) bits.push('NCC 00:00');
+      if(isFinite(d.glucose)) bits.push(`ĐH ${fmt(d.glucose,1)} mmol/L`);
+      if(d.bp && d.bp.text) bits.push(`HA ${d.bp.text} mmHg`);
+      if(d.bp && (d.bp.sys>=180 || d.bp.dia>=110)) bits.push('HA rất cao - báo BS/YHHN');
+      else if(d.bp && (d.bp.sys>=140 || d.bp.dia>=90)) bits.push('HA tăng');
+      if(isFinite(d.glucose)) bits.push(`ĐH ${fmt(d.glucose,1)} mmol/L`);
+      if(d.bp && d.bp.text) bits.push(`HA ${d.bp.text} mmHg`);
+      if(d.bp && (d.bp.sys>=180 || d.bp.dia>=110)) bits.push('HA rất cao - báo BS/YHHN');
+      else if(d.bp && (d.bp.sys>=140 || d.bp.dia>=90)) bits.push('HA tăng');
       d.info.warnings.forEach(w=>bits.push(w));
       note.textContent=bits.join('; ');
     }
@@ -1028,11 +1061,17 @@ function calcBatchDose(){
     : NaN;
 
   const diabetesCount=data.filter(d=>d.cond==='diabetes').length;
+  const hypertensionConditionCount=data.filter(d=>d.cond==='hypertension').length;
   const cardiacCount=data.filter(d=>d.cond==='cardiac').length;
   const neuroCount=data.filter(d=>d.cond==='neuro').length;
-  if(diabetesCount) alerts.push(alertBox('warn',`Có ${diabetesCount} BN tiểu đường/tăng đường huyết: kiểm tra đường huyết, insulin/thuốc hạ đường huyết và nhịn ăn theo SOP.`));
-  if(cardiacCount) alerts.push(alertBox('warn',`Có ${cardiacCount} BN tim mạch: kiểm tra protocol tim mạch riêng trước khi chụp.`));
-  if(neuroCount) alerts.push(alertBox('warn',`Có ${neuroCount} BN thần kinh/não: đảm bảo nghỉ yên, hạn chế kích thích theo SOP.`));
+  const bpHighCount=data.filter(d=>d.bp && (d.bp.sys>=140 || d.bp.dia>=90)).length;
+  const bpVeryHighCount=data.filter(d=>d.bp && (d.bp.sys>=180 || d.bp.dia>=110)).length;
+  if(diabetesCount) alerts.push(alertBox('warn',`Có ${diabetesCount} BN đái tháo đường: kiểm tra đường huyết, insulin/thuốc hạ đường huyết và nhịn ăn theo SOP.`));
+  if(hypertensionConditionCount) alerts.push(alertBox('warn',`Có ${hypertensionConditionCount} BN bệnh tăng huyết áp: bắt buộc kiểm tra chỉ số huyết áp và thuốc đang dùng trước chụp.`));
+  if(bpHighCount) alerts.push(alertBox('warn',`Có ${bpHighCount} BN có chỉ số huyết áp tăng: ghi nhận, theo dõi triệu chứng và đối chiếu SOP trước chụp.`));
+  if(bpVeryHighCount) alerts.push(alertBox('err',`Có ${bpVeryHighCount} BN huyết áp rất cao: cần báo bác sĩ/YHHN trước khi tiếp tục.`));
+  if(cardiacCount) alerts.push(alertBox('warn',`Có ${cardiacCount} BN bệnh tim mạch: kiểm tra protocol tim mạch riêng trước khi chụp.`));
+  if(neuroCount) alerts.push(alertBox('warn',`Có ${neuroCount} BN bệnh thần kinh: đảm bảo nghỉ yên, hạn chế kích thích theo SOP.`));
 
   setText('batchCount',String(data.length||0));
   setText('batchTotalTarget',data.length?`${fmt(totalInjection,2)} mCi`:'--');
