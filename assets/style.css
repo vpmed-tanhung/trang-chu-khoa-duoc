@@ -449,3 +449,123 @@
 #view-petct-dose .petct-condition-grid label{
   color:#074d7c;
 }
+
+/* PET/CT: tình trạng theo từng bệnh nhân */
+#view-petct-dose .batchCondition{
+  min-width:170px;
+}
+#view-petct-dose .batchGlucose,
+#view-petct-dose .batchFactorOverride{
+  min-width:95px;
+}
+#view-petct-dose .batchNote{
+  min-width:180px;
+  font-size:13px;
+}
+
+
+/* PET/CT: kéo rộng khung và bảng cho dễ nhìn */
+#view-petct-dose.petct-wide-view{
+  max-width:none!important;
+}
+
+#view-petct-dose .petct-inline,
+#view-petct-dose .petct-inline > main.wrap,
+#view-petct-dose main.wrap{
+  max-width:1480px!important;
+  width:calc(100vw - 48px)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+
+#view-petct-dose .card,
+#view-petct-dose .resultBox,
+#view-petct-dose .tip,
+#view-petct-dose .table-wrap{
+  width:100%;
+}
+
+#view-petct-dose .grid3{
+  grid-template-columns:repeat(3,minmax(260px,1fr));
+  gap:14px;
+}
+
+#view-petct-dose .grid2{
+  grid-template-columns:repeat(2,minmax(320px,1fr));
+  gap:14px;
+}
+
+#view-petct-dose .resultBox{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(220px,1fr));
+  gap:14px;
+}
+
+#view-petct-dose .table-wrap{
+  overflow-x:auto;
+  border-radius:14px;
+}
+
+#view-petct-dose .table-wrap table{
+  width:100%;
+  min-width:1320px;
+  table-layout:auto;
+}
+
+#view-petct-dose .table-wrap th,
+#view-petct-dose .table-wrap td{
+  padding:12px 10px;
+  vertical-align:middle;
+}
+
+#view-petct-dose .batchName{
+  min-width:140px;
+}
+
+#view-petct-dose .batchCondition{
+  min-width:190px;
+}
+
+#view-petct-dose .batchWeight{
+  min-width:105px;
+}
+
+#view-petct-dose .batchGlucose,
+#view-petct-dose .batchFactorOverride{
+  min-width:105px;
+}
+
+#view-petct-dose .batchTarget,
+#view-petct-dose .batchPlanned{
+  min-width:145px;
+}
+
+#view-petct-dose .batchVol{
+  min-width:90px;
+}
+
+#view-petct-dose .batchNote{
+  min-width:230px;
+  line-height:1.45;
+}
+
+@media(max-width:1200px){
+  #view-petct-dose .petct-inline,
+  #view-petct-dose .petct-inline > main.wrap,
+  #view-petct-dose main.wrap{
+    width:calc(100vw - 28px)!important;
+  }
+  #view-petct-dose .resultBox{
+    grid-template-columns:repeat(2,minmax(220px,1fr));
+  }
+}
+
+@media(max-width:760px){
+  #view-petct-dose .grid3,
+  #view-petct-dose .grid2{
+    grid-template-columns:1fr;
+  }
+  #view-petct-dose .resultBox{
+    grid-template-columns:1fr;
+  }
+}
