@@ -432,3 +432,20 @@
 #view-petct-dose input[placeholder="HH:mm"]{
   letter-spacing:.02em;
 }
+
+/* PET/CT: sửa lệch cột, đưa thời gian chờ vào ghi chú */
+#view-petct-dose .batchNote{
+  min-width:120px;
+  color:#334155;
+  font-size:13px;
+}
+
+/* PET/CT: tình trạng bệnh nhân */
+#view-petct-dose .petct-condition-grid{
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed #cfe1ee;
+}
+#view-petct-dose .petct-condition-grid label{
+  color:#074d7c;
+}
