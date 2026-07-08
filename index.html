@@ -983,13 +983,9 @@ function calcBatchDose(){
   const data=[];
   const alerts=[];
   if(!isFinite(globalFactor)||globalFactor<=0) alerts.push(alertBox('err','Cần nhập hệ số liều chung cho danh sách bệnh nhân.'));
-  if(!isFinite(startMin)) alerts.push(alertBox('warn','Chưa nhập giờ tiêm bệnh nhân đầu tiên. Web không đặt giờ mặc định; cần nhập giờ tiêm thực tế.'));
-  if(!isFinite(interval)||interval<0) alerts.push(alertBox('warn','Khoảng cách giữa bệnh nhân chưa hợp lệ.'));
+if(!isFinite(interval)||interval<0) alerts.push(alertBox('warn','Khoảng cách giữa bệnh nhân chưa hợp lệ.'));
   if(!isFinite(half)||half<=0) alerts.push(alertBox('warn','Hằng số bán rã chưa hợp lệ.'));
-  if(!isFinite(supplierMinRaw)) alerts.push(alertBox('warn','Thời điểm nhận thuốc từ đơn vị bán đang trống: hệ thống tạm tính mốc 00:00.'));
-  if(!isFinite(hospitalMinRaw)) alerts.push(alertBox('warn','Thời điểm nhận thuốc tại viện đang trống: hệ thống tạm tính mốc 00:00.'));
-
-  rows.forEach((tr,idx)=>{
+rows.forEach((tr,idx)=>{
     const w=parseFloat(tr.querySelector('.batchWeight')?.value);
     const cond=tr.querySelector('.batchCondition')?.value||'oncology';
     const glucose=parseFloat(tr.querySelector('.batchGlucose')?.value);
