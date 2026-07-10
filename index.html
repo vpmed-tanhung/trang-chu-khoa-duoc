@@ -22,6 +22,7 @@
       <a class="nav-evaluation" href="https://vpmed-tanhung.github.io/phieu-danh-gia-khang-sinh/" target="_blank" rel="noopener">Đánh giá</a>
       <a class="facebook-text-link" href="https://www.facebook.com/KhoaDuoc.VPMEDTanHung/" target="_blank" rel="noopener noreferrer">Facebook</a>
       <button data-view="petct-dose">PET/CT</button>
+      <button data-view="icd10-bhyt">ICD-10</button>
       <button data-view="sources">Nguồn</button>
     </nav>
   </div>
@@ -36,12 +37,12 @@
         <div class="hero-intro">
           <p>Hệ thống hỗ trợ nhân viên y tế tra cứu thông tin thuốc, tính liều và tham khảo dữ liệu chuyên môn trong thực hành lâm sàng và y học hạt nhân.</p>
           <p>Các chức năng chính hiện có gồm:</p>
-          <ul>
-            <li>Tính liều kháng sinh theo chức năng thận bằng CrCl và eGFR.</li>
-            <li>Lập kế hoạch liều PET/CT – Y học hạt nhân cho nhiều bệnh nhân trong ngày, có bù phân rã theo thời gian tiêm và tính thể tích cần rút.</li>
-            <li>Tra cứu kháng sinh nội trú và phác đồ kháng sinh theo bệnh lý.</li>
-            <li>Kiểm tra tương tác thuốc, cảnh báo nguy cơ độc gan và hỗ trợ tra cứu an toàn thuốc.</li>
-            <li>Tra cứu sử dụng thuốc trong thai kỳ và thời kỳ cho con bú.</li>
+          <ul id="heroFeatureList" aria-live="polite">
+            <li><strong>Tính liều kháng sinh &amp; CrCl/eGFR:</strong> Tính Cockcroft–Gault, eGFR CKD-EPI 2021 và gợi ý liều theo chức năng thận.</li>
+            <li><strong>Tính liều PET/CT – Y học hạt nhân:</strong> Lập kế hoạch liều cho nhiều bệnh nhân, bù phân rã và tính thể tích cần rút.</li>
+            <li><strong>Danh mục kháng sinh nội trú:</strong> Tra cứu biệt dược, hoạt chất, liều, pha truyền, ADR và TDM.</li>
+            <li><strong>Kháng sinh theo bệnh lý:</strong> Tra cứu phác đồ kinh nghiệm cho các hội chứng nhiễm khuẩn thường gặp.</li>
+            <li><strong>Kiểm tra tương tác thuốc:</strong> Kiểm tra nhanh các cặp thuốc trong danh mục tương tác.</li>
           </ul>
           <p>Chọn chức năng phù hợp tại mục <strong>“Ứng dụng chính”</strong> bên dưới để sử dụng trực tiếp.</p>
         </div>
@@ -58,7 +59,9 @@
         <button class="feature-card" data-open="interactions"><span class="feature-icon">⚠️</span><b>Kiểm tra tương tác thuốc</b><small>Kiểm tra nhanh hai thuốc hoặc tìm trong toàn bộ danh mục tương tác.</small><em>Đang hoạt động</em></button>
         <button class="feature-card hepatotoxic-feature" data-open="hepatotoxicity"><span class="feature-icon">🫀</span><b>Thuốc có nguy cơ gây độc gan</b><small>Tra cứu thuốc trong kho nội trú, mức cảnh báo, nguy cơ chính và khuyến nghị theo dõi chức năng gan.</small><em>Danh mục nội bộ</em></button>
         <button class="feature-card pregnancy-feature" data-open="pregnancy-lactation"><span class="feature-icon">🤰</span><b>Thuốc dùng khi có thai & cho con bú</b><small>Tra cứu 151 hoạt chất/nhóm theo tài liệu nội bộ, kèm phân loại FDA/TGA và liên kết đối chiếu hiện hành.</small><em>Tra cứu đối tượng đặc biệt</em></button>
-        <button class="feature-card" data-open="sources"><span class="feature-icon">📚</span><b>Nguồn dữ liệu hệ thống</b><small>Mở các tệp nội bộ và xem nguyên tắc ưu tiên nguồn chuyên môn.</small><em>Đã đồng bộ</em></button>
+
+        <button class="feature-card icd10-feature" data-open="icd10-bhyt"><span class="feature-icon">🧾</span><b>ICD-10 & BHYT theo thuốc nội trú</b><small>Tìm thuốc trong kho, xem hồ sơ sử dụng và gợi ý mã ICD-10 phù hợp chỉ định để hạn chế xuất toán.</small><em>Công cụ mới</em></button>
+        <button class="feature-card" data-open="sources" data-intro-exclude="true"><span class="feature-icon">📚</span><b>Nguồn dữ liệu hệ thống</b><small>Mở các tệp nội bộ và xem nguyên tắc ưu tiên nguồn chuyên môn.</small><em>Đã đồng bộ</em></button>
       </div>
     </section>
   </section>
@@ -1105,6 +1108,28 @@ calc();
   </section>
 
 
+
+  <section class="view" id="view-icd10-bhyt">
+    <div class="back-home-wrap">
+      <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
+    </div>
+    <div class="page-title"><div><span class="kicker">BHYT · ICD-10 · Kho nội trú</span><h1>ICD-10 theo thuốc nội trú</h1><p>Tìm thuốc trong kho nội trú, rà soát liều dùng, cách dùng, chỉ định, chống chỉ định, tốc độ truyền, tương tác và gợi ý ICD-10 phù hợp để đối chiếu hồ sơ bệnh án.</p></div></div>
+    <section class="section-card compact icd10-card">
+      <div class="section-heading"><div><span class="kicker">Danh sách thuốc ngày 07/07</span><h2>Tìm thuốc trong kho nội trú</h2></div><span id="icdMedCount" class="result-chip">0 thuốc</span></div>
+      <div class="icd-filter-grid">
+        <label>Tìm tên thuốc / hoạt chất / SĐK<input id="icdMedQ" placeholder="Ví dụ: Meronem, Ceftriaxone, Vancomycin, Insulin..."></label>
+        <label>Nhóm thuốc<select id="icdMedCat"><option value="">Tất cả nhóm</option></select></label>
+        <label>Đường dùng<select id="icdMedRoute"><option value="">Tất cả đường dùng</option></select></label>
+      </div>
+      <div class="icd-layout"><div class="icd-med-list" id="icdMedList"></div><div class="icd-profile" id="icdMedProfile"></div></div>
+    </section>
+    <section class="section-card compact icd10-card">
+      <div class="section-heading"><div><span class="kicker">Tra cứu ICD-10 trực tiếp</span><h2>Tìm theo chẩn đoán thực tế</h2></div></div>
+      <label class="icd-direct-label">Nhập mã ICD, tên bệnh hoặc từ khóa chẩn đoán<input id="icdDirectQ" placeholder="Ví dụ: viêm phổi, viêm bàng quang, nhiễm khuẩn huyết, K83.0..."></label>
+      <div id="icdDirectResults" class="icd-direct-results"></div>
+    </section>
+  </section>
+
   <section class="view" id="view-sources">
     <div class="back-home-wrap">
       <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
@@ -1121,6 +1146,9 @@ calc();
         <article class="source-card"><div>📋</div><h3>Thông tư 21/2013/TT-BYT</h3><p>Quy định tổ chức và hoạt động của Hội đồng Thuốc và Điều trị trong bệnh viện; là căn cứ rà soát danh mục thuốc và phê duyệt hướng dẫn điều trị nội bộ.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://congbao.chinhphu.vn/van-ban/thong-tu-so-21-2013-tt-byt-7406/4043.htm">Mở văn bản chính thức (Công báo Chính phủ)</a></article>
         <article class="source-card"><div>📚</div><h3>Thư viện hướng dẫn chẩn đoán, điều trị</h3><p>Kho hướng dẫn chuyên môn do Cục Quản lý Khám, chữa bệnh công bố; dùng để cập nhật phác đồ theo từng bệnh lý.</p><a class="btn btn-soft" target="_blank" rel="noopener" href="https://kcb.vn/phac-do">Mở thư viện Bộ Y tế</a></article>
         <article class="source-card"><div>📗</div><h3>Danh mục kháng sinh nội trú của bệnh viện</h3><p>Danh sách biệt dược, hoạt chất, hàm lượng và đường dùng hiện có tại Bệnh viện VPMED Tân Hưng.</p><a class="btn btn-soft" href="sources/danh-muc-khang-sinh-noi-tru.xlsx">Mở tệp Excel</a></article>
+
+        <article class="source-card"><div>🧾</div><h3>ICD-10 BYT 2026</h3><p>Bảng mã ICD-10 chính thức anh cung cấp; dùng cho phần tra cứu mã bệnh, cảnh báo mã không dùng làm bệnh chính và mã cần chọn chi tiết hơn.</p><a class="btn btn-soft" href="sources/ICD10_BYT2026_ChinhThuc.xlsx">Mở tệp Excel</a></article>
+        <article class="source-card"><div>🏥</div><h3>Danh sách thuốc kho nội trú ngày 07/07</h3><p>Dữ liệu tên thuốc, hoạt chất, hàm lượng, đường dùng, số đăng ký, quy cách và hạn dùng từ danh mục nội trú.</p><a class="btn btn-soft" href="sources/DANH_SACH_THUOC_NGAY_07_07.xls">Mở tệp Excel</a></article>
         <article class="source-card"><div>📙</div><h3>633 cặp tương tác chống chỉ định nội bộ</h3><p>Dữ liệu được chuẩn hóa từ danh mục tương tác chống chỉ định, gồm hậu quả, cơ chế, cách xử trí và nguồn tham khảo.</p><a class="btn btn-soft" href="sources/danh-muc-tuong-tac-chong-chi-dinh.xls">Mở tệp Excel</a></article>
       </div>
 
@@ -1168,6 +1196,12 @@ calc();
 <script src="assets/clinical_dosing.js"></script>
 <script src="assets/diseases.js"></script>
 <script src="assets/unified.js"></script>
+<script src="assets/home_feature_sync.js"></script>
+<script src="assets/inpatient_medicines_20260707.js"></script>
+<script src="assets/icd10_byt2026_data.js"></script>
+<script src="assets/icd10_verified_profiles_20260710.js"></script>
+<script src="assets/drug_profiles_305_vpmed_20260710.js"></script>
+<script src="assets/icd10_bhyt_lookup.js"></script>
 <script src="vpmed-interaction-compact.js"></script>
 <script src="vpmed-dose-reset.js"></script>
 <script src="vpmed-remove-quick-two-drug.js"></script>

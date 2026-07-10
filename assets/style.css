@@ -607,3 +607,147 @@
 .petct-source-grid{
   margin-top:12px;
 }
+
+
+/* ICD-10 & BHYT lookup */
+.icd10-feature{border-color:#c9dff0;background:linear-gradient(180deg,#ffffff 0%,#f2f9ff 100%)}
+.icd10-warning{border-left:5px solid #0b5d92;background:#f3f9ff;color:#17384f;line-height:1.65}
+.result-chip{display:inline-flex;align-items:center;border-radius:999px;padding:8px 12px;background:#eef6ff;color:#075985;font-weight:700;font-size:13px}
+.icd-filter-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.icd-filter-grid label,.icd-direct-label{font-weight:700;color:#17384f;display:flex;flex-direction:column;gap:7px}
+.icd-filter-grid input,.icd-filter-grid select,.icd-direct-label input{border:1px solid #cbddea;border-radius:13px;padding:12px 14px;font:inherit;background:#fff;color:#18384c}
+.icd-layout{display:grid;grid-template-columns:minmax(270px,34%) 1fr;gap:16px;align-items:start}
+.icd-med-list{display:flex;flex-direction:column;gap:8px;max-height:720px;overflow:auto;padding-right:4px}
+.icd-med-item{text-align:left;border:1px solid #d7e6f0;background:#fff;border-radius:16px;padding:12px 14px;cursor:pointer;box-shadow:0 6px 16px rgba(13,56,89,.06)}
+.icd-med-item b{display:block;color:#062f4f;font-size:15px;margin-bottom:4px}
+.icd-med-item span{display:block;color:#34576c;font-size:13px;line-height:1.35}
+.icd-med-item small{display:block;color:#71889a;margin-top:5px;line-height:1.35}
+.icd-med-item.active{border-color:#075f9f;background:#eef8ff;box-shadow:0 8px 18px rgba(7,95,159,.13)}
+.icd-profile{min-height:360px}
+.icd-profile-head{background:linear-gradient(135deg,#eff8ff,#ffffff);border:1px solid #cfe1ee;border-radius:20px;padding:18px;margin-bottom:12px}
+.icd-profile-head h2{margin:4px 0 8px;color:#062f4f;font-size:26px;line-height:1.15}
+.icd-profile-head p{margin:0 0 10px;line-height:1.55;color:#25465a}
+.icd-meta{display:flex;gap:8px;flex-wrap:wrap}
+.icd-meta span{background:#fff;border:1px solid #d9e8f2;border-radius:999px;padding:7px 10px;color:#31576d;font-size:13px}
+.icd-safety-note{border:1px solid #f0cf82;background:#fff8dc;border-radius:16px;padding:13px 15px;color:#60470b;line-height:1.6;margin:10px 0 12px}
+.icd-product-box,.icd-source-box,.icd-profile-level{border:1px solid #dae7f0;border-radius:16px;padding:14px;background:#fff;margin:12px 0;line-height:1.55}
+.icd-product-box h3,.icd-source-box h3,.icd-clinical-grid h3{margin:0 0 8px;color:#06476f;font-size:17px}
+.icd-product-box p,.icd-source-box p{margin:0}
+.icd-clinical-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.icd-clinical-grid section{background:#fff;border:1px solid #dae7f0;border-radius:16px;padding:14px;min-height:110px}
+.icd-clinical-grid p,.icd-clinical-grid ul{margin:0;color:#25465a;line-height:1.55}
+.icd-clinical-grid ul{padding-left:18px}
+.icd-ddi{border-top:1px dashed #d4e3ee;padding-top:8px;margin-top:8px}
+.icd-ddi:first-child{border-top:0;padding-top:0;margin-top:0}
+.icd-suggest-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin:16px 0 10px}
+.icd-suggest-head h3{margin:0;color:#062f4f}
+.icd-suggest-head div{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.icd-suggest-head span{background:#eaf6ff;color:#075985;border:1px solid #c8e0f2;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700}
+.icd-code-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.icd-code-card{border:1px solid #d9e8f2;background:#fff;border-radius:15px;padding:12px;line-height:1.45;box-shadow:0 4px 12px rgba(13,56,89,.04)}
+.icd-code-card>div{display:flex;gap:10px;align-items:flex-start}
+.icd-code-card b{background:#0b5d92;color:white;border-radius:9px;padding:4px 7px;min-width:62px;text-align:center}
+.icd-code-card strong{color:#0a3452;font-size:15px}
+.icd-code-card small{display:block;color:#6a8192;margin-top:6px}
+.icd-code-card p{margin:7px 0 0;color:#465f70;font-size:13px}
+.icd-flags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.icd-flags span{background:#fff0e8;border:1px solid #ffc7a8;color:#9a3412;border-radius:999px;padding:3px 7px;font-size:11px;font-weight:700}
+.icd-ok{margin-top:8px;color:#166534;background:#effaf1;border:1px solid #b8e4c0;border-radius:10px;padding:6px 8px;font-size:12px;font-weight:700}
+.icd-direct-results{margin-top:12px}
+@media(max-width:1000px){.icd-filter-grid,.icd-layout,.icd-clinical-grid,.icd-code-grid{grid-template-columns:1fr}.icd-med-list{max-height:360px}.icd-suggest-head{display:block}.icd-suggest-head div{justify-content:flex-start;margin-top:8px}}
+
+.icd-source-box a{font-weight:700;color:#075f9f}
+
+/* ICD-10 profile cleanup 10/07/2026: bỏ khung thừa, chỉ giữ dữ liệu chuyên môn đã xác minh */
+.icd-unverified-note{margin:10px 0 12px;padding:12px 14px;border:1px solid #efc56a;border-radius:14px;background:#fff9e8;color:#654c10;line-height:1.5}
+.icd-source-compact,.icd-code-details{margin:12px 0;border:1px solid #d8e7f1;border-radius:14px;background:#fff;overflow:hidden}
+.icd-source-compact summary,.icd-code-details summary{cursor:pointer;padding:11px 14px;font-weight:800;color:#075985;background:#f5faff;list-style:none}
+.icd-source-compact summary::-webkit-details-marker,.icd-code-details summary::-webkit-details-marker{display:none}
+.icd-source-compact summary::after,.icd-code-details summary::after{content:'＋';float:right}
+.icd-source-compact[open] summary::after,.icd-code-details[open] summary::after{content:'−'}
+.icd-source-compact ul{margin:0;padding:12px 18px 14px 32px;line-height:1.55}
+.icd-source-compact a{color:#075f9f;font-weight:700}
+.icd-suggest-compact{margin-top:16px;border-top:1px solid #d9e8f2;padding-top:14px}
+.icd-suggest-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.icd-suggest-title h3{margin:0;color:#062f4f;font-size:18px}
+.icd-suggest-title small{color:#60798a}
+.icd-term-code-list{display:flex;gap:7px;flex-wrap:wrap}
+.icd-term-code{display:inline-flex;align-items:center;gap:7px;border:1px solid #bcd9ec;background:#edf8ff;border-radius:999px;padding:6px 10px;line-height:1.2}
+.icd-term-code strong{font-size:12px;color:#075985}
+.icd-term-code em{font-style:normal;font-weight:900;font-size:12px;color:#fff;background:#0b5d92;border-radius:999px;padding:3px 7px}
+.icd-compact-list{padding:6px 12px 12px}
+.icd-compact-row{display:grid;grid-template-columns:72px 1fr;gap:10px;align-items:start;padding:9px 2px;border-bottom:1px dashed #d8e7f1}
+.icd-compact-row:last-child{border-bottom:0}
+.icd-compact-row b{color:#075985}
+.icd-compact-row span{color:#17384f;font-weight:700}
+.icd-compact-row small{grid-column:2;color:#9a3412}
+@media(max-width:700px){
+  .icd-suggest-title{display:block}
+  .icd-suggest-title small{display:block;margin-top:4px}
+  .icd-term-code{width:100%;justify-content:space-between}
+  .icd-clinical-grid section{min-height:0}
+}
+.icd-ddi-official{margin-top:10px;padding-top:10px;border-top:1px solid #d8e7f1;color:#25465a}
+.icd-ddi-official>b{display:block;margin-bottom:6px;color:#06476f}
+
+/* Kiểm soát dữ liệu hồ sơ 305 thuốc – 10/07/2026 */
+.icd-quality-note{margin:8px 0 12px;border:1px solid #f0d28a;border-radius:12px;background:#fffaf0;overflow:hidden}
+.icd-quality-note summary{cursor:pointer;padding:9px 12px;font-weight:800;color:#745312;list-style:none}
+.icd-quality-note summary::-webkit-details-marker{display:none}
+.icd-quality-note summary::after{content:'＋';float:right}
+.icd-quality-note[open] summary::after{content:'−'}
+.icd-quality-note p{margin:0;padding:0 12px 11px;color:#654c10;line-height:1.5}
+.icd-source-scope{margin:0;padding:0 14px 13px;color:#506b7d;line-height:1.5;font-size:13px}
+
+/* ===== Cập nhật 11/07/2026: giới thiệu tự đồng bộ theo thẻ chức năng ===== */
+#heroFeatureList{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px 24px;
+  margin:10px 0 15px;
+  padding-left:20px;
+}
+#heroFeatureList li{
+  margin:0;
+  padding-right:8px;
+  line-height:1.55;
+}
+#heroFeatureList strong{font-weight:850}
+@media(max-width:820px){#heroFeatureList{grid-template-columns:1fr;gap:7px}}
+
+/* ===== Pha/truyền thuốc: tách từng thông số để bác sĩ đọc lướt ===== */
+.icd-infusion-section{grid-column:1/-1}
+.infusion-readable{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.infusion-readable-row{
+  border:1px solid #d6e5ef;
+  border-left:4px solid #8fb8d3;
+  border-radius:12px;
+  background:#f9fcfe;
+  padding:11px 13px;
+  min-width:0;
+}
+.infusion-readable-row>span{
+  display:block;
+  margin-bottom:5px;
+  color:#45677f;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.055em;
+  line-height:1.35;
+  text-transform:uppercase;
+}
+.infusion-readable-row p{margin:0!important;color:#183f5c;line-height:1.55;overflow-wrap:anywhere}
+.infusion-readable-row.primary{border-left-color:#0878bb;background:#eef8ff}
+.infusion-readable-row.primary>span{color:#075f9f}
+.infusion-readable-row.warning{border-left-color:#dc6b24;background:#fff7ed}
+.infusion-readable-row.warning>span{color:#9a3d00}
+.infusion-readable-row.stability{border-left-color:#2e9b6f;background:#f0fbf6}
+.infusion-readable-row.stability>span{color:#176a4b}
+.infusion-na{display:flex;align-items:center;gap:10px;border:1px solid #d7e2ea;border-radius:11px;background:#f8fafc;padding:11px 13px;color:#536b7b}
+.infusion-na b{flex:0 0 auto;color:#365b73}
+.infusion-na span{line-height:1.45}
+@media(max-width:760px){
+  .infusion-readable{grid-template-columns:1fr}
+  .icd-infusion-section{grid-column:auto}
+  .infusion-na{align-items:flex-start;flex-direction:column;gap:3px}
+}
