@@ -1,0 +1,8 @@
+--- index.html (hiện tại)
++++ index.html (thêm Cảnh báo dược)
+@@ mục heroFeatureList @@
+   <li><strong>Kiểm tra tương tác thuốc:</strong> Kiểm tra nhanh các cặp thuốc trong danh mục tương tác.</li>
++  <li><strong>Cảnh báo dược về sử dụng thuốc:</strong> Tra cứu cảnh báo ADR, tương tác, thuốc nguy cơ cao và biện pháp giảm thiểu nguy cơ.</li>
+@@ mục feature-grid, đặt trước Nguồn dữ liệu hệ thống @@
++  <a class="feature-card pharmacovigilance-feature" href="canh-bao-duoc/index.html"><span class="feature-icon">🛡️</span><b>Cảnh báo dược về sử dụng thuốc</b><small>Tra cứu cảnh báo ADR, tương tác, thuốc nguy cơ cao, sai sót sử dụng, theo dõi xét nghiệm và biện pháp giảm thiểu nguy cơ.</small><em>Cập nhật 11/07/2026</em></a>
+   <button class="feature-card" data-open="sources" data-intro-exclude="true"><span class="feature-icon"></span><b>Nguồn dữ liệu hệ thống</b>...
