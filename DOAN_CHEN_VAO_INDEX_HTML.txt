@@ -1,6 +1,0 @@
-Chèn dòng này ngay trước thẻ </body> nếu không dùng GitHub Actions:
-
-<script src="assets/dose_daily_summary_all.js?v=20260711-2"></script>
-
-Xóa dòng cũ nếu có:
-<script src="assets/dose_daily_summary.js..."></script>

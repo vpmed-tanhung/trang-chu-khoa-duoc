@@ -187,12 +187,26 @@
     $$(selector) { return Array.from(this.shadowRoot.querySelectorAll(selector)); }
     normalize(value) { return String(value ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); }
 
+    getEmbeddedFallback(url) {
+      if (url === STATIC_DATA_URL && Array.isArray(window.VPMED_PHARMACOVIGILANCE_STATIC_DATA)) {
+        return window.VPMED_PHARMACOVIGILANCE_STATIC_DATA;
+      }
+      if (url === AUTO_DATA_URL && window.VPMED_PHARMACOVIGILANCE_AUTO_DATA) {
+        return window.VPMED_PHARMACOVIGILANCE_AUTO_DATA;
+      }
+      return null;
+    }
+
     async fetchJson(url, required = false) {
+      const fallback = this.getEmbeddedFallback(url);
       try {
         const response = await fetch(`${url}?v=${Date.now()}`, { cache: 'no-store', signal: this.abortController.signal });
         if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
         return await response.json();
       } catch (error) {
+        // Khi mở trực tiếp bằng file://, trình duyệt chặn fetch JSON.
+        // Dùng bản nhúng được tạo nguyên vẹn từ chính tệp JSON hiện có.
+        if (fallback !== null) return fallback;
         if (required) throw error;
         return null;
       }
