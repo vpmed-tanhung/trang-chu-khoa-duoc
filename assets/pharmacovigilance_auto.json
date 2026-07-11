@@ -1,9 +1,7 @@
 {
-  "schema_version": 1,
-  "source_name": "Trung tâm DI & ADR Quốc gia",
-  "source_url": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx",
+  "source": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx",
   "checked_at": null,
-  "last_new_at": null,
+  "updated_at": null,
   "item_count": 0,
   "items": []
 }
