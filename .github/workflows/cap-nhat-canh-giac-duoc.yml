@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-name: Cảnh báo Dược phẩm hợp lý và cập nhật tự động
-=======
 name: Tích hợp và cập nhật Cảnh báo Dược phẩm
->>>>>>> 07739c481749faac74741992292da7ccda9d1632
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 * * * *"
+    - cron: "17 * * * *"
 
 permissions:
   contents: write
@@ -18,21 +14,12 @@ jobs:
     timeout-minutes: 15
 
     steps:
-<<<<<<< HEAD
-      - name: Lấy mã nguồn web chính
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-
-      - name: Cài Python
-=======
       - name: Lấy chính web mã nguồn
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
       - name: Cài đặt Python
->>>>>>> 07739c481749faac74741992292da7ccda9d1632
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
