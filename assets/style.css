@@ -617,6 +617,7 @@
 .icd-filter-grid label,.icd-direct-label{font-weight:700;color:#17384f;display:flex;flex-direction:column;gap:7px}
 .icd-filter-grid input,.icd-filter-grid select,.icd-direct-label input{border:1px solid #cbddea;border-radius:13px;padding:12px 14px;font:inherit;background:#fff;color:#18384c}
 .icd-layout{display:grid;grid-template-columns:minmax(270px,34%) 1fr;gap:16px;align-items:start}
+.icd-med-column{display:flex;flex-direction:column;gap:14px;min-width:0}
 .icd-med-list{display:flex;flex-direction:column;gap:8px;max-height:720px;overflow:auto;padding-right:4px}
 .icd-med-item{text-align:left;border:1px solid #d7e6f0;background:#fff;border-radius:16px;padding:12px 14px;cursor:pointer;box-shadow:0 6px 16px rgba(13,56,89,.06)}
 .icd-med-item b{display:block;color:#062f4f;font-size:15px;margin-bottom:4px}
@@ -750,4 +751,50 @@
   .infusion-readable{grid-template-columns:1fr}
   .icd-infusion-section{grid-column:auto}
   .infusion-na{align-items:flex-start;flex-direction:column;gap:3px}
+}
+
+/* ===== Lưu ý sử dụng mã ICD-10 ===== */
+.icd-clinical-warning{
+  padding:12px 14px;
+  border:1px solid #ef9b9b;
+  border-left:5px solid #d62828;
+  border-radius:12px;
+  background:#fff7f7;
+  color:#9c1c1c;
+  font-size:13px;
+  font-weight:650;
+  line-height:1.55;
+  box-shadow:0 4px 12px rgba(180,0,0,.05);
+}
+.icd-clinical-warning b{font-weight:900}
+.icd-clinical-warning-sidebar{
+  margin:0;
+  position:sticky;
+  bottom:8px;
+}
+@media(max-width:1000px){
+  .icd-clinical-warning-sidebar{position:static;order:2}
+}
+@media(max-width:760px){.icd-clinical-warning{font-size:12.5px;padding:10px 12px}}
+/* V9: cố định khung lưu ý ICD-10 ở cuối cột danh sách trên màn hình lớn */
+@media(min-width:1001px){
+  .icd-med-column{
+    position:sticky;
+    top:94px;
+    height:calc(100vh - 112px);
+    max-height:760px;
+    align-self:start;
+  }
+  .icd-med-list{
+    flex:1 1 auto;
+    min-height:0;
+    max-height:none;
+    overflow:auto;
+  }
+  .icd-clinical-warning-sidebar{
+    position:static;
+    flex:0 0 auto;
+    margin-top:auto;
+    z-index:2;
+  }
 }

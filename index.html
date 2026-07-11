@@ -1121,7 +1121,15 @@ calc();
         <label>Nhóm thuốc<select id="icdMedCat"><option value="">Tất cả nhóm</option></select></label>
         <label>Đường dùng<select id="icdMedRoute"><option value="">Tất cả đường dùng</option></select></label>
       </div>
-      <div class="icd-layout"><div class="icd-med-list" id="icdMedList"></div><div class="icd-profile" id="icdMedProfile"></div></div>
+      <div class="icd-layout">
+        <aside class="icd-med-column">
+          <div class="icd-med-list" id="icdMedList"></div>
+          <div class="icd-clinical-warning icd-clinical-warning-sidebar" role="note" aria-label="Lưu ý khi sử dụng mã ICD-10">
+            <b>Lưu ý:</b> Mã ICD-10 được hiển thị nhằm hỗ trợ tra cứu, không phải khuyến cáo để áp dụng trực tiếp. Bác sĩ lựa chọn mã và quyết định áp dụng dựa trên chẩn đoán, hồ sơ bệnh án và tình trạng thực tế của người bệnh.
+          </div>
+        </aside>
+        <div class="icd-profile" id="icdMedProfile"></div>
+      </div>
     </section>
     <section class="section-card compact icd10-card">
       <div class="section-heading"><div><span class="kicker">Tra cứu ICD-10 trực tiếp</span><h2>Tìm theo chẩn đoán thực tế</h2></div></div>
