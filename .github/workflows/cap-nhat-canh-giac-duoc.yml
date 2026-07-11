@@ -17,11 +17,12 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Lấy mã nguồn web
-        uses: actions/checkout@v6
+      - name: Lấy chính web mã nguồn
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
-      - name: Cài Python
+
+      - name: Cài đặt Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
