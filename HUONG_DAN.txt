@@ -1,0 +1,25 @@
+VPMED – TỰ ĐỘNG CẬP NHẬT CẢNH GIÁC DƯỢC + LÀM GỌN TRANG CHỦ
+================================================================
+
+BẢN NÀY SỬA BẰNG MÃ WEB, KHÔNG PHẢI ẢNH.
+
+KẾT QUẢ
+- Rút gọn khung “Hệ thống hỗ trợ lâm sàng”; bỏ danh sách dài và chỉ giữ 4 nhóm chức năng ngắn.
+- Thêm “Cảnh báo dược về sử dụng thuốc” thành mục con trong cùng web tại #pharmacovigilance.
+- Giữ nguyên 42 cảnh báo đã biên tập.
+- GitHub Actions kiểm tra bản tin mới từ Trung tâm DI & ADR Quốc gia mỗi giờ.
+- Bản tin tự động được gắn rõ “Tự động từ nguồn · Chưa biên tập”; không tự tạo khuyến cáo lâm sàng.
+- Số cảnh báo và ngày cập nhật trên giao diện được tính từ dữ liệu, không ghi cố định.
+
+CÁCH ĐƯA LÊN GITHUB
+1. Giải nén file ZIP này.
+2. Tải đè nguyên hai thư mục “assets” và “.github” vào thư mục gốc repository trang-chu-khoa-duoc.
+3. Bấm Commit changes.
+4. Vào GitHub → Actions → “Cập nhật Cảnh giác dược và giao diện trang chủ” → Run workflow → Run workflow.
+
+CHỈ CẦN THIẾT LẬP MỘT LẦN NẾU ACTION KHÔNG ĐƯỢC PHÉP GHI
+GitHub → Settings → Actions → General → Workflow permissions → chọn “Read and write permissions” → Save.
+
+ĐƯỜNG DẪN KIỂM TRA
+- Trang chủ: https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#home
+- Mục Cảnh báo dược: https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#pharmacovigilance

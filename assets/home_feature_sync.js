@@ -1,43 +1,96 @@
-(function(){
+(function () {
   'use strict';
 
-  const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({
-    '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'
-  }[char]));
+  const STYLE_ID = 'vpmed-home-compact-style';
+  const COMPACT_HTML = `
+    <p class="vpmed-hero-summary">
+      Tra cứu thông tin thuốc, tính liều và rà soát an toàn trong thực hành lâm sàng.
+    </p>
+    <div class="vpmed-hero-groups" aria-label="Nhóm chức năng chính">
+      <span>Tính liều</span>
+      <span>Tra cứu thuốc</span>
+      <span>An toàn thuốc</span>
+      <span>ICD-10 &amp; BHYT</span>
+    </div>
+    <p class="vpmed-hero-action">
+      Chọn công cụ tại mục <strong>Ứng dụng chính</strong> bên dưới.
+    </p>`;
 
-  function syncHomeIntroduction(){
-    const list = document.getElementById('heroFeatureList');
-    const grid = document.querySelector('#view-home .feature-grid');
-    if(!list || !grid) return;
-
-    const cards = Array.from(grid.querySelectorAll('.feature-card'))
-      .filter(card => card.dataset.introExclude !== 'true');
-
-    const items = cards.map(card => {
-      const title = card.querySelector('b')?.textContent?.trim() || '';
-      const description = card.querySelector('small')?.textContent?.trim() || '';
-      if(!title) return '';
-      return `<li><strong>${esc(title)}:</strong>${description ? ` ${esc(description)}` : ''}</li>`;
-    }).filter(Boolean);
-
-    if(items.length) list.innerHTML = items.join('');
+  function ensureStyle() {
+    if (document.getElementById(STYLE_ID)) return;
+    const style = document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = `
+      #view-home .hero-intro[data-vpmed-compact="true"] {
+        max-width: 900px;
+        margin-top: 12px;
+      }
+      #view-home .hero-intro[data-vpmed-compact="true"] .vpmed-hero-summary {
+        max-width: 820px;
+        margin: 0 0 14px;
+        font-size: clamp(16px, 1.6vw, 19px);
+        line-height: 1.55;
+      }
+      #view-home .vpmed-hero-groups {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0 0 14px;
+      }
+      #view-home .vpmed-hero-groups span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 7px 12px;
+        border: 1px solid rgba(255,255,255,.30);
+        border-radius: 999px;
+        background: rgba(255,255,255,.12);
+        color: #fff;
+        font-size: 13px;
+        font-weight: 800;
+        line-height: 1.2;
+        white-space: nowrap;
+      }
+      #view-home .hero-intro[data-vpmed-compact="true"] .vpmed-hero-action {
+        margin: 0;
+        font-size: 14px;
+        color: rgba(255,255,255,.92);
+      }
+      @media (max-width: 640px) {
+        #view-home .hero-intro[data-vpmed-compact="true"] { margin-top: 8px; }
+        #view-home .vpmed-hero-groups { gap: 6px; }
+        #view-home .vpmed-hero-groups span {
+          min-height: 30px;
+          padding: 6px 9px;
+          font-size: 12px;
+        }
+      }`;
+    document.head.appendChild(style);
   }
 
-  function init(){
-    syncHomeIntroduction();
-    const grid = document.querySelector('#view-home .feature-grid');
-    if(!grid || typeof MutationObserver === 'undefined') return;
-
-    const observer = new MutationObserver(syncHomeIntroduction);
-    observer.observe(grid, {
-      childList:true,
-      subtree:true,
-      characterData:true,
-      attributes:true,
-      attributeFilter:['data-intro-exclude']
-    });
+  function compactHomeIntroduction() {
+    const intro = document.querySelector('#view-home .hero-intro');
+    if (!intro) return false;
+    ensureStyle();
+    if (intro.dataset.vpmedCompact !== 'true' || !intro.querySelector('.vpmed-hero-groups')) {
+      intro.innerHTML = COMPACT_HTML;
+      intro.dataset.vpmedCompact = 'true';
+    }
+    return true;
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  function init() {
+    if (compactHomeIntroduction()) return;
+    let attempts = 0;
+    const timer = window.setInterval(() => {
+      attempts += 1;
+      if (compactHomeIntroduction() || attempts >= 20) window.clearInterval(timer);
+    }, 250);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
 })();
