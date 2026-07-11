@@ -1,4 +1,4 @@
-name: Tích hợp và cập nhật Cảnh báo dược
+name: Cảnh báo dược - tích hợp và tự cập nhật
 
 on:
   workflow_dispatch:
@@ -16,35 +16,26 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-      - name: Lấy mã nguồn web chính
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-
-      - name: Cài Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: .github/scripts/requirements-pharmacovigilance.txt
-
-      - name: Cài thư viện
-        run: pip install -r .github/scripts/requirements-pharmacovigilance.txt
-
-      - name: Gắn mục Cảnh báo dược vào index.html
-        run: python .github/scripts/ensure_pharmacovigilance_integration.py index.html
-
-      - name: Kiểm tra điểm tin Cảnh giác Dược mới
+      - run: pip install -r .github/scripts/requirements-pharmacovigilance.txt
+      - name: Gắn giao diện vào web chính
+        run: python .github/scripts/ensure_pharmacovigilance_integration.py
+      - name: Kiểm tra thông tin cảnh giác dược mới
         run: >-
           python .github/scripts/update_pharmacovigilance.py
           --data-path assets/pharmacovigilance_auto.json
           --curated-path assets/pharmacovigilance_alerts.json
           --pages 3
           --max-new 20
-
-      - name: Ghi thay đổi vào chính website hiện tại
+      - name: Commit thay đổi
         shell: bash
         run: |
           if git diff --quiet -- index.html assets/pharmacovigilance_auto.json; then
@@ -54,5 +45,5 @@ jobs:
           git config user.name "VPMED Pharmacovigilance Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add index.html assets/pharmacovigilance_auto.json
-          git commit -m "Tích hợp/cập nhật Cảnh báo dược trên web chính"
+          git commit -m "Cập nhật Cảnh báo dược trên web chính"
           git push
