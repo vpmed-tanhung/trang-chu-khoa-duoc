@@ -1,25 +1,17 @@
-VPMED – TỰ ĐỘNG CẬP NHẬT CẢNH GIÁC DƯỢC + LÀM GỌN TRANG CHỦ
-================================================================
+BẢN SỬA MỤC CẢNH BÁO DƯỢC
 
-BẢN NÀY SỬA BẰNG MÃ WEB, KHÔNG PHẢI ẢNH.
+Đã sửa:
+- Hiển thị đủ 42 cảnh báo biên tập.
+- Không loại nhầm các cảnh báo dùng chung một đường dẫn nguồn.
+- Bỏ thanh chữ đỏ cố định dưới màn hình; chuyển nội dung thành Lưu ý trong khung Phạm vi.
+- Hiển thị riêng: ngày kiểm tra nguồn gần nhất và ngày của bản tin mới nhất.
+- Bổ sung chương trình tự cập nhật để ghi ngày kiểm tra nguồn thành công gần nhất.
 
-KẾT QUẢ
-- Rút gọn khung “Hệ thống hỗ trợ lâm sàng”; bỏ danh sách dài và chỉ giữ 4 nhóm chức năng ngắn.
-- Thêm “Cảnh báo dược về sử dụng thuốc” thành mục con trong cùng web tại #pharmacovigilance.
-- Giữ nguyên 42 cảnh báo đã biên tập.
-- GitHub Actions kiểm tra bản tin mới từ Trung tâm DI & ADR Quốc gia mỗi giờ.
-- Bản tin tự động được gắn rõ “Tự động từ nguồn · Chưa biên tập”; không tự tạo khuyến cáo lâm sàng.
-- Số cảnh báo và ngày cập nhật trên giao diện được tính từ dữ liệu, không ghi cố định.
+CÁCH ĐƯA LÊN GITHUB:
+1. Giải nén file ZIP.
+2. Kéo nguyên thư mục assets và .github vào thư mục gốc repository.
+3. Chọn Replace/Overwrite nếu GitHub hỏi ghi đè.
+4. Bấm Commit changes.
+5. Chờ GitHub Pages cập nhật rồi nhấn Ctrl + F5 trên trang web.
 
-CÁCH ĐƯA LÊN GITHUB
-1. Giải nén file ZIP này.
-2. Tải đè nguyên hai thư mục “assets” và “.github” vào thư mục gốc repository trang-chu-khoa-duoc.
-3. Bấm Commit changes.
-4. Vào GitHub → Actions → “Cập nhật Cảnh giác dược và giao diện trang chủ” → Run workflow → Run workflow.
-
-CHỈ CẦN THIẾT LẬP MỘT LẦN NẾU ACTION KHÔNG ĐƯỢC PHÉP GHI
-GitHub → Settings → Actions → General → Workflow permissions → chọn “Read and write permissions” → Save.
-
-ĐƯỜNG DẪN KIỂM TRA
-- Trang chủ: https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#home
-- Mục Cảnh báo dược: https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#pharmacovigilance
+Không cần sửa index.html.

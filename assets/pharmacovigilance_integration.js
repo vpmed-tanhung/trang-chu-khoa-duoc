@@ -16,12 +16,12 @@
       --white:#fff;--text:#17212b;--muted:#62717d;--line:#d8e2e8;--red:#ba1a1a;
       --redbg:#fff0f0;--orange:#a34f00;--orangebg:#fff5e8;--yellow:#7a5b00;
       --yellowbg:#fff9df;--green:#137149;--greenbg:#eaf8f1;--shadow:0 10px 28px rgba(10,57,86,.10)}
-    *{box-sizing:border-box}.pv-root{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Segoe UI",sans-serif;line-height:1.48;padding-bottom:64px}
+    *{box-sizing:border-box}.pv-root{margin:0;background:var(--bg);color:var(--text);font-family:Arial,"Segoe UI",sans-serif;line-height:1.48}
     button,input,select{font:inherit}a{color:var(--blue)}.wrap{max-width:1440px;margin:auto;padding:18px}
     .hero{background:linear-gradient(135deg,#064f85,#0879b9 62%,#38a6d5);color:#fff;border-radius:22px;padding:24px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
     .hero h1{margin:3px 0 8px;font-size:30px;line-height:1.15}.hero p{margin:0;max-width:880px;color:#e9f8ff}.eyebrow{font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:#cceeff}
     .hero-badge{min-width:220px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.30);border-radius:17px;padding:15px;text-align:center}.hero-badge b{display:block;font-size:24px}.hero-badge small{color:#e9f8ff}
-    .notice{margin-top:14px;background:#fff;border-left:6px solid var(--blue);border-radius:13px;padding:12px 15px;box-shadow:0 5px 18px rgba(10,57,86,.06)}.notice b{color:var(--blue)}.sync-note{display:block;margin-top:5px;color:var(--muted);font-size:12px}
+    .notice{margin-top:14px;background:#fff;border-left:6px solid var(--blue);border-radius:13px;padding:12px 15px;box-shadow:0 5px 18px rgba(10,57,86,.06)}.notice b{color:var(--blue)}.sync-note{display:block;margin-top:5px;color:var(--muted);font-size:12px}.usage-note{display:block;margin-top:9px;padding-top:9px;border-top:1px solid var(--line);color:#684313;font-size:12px}.usage-note b{color:#8a5200}
     .toolbar{margin-top:16px;background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;box-shadow:0 5px 18px rgba(10,57,86,.05)}
     .search-row{display:grid;grid-template-columns:minmax(280px,1.8fr) repeat(3,minmax(150px,.7fr)) auto;gap:10px}.field{width:100%;border:1px solid #c9d7df;border-radius:11px;padding:11px 12px;background:#fff;color:var(--text);outline:none}.field:focus{border-color:#4ba2d1;box-shadow:0 0 0 3px rgba(45,148,202,.12)}
     .btn{border:0;border-radius:11px;padding:10px 14px;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn-soft{background:var(--cyan);color:var(--blue)}
@@ -37,9 +37,8 @@
     .modal{position:fixed;inset:0;background:rgba(7,28,42,.58);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}.modal.open{display:flex}.modal-panel{background:#fff;border-radius:20px;max-width:980px;width:100%;max-height:90vh;overflow:auto;box-shadow:0 24px 70px rgba(0,0,0,.28)}
     .modal-head{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:15px 18px;display:flex;justify-content:space-between;gap:15px;align-items:flex-start;z-index:2}.modal-head h2{margin:4px 0 0;font-size:23px;line-height:1.25;color:var(--navy)}.close{width:38px;height:38px;border-radius:50%;border:0;background:#edf3f6;cursor:pointer;font-size:20px}
     .modal-body{padding:18px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.box{border:1px solid var(--line);border-radius:14px;padding:13px;background:#fff}.box h4{margin:0 0 8px;color:var(--navy)}.box p{margin:6px 0}.box ul{margin:0;padding-left:20px}.box li{margin:5px 0}.box.full{grid-column:1/-1}.alert-box{border-left:5px solid var(--red);background:var(--redbg)}.auto-box{border-left-color:var(--blue);background:#f1f8fd}.source-box{background:#f6fafc}.source-link{word-break:break-word}.source-link a{font-weight:800}
-    .fixed-note{position:fixed;left:0;right:0;bottom:0;z-index:90;background:#fff7f7;border-top:2px solid #d43c3c;padding:9px 16px;text-align:center;color:#7b1c1c;font-size:13px;font-weight:800;box-shadow:0 -4px 14px rgba(80,0,0,.08)}
     @media(max-width:1050px){.search-row{grid-template-columns:1fr 1fr}.search-row .search{grid-column:1/-1}.layout{grid-template-columns:1fr}.side{position:static}.side .category-list{display:flex;overflow:auto;gap:5px}.side button{width:auto;white-space:nowrap}.cards{grid-template-columns:1fr 1fr}}
-    @media(max-width:760px){.wrap{padding:10px}.hero{grid-template-columns:1fr;padding:18px}.hero h1{font-size:24px}.hero-badge{min-width:0}.search-row{grid-template-columns:1fr}.search-row .search{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.box.full{grid-column:auto}.main-head{align-items:flex-start;flex-direction:column}.fixed-note{font-size:11px;padding:7px 9px}}
+    @media(max-width:760px){.wrap{padding:10px}.hero{grid-template-columns:1fr;padding:18px}.hero h1{font-size:24px}.hero-badge{min-width:0}.search-row{grid-template-columns:1fr}.search-row .search{grid-column:auto}.stats{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}.detail-grid{grid-template-columns:1fr}.box.full{grid-column:auto}.main-head{align-items:flex-start;flex-direction:column}.usage-note{font-size:11px}}
   `;
 
   const TEMPLATE = `
@@ -56,6 +55,7 @@
         <div class="notice">
           <b>Phạm vi:</b> Thư viện hỗ trợ tra cứu và rà soát an toàn thuốc, không phải biểu mẫu báo cáo ADR.
           <span class="sync-note" id="syncNote">Dữ liệu biên tập được giữ nguyên; bản tin mới được kiểm tra tự động và gắn nhãn riêng.</span>
+          <span class="usage-note"><b>Lưu ý:</b> Thông tin chỉ hỗ trợ tra cứu; không thay thế tờ hướng dẫn sử dụng được phê duyệt, chẩn đoán, xử trí cấp cứu hoặc quyết định chuyên môn của bác sĩ.</span>
         </div>
         <section class="toolbar" aria-label="Công cụ tìm kiếm">
           <div class="search-row">
@@ -92,7 +92,6 @@
       <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-panel"><div class="modal-head"><div><div id="modalMeta" class="meta"></div><h2 id="modalTitle"></h2></div><button id="closeModal" class="close" type="button" aria-label="Đóng">×</button></div><div id="modalBody" class="modal-body"></div></div>
       </div>
-      <div class="fixed-note">Thông tin chỉ hỗ trợ tra cứu; không thay thế tờ hướng dẫn sử dụng được phê duyệt, chẩn đoán, xử trí cấp cứu hoặc quyết định chuyên môn của bác sĩ.</div>
     </div>`;
 
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
@@ -111,36 +110,56 @@
     return new Date(Number(match[3]), Number(match[2]) - 1, Number(match[1]));
   }
 
+  function formatIsoDate(value) {
+    if (!value) return '';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return '';
+    return date.toLocaleDateString('vi-VN', {
+      day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Asia/Ho_Chi_Minh'
+    });
+  }
+
   function normalizeUrl(value) {
     return String(value || '').trim().replace(/^http:/i, 'https:').replace(/\/$/, '').toLowerCase();
   }
 
+  function normalizeAlert(raw, forceAuto = false) {
+    if (!raw || typeof raw !== 'object') return null;
+    const item = { ...raw };
+    item.level = ['red', 'orange', 'yellow', 'green'].includes(item.level) ? item.level : 'green';
+    item.category = item.category || 'Bản tin mới từ nguồn chính thức';
+    item.system = item.system || 'Chưa phân loại';
+    item.year = String(item.year || (parseDate(item.date).getFullYear() || ''));
+    item.risk = Array.isArray(item.risk) ? item.risk : [];
+    item.signs = Array.isArray(item.signs) ? item.signs : [];
+    item.action = Array.isArray(item.action) ? item.action : [];
+    item.monitor = Array.isArray(item.monitor) ? item.monitor : [];
+    item.auto = Boolean(forceAuto || item.auto || item.reviewed === false);
+    return item;
+  }
+
   function mergeAlerts(staticAlerts, autoAlerts) {
-    const merged = [];
-    const seenIds = new Set();
-    const seenUrls = new Set();
-    const seenTitles = new Set();
-    [...staticAlerts, ...autoAlerts].forEach((raw) => {
-      if (!raw || typeof raw !== 'object') return;
-      const item = { ...raw };
+    // Dữ liệu biên tập có thể có nhiều cảnh báo cùng lấy từ một bản tin nguồn.
+    // Vì vậy phải giữ nguyên toàn bộ 42 mục biên tập, không loại theo URL nguồn.
+    const curated = staticAlerts.map((item) => normalizeAlert(item, false)).filter(Boolean);
+    const merged = [...curated];
+    const seenIds = new Set(curated.map((item) => String(item.id || '').trim()).filter(Boolean));
+    const seenUrls = new Set(curated.map((item) => normalizeUrl(item.url)).filter(Boolean));
+    const seenTitles = new Set(curated.map((item) => String(item.title || '').trim().toLowerCase()).filter(Boolean));
+
+    autoAlerts.forEach((raw) => {
+      const item = normalizeAlert(raw, true);
+      if (!item) return;
       const id = String(item.id || '').trim();
       const url = normalizeUrl(item.url);
       const title = String(item.title || '').trim().toLowerCase();
       if ((id && seenIds.has(id)) || (url && seenUrls.has(url)) || (title && seenTitles.has(title))) return;
-      item.level = ['red', 'orange', 'yellow', 'green'].includes(item.level) ? item.level : 'green';
-      item.category = item.category || 'Bản tin mới từ nguồn chính thức';
-      item.system = item.system || 'Chưa phân loại';
-      item.year = String(item.year || (parseDate(item.date).getFullYear() || ''));
-      item.risk = Array.isArray(item.risk) ? item.risk : [];
-      item.signs = Array.isArray(item.signs) ? item.signs : [];
-      item.action = Array.isArray(item.action) ? item.action : [];
-      item.monitor = Array.isArray(item.monitor) ? item.monitor : [];
-      item.auto = Boolean(item.auto || item.reviewed === false);
       if (id) seenIds.add(id);
       if (url) seenUrls.add(url);
       if (title) seenTitles.add(title);
       merged.push(item);
     });
+
     return merged.sort((a, b) => parseDate(b.date) - parseDate(a.date));
   }
 
@@ -151,6 +170,7 @@
       this.alerts = [];
       this.activeCategory = 'Tất cả';
       this.abortController = null;
+      this.lastSyncDate = '';
     }
 
     connectedCallback() {
@@ -189,14 +209,15 @@
         const autoAlerts = unwrapAlerts(autoPayload);
         this.alerts = mergeAlerts(staticAlerts, autoAlerts);
         if (!this.alerts.length) throw new Error('Không có dữ liệu cảnh báo');
+        this.lastSyncDate = formatIsoDate(autoPayload?.generated_at) || this.latestDateText();
         this.populateFilters();
         this.renderCategories();
         this.updateStats();
         this.render();
         const autoCount = this.alerts.filter((item) => item.auto).length;
         this.$('#syncNote').textContent = autoPayload
-          ? `Đã kết hợp ${staticAlerts.length} cảnh báo biên tập và ${autoCount} bản tin tự động từ nguồn chính thức.`
-          : 'Dữ liệu biên tập đang hoạt động; tệp bản tin tự động chưa được tạo hoặc tạm thời chưa tải được.';
+          ? `${staticAlerts.length} cảnh báo biên tập · ${autoCount} bản tin tự động · Kiểm tra nguồn gần nhất: ${this.lastSyncDate}.`
+          : `${staticAlerts.length} cảnh báo biên tập · Chưa tải được tệp bản tin tự động.`;
         this.updateFeatureCard();
       } catch (error) {
         this.$('#cards').innerHTML = '<div class="empty"><b>Không tải được dữ liệu cảnh báo.</b><br>Vui lòng tải lại trang hoặc kiểm tra các tệp dữ liệu trong thư mục assets.</div>';
@@ -300,15 +321,14 @@
     }
 
     updateStats() {
-      const latest = this.alerts[0];
-      const latestYear = latest?.year || '';
+      const latestAlertDate = this.latestDateText();
       this.$('#heroCount').textContent = `${this.alerts.length} cảnh báo`;
-      this.$('#latestDate').textContent = `Cập nhật đến ${this.latestDateText()}`;
+      this.$('#latestDate').textContent = `Kiểm tra nguồn: ${this.lastSyncDate || latestAlertDate}`;
       this.$('#totalStat').textContent = this.alerts.length;
       this.$('#redStat').textContent = this.alerts.filter((item) => item.level === 'red').length;
       this.$('#interactionStat').textContent = this.alerts.filter((item) => item.interaction).length;
-      this.$('#latestStat').textContent = latestYear ? this.alerts.filter((item) => String(item.year) === String(latestYear)).length : 0;
-      this.$('#latestStatLabel').textContent = latestYear ? `Cập nhật năm ${latestYear}` : 'Bản tin mới nhất';
+      this.$('#latestStat').textContent = latestAlertDate;
+      this.$('#latestStatLabel').textContent = 'Bản tin mới nhất';
     }
 
     updateFeatureCard() {
@@ -317,7 +337,7 @@
       const small = card.querySelector('small');
       const em = card.querySelector('em');
       if (small) small.textContent = `Tra cứu ${this.alerts.length} cảnh báo an toàn thuốc, ADR, tương tác và bản tin mới.`;
-      if (em) em.textContent = `Cập nhật ${this.latestDateText()}`;
+      if (em) em.textContent = `Kiểm tra nguồn ${this.lastSyncDate || this.latestDateText()}`;
     }
   }
 
