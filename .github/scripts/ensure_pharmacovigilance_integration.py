@@ -1,14 +1,20 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import re
-p=Path('index.html')
-if not p.exists(): raise SystemExit('Không tìm thấy index.html')
-s=p.read_text(encoding='utf-8')
-# Xóa mọi dòng nạp bản tích hợp cảnh báo dược cũ, sau đó thêm đúng một dòng bản mới.
-s=re.sub(r'\s*<script[^>]+src=["\']assets/pharmacovigilance_integration\.js[^"\']*["\'][^>]*></script>\s*','\n',s,flags=re.I)
-tag='  <script src="assets/pharmacovigilance_integration.js?v=20260711-exact-file"></script>\n'
-pos=s.lower().rfind('</body>')
-if pos<0: raise SystemExit('Không tìm thấy </body>')
-s=s[:pos]+tag+s[pos:]
-p.write_text(s,encoding='utf-8')
-print('Đã gắn đúng giao diện nguyên bản vào web chính.')
+
+index = Path('index.html')
+if not index.exists():
+    raise SystemExit('Không tìm thấy index.html ở thư mục gốc repository.')
+
+text = index.read_text(encoding='utf-8')
+marker = 'assets/pharmacovigilance_integration.js'
+tag = '  <script src="assets/pharmacovigilance_integration.js?v=20260711"></script>\n'
+
+if marker in text:
+    print('index.html đã có mô-đun Cảnh báo dược.')
+    raise SystemExit(0)
+
+if '</body>' not in text:
+    raise SystemExit('Không tìm thấy thẻ </body> trong index.html.')
+
+index.write_text(text.replace('</body>', tag + '</body>', 1), encoding='utf-8')
+print('Đã gắn mô-đun Cảnh báo dược vào index.html.')
