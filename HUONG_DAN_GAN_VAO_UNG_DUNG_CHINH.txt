@@ -1,0 +1,39 @@
+VPMED – GẮN CẢNH BÁO DƯỢC VÀO “ỨNG DỤNG CHÍNH”
+======================================================
+
+Bộ này KHÔNG tạo website mới và KHÔNG tạo thư mục web con.
+
+KẾT QUẢ
+- Thêm thẻ “Cảnh báo dược về sử dụng thuốc” vào nhóm “Ứng dụng chính”.
+- Khi bấm, nội dung mở ngay trong cùng giao diện web.
+- Đường dẫn: #pharmacovigilance
+- Có 42 cảnh báo đã biên tập.
+- Có tìm kiếm, lọc mức độ, lọc nhóm, lọc năm và xem chi tiết.
+- Tin mới từ Trung tâm DI & ADR Quốc gia được kiểm tra tự động mỗi giờ.
+- Tin tự động được gắn nhãn “Tự động từ nguồn”, không tự suy diễn hướng xử trí.
+
+CÁC FILE CẦN ĐƯA VÀO THƯ MỤC GỐC CỦA REPOSITORY
+1. assets/
+2. .github/
+
+KHÔNG ghi đè assets/home_feature_sync.js.
+Bản này dùng file riêng:
+assets/pharmacovigilance_integration.js
+
+SAU KHI UPLOAD
+1. Commit toàn bộ file.
+2. Vào GitHub → Actions.
+3. Chọn “Tích hợp và cập nhật Cảnh báo dược”.
+4. Chọn “Run workflow”.
+5. Workflow sẽ tự thêm dòng nạp mô-đun vào index.html và commit lại.
+6. Chờ GitHub Pages phát hành xong rồi mở:
+   https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#home
+
+NẾU KHÔNG MUỐN DÙNG ACTION ĐỂ SỬA INDEX.HTML
+Mở file DOAN_CHEN_VAO_INDEX_HTML.txt và dán đúng một dòng script
+ngay trước thẻ </body> của index.html.
+
+LƯU Ý
+- Không dùng lại các ZIP tạo website con trước đây.
+- Không xóa hay thay thế các section/chức năng đang hoạt động.
+- Dữ liệu tự động chỉ là điểm tin nguồn; nội dung chi tiết cần Khoa Dược rà soát.

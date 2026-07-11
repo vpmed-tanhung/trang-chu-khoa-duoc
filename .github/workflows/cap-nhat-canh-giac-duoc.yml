@@ -1,23 +1,24 @@
-name: Cập nhật cảnh giác dược trên web chính
+name: Tích hợp và cập nhật Cảnh báo dược
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "17 * * * *"
-  workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: cap-nhat-canh-giac-duoc-web-chinh
+  group: vpmed-pharmacovigilance-main-site
   cancel-in-progress: false
 
 jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+
     steps:
-      - name: Lấy mã nguồn website
+      - name: Lấy mã nguồn web chính
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -32,7 +33,10 @@ jobs:
       - name: Cài thư viện
         run: pip install -r .github/scripts/requirements-pharmacovigilance.txt
 
-      - name: Kiểm tra điểm tin mới
+      - name: Gắn mục Cảnh báo dược vào index.html
+        run: python .github/scripts/ensure_pharmacovigilance_integration.py index.html
+
+      - name: Kiểm tra điểm tin Cảnh giác Dược mới
         run: >-
           python .github/scripts/update_pharmacovigilance.py
           --data-path assets/pharmacovigilance_auto.json
@@ -40,15 +44,15 @@ jobs:
           --pages 3
           --max-new 20
 
-      - name: Ghi dữ liệu mới vào website hiện tại
+      - name: Ghi thay đổi vào chính website hiện tại
         shell: bash
         run: |
-          if git diff --quiet -- assets/pharmacovigilance_auto.json; then
-            echo "Không có cảnh báo mới."
+          if git diff --quiet -- index.html assets/pharmacovigilance_auto.json; then
+            echo "Không có thay đổi mới."
             exit 0
           fi
           git config user.name "VPMED Pharmacovigilance Bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/pharmacovigilance_auto.json
-          git commit -m "Tự động cập nhật cảnh giác dược trên web chính"
+          git add index.html assets/pharmacovigilance_auto.json
+          git commit -m "Tích hợp/cập nhật Cảnh báo dược trên web chính"
           git push

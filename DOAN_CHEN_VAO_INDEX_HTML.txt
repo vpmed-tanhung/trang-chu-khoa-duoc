@@ -1,0 +1,8 @@
+DÁN DÒNG SAU NGAY TRƯỚC THẺ </body> TRONG FILE index.html:
+
+<script src="assets/pharmacovigilance_integration.js?v=20260711"></script>
+
+Sau khi Commit, mở:
+https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#pharmacovigilance
+
+Thẻ “Cảnh báo dược về sử dụng thuốc” sẽ nằm trong nhóm “Ứng dụng chính”.
