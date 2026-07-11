@@ -245,46 +245,11 @@
     </section>`;
   }
 
-  const OFFICIAL_SOURCE_LINKS = [
-    {
-      title:'Tờ HDSD và giấy đăng ký lưu hành – Cục Quản lý Dược',
-      note:'Tra cứu theo đúng số đăng ký, tên thuốc, hàm lượng, dạng bào chế và đường dùng của chế phẩm.',
-      url:'https://dichvucong.dav.gov.vn/congbothuoc/index'
-    },
-    {
-      title:'Dược thư Quốc gia Việt Nam III – Quyết định 3445/QĐ-BYT',
-      note:'Tài liệu chính thức của Bộ Y tế về sử dụng thuốc an toàn, hợp lý và hiệu quả.',
-      url:'https://nidqc.gov.vn/duoc-dien-duoc-thu-viet-nam'
-    },
-    {
-      title:'Hướng dẫn chẩn đoán và điều trị – Cục Quản lý Khám, chữa bệnh',
-      note:'Kho hướng dẫn chuyên môn theo bệnh lý do Bộ Y tế và Cục Quản lý Khám, chữa bệnh công bố.',
-      url:'https://kcb.vn/phac-do'
-    },
-    {
-      title:'Quyết định 5948/QĐ-BYT và Quyết định 29/QĐ-BYT',
-      note:'Danh mục tương tác thuốc chống chỉ định và hướng dẫn giám sát phản ứng có hại của thuốc tại cơ sở khám bệnh, chữa bệnh.',
-      url:'https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html'
-    },
-    {
-      title:'Thông tư 06/2026/TT-BYT về mã hóa bệnh tật theo ICD-10',
-      note:'Thông tư ban hành ngày 02/04/2026, áp dụng từ 01/07/2026; liên kết tới trang triển khai chính thức của Cục Quản lý Khám, chữa bệnh.',
-      url:'https://kcb.vn/tin-tuc/cong-van-so-4059-byt-bh-trien-khai-thong-tu-06-2026-tt-byt-quy-dinh-ma-hoa-benh-tat-theo-icd-10.html'
-    },
-    {
-      title:'Cổng tra cứu ICD-10 theo Thông tư 06/2026/TT-BYT',
-      note:'Tra cứu mã và tên bệnh trên hệ thống ICD của Cục Quản lý Khám, chữa bệnh.',
-      url:'https://icd.kcb.vn/icd-10/icd10'
-    },
-    {
-      title:'Danh mục ICD-10 BYT 2026 đang sử dụng trên web',
-      note:'Tệp Excel chính thức do bệnh viện cung cấp và được dùng để đối chiếu mã trong công cụ.',
-      url:'sources/ICD10_BYT2026_ChinhThuc.xlsx'
-    }
-  ];
-
-  function profileSources(){
-    return OFFICIAL_SOURCE_LINKS;
+  function profileSources(profile){
+    const src = arr(profile?.sources);
+    if(src.length) return src;
+    if(profile?.clinicalSourceNote) return [{title:profile.clinicalSourceNote,url:''}];
+    return [];
   }
 
   function infusionLabelFromText(text){
@@ -381,7 +346,7 @@
   function renderSources(profile){
     const sources = profileSources(profile);
     if(!sources.length) return '';
-    return `<details class="icd-source-compact"><summary>Nguồn chính thức dùng để đối chiếu</summary><ul>${sources.map(s=>`<li>${s.url?`<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.title||s.url)}</a>`:esc(s.title||'Nguồn chuyên môn')}${s.note?`<small>${esc(s.note)}</small>`:''}</li>`).join('')}</ul>${profile?.scope?`<p class="icd-source-scope"><b>Phạm vi áp dụng:</b> ${esc(profile.scope)}</p>`:''}</details>`;
+    return `<details class="icd-source-compact"><summary>Nguồn chuyên môn đã đối chiếu</summary><ul>${sources.map(s=>`<li>${s.url?`<a target="_blank" rel="noopener" href="${esc(s.url)}">${esc(s.title||s.url)}</a>`:esc(s.title||'Nguồn chuyên môn')}</li>`).join('')}</ul>${profile?.scope?`<p class="icd-source-scope"><b>Phạm vi áp dụng:</b> ${esc(profile.scope)}</p>`:''}</details>`;
   }
 
   function renderMedList(){
