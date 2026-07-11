@@ -1,0 +1,47 @@
+GẮN CẢNH BÁO DƯỢC VÀO CHÍNH WEBSITE HIỆN TẠI
+================================================
+
+Bộ này KHÔNG tạo website mới, KHÔNG tạo thư mục trang con và KHÔNG có index.html riêng.
+
+1. Mở kho GitHub:
+   vpmed-tanhung/trang-chu-khoa-duoc
+
+2. Tải các thư mục trong gói này vào ĐÚNG THƯ MỤC GỐC của kho:
+   - assets
+   - .github
+
+3. Khi GitHub hỏi ghi đè, cho phép ghi đè file:
+   assets/home_feature_sync.js
+
+   File thay thế vẫn giữ chức năng cũ là đồng bộ phần giới thiệu trang chủ,
+   đồng thời thêm thẻ “Cảnh báo dược về sử dụng thuốc” vào Ứng dụng chính.
+
+4. Các file mới nằm cùng dữ liệu hiện tại của web:
+   assets/pharmacovigilance.css
+   assets/pharmacovigilance_alerts.json
+   assets/pharmacovigilance_auto.json
+
+5. Sau khi commit, mở lại chính đường dẫn:
+   https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#home
+
+   Thẻ mới mở nội dung tại:
+   https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#pharmacovigilance
+
+   Đây vẫn là cùng một website, cùng thanh đầu trang, cùng nút quay lại và cùng giao diện SPA.
+
+6. Bật cập nhật tự động:
+   GitHub > Settings > Actions > General > Workflow permissions
+   chọn “Read and write permissions” > Save.
+
+   Sau đó vào:
+   Actions > Cập nhật cảnh giác dược trên web chính > Run workflow.
+
+7. Mỗi giờ hệ thống kiểm tra nguồn Trung tâm DI & ADR Quốc gia.
+   Khi có bài mới, chỉ file sau được cập nhật:
+   assets/pharmacovigilance_auto.json
+
+LƯU Ý CHUYÊN MÔN
+- Tin tự động được gắn nhãn “Tự động từ nguồn”.
+- Tin tự động chỉ hiển thị tiêu đề, trích đoạn và link gốc.
+- Không tự sinh liều, chống chỉ định hoặc hướng xử trí lâm sàng.
+- Khoa Dược rà soát trước khi chuyển nội dung thành cảnh báo biên tập chính thức.

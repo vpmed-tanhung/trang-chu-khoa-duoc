@@ -1,0 +1,54 @@
+name: Cập nhật cảnh giác dược trên web chính
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cap-nhat-canh-giac-duoc-web-chinh
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Lấy mã nguồn website
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cài Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: .github/scripts/requirements-pharmacovigilance.txt
+
+      - name: Cài thư viện
+        run: pip install -r .github/scripts/requirements-pharmacovigilance.txt
+
+      - name: Kiểm tra điểm tin mới
+        run: >-
+          python .github/scripts/update_pharmacovigilance.py
+          --data-path assets/pharmacovigilance_auto.json
+          --curated-path assets/pharmacovigilance_alerts.json
+          --pages 3
+          --max-new 20
+
+      - name: Ghi dữ liệu mới vào website hiện tại
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/pharmacovigilance_auto.json; then
+            echo "Không có cảnh báo mới."
+            exit 0
+          fi
+          git config user.name "VPMED Pharmacovigilance Bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/pharmacovigilance_auto.json
+          git commit -m "Tự động cập nhật cảnh giác dược trên web chính"
+          git push
