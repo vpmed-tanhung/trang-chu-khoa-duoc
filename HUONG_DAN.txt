@@ -1,0 +1,8 @@
+BẢN GẮN NGUYÊN GIAO DIỆN FILE VÀO ỨNG DỤNG CHÍNH
+
+1. Tải đè hai thư mục assets và .github vào thư mục gốc repository.
+2. Commit.
+3. Vào Actions → “Cảnh báo dược - giao diện nguyên bản và tự cập nhật” → Run workflow.
+4. Mở: https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#pharmacovigilance
+
+Bản này hiển thị nguyên file người dùng cung cấp trong mục con của web; không dựng lại giao diện, không dùng CSS của web chính.
