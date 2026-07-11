@@ -1,8 +1,0 @@
-{
-  "module": "Cảnh báo dược về sử dụng thuốc",
-  "target": "Ứng dụng chính trong trang-chu-khoa-duoc",
-  "route": "#pharmacovigilance",
-  "curated_alerts": 42,
-  "does_not_create_separate_website": true,
-  "required_index_script": "assets/pharmacovigilance_integration.js?v=20260711"
-}
