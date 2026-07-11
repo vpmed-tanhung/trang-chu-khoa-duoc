@@ -798,3 +798,8 @@
     z-index:2;
   }
 }
+
+/* V10: nguồn chính thức trong hồ sơ thuốc */
+.icd-source-compact li{margin:10px 0}
+.icd-source-compact li a{display:inline-block;font-weight:700}
+.icd-source-compact li small{display:block;margin-top:3px;color:#5e7489;line-height:1.45;font-weight:400}
