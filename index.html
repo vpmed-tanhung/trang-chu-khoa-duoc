@@ -2,14 +2,28 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#075f9f">
   <title>Hệ thống Hỗ trợ Dược lâm sàng | VPMED Tân Hưng</title>
   <link rel="stylesheet" href="assets/style.css">
   <link rel="stylesheet" href="assets/hepatotoxicity.css">
   <link rel="stylesheet" href="assets/pregnancy_lactation.css">
+  <link rel="stylesheet" href="assets/system-mobile.css?v=20260712">
+  <script>document.documentElement.classList.add('system-loading');</script>
+  <noscript><style>.system-loader{display:none!important}</style></noscript>
 </head>
 <body>
+<div class="system-loader" id="systemLoader" role="status" aria-live="polite" aria-label="Đang tải Hệ thống Hỗ trợ Dược lâm sàng">
+  <div class="system-loader-card">
+    <div class="system-loader-logo-wrap" aria-hidden="true"><img class="system-loader-logo" src="assets/logo-vpmed.png" alt=""></div>
+    <div class="system-loader-kicker">Khoa Dược · Dược lâm sàng</div>
+    <h1 class="system-loader-title">Hệ thống Hỗ trợ lâm sàng</h1>
+    <p class="system-loader-subtitle">Bệnh viện VPMED Tân Hưng</p>
+    <div class="system-loader-progress" aria-hidden="true"><div class="system-loader-progress-bar" id="systemLoaderBar"></div></div>
+    <div class="system-loader-meta"><span class="system-loader-status" id="systemLoaderStatus">Đang khởi tạo hệ thống…</span><span class="system-loader-percent" id="systemLoaderPercent">7%</span></div>
+    <p class="system-loader-note">Vui lòng chờ trong giây lát</p>
+  </div>
+</div>
 <header class="topbar">
   <div class="topbar-inner">
     <a class="brand" href="#home" data-go="home">
@@ -1226,5 +1240,6 @@ calc();
   <script src="assets/pharmacovigilance_auto_data.js?v=20260711"></script>
   <script src="assets/pharmacovigilance_integration.js?v=20260711-safe"></script>
   <script src="assets/pharmacovigilance_refresh_button.js?v=20260712"></script>
+  <script src="assets/system-ui.js?v=20260712"></script>
 </body>
 </html>
