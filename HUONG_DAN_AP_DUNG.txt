@@ -1,0 +1,29 @@
+BẢN VÁ CẬP NHẬT CẢNH BÁO DƯỢC – 12/07/2026
+
+Mục tiêu
+1. Không sửa hoặc xóa tệp assets/pharmacovigilance_alerts.json đang chứa dữ liệu đã biên tập.
+2. Sửa cơ chế lấy tin tự động vì tệp pharmacovigilance_auto.json hiện đang rỗng.
+3. Chạy kiểm tra nguồn mỗi ngày lúc 06:00 theo giờ Việt Nam.
+4. Thêm nút “Cập nhật dữ liệu” trong mục Cảnh báo dược.
+5. Nút trên web chỉ tải lại dữ liệu mới nhất đã đồng bộ; không tự ý biên tập nội dung chuyên môn.
+
+Các tệp cần đưa đúng đường dẫn trong repository
+- assets/pharmacovigilance_refresh_button.js
+- .github/scripts/update_pharmacovigilance.py
+- .github/scripts/ensure_pharmacovigilance_refresh_button.py
+- .github/workflows/cap-nhat-canh-bao-duoc.yml
+
+Cách áp dụng
+- Giải nén và tải nguyên cấu trúc thư mục lên nhánh main.
+- Commit các tệp.
+- GitHub Actions sẽ tự gắn thẻ script vào index.html và tạo lại assets/pharmacovigilance_auto.json.
+- Có thể mở Actions → “Cập nhật dữ liệu Cảnh báo dược” → Run workflow để chạy ngay lần đầu.
+- Sau khi workflow hoàn tất và GitHub Pages triển khai xong, mở:
+  https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#pharmacovigilance
+- Nhấn Ctrl+F5 một lần để bỏ bộ nhớ đệm cũ.
+
+Lưu ý an toàn
+- Bản tin tự động được gắn nhãn “chưa biên tập chuyên môn”.
+- Không tự động thay thế dữ liệu do dược sĩ đã rà soát.
+- Không đặt GitHub token trong JavaScript hoặc mã nguồn công khai.
+- Nếu nguồn chính thức thay đổi cấu trúc trang, workflow sẽ báo lỗi thay vì xóa dữ liệu biên tập.
