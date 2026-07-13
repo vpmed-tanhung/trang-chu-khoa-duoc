@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-07-13T06:59:58+07:00",
+  "generated_at": "2026-07-13T07:11:13+07:00",
   "source": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx",
-  "review_status": "Bản tin tự động chưa thay thế nội dung đã được dược sĩ biên tập. Cần mở nguồn gốc và rà soát trước khi sử dụng.",
-  "alerts": [],
   "status": "success",
-  "message": "Đã kiểm tra nguồn; chưa phát hiện bản tin mới ngoài dữ liệu đã biên tập."
+  "message": "Đã kiểm tra nguồn; chưa phát hiện bản tin mới ngoài dữ liệu đã biên tập.",
+  "review_status": "Bản tin tự động chưa thay thế nội dung đã được dược sĩ biên tập. Cần mở nguồn gốc và rà soát trước khi sử dụng.",
+  "alerts": []
 }
