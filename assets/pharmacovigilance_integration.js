@@ -110,13 +110,23 @@
     return new Date(Number(match[3]), Number(match[2]) - 1, Number(match[1]));
   }
 
-  function formatIsoDate(value) {
+  function formatIsoDateTime(value) {
     if (!value) return '';
     const date = new Date(value);
     if (Number.isNaN(date.getTime())) return '';
-    return date.toLocaleDateString('vi-VN', {
-      day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'Asia/Ho_Chi_Minh'
-    });
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Ho_Chi_Minh',
+      hour: '2-digit',
+      minute: '2-digit',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour12: false
+    }).formatToParts(date).reduce((result, part) => {
+      if (part.type !== 'literal') result[part.type] = part.value;
+      return result;
+    }, {});
+    return `${parts.hour}:${parts.minute} ${parts.day}/${parts.month}/${parts.year}`;
   }
 
   function normalizeUrl(value) {
@@ -139,10 +149,10 @@
   }
 
   function mergeAlerts(staticAlerts, autoAlerts) {
-    // Dữ liệu biên tập có thể có nhiều cảnh báo cùng lấy từ một bản tin nguồn.
-    // Vì vậy phải giữ nguyên toàn bộ 42 mục biên tập, không loại theo URL nguồn.
+    // Luôn giữ nguyên toàn bộ dữ liệu đã biên tập và đúng thứ tự cũ.
+    // Bản tin tự động chỉ được nối ở cuối, tuyệt đối không đẩy 42 cảnh báo biên tập xuống dưới.
     const curated = staticAlerts.map((item) => normalizeAlert(item, false)).filter(Boolean);
-    const merged = [...curated];
+    const automatic = [];
     const seenIds = new Set(curated.map((item) => String(item.id || '').trim()).filter(Boolean));
     const seenUrls = new Set(curated.map((item) => normalizeUrl(item.url)).filter(Boolean));
     const seenTitles = new Set(curated.map((item) => String(item.title || '').trim().toLowerCase()).filter(Boolean));
@@ -157,11 +167,13 @@
       if (id) seenIds.add(id);
       if (url) seenUrls.add(url);
       if (title) seenTitles.add(title);
-      merged.push(item);
+      automatic.push(item);
     });
 
-    return merged.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    automatic.sort((a, b) => parseDate(b.date) - parseDate(a.date));
+    return [...curated, ...automatic];
   }
+
 
   class VpmedPharmacovigilance extends HTMLElement {
     constructor() {
@@ -219,11 +231,16 @@
           this.fetchJson(STATIC_DATA_URL, true),
           this.fetchJson(AUTO_DATA_URL, false)
         ]);
-        const staticAlerts = unwrapAlerts(staticPayload);
+        const fetchedStaticAlerts = unwrapAlerts(staticPayload);
+        const embeddedStaticAlerts = unwrapAlerts(window.VPMED_PHARMACOVIGILANCE_STATIC_DATA);
+        // Không cho bản tải từ mạng làm giảm số cảnh báo đã biên tập do cache hoặc đồng bộ lỗi.
+        const staticAlerts = embeddedStaticAlerts.length > fetchedStaticAlerts.length
+          ? embeddedStaticAlerts
+          : fetchedStaticAlerts;
         const autoAlerts = unwrapAlerts(autoPayload);
         this.alerts = mergeAlerts(staticAlerts, autoAlerts);
         if (!this.alerts.length) throw new Error('Không có dữ liệu cảnh báo');
-        this.lastSyncDate = formatIsoDate(autoPayload?.generated_at) || this.latestDateText();
+        this.lastSyncDate = formatIsoDateTime(autoPayload?.generated_at) || this.latestDateText();
         this.populateFilters();
         this.renderCategories();
         this.updateStats();

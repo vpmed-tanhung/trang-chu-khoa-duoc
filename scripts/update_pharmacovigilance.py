@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -8,7 +9,7 @@ import unicodedata
 from datetime import datetime
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit, urlunsplit
 from zoneinfo import ZoneInfo
 
 import requests
@@ -20,6 +21,7 @@ from urllib3.util.retry import Retry
 LIST_URL = "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx"
 BASE_URL = "https://canhgiacduoc.org.vn/"
 OUTPUT_PATH = Path("assets/pharmacovigilance_auto.json")
+OUTPUT_JS_PATH = Path("assets/pharmacovigilance_auto_data.js")
 STATIC_PATH = Path("assets/pharmacovigilance_alerts.json")
 MAX_ITEMS = 30
 DETAIL_LINK_RE = re.compile(r"/CanhGiacDuoc/DiemTin/\d+/", re.IGNORECASE)
@@ -34,6 +36,63 @@ def normalize_key(value: str) -> str:
     text = unicodedata.normalize("NFD", clean_text(value))
     text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
     return re.sub(r"[^a-z0-9]+", " ", text.lower()).strip()
+
+
+def normalize_source_url(value: str) -> str:
+    """Chuẩn hóa đường dẫn nguồn về HTTPS để tránh liên kết HTTP và trùng bản tin."""
+    url = clean_text(value)
+    if not url:
+        return ""
+
+    parts = urlsplit(url)
+    host = (parts.hostname or "").lower()
+
+    if host in {"canhgiacduoc.org.vn", "www.canhgiacduoc.org.vn"}:
+        netloc = parts.netloc
+        if parts.port in {80, 443}:
+            netloc = host
+        return urlunsplit(("https", netloc, parts.path, parts.query, parts.fragment))
+
+    return url
+
+
+def smart_truncate(value: str, limit: int = 650) -> str:
+    """Cắt tóm tắt tại cuối câu hoặc cuối từ, tránh đứt giữa nội dung."""
+    text = clean_text(value)
+    text = re.sub(r"\s+([,.;:!?])", r"\1", text)
+
+    if not text:
+        return ""
+    if len(text) <= limit:
+        return text if text.endswith((".", "!", "?", "…")) else text + "."
+
+    sentences = re.split(r"(?<=[.!?…])\s+", text)
+    selected: list[str] = []
+    current_length = 0
+
+    for sentence in sentences:
+        sentence = clean_text(sentence)
+        if not sentence:
+            continue
+
+        added = len(sentence) + (1 if selected else 0)
+        if current_length + added > limit:
+            break
+
+        selected.append(sentence)
+        current_length += added
+
+    # Chỉ dùng phần cuối câu khi đủ thông tin; nếu câu đầu quá dài thì cắt theo từ.
+    if selected and current_length >= min(220, limit // 2):
+        result = " ".join(selected).strip()
+        return result if result.endswith((".", "!", "?", "…")) else result + "."
+
+    clipped = text[: max(1, limit - 1)].rstrip()
+    last_space = clipped.rfind(" ")
+    if last_space >= max(80, limit // 2):
+        clipped = clipped[:last_space].rstrip()
+
+    return clipped.rstrip(",;:") + "…"
 
 
 def make_session() -> requests.Session:
@@ -74,7 +133,7 @@ def extract_listing(html: str) -> list[dict[str, str]]:
 
     for anchor in soup.find_all("a", href=True):
         title = clean_text(anchor.get_text(" ", strip=True))
-        url = urljoin(BASE_URL, anchor["href"])
+        url = normalize_source_url(urljoin(BASE_URL, anchor["href"]))
 
         if not DETAIL_LINK_RE.search(url):
             continue
@@ -141,11 +200,9 @@ def extract_detail(html: str, fallback_title: str) -> dict[str, Any]:
         if len(body_lines) >= 4:
             break
 
-    summary = clean_text(" ".join(body_lines[:2]))
+    summary = smart_truncate(" ".join(body_lines[:4]))
     if not summary:
         summary = f"Bản tin mới: {fallback_title}."
-    if len(summary) > 650:
-        summary = summary[:647].rstrip() + "…"
 
     return {
         "date": date_text,
@@ -170,7 +227,7 @@ def load_static_keys() -> tuple[set[str], set[str]]:
         if not isinstance(item, dict):
             continue
         title = normalize_key(str(item.get("title", "")))
-        url = clean_text(str(item.get("url", ""))).rstrip("/").lower()
+        url = normalize_source_url(str(item.get("url", ""))).rstrip("/").lower()
         if title:
             titles.add(title)
         if url:
@@ -185,7 +242,8 @@ def build_alert(title: str, url: str, detail: dict[str, Any]) -> dict[str, Any]:
     year = date_match.group(3) if date_match else ""
 
     digest = hashlib.sha1(url.encode("utf-8")).hexdigest()[:14]
-    interaction = "tương tác" in normalize_key(title)
+    title_key = normalize_key(title)
+    interaction = "tuong tac" in title_key or "interaction" in title_key
 
     return {
         "id": f"auto-{digest}",
@@ -204,13 +262,47 @@ def build_alert(title: str, url: str, detail: dict[str, Any]) -> dict[str, Any]:
         "action": [],
         "monitor": [],
         "source": "Trung tâm Quốc gia về Thông tin thuốc và Theo dõi phản ứng có hại của thuốc",
-        "url": url,
+        "url": normalize_source_url(url),
         "auto": True,
         "reviewed": False,
     }
 
 
-def main() -> int:
+def existing_check_is_fresh(now: datetime) -> bool:
+    if not OUTPUT_PATH.exists():
+        return False
+    try:
+        payload = json.loads(OUTPUT_PATH.read_text(encoding="utf-8"))
+        generated_at = str(payload.get("generated_at", "")).strip()
+        if not generated_at:
+            return False
+        checked = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+        if checked.tzinfo is None:
+            checked = checked.replace(tzinfo=ZoneInfo("Asia/Ho_Chi_Minh"))
+        return checked.astimezone(ZoneInfo("Asia/Ho_Chi_Minh")).date() == now.date()
+    except (OSError, ValueError, TypeError, json.JSONDecodeError):
+        return False
+
+
+def write_payload(payload: dict[str, Any]) -> None:
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_PATH.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    OUTPUT_JS_PATH.write_text(
+        "window.VPMED_PHARMACOVIGILANCE_AUTO_DATA = "
+        + json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        + ";\n",
+        encoding="utf-8",
+    )
+
+
+def main(skip_if_fresh: bool = False) -> int:
+    now = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh"))
+    if skip_if_fresh and existing_check_is_fresh(now):
+        print("Dữ liệu đã được kiểm tra trong ngày hôm nay; bỏ qua lượt chạy dự phòng.")
+        return 0
     session = make_session()
     listing_html = fetch_html(session, LIST_URL)
     listing = extract_listing(listing_html)
@@ -224,7 +316,7 @@ def main() -> int:
 
     for item in listing:
         title = item["title"]
-        url = item["url"]
+        url = normalize_source_url(item["url"])
         title_key = normalize_key(title)
         url_key = url.rstrip("/").lower()
 
@@ -246,7 +338,6 @@ def main() -> int:
 
     alerts.sort(key=sort_key, reverse=True)
 
-    now = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh"))
     payload = {
         "generated_at": now.isoformat(timespec="seconds"),
         "source": LIST_URL,
@@ -257,13 +348,9 @@ def main() -> int:
         "alerts": alerts,
     }
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    write_payload(payload)
 
-    print(f"Đã tạo {len(alerts)} bản tin tự động tại {OUTPUT_PATH}.")
+    print(f"Đã tạo {len(alerts)} bản tin tự động tại {OUTPUT_PATH} và {OUTPUT_JS_PATH}.")
     if errors:
         print(f"Có {len(errors)} liên kết không đọc được:", file=sys.stderr)
         for error in errors:
@@ -273,4 +360,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    parser = argparse.ArgumentParser(description="Cập nhật dữ liệu cảnh báo dược tự động.")
+    parser.add_argument(
+        "--skip-if-fresh",
+        action="store_true",
+        help="Bỏ qua nếu dữ liệu đã được kiểm tra trong ngày hiện tại.",
+    )
+    args = parser.parse_args()
+    raise SystemExit(main(skip_if_fresh=args.skip_if_fresh))

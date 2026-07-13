@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -267,7 +268,41 @@ def build_alert(title: str, url: str, detail: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def main() -> int:
+def existing_check_is_fresh(now: datetime) -> bool:
+    if not OUTPUT_PATH.exists():
+        return False
+    try:
+        payload = json.loads(OUTPUT_PATH.read_text(encoding="utf-8"))
+        generated_at = str(payload.get("generated_at", "")).strip()
+        if not generated_at:
+            return False
+        checked = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+        if checked.tzinfo is None:
+            checked = checked.replace(tzinfo=ZoneInfo("Asia/Ho_Chi_Minh"))
+        return checked.astimezone(ZoneInfo("Asia/Ho_Chi_Minh")).date() == now.date()
+    except (OSError, ValueError, TypeError, json.JSONDecodeError):
+        return False
+
+
+def write_payload(payload: dict[str, Any]) -> None:
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_PATH.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    OUTPUT_JS_PATH.write_text(
+        "window.VPMED_PHARMACOVIGILANCE_AUTO_DATA = "
+        + json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        + ";\n",
+        encoding="utf-8",
+    )
+
+
+def main(skip_if_fresh: bool = False) -> int:
+    now = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh"))
+    if skip_if_fresh and existing_check_is_fresh(now):
+        print("Dữ liệu đã được kiểm tra trong ngày hôm nay; bỏ qua lượt chạy dự phòng.")
+        return 0
     session = make_session()
     listing_html = fetch_html(session, LIST_URL)
     listing = extract_listing(listing_html)
@@ -303,16 +338,9 @@ def main() -> int:
 
     alerts.sort(key=sort_key, reverse=True)
 
-    now = datetime.now(ZoneInfo("Asia/Ho_Chi_Minh"))
     payload = {
         "generated_at": now.isoformat(timespec="seconds"),
         "source": LIST_URL,
-        "status": "success",
-        "message": (
-            "Đã kiểm tra nguồn; chưa phát hiện bản tin mới ngoài dữ liệu đã biên tập."
-            if not alerts
-            else f"Đã phát hiện {len(alerts)} bản tin tự động mới/chưa biên tập."
-        ),
         "review_status": (
             "Bản tin tự động chưa thay thế nội dung đã được dược sĩ biên tập. "
             "Cần mở nguồn gốc và rà soát trước khi sử dụng."
@@ -320,22 +348,9 @@ def main() -> int:
         "alerts": alerts,
     }
 
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_PATH.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-    OUTPUT_JS_PATH.write_text(
-        "window.VPMED_PHARMACOVIGILANCE_AUTO_DATA = "
-        + json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
-        + ";\n",
-        encoding="utf-8",
-    )
+    write_payload(payload)
 
-    print(
-        f"Đã tạo {len(alerts)} bản tin tự động tại {OUTPUT_PATH} "
-        f"và đồng bộ {OUTPUT_JS_PATH}."
-    )
+    print(f"Đã tạo {len(alerts)} bản tin tự động tại {OUTPUT_PATH} và {OUTPUT_JS_PATH}.")
     if errors:
         print(f"Có {len(errors)} liên kết không đọc được:", file=sys.stderr)
         for error in errors:
@@ -345,4 +360,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    parser = argparse.ArgumentParser(description="Cập nhật dữ liệu cảnh báo dược tự động.")
+    parser.add_argument(
+        "--skip-if-fresh",
+        action="store_true",
+        help="Bỏ qua nếu dữ liệu đã được kiểm tra trong ngày hiện tại.",
+    )
+    args = parser.parse_args()
+    raise SystemExit(main(skip_if_fresh=args.skip_if_fresh))
