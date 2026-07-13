@@ -1,7 +1,6 @@
 /* VPMED - evaluation-embed.js
-   BẢN THAY THẾ HOÀN TOÀN.
-   Mục tiêu: nút/link Đánh giá chỉ mở đúng phieu-danh-gia.html trong modal.
-   Không mở lại trang chủ/index.html trong khung.
+   Sửa lỗi: các nút có nội dung chứa từ "đánh giá" bị hiểu nhầm là nút mở phiếu đánh giá.
+   Chỉ mở modal khi phần tử có dấu hiệu định danh rõ ràng của chức năng Đánh giá.
 */
 (function () {
   'use strict';
@@ -82,7 +81,10 @@
   }
 
   function closeEvaluationModal() {
-    document.querySelectorAll('.vpmed-eval-backdrop,[data-vpmed-eval-modal="1"]').forEach(el => el.remove());
+    document
+      .querySelectorAll('.vpmed-eval-backdrop,[data-vpmed-eval-modal="1"]')
+      .forEach((el) => el.remove());
+
     document.body.style.overflow = '';
   }
 
@@ -93,7 +95,6 @@
     const backdrop = document.createElement('div');
     backdrop.className = 'vpmed-eval-backdrop';
     backdrop.setAttribute('data-vpmed-eval-modal', '1');
-
     backdrop.innerHTML = `
       <div class="vpmed-eval-modal" role="dialog" aria-modal="true" aria-label="Phiếu đánh giá">
         <div class="vpmed-eval-head">
@@ -107,49 +108,69 @@
     document.body.appendChild(backdrop);
     document.body.style.overflow = 'hidden';
 
-    backdrop.querySelector('.vpmed-eval-close').addEventListener('click', closeEvaluationModal);
-    backdrop.addEventListener('click', function (ev) {
-      if (ev.target === backdrop) closeEvaluationModal();
+    backdrop
+      .querySelector('.vpmed-eval-close')
+      .addEventListener('click', closeEvaluationModal);
+
+    backdrop.addEventListener('click', function (event) {
+      if (event.target === backdrop) closeEvaluationModal();
     });
   }
 
-  function isEvaluationLinkOrButton(el) {
-    if (!el) return false;
+  function isEvaluationLinkOrButton(element) {
+    if (!element) return false;
 
-    const href = String(el.getAttribute('href') || '').toLowerCase();
-    const dataView = String(el.getAttribute('data-view') || '').toLowerCase();
-    const dataOpen = String(el.getAttribute('data-open') || '').toLowerCase();
-    const dataEval = String(el.getAttribute('data-evaluation') || '').toLowerCase();
-    const text = String(el.textContent || '').toLowerCase();
+    const href = String(element.getAttribute('href') || '').toLowerCase();
+    const dataView = String(element.getAttribute('data-view') || '').toLowerCase();
+    const dataOpen = String(element.getAttribute('data-open') || '').toLowerCase();
+    const dataEval = String(element.getAttribute('data-evaluation') || '').toLowerCase();
 
-    if (href.includes('phieu-danh-gia')) return true;
-    if (href.includes('danh-gia-khang-sinh')) return true;
-    if (href.includes('danh-gia')) return true;
-    if (dataView.includes('evaluation') || dataOpen.includes('evaluation') || dataEval) return true;
+    const hasEvaluationClass =
+      element.classList?.contains('nav-evaluation') ||
+      element.classList?.contains('js-open-evaluation') ||
+      element.classList?.contains('open-evaluation');
 
-    // Chỉ bắt chữ Đánh giá ở link/nút, không bắt nội dung tiêu đề trong trang.
-    if ((el.tagName === 'A' || el.tagName === 'BUTTON') && (text.includes('đánh giá') || text.includes('danh gia'))) return true;
-
-    return false;
+    /*
+      Không kiểm tra textContent.
+      Vì các mục bệnh lý có thể chứa câu như:
+      "Luôn đánh giá nguy cơ nặng và đa kháng".
+    */
+    return Boolean(
+      href.includes('phieu-danh-gia') ||
+      href.includes('danh-gia-khang-sinh') ||
+      dataView === 'evaluation' ||
+      dataOpen === 'evaluation' ||
+      dataEval === '1' ||
+      dataEval === 'true' ||
+      dataEval === 'evaluation' ||
+      hasEvaluationClass
+    );
   }
 
-  document.addEventListener('click', function (ev) {
-    const trigger = ev.target.closest('a,button,[data-view],[data-open],[data-evaluation]');
-    if (!isEvaluationLinkOrButton(trigger)) return;
-    if (trigger.classList && trigger.classList.contains('vpmed-eval-close')) return;
+  document.addEventListener(
+    'click',
+    function (event) {
+      const trigger = event.target.closest(
+        'a,button,[data-view],[data-open],[data-evaluation]'
+      );
 
-    ev.preventDefault();
-    ev.stopPropagation();
-    openEvaluationModal();
-  }, true);
+      if (!isEvaluationLinkOrButton(trigger)) return;
+      if (trigger.classList?.contains('vpmed-eval-close')) return;
 
-  window.addEventListener('message', function (ev) {
-    if (ev && ev.data && ev.data.type === 'close-evaluation-modal') {
+      event.preventDefault();
+      event.stopPropagation();
+      openEvaluationModal();
+    },
+    true
+  );
+
+  window.addEventListener('message', function (event) {
+    if (event?.data?.type === 'close-evaluation-modal') {
       closeEvaluationModal();
     }
   });
 
-  document.addEventListener('keydown', function (ev) {
-    if (ev.key === 'Escape') closeEvaluationModal();
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeEvaluationModal();
   });
 })();

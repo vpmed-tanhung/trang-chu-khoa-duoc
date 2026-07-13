@@ -1,20 +1,22 @@
-/* VPMED - Fix modal đánh giá bị mở nhầm web chính
-   Mục tiêu:
-   - Khi bấm Đánh giá, chỉ mở đúng file phieu-danh-gia.html.
-   - Không nhúng lại index.html / trang chủ trong modal.
-   - Không sửa assets/unified.js.
+/* VPMED - Fix modal đánh giá
+   Sửa lỗi: không nhận diện nút dựa trên chữ "đánh giá" nằm trong nội dung.
+   Chỉ nhận diện các liên kết/thuộc tính dành riêng cho phiếu đánh giá.
 */
 (function () {
-  const EVAL_URL = 'https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/phieu-danh-gia.html?embed=1';
+  const EVAL_URL =
+    'https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/phieu-danh-gia.html?embed=1';
 
   function removeOldEvaluationModals() {
-    document.querySelectorAll(
-      '#evaluationModal, #evalModal, .evaluation-modal, .eval-modal, [data-evaluation-modal]'
-    ).forEach(el => el.remove());
+    document
+      .querySelectorAll(
+        '#evaluationModal, #evalModal, .evaluation-modal, .eval-modal, [data-evaluation-modal]'
+      )
+      .forEach((el) => el.remove());
   }
 
   function ensureStyle() {
     if (document.getElementById('vpmed-eval-modal-fix-style')) return;
+
     const style = document.createElement('style');
     style.id = 'vpmed-eval-modal-fix-style';
     style.textContent = `
@@ -74,7 +76,6 @@
     const backdrop = document.createElement('div');
     backdrop.className = 'vpmed-eval-fix-backdrop';
     backdrop.dataset.evaluationModal = '1';
-
     backdrop.innerHTML = `
       <div class="vpmed-eval-fix-modal" role="dialog" aria-modal="true" aria-label="Phiếu đánh giá">
         <div class="vpmed-eval-fix-head">
@@ -93,47 +94,71 @@
       document.body.style.overflow = '';
     };
 
-    backdrop.querySelector('.vpmed-eval-fix-close').addEventListener('click', close);
-    backdrop.addEventListener('click', e => {
-      if (e.target === backdrop) close();
+    backdrop
+      .querySelector('.vpmed-eval-fix-close')
+      .addEventListener('click', close);
+
+    backdrop.addEventListener('click', (event) => {
+      if (event.target === backdrop) close();
     });
-    document.addEventListener('keydown', function esc(ev) {
-      if (ev.key === 'Escape') {
+
+    document.addEventListener('keydown', function esc(event) {
+      if (event.key === 'Escape') {
         document.removeEventListener('keydown', esc);
         close();
       }
     });
   }
 
-  function isEvaluationTrigger(el) {
-    if (!el) return false;
+  function isEvaluationTrigger(element) {
+    if (!element) return false;
 
-    const href = String(el.getAttribute('href') || '');
-    const data = String(el.getAttribute('data-open') || el.getAttribute('data-view') || '');
-    const text = String(el.textContent || '').toLowerCase();
+    const href = String(element.getAttribute('href') || '').toLowerCase();
+    const dataOpen = String(element.getAttribute('data-open') || '').toLowerCase();
+    const dataView = String(element.getAttribute('data-view') || '').toLowerCase();
+    const dataEval = String(element.getAttribute('data-evaluation') || '').toLowerCase();
 
-    return href.includes('phieu-danh-gia') ||
-           href.includes('danh-gia') ||
-           data.includes('evaluation') ||
-           text.includes('đánh giá') ||
-           text.includes('danh gia');
+    const hasEvaluationClass =
+      element.classList?.contains('nav-evaluation') ||
+      element.classList?.contains('js-open-evaluation') ||
+      element.classList?.contains('open-evaluation');
+
+    /*
+      Không dùng element.textContent.includes("đánh giá").
+      Mục "Viêm phổi bệnh viện / liên quan thở máy" có nội dung
+      "Luôn đánh giá nguy cơ nặng và đa kháng", nên trước đây bị mở nhầm modal.
+    */
+    return Boolean(
+      href.includes('phieu-danh-gia') ||
+      href.includes('danh-gia-khang-sinh') ||
+      dataOpen === 'evaluation' ||
+      dataView === 'evaluation' ||
+      dataEval === '1' ||
+      dataEval === 'true' ||
+      dataEval === 'evaluation' ||
+      hasEvaluationClass
+    );
   }
 
-  document.addEventListener('click', function (e) {
-    const trigger = e.target.closest('a,button,[data-open],[data-view]');
-    if (!isEvaluationTrigger(trigger)) return;
+  document.addEventListener(
+    'click',
+    function (event) {
+      const trigger = event.target.closest(
+        'a,button,[data-open],[data-view],[data-evaluation]'
+      );
 
-    // Chỉ chặn các nút/link đánh giá. Không chặn nút đóng trong modal mới.
-    if (trigger.classList && trigger.classList.contains('vpmed-eval-fix-close')) return;
+      if (!isEvaluationTrigger(trigger)) return;
+      if (trigger.classList?.contains('vpmed-eval-fix-close')) return;
 
-    e.preventDefault();
-    e.stopPropagation();
-    openEvaluationModal();
-  }, true);
+      event.preventDefault();
+      event.stopPropagation();
+      openEvaluationModal();
+    },
+    true
+  );
 
-  // Nếu modal cũ đã bị mở nhầm sẵn, phát hiện iframe đang là trang chủ thì sửa src.
   setInterval(function () {
-    document.querySelectorAll('iframe').forEach(frame => {
+    document.querySelectorAll('iframe').forEach((frame) => {
       const src = String(frame.getAttribute('src') || '');
       const looksLikeWrongHome =
         src.endsWith('/trang-chu-khoa-duoc/') ||
