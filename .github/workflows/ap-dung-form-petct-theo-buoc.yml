@@ -1,0 +1,39 @@
+name: Áp dụng form PET-CT theo từng bước
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "assets/petct_step_form.js"
+      - ".github/scripts/apply_petct_step_form.py"
+      - ".github/workflows/ap-dung-form-petct-theo-buoc.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lấy mã nguồn hiện tại
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Áp dụng giao diện form PET-CT
+        run: python .github/scripts/apply_petct_step_form.py
+
+      - name: Kiểm tra và ghi nhận thay đổi
+        shell: bash
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "index.html đã đúng, không có thay đổi mới."
+            exit 0
+          fi
+
+          git config user.name "VPMED Clinical UI Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          git commit -m "Cải thiện form PET-CT theo từng bước [skip ci]"
+          git push
