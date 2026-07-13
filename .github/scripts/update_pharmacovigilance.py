@@ -20,6 +20,7 @@ from urllib3.util.retry import Retry
 LIST_URL = "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx"
 BASE_URL = "https://canhgiacduoc.org.vn/"
 OUTPUT_PATH = Path("assets/pharmacovigilance_auto.json")
+OUTPUT_JS_PATH = Path("assets/pharmacovigilance_auto_data.js")
 STATIC_PATH = Path("assets/pharmacovigilance_alerts.json")
 MAX_ITEMS = 30
 DETAIL_LINK_RE = re.compile(r"/CanhGiacDuoc/DiemTin/\d+/", re.IGNORECASE)
@@ -306,6 +307,12 @@ def main() -> int:
     payload = {
         "generated_at": now.isoformat(timespec="seconds"),
         "source": LIST_URL,
+        "status": "success",
+        "message": (
+            "Đã kiểm tra nguồn; chưa phát hiện bản tin mới ngoài dữ liệu đã biên tập."
+            if not alerts
+            else f"Đã phát hiện {len(alerts)} bản tin tự động mới/chưa biên tập."
+        ),
         "review_status": (
             "Bản tin tự động chưa thay thế nội dung đã được dược sĩ biên tập. "
             "Cần mở nguồn gốc và rà soát trước khi sử dụng."
@@ -318,8 +325,17 @@ def main() -> int:
         json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
+    OUTPUT_JS_PATH.write_text(
+        "window.VPMED_PHARMACOVIGILANCE_AUTO_DATA = "
+        + json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        + ";\n",
+        encoding="utf-8",
+    )
 
-    print(f"Đã tạo {len(alerts)} bản tin tự động tại {OUTPUT_PATH}.")
+    print(
+        f"Đã tạo {len(alerts)} bản tin tự động tại {OUTPUT_PATH} "
+        f"và đồng bộ {OUTPUT_JS_PATH}."
+    )
     if errors:
         print(f"Có {len(errors)} liên kết không đọc được:", file=sys.stderr)
         for error in errors:

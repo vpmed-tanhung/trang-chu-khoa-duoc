@@ -2,8 +2,10 @@ from pathlib import Path
 
 
 INDEX_PATH = Path("index.html")
-SCRIPT_SRC = "assets/pharmacovigilance_refresh_button.js"
-SCRIPT_TAG = f'<script src="{SCRIPT_SRC}?v=20260712"></script>'
+CONFIG_SRC = "assets/pharmacovigilance_refresh_config.js"
+BUTTON_SRC = "assets/pharmacovigilance_refresh_button.js"
+CONFIG_TAG = f'<script src="{CONFIG_SRC}?v=20260713"></script>'
+BUTTON_TAG = f'<script src="{BUTTON_SRC}?v=20260713"></script>'
 
 
 def main() -> int:
@@ -11,18 +13,30 @@ def main() -> int:
         raise FileNotFoundError("Không tìm thấy index.html")
 
     html = INDEX_PATH.read_text(encoding="utf-8")
+    changed = False
 
-    if SCRIPT_SRC in html:
-        print("index.html đã có mô-đun nút cập nhật.")
-        return 0
+    # Xóa thẻ phiên bản cũ để tránh trình duyệt giữ cache.
+    lines = []
+    for line in html.splitlines():
+        if CONFIG_SRC in line or BUTTON_SRC in line:
+            changed = True
+            continue
+        lines.append(line)
+    html = "\n".join(lines)
 
     marker = "</body>"
     if marker not in html:
         raise RuntimeError("Không tìm thấy thẻ </body> trong index.html")
 
-    html = html.replace(marker, f"  {SCRIPT_TAG}\n{marker}", 1)
-    INDEX_PATH.write_text(html, encoding="utf-8")
-    print("Đã gắn mô-đun nút cập nhật vào index.html.")
+    block = f"  {CONFIG_TAG}\n  {BUTTON_TAG}\n"
+    html = html.replace(marker, block + marker, 1)
+    changed = True
+
+    if changed:
+        INDEX_PATH.write_text(html + ("\n" if not html.endswith("\n") else ""), encoding="utf-8")
+        print("Đã gắn cấu hình và mô-đun nút cập nhật vào index.html.")
+    else:
+        print("index.html đã có mô-đun cập nhật.")
     return 0
 
 

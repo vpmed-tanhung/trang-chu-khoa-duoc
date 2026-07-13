@@ -1,0 +1,40 @@
+KÍCH HOẠT NÚT “CẬP NHẬT DỮ LIỆU” THEO THỜI GIAN THỰC
+
+Lý do cần bước này:
+Website đang chạy trên GitHub Pages (web tĩnh), nên JavaScript công khai không được phép chứa GitHub token. API trung gian Apps Script giữ token ở phía máy chủ và chỉ gửi lệnh chạy workflow.
+
+THỰC HIỆN MỘT LẦN
+
+1. Tạo GitHub fine-grained personal access token:
+   - Repository access: Only select repositories → trang-chu-khoa-duoc.
+   - Repository permissions → Actions: Read and write.
+   - Không đặt token vào file JavaScript hoặc GitHub công khai.
+
+2. Vào script.google.com bằng Gmail Khoa Dược → New project.
+
+3. Sao chép nội dung file:
+   apps-script/canh-bao-duoc-trigger/Code.gs
+   vào file Code.gs của Apps Script.
+
+4. Project Settings → Script Properties → thêm:
+   - GITHUB_TOKEN = token vừa tạo.
+   Các giá trị dưới đây đã có mặc định, chỉ thêm nếu repository thay đổi:
+   - GITHUB_OWNER = vpmed-tanhung
+   - GITHUB_REPO = trang-chu-khoa-duoc
+   - GITHUB_WORKFLOW = cap-nhat-canh-bao-duoc.yml
+   - GITHUB_REF = main
+
+5. Deploy → New deployment → Web app:
+   - Execute as: Me.
+   - Who has access: Anyone.
+   - Deploy và sao chép URL kết thúc bằng /exec.
+
+6. Mở file assets/pharmacovigilance_refresh_config.js rồi dán URL /exec:
+   window.VPMED_PHARMACOVIGILANCE_REFRESH_API_URL = 'DAN_URL_EXEC_VAO_DAY';
+
+7. Đưa toàn bộ mã nguồn lên GitHub như bình thường.
+
+KẾT QUẢ
+- Tự động chạy hằng ngày khoảng 06:00 sáng Việt Nam (đặt lịch 06:07 để tránh nghẽn đầu giờ).
+- Nhấn “Cập nhật dữ liệu” sẽ gửi lệnh chạy ngay, hiển thị trạng thái chờ và tự tải lại khi tệp mới được GitHub Pages đồng bộ.
+- Nếu API chưa cấu hình, nút vẫn tải lại dữ liệu hiện có và đưa liên kết mở GitHub Actions; không báo giả rằng đã lấy tin mới.
