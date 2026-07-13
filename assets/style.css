@@ -798,3 +798,20 @@
     z-index:2;
   }
 }
+
+/* Khóa tạm thời công cụ ICD-10 trong thời gian cập nhật */
+.feature-card.icd10-feature:disabled{
+  cursor:not-allowed;
+  opacity:.68;
+  filter:grayscale(.2);
+}
+.feature-card.icd10-feature:disabled:hover{
+  transform:none;
+  border-color:var(--line);
+  box-shadow:none;
+}
+.feature-card.icd10-feature:disabled em{
+  color:#7a5a12;
+  background:#fff7df;
+  border-color:#e6cf87;
+}
