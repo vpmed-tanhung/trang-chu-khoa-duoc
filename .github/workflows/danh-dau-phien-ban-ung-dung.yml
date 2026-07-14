@@ -43,8 +43,7 @@ jobs:
           const payload = {
             version: process.env.APP_VERSION,
             published_at: now.toISOString(),
-            release_at: releaseAt.toISOString(),
-            announce_on_first_visit: true
+            release_at: releaseAt.toISOString()
           };
           fs.writeFileSync(
             'assets/app-version.json',

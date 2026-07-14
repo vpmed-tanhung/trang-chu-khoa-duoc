@@ -1,10 +1,10 @@
 .vpmed-update-notice {
   position: fixed;
   z-index: 10000;
-  top: 14px;
-  left: 50%;
-  width: min(720px, calc(100% - 28px));
-  transform: translate(-50%, -18px);
+  top: 86px;
+  right: 16px;
+  width: min(430px, calc(100% - 24px));
+  transform: translateY(-14px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -12,7 +12,7 @@
 }
 
 .vpmed-update-notice.is-visible {
-  transform: translate(-50%, 0);
+  transform: translateY(0);
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -20,10 +20,10 @@
 
 .vpmed-update-notice__card {
   display: grid;
-  grid-template-columns: 46px minmax(0, 1fr) auto;
+  grid-template-columns: 40px minmax(0, 1fr) auto;
   align-items: center;
-  gap: 13px;
-  padding: 14px 14px 14px 16px;
+  gap: 10px;
+  padding: 11px 11px 11px 12px;
   border: 1px solid #e6c56f;
   border-left: 5px solid #e5a900;
   border-radius: 16px;
@@ -36,13 +36,13 @@
 .vpmed-update-notice__icon {
   position: relative;
   display: grid;
-  width: 46px;
-  height: 46px;
+  width: 40px;
+  height: 40px;
   place-items: center;
-  border-radius: 14px;
+  border-radius: 12px;
   background: #fff;
   color: #096ca9;
-  font-size: 23px;
+  font-size: 20px;
   box-shadow: inset 0 0 0 1px #ead79d;
 }
 
@@ -78,7 +78,7 @@
   display: block;
   margin: 0 0 4px;
   color: #083f68;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 900;
   line-height: 1.35;
 }
@@ -87,8 +87,8 @@
 .vpmed-update-notice__note {
   display: block;
   color: #4c6170;
-  font-size: 12px;
-  line-height: 1.45;
+  font-size: 11.5px;
+  line-height: 1.4;
 }
 
 .vpmed-update-notice__note {
@@ -97,8 +97,8 @@
 }
 
 .vpmed-update-notice__dismiss {
-  min-height: 38px;
-  padding: 9px 13px;
+  min-height: 34px;
+  padding: 7px 10px;
   border: 1px solid #d7bd70;
   border-radius: 10px;
   background: #fff;
@@ -144,7 +144,8 @@
 
 @media (max-width: 640px) {
   .vpmed-update-notice {
-    top: 9px;
+    top: 74px;
+    right: 9px;
     width: calc(100% - 18px);
   }
 

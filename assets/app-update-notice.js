@@ -7,6 +7,7 @@
   const PENDING_VERSION_KEY = 'vpmed-app-pending-version';
   const JUST_UPDATED_KEY = 'vpmed-app-just-updated';
   const DISMISSED_PREFIX = 'vpmed-update-notice-dismissed:';
+  const LEGACY_FIRST_VISIT_PREFIX = 'truoc-';
   let applyTimer = 0;
 
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
@@ -110,9 +111,9 @@
   function scheduledNotice(version) {
     return {
       id: `sap-cap-nhat:${version}`,
-      title: 'Phiên bản mới sẽ được cập nhật tự động tối nay',
-      message: 'Hệ thống tiếp tục hoạt động bình thường, không làm gián đoạn phiên tra cứu hiện tại.',
-      note: 'Bản mới sẽ được áp dụng tự động trong đêm; từ sáng mai các bác sĩ sẽ sử dụng phiên bản mới nhất.'
+      title: 'Có phiên bản ứng dụng mới',
+      message: 'Bản mới sẽ được cập nhật tự động tối nay.',
+      note: 'Sáng mai các bác sĩ sẽ sử dụng phiên bản mới nhất.'
     };
   }
 
@@ -163,16 +164,14 @@
     const currentVersion = readStorage(CURRENT_VERSION_KEY);
     const justUpdated = readStorage(JUST_UPDATED_KEY);
 
-    if (!currentVersion) {
-      if (manifest.announce_on_first_visit && Date.now() < releaseTime) {
-        writeStorage(CURRENT_VERSION_KEY, `truoc-${version}`);
-        markPending(manifest);
-      } else {
-        writeStorage(CURRENT_VERSION_KEY, version);
-        if (manifest.announce_on_first_visit && Date.now() >= releaseTime) {
-          presentNotice(completedNotice(version));
-        }
-      }
+    // Lần đầu thiết bị truy cập chỉ ghi nhận phiên bản gốc. Chỉ một mã phiên
+    // bản khác xuất hiện ở lần kiểm tra sau mới được coi là bản cập nhật.
+    // Tiền tố "truoc-" là dữ liệu do cơ chế cũ tạo ra và cũng được chuẩn hóa
+    // âm thầm để không tiếp tục hiện thông báo sai trên thiết bị đã gặp lỗi.
+    if (!currentVersion || currentVersion.startsWith(LEGACY_FIRST_VISIT_PREFIX)) {
+      writeStorage(CURRENT_VERSION_KEY, version);
+      removeStorage(PENDING_VERSION_KEY);
+      removeStorage(JUST_UPDATED_KEY);
       return;
     }
 
