@@ -149,8 +149,8 @@
   }
 
   function mergeAlerts(staticAlerts, autoAlerts) {
-    // Luôn giữ nguyên toàn bộ dữ liệu đã biên tập và đúng thứ tự cũ.
-    // Bản tin tự động chỉ được nối ở cuối, tuyệt đối không đẩy 42 cảnh báo biên tập xuống dưới.
+    // Giữ nguyên đầy đủ dữ liệu đã biên tập; sau khi hợp nhất, luôn hiển thị
+    // bản tin có ngày mới nhất trước, không phụ thuộc bản tin thuộc nguồn nào.
     const curated = staticAlerts.map((item) => normalizeAlert(item, false)).filter(Boolean);
     const automatic = [];
     const seenIds = new Set(curated.map((item) => String(item.id || '').trim()).filter(Boolean));
@@ -170,8 +170,7 @@
       automatic.push(item);
     });
 
-    automatic.sort((a, b) => parseDate(b.date) - parseDate(a.date));
-    return [...curated, ...automatic];
+    return [...curated, ...automatic].sort((a, b) => parseDate(b.date) - parseDate(a.date));
   }
 
 

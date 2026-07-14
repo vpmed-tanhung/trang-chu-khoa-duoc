@@ -39,6 +39,12 @@
     return `${String(Number(match[1])).padStart(2, '0')}/${String(Number(match[2])).padStart(2, '0')}/${match[3]}`;
   }
 
+  function dateSortValue(value) {
+    const match = String(value || '').match(DATE_RE);
+    if (!match) return 0;
+    return new Date(Number(match[3]), Number(match[2]) - 1, Number(match[1])).getTime();
+  }
+
   function canonicalUrl(value) {
     try {
       const url = new URL(value, SOURCE_URL);
@@ -203,8 +209,10 @@
       added.push(item);
     });
 
-    // 42 cảnh báo biên tập luôn nằm nguyên ở đầu; bản tin tự động chỉ nối ở cuối.
-    component.alerts = [...curated, ...automatic, ...added];
+    // Giữ nguyên đủ 42 cảnh báo biên tập và xếp toàn bộ danh sách theo ngày,
+    // để bản tin vừa cập nhật luôn xuất hiện đúng vị trí mới nhất ở đầu.
+    component.alerts = [...curated, ...automatic, ...added]
+      .sort((a, b) => dateSortValue(b.date) - dateSortValue(a.date));
     component.populateFilters?.();
     component.renderCategories?.();
     component.updateStats?.();
@@ -244,7 +252,7 @@
 
       if (status) {
         status.textContent = result.addedCount > 0
-          ? `Đã kiểm tra lúc ${formatDateTime(checkedAt)}; bổ sung ${result.addedCount} bản tin mới ở cuối danh sách.`
+          ? `Đã kiểm tra lúc ${formatDateTime(checkedAt)}; bổ sung ${result.addedCount} bản tin mới và đưa lên đầu theo ngày cập nhật.`
           : `Đã kiểm tra lúc ${formatDateTime(checkedAt)}; chưa phát hiện bản tin mới.`;
       }
       return { ok: true, ...result, checkedAt };
