@@ -1,0 +1,70 @@
+name: Đánh dấu phiên bản ứng dụng mới
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'assets/app-version.json'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: danh-dau-phien-ban-ung-dung
+  cancel-in-progress: false
+
+jobs:
+  mark-version:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Lấy mã nguồn
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Tạo lịch cập nhật vào sáng hôm sau
+        env:
+          APP_VERSION: ${{ github.sha }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const now = new Date();
+          const vietnamNow = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+          const releaseAt = new Date(Date.UTC(
+            vietnamNow.getUTCFullYear(),
+            vietnamNow.getUTCMonth(),
+            vietnamNow.getUTCDate() + 1,
+            -2, 0, 0
+          ));
+          const payload = {
+            version: process.env.APP_VERSION,
+            published_at: now.toISOString(),
+            release_at: releaseAt.toISOString(),
+            announce_on_first_visit: true
+          };
+          fs.writeFileSync(
+            'assets/app-version.json',
+            JSON.stringify(payload, null, 2) + '\n',
+            'utf8'
+          );
+          NODE
+
+      - name: Kiểm tra tệp phiên bản
+        run: python -m json.tool assets/app-version.json > /dev/null
+
+      - name: Lưu lịch cập nhật
+        run: |
+          if git diff --quiet -- assets/app-version.json; then
+            echo "Mã phiên bản không thay đổi."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/app-version.json
+          git commit -m "Đánh dấu phiên bản ứng dụng mới"
+          git pull --rebase origin main
+          git push origin main
