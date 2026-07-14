@@ -608,6 +608,41 @@
   margin-top:12px;
 }
 
+/* Source cards: the document title is the only link; no redundant action button. */
+.source-card{
+  min-height:205px;
+}
+.source-card h3{
+  margin:14px 0 10px;
+  line-height:1.35;
+}
+.source-title-link{
+  color:#075d98;
+  text-decoration:none;
+  text-underline-offset:3px;
+}
+.source-title-link span{
+  display:inline-block;
+  margin-left:3px;
+  font-size:.82em;
+  transition:transform .18s ease;
+}
+.source-title-link:hover{
+  color:#034f84;
+  text-decoration:underline;
+}
+.source-title-link:hover span{
+  transform:translate(2px,-2px);
+}
+.source-title-link:focus-visible{
+  outline:3px solid rgba(7,103,168,.25);
+  outline-offset:3px;
+  border-radius:4px;
+}
+.source-card p{
+  margin-bottom:0;
+}
+
 
 /* ICD-10 & BHYT lookup */
 .icd10-feature{border-color:#c9dff0;background:linear-gradient(180deg,#ffffff 0%,#f2f9ff 100%)}
