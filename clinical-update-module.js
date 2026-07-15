@@ -46,6 +46,7 @@
       <div class="vpmed-admin-icon"><img src="assets/logo-vpmed.png" alt="VPMED"></div>
       <div class="vpmed-admin-body">
         <div class="vpmed-admin-title">Cập nhật dữ liệu chuyên môn</div>
+        <div class="vpmed-admin-desc">Khu vực nghiệp vụ dành cho nhân viên Khoa Dược cập nhật, đối chiếu và quản lý dữ liệu chuyên môn.</div>
         <span class="vpmed-admin-pill">Đăng nhập</span>
       </div>`;
     return a;
