@@ -272,8 +272,8 @@
         const matchesCategory = category === 'all' || item.category === category;
         const searchable = norm([item.name, item.aliases.join(' '), item.route, item.scope, ...item.products.map(drug => [drug.brand, drug.active].join(' '))].join(' '));
         return matchesAvailability && matchesCategory && (!query || searchable.includes(query));
-      });
-      list.innerHTML = filtered.map((item, index) => {
+      }).sort((a, b) => Number(b.products.length > 0) - Number(a.products.length > 0));
+      list.innerHTML = filtered.map(item => {
         const isAvailable = item.products.length > 0;
         const badge = isAvailable ? `Có ${item.products.length} biệt dược nội trú` : 'Chưa có trong danh mục nội trú';
         const products = isAvailable
@@ -281,7 +281,7 @@
           : '<div class="consultation-reference-note"><b>Trạng thái:</b> Chưa có trong 34 kháng sinh nội trú hiện tại; hiển thị để tra cứu và chuẩn bị khi bệnh viện bổ sung thuốc.</div>';
         return `
           <article class="consultation-drug priority">
-            <div class="consultation-drug-head"><div><small>STT ${index + 1}</small><h3>${esc(item.name)}</h3></div><span class="consultation-badge ${isAvailable ? 'available' : 'reference'}">${esc(badge)}</span></div>
+            <div class="consultation-drug-head"><div><h3>${esc(item.name)}</h3></div><span class="consultation-badge ${isAvailable ? 'available' : 'reference'}">${esc(badge)}</span></div>
             <div class="consultation-meta"><span>${esc(categoryLabels[item.category])}</span><span>${esc(item.route)}</span></div>
             <p><b>Phạm vi theo Phụ lục 2:</b> ${esc(item.scope)}.</p>
             ${products}
@@ -290,9 +290,9 @@
       }).join('') || '<div class="consultation-empty">Không tìm thấy thuốc phù hợp trong danh mục ưu tiên quản lý của Bộ Y tế.</div>';
     };
 
-    monitoringList.innerHTML = monitoring.map((drug, index) => `
+    monitoringList.innerHTML = monitoring.map(drug => `
       <article class="consultation-drug monitoring">
-        <div class="consultation-drug-head"><div><small>STT ${index + 1}</small><h3>${esc(drug.brand)}</h3></div><span class="consultation-badge monitoring">Theo dõi, giám sát</span></div>
+        <div class="consultation-drug-head"><div><h3>${esc(drug.brand)}</h3></div><span class="consultation-badge monitoring">Theo dõi, giám sát</span></div>
         <p><b>Hoạt chất:</b> ${esc(drug.active)}</p>
         <div class="consultation-meta"><span>${esc(drug.strength)}</span><span>${esc(drug.route)}</span><span>${esc(drug.consultationRule.label)}</span></div>
         <div class="consultation-requirement"><b>Yêu cầu:</b> Theo dõi tiêu thụ, tính hợp lý, độc tính và đề kháng; không mặc định đồng nghĩa bắt buộc hội chẩn.</div>

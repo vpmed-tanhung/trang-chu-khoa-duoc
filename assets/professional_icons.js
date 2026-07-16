@@ -25,6 +25,15 @@
     database: '<ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/>',
     drugDatabase: '<ellipse cx="10" cy="5" rx="6.5" ry="2.5"/><path d="M3.5 5v6c0 1.4 2.9 2.5 6.5 2.5s6.5-1.1 6.5-2.5V5M3.5 11v5c0 1.4 2.9 2.5 6.5 2.5 1 0 1.9-.1 2.7-.2M18 14v7M14.5 17.5h7"/>',
     kidney: '<path d="M9.5 3C6.5 3 4 5.7 4 9c0 4.8 3.5 8 7 8 1.2 0 2-.8 2-2V8.5C13 5.5 11.7 3 9.5 3ZM15.5 3C18.5 3 21 5.7 21 9c0 4.8-3.5 8-7 8-1.2 0-2-.8-2-2V8.5C12 5.5 13.3 3 15.5 3Z"/><path d="M10 17v4M15 17v4"/>',
+    liver: '<path d="M4 7.8c0-2 1.7-3.5 3.7-3.2l2.1.3c1.6.2 3 .9 4.1 2l1 1c1.1 1.1 2.6 1.7 4.1 1.7h1v3.1c0 3.2-2.6 5.8-5.8 5.8H9.6C6.5 18.5 4 16 4 12.9V7.8Z"/><path d="M14 8.2c-.4 2.8-2.6 5-5.5 5.3"/>',
+    medicineShield: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9.1 13.8 4.7-4.7a2.1 2.1 0 0 1 3 3l-4.7 4.7a2.1 2.1 0 0 1-3-3Z"/><path d="m11.2 11.7 3 3"/>',
+    scan: '<path d="M4 9V5a1 1 0 0 1 1-1h4M15 4h4a1 1 0 0 1 1 1v4M20 15v4a1 1 0 0 1-1 1h-4M9 20H5a1 1 0 0 1-1-1v-4"/><circle cx="12" cy="12" r="4"/><path d="M12 10v4M10 12h4"/>',
+    brain: '<path d="M9.5 4.5A3.5 3.5 0 0 0 6 8v.3A3.4 3.4 0 0 0 4 14a3.5 3.5 0 0 0 5.5 4.3V4.5ZM14.5 4.5A3.5 3.5 0 0 1 18 8v.3a3.4 3.4 0 0 1 2 5.7 3.5 3.5 0 0 1-5.5 4.3V4.5Z"/><path d="M9.5 9H7.8M14.5 9h1.7M9.5 14H7.8M14.5 14h1.7"/>',
+    microbe: '<circle cx="12" cy="12" r="5.2"/><path d="M12 3V1.8M12 22.2V21M3 12H1.8M22.2 12H21M5.6 5.6l-.9-.9M19.3 19.3l-.9-.9M18.4 5.6l.9-.9M4.7 19.3l.9-.9"/><circle cx="10" cy="10" r=".7"/><circle cx="14.5" cy="12" r=".7"/><circle cx="10.5" cy="14.5" r=".7"/>',
+    syringe: '<path d="m14 5 5 5M16 3l5 5M13 8l-8.5 8.5a2.1 2.1 0 0 0 3 3L16 11M7 14l3 3M4.5 19.5 2 22M18 5l2-2"/>',
+    menu: '<path d="M5 7h14M5 12h14M5 17h14"/>',
+    externalLink: '<path d="M14 5h5v5M19 5l-8 8"/><path d="M17 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h5"/>',
+    download: '<path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 20h14"/>',
     arrowLeft: '<path d="m15 18-6-6 6-6M9 12h10"/>'
   };
 
@@ -34,12 +43,12 @@
     antibiotics: ['capsule', 'teal'],
     diseases: ['stethoscope', 'blue'],
     interactions: ['network', 'red'],
-    hepatotoxicity: ['heartPulse', 'red'],
+    hepatotoxicity: ['liver', 'red'],
     'pregnancy-lactation': ['maternity', 'purple'],
     'icd10-bhyt': ['fileSearch', 'indigo'],
     sources: ['library', 'slate'],
     'antibiotic-consultation': ['teamCheck', 'amber'],
-    pharmacovigilance: ['shieldCheck', 'teal']
+    pharmacovigilance: ['medicineShield', 'teal']
   };
 
   function svg(name) {
@@ -56,34 +65,50 @@
     const style = document.createElement('style');
     style.id = STYLE_ID;
     style.textContent = `
-      .feature-icon.vpmed-icon-frame,
-      .vpmed-source-icon,
-      .consultation-source-icon,
-      .vpmed-empty-icon{
-        display:inline-grid;place-items:center;flex:0 0 auto;font-size:0;
-        color:#075d98;background:linear-gradient(145deg,#f4faff,#e3f1fa);
-        border:1px solid #c7deec;box-shadow:0 7px 18px rgba(31,74,108,.10)
+      .feature-card,.source-card,.consultation-source,.source-item,.empty-state,.renal-alert{
+        --vpmed-icon-fg:#075d98;--vpmed-icon-bg-1:#f8fcff;--vpmed-icon-bg-2:#dff1fb;
+        --vpmed-icon-line:#bfdcea;--vpmed-icon-shadow:rgba(31,74,108,.13)
       }
-      .feature-icon.vpmed-icon-frame{width:48px;height:48px;border-radius:14px;margin-bottom:2px}
-      .feature-icon.vpmed-icon-frame .vpmed-icon-svg{width:26px;height:26px}
-      .feature-card[data-vpmed-icon-tone="amber"] .vpmed-icon-frame{color:#9a5b00;background:linear-gradient(145deg,#fffaf0,#ffedc7);border-color:#efd49a}
-      .feature-card[data-vpmed-icon-tone="teal"] .vpmed-icon-frame{color:#08765d;background:linear-gradient(145deg,#f1fcf8,#dff5ed);border-color:#bce2d4}
-      .feature-card[data-vpmed-icon-tone="red"] .vpmed-icon-frame{color:#a63b43;background:linear-gradient(145deg,#fff7f7,#fbe5e7);border-color:#efc9cd}
-      .feature-card[data-vpmed-icon-tone="purple"] .vpmed-icon-frame{color:#7454a7;background:linear-gradient(145deg,#fbf8ff,#eee7fa);border-color:#d9caef}
-      .feature-card[data-vpmed-icon-tone="indigo"] .vpmed-icon-frame{color:#4059a8;background:linear-gradient(145deg,#f7f9ff,#e7ebfa);border-color:#cbd3ef}
-      .feature-card[data-vpmed-icon-tone="slate"] .vpmed-icon-frame{color:#52697c;background:linear-gradient(145deg,#fbfdff,#eaf0f4);border-color:#d3dfe7}
-      .vpmed-source-icon,.consultation-source-icon{width:42px;height:42px;border-radius:12px;margin:0 0 10px}
-      .vpmed-source-icon .vpmed-icon-svg,.consultation-source-icon .vpmed-icon-svg{width:22px;height:22px}
-      .source-card[data-vpmed-icon-tone="amber"]>.vpmed-source-icon,.consultation-source[data-vpmed-icon-tone="amber"]>.consultation-source-icon{color:#9a5b00;background:#fff5df;border-color:#edd39d}
-      .source-card[data-vpmed-icon-tone="teal"]>.vpmed-source-icon,.consultation-source[data-vpmed-icon-tone="teal"]>.consultation-source-icon{color:#08765d;background:#e8f8f2;border-color:#bce2d4}
-      .source-card[data-vpmed-icon-tone="red"]>.vpmed-source-icon{color:#a63b43;background:#fcebed;border-color:#efc9cd}
-      .source-card[data-vpmed-icon-tone="purple"]>.vpmed-source-icon{color:#7454a7;background:#f1ebfa;border-color:#d9caef}
+      .feature-card[data-vpmed-icon-tone="amber"],.source-card[data-vpmed-icon-tone="amber"],.consultation-source[data-vpmed-icon-tone="amber"],.source-item[data-vpmed-icon-tone="amber"],.renal-alert[data-vpmed-icon-tone="amber"]{--vpmed-icon-fg:#986000;--vpmed-icon-bg-1:#fffdf7;--vpmed-icon-bg-2:#ffe9b8;--vpmed-icon-line:#ecd08b;--vpmed-icon-shadow:rgba(152,96,0,.14)}
+      .feature-card[data-vpmed-icon-tone="teal"],.source-card[data-vpmed-icon-tone="teal"],.consultation-source[data-vpmed-icon-tone="teal"],.source-item[data-vpmed-icon-tone="teal"],.renal-alert[data-vpmed-icon-tone="teal"]{--vpmed-icon-fg:#08745c;--vpmed-icon-bg-1:#f7fffc;--vpmed-icon-bg-2:#d9f3e9;--vpmed-icon-line:#adddcd;--vpmed-icon-shadow:rgba(8,116,92,.13)}
+      .feature-card[data-vpmed-icon-tone="red"],.source-card[data-vpmed-icon-tone="red"],.consultation-source[data-vpmed-icon-tone="red"],.source-item[data-vpmed-icon-tone="red"],.renal-alert[data-vpmed-icon-tone="red"]{--vpmed-icon-fg:#a23d49;--vpmed-icon-bg-1:#fffafa;--vpmed-icon-bg-2:#f9dfe3;--vpmed-icon-line:#edbec5;--vpmed-icon-shadow:rgba(162,61,73,.13)}
+      .feature-card[data-vpmed-icon-tone="purple"],.source-card[data-vpmed-icon-tone="purple"],.consultation-source[data-vpmed-icon-tone="purple"],.source-item[data-vpmed-icon-tone="purple"]{--vpmed-icon-fg:#7151a1;--vpmed-icon-bg-1:#fdfbff;--vpmed-icon-bg-2:#e9e0f7;--vpmed-icon-line:#cfbde9;--vpmed-icon-shadow:rgba(113,81,161,.13)}
+      .feature-card[data-vpmed-icon-tone="indigo"],.source-card[data-vpmed-icon-tone="indigo"],.consultation-source[data-vpmed-icon-tone="indigo"],.source-item[data-vpmed-icon-tone="indigo"]{--vpmed-icon-fg:#4059a3;--vpmed-icon-bg-1:#fbfcff;--vpmed-icon-bg-2:#e1e7f8;--vpmed-icon-line:#bec9ea;--vpmed-icon-shadow:rgba(64,89,163,.13)}
+      .feature-card[data-vpmed-icon-tone="slate"],.source-card[data-vpmed-icon-tone="slate"],.consultation-source[data-vpmed-icon-tone="slate"],.source-item[data-vpmed-icon-tone="slate"]{--vpmed-icon-fg:#50697b;--vpmed-icon-bg-1:#fbfdff;--vpmed-icon-bg-2:#e5edf2;--vpmed-icon-line:#c9d7e0;--vpmed-icon-shadow:rgba(80,105,123,.13)}
+      .feature-icon.vpmed-icon-frame,.vpmed-source-icon,.consultation-source-icon,.clinical-source-icon,.vpmed-empty-icon,.renal-alert-icon.vpmed-clinical-status-icon{
+        position:relative;isolation:isolate;overflow:hidden;display:inline-grid!important;place-items:center;flex:0 0 auto;font-size:0!important;
+        color:var(--vpmed-icon-fg);background:linear-gradient(145deg,var(--vpmed-icon-bg-1),var(--vpmed-icon-bg-2));
+        border:1px solid var(--vpmed-icon-line);box-shadow:0 8px 18px var(--vpmed-icon-shadow),inset 0 1px 0 rgba(255,255,255,.8);
+        transition:transform .2s ease,box-shadow .2s ease
+      }
+      .feature-icon.vpmed-icon-frame:before,.vpmed-source-icon:before,.consultation-source-icon:before,.clinical-source-icon:before,.vpmed-empty-icon:before,.renal-alert-icon.vpmed-clinical-status-icon:before{
+        content:"";position:absolute;z-index:-1;width:22px;height:22px;border-radius:999px;right:-7px;top:-8px;background:rgba(255,255,255,.72)
+      }
+      .feature-icon.vpmed-icon-frame:after,.vpmed-source-icon:after,.consultation-source-icon:after,.clinical-source-icon:after,.vpmed-empty-icon:after{
+        content:"";position:absolute;width:5px;height:5px;border-radius:999px;left:6px;bottom:6px;background:currentColor;opacity:.18
+      }
+      .vpmed-icon-svg{position:relative;z-index:1}
+      .feature-icon.vpmed-icon-frame{width:50px;height:50px;border-radius:17px;margin-bottom:2px}
+      .feature-icon.vpmed-icon-frame .vpmed-icon-svg{width:27px;height:27px;stroke-width:1.75}
+      .feature-card:hover .vpmed-icon-frame,.feature-card:focus-visible .vpmed-icon-frame,.source-card:hover>.vpmed-source-icon,.consultation-source:hover>.consultation-source-icon,.source-item:hover>.clinical-source-icon{transform:translateY(-2px) rotate(-1.5deg);box-shadow:0 11px 23px var(--vpmed-icon-shadow),inset 0 1px 0 rgba(255,255,255,.9)}
+      .vpmed-source-icon,.consultation-source-icon,.clinical-source-icon{width:44px;height:44px;border-radius:15px;margin:0 0 10px}
+      .vpmed-source-icon .vpmed-icon-svg,.consultation-source-icon .vpmed-icon-svg,.clinical-source-icon .vpmed-icon-svg{width:23px;height:23px;stroke-width:1.75}
       .consultation-source{position:relative}
-      .vpmed-empty-icon{width:56px;height:56px;border-radius:16px;margin:0 auto 4px}
-      .vpmed-empty-icon .vpmed-icon-svg{width:29px;height:29px}
+      .source-item.vpmed-source-decorated{display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:11px;align-items:start}
+      .source-item.vpmed-source-decorated>.clinical-source-icon{grid-column:1;grid-row:1/3;margin:0}
+      .source-item.vpmed-source-decorated>.source-item-title,.source-item.vpmed-source-decorated>.clinical-small{grid-column:2}
+      .source-item.vpmed-source-decorated>.clinical-small{margin-top:4px}
+      .vpmed-empty-icon{width:58px;height:58px;border-radius:19px;margin:0 auto 5px}
+      .vpmed-empty-icon .vpmed-icon-svg{width:30px;height:30px;stroke-width:1.7}
       .vpmed-back-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important}
       .vpmed-back-icon .vpmed-icon-svg{width:18px;height:18px}
-      @media(max-width:640px){.feature-icon.vpmed-icon-frame{width:44px;height:44px;border-radius:13px}.feature-icon.vpmed-icon-frame .vpmed-icon-svg{width:24px;height:24px}}
+      .vpmed-link-icon{display:inline-flex!important;align-items:center;justify-content:center;vertical-align:-.15em;margin-left:2px;font-size:0!important}
+      .vpmed-link-icon .vpmed-icon-svg{width:15px;height:15px;stroke-width:2}
+      #menuBtn.vpmed-menu-button{font-size:0;display:grid;place-items:center}
+      #menuBtn.vpmed-menu-button .vpmed-icon-svg{width:23px;height:23px;stroke-width:2}
+      .renal-alert-icon.vpmed-clinical-status-icon{width:44px!important;height:44px!important;border-radius:15px!important;margin:0!important}
+      .renal-alert-icon.vpmed-clinical-status-icon .vpmed-icon-svg{width:23px;height:23px}
+      @media(max-width:640px){.feature-icon.vpmed-icon-frame{width:46px;height:46px;border-radius:15px}.feature-icon.vpmed-icon-frame .vpmed-icon-svg{width:25px;height:25px}.vpmed-source-icon,.consultation-source-icon,.clinical-source-icon{width:41px;height:41px;border-radius:14px}.source-item.vpmed-source-decorated{grid-template-columns:41px minmax(0,1fr)}}
     `;
     document.head.appendChild(style);
   }
@@ -105,17 +130,25 @@
 
   function sourceIconConfig(title) {
     const text = normalise(title);
+    if (text.includes('cuc quan ly duoc') || text.includes('cong bo thuoc')) return ['drugDatabase', 'teal'];
+    if (text.includes('duoc thu') || text.includes('3445') || text.includes('192/vknttw')) return ['medicalGuide', 'purple'];
     if (text.includes('5948') || text.includes('633 cap') || text.includes('tuong tac')) return ['network', 'red'];
-    if (text.includes('29/qd') || text.includes('radiation protection')) return ['shieldCheck', 'teal'];
+    if (text.includes('29/qd') || text.includes('giam sat adr') || text.includes('phan ung co hai')) return ['medicineShield', 'teal'];
+    if (text.includes('2115')) return ['medicalGuide', 'amber'];
+    if (text.includes('5631')) return ['hospital', 'amber'];
+    if (text.includes('708')) return ['syringe', 'teal'];
     if (text.includes('2388') || text.includes('than man')) return ['kidney', 'teal'];
     if (text.includes('icd-10')) return ['fileSearch', 'indigo'];
     if (text.includes('thong tu')) return ['clipboardCheck', 'blue'];
+    if (text.includes('brain')) return ['brain', 'purple'];
+    if (text.includes('infection') || text.includes('inflammation')) return ['microbe', 'teal'];
+    if (text.includes('radiation protection')) return ['medicineShield', 'teal'];
     if (text.includes('thu vien') || text.includes('human health')) return ['library', 'purple'];
     if (text.includes('benh vien') || text.includes('sop noi bo') || text.includes('kho noi tru')) return ['hospital', 'blue'];
     if (text.includes('thuoc') || text.includes('khang sinh')) return ['capsule', 'teal'];
-    if (text.includes('iaea')) return ['shieldCheck', 'teal'];
+    if (text.includes('iaea')) return ['radiation', 'amber'];
     if (text.includes('pet/ct') || text.includes('snmmi')) return ['radiation', 'amber'];
-    if (text.includes('eanm') || text.includes('acr')) return ['documentCheck', 'blue'];
+    if (text.includes('eanm') || text.includes('acr')) return ['scan', 'indigo'];
     if (text.includes('quyet dinh')) return ['medicalDocument', 'blue'];
     return ['book', 'blue'];
   }
@@ -137,11 +170,11 @@
       const title = card.querySelector('h3')?.textContent || '';
       const text = normalise(title);
       const config = text.includes('5631')
-        ? ['shieldCheck', 'amber']
+        ? ['hospital', 'amber']
         : text.includes('2115')
           ? ['medicalGuide', 'amber']
           : text.includes('708')
-            ? ['capsule', 'teal']
+            ? ['syringe', 'teal']
             : ['drugDatabase', 'teal'];
       let iconNode = card.querySelector(':scope > .consultation-source-icon');
       if (!iconNode) {
@@ -157,12 +190,69 @@
     });
   }
 
+  function iconifyClinicalSourceItems(root) {
+    root.querySelectorAll('.source-item').forEach(card => {
+      const title = card.querySelector('.source-item-title, strong')?.textContent || '';
+      const config = sourceIconConfig(title);
+      let iconNode = card.querySelector(':scope > .clinical-source-icon');
+      if (!iconNode) {
+        iconNode = document.createElement('span');
+        iconNode.className = 'clinical-source-icon';
+        card.prepend(iconNode);
+      }
+      if (iconNode.dataset.vpmedIcon !== config[0]) {
+        iconNode.innerHTML = svg(config[0]);
+        iconNode.dataset.vpmedIcon = config[0];
+        iconNode.setAttribute('aria-hidden', 'true');
+      }
+      card.classList.add('vpmed-source-decorated');
+      card.dataset.vpmedIconTone = config[1];
+    });
+  }
+
+  function iconifyIndicators(root) {
+    root.querySelectorAll('.source-link-icon, .source-item-title > span[aria-hidden="true"]').forEach(node => {
+      const link = node.closest('a');
+      const iconName = link?.hasAttribute('download') ? 'download' : 'externalLink';
+      if (node.dataset.vpmedIcon === iconName) return;
+      node.innerHTML = svg(iconName);
+      node.classList.add('vpmed-link-icon');
+      node.dataset.vpmedIcon = iconName;
+      node.setAttribute('aria-hidden', 'true');
+    });
+
+    const menu = root.querySelector('#menuBtn');
+    if (menu && menu.dataset.vpmedIcon !== 'menu') {
+      menu.innerHTML = svg('menu');
+      menu.classList.add('vpmed-menu-button');
+      menu.dataset.vpmedIcon = 'menu';
+    }
+
+    root.querySelectorAll('.renal-alert-icon').forEach(node => {
+      const alertBox = node.closest('.renal-alert');
+      const className = alertBox?.className || '';
+      const preserved = className.includes('renal-preserved');
+      const mild = className.includes('renal-mild');
+      const iconName = preserved ? 'shieldCheck' : 'alert';
+      const tone = preserved ? 'teal' : mild ? 'amber' : 'red';
+      if (node.dataset.vpmedIcon !== iconName) {
+        node.innerHTML = svg(iconName);
+        node.dataset.vpmedIcon = iconName;
+        node.setAttribute('aria-hidden', 'true');
+      }
+      node.classList.add('vpmed-clinical-status-icon');
+      if (alertBox) alertBox.dataset.vpmedIconTone = tone;
+    });
+  }
+
   function iconifyUtilityElements(root) {
     root.querySelectorAll('.empty-state > div:first-child').forEach(node => {
-      if (node.dataset.vpmedIcon === 'flask') return;
-      node.innerHTML = svg('flask');
+      const text = normalise(node.parentElement?.textContent || '');
+      const iconName = text.includes('da chon') ? 'capsule' : text.includes('khong tim') ? 'fileSearch' : 'flask';
+      if (node.dataset.vpmedIcon === iconName) return;
+      node.innerHTML = svg(iconName);
       node.classList.add('vpmed-empty-icon');
-      node.dataset.vpmedIcon = 'flask';
+      node.dataset.vpmedIcon = iconName;
       node.setAttribute('aria-hidden', 'true');
     });
     root.querySelectorAll('.back-home-btn > span:first-child').forEach(node => {
@@ -179,6 +269,8 @@
     installStyles();
     iconifyFeatureCards(scope);
     iconifySourceCards(scope);
+    iconifyClinicalSourceItems(scope);
+    iconifyIndicators(scope);
     iconifyUtilityElements(scope);
   }
 
