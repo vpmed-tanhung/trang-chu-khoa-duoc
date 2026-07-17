@@ -3,8 +3,7 @@
    Chỉ nhận diện các liên kết/thuộc tính dành riêng cho phiếu đánh giá.
 */
 (function () {
-  const EVAL_URL =
-    'https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/phieu-danh-gia.html?embed=1';
+  const EVAL_URL = 'phieu-danh-gia.html?embed=1';
 
   function removeOldEvaluationModals() {
     document
