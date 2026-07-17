@@ -14,9 +14,9 @@
     "name": "Cục Quản lý Khám, chữa bệnh – Bộ Y tế: thư viện hướng dẫn chẩn đoán, điều trị",
     "priority": 2,
     "scope": ["phác đồ", "lựa chọn kháng sinh", "đối tượng đặc biệt", "quy trình chuyên môn"],
-    "url": "https://kcb.vn/upload/2005611/20210723/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng-kh%C3%A1ng-sinh-C%E1%BA%ADp-nh%E1%BA%ADt-l%E1%BA%A7n-cu%E1%BB%91i-khi-in-09.01.2015.pdf",
+    "url": "https://kcb.vn/phac-do",
     "note": "Dùng để cập nhật hướng dẫn chuyên môn còn hiệu lực do Bộ Y tế/Cục Quản lý Khám, chữa bệnh công bố.",
-    "reviewedDate": "2026-07-17",
+    "reviewedDate": "2026-07-04",
     "status": "active"
   },
   {
@@ -24,9 +24,9 @@
     "name": "Quyết định 708/QĐ-BYT – Hướng dẫn sử dụng kháng sinh",
     "priority": 3,
     "scope": ["nguyên tắc sử dụng kháng sinh", "kháng sinh theo bệnh lý", "PK/PD"],
-    "url": "https://kcb.vn/upload/2005611/20210723/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng-kh%C3%A1ng-sinh-C%E1%BA%ADp-nh%E1%BA%ADt-l%E1%BA%A7n-cu%E1%BB%91i-khi-in-09.01.2015.pdf",
+    "url": "https://kcb.vn/thu-vien-tai-lieu/tai-lieu-huong-dan-su-dung-khang-sinh.html",
     "note": "Tài liệu nền cho lựa chọn kháng sinh; cần đối chiếu thêm kháng sinh đồ bệnh viện và tờ HDSD của từng chế phẩm.",
-    "reviewedDate": "2026-07-17",
+    "reviewedDate": "2026-07-04",
     "status": "reference"
   },
   {
@@ -34,9 +34,9 @@
     "name": "Quyết định 5948/QĐ-BYT – Tương tác thuốc chống chỉ định",
     "priority": 2,
     "scope": ["tương tác thuốc chống chỉ định", "cơ chế", "hậu quả", "xử trí"],
-    "url": "https://bvdksadec.vn/Uploads/files/HD_DUOC-202112_%20Q%C4%90%20s%E1%BB%91%205948-Q%C4%90-BYT%20DANH%20MUC%20CAC%20CAP%20TUONG%20TAC%20THUOC%282%29.pdf",
+    "url": "https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html",
     "note": "Dùng cho module kiểm tra tương tác thuốc chống chỉ định trong thực hành lâm sàng.",
-    "reviewedDate": "2026-07-17",
+    "reviewedDate": "2026-07-04",
     "status": "active"
   },
   {
@@ -44,9 +44,9 @@
     "name": "Quyết định 29/QĐ-BYT – Hướng dẫn giám sát phản ứng có hại của thuốc",
     "priority": 3,
     "scope": ["ADR", "quy trình theo dõi", "báo cáo phản ứng có hại"],
-    "url": "https://benhvientamthansonla.vn/SiteFolders/bvtamthan/Quy%C3%AA%CC%81t%20%C4%91i%CC%A3nh%2029.Q%C4%90-BYT.pdf",
+    "url": "https://kcb.vn/tin-tuc/danh-muc-tuong-tac-thuoc-chong-chi-dinh-trong-thuc-hanh-lam-sang-va-huong-dan-giam-sat-phan-ung-co-hai-cua-thuoc-adr-tai.html",
     "note": "Dùng cho cảnh báo ADR và quy trình xử trí/báo cáo trong bệnh viện.",
-    "reviewedDate": "2026-07-17",
+    "reviewedDate": "2026-07-04",
     "status": "active"
   },
   {
@@ -54,9 +54,9 @@
     "name": "Quyết định 2388/QĐ-BYT năm 2024 – Hướng dẫn chẩn đoán và điều trị bệnh thận mạn",
     "priority": 3,
     "scope": ["eGFR", "bệnh thận mạn", "phân tầng chức năng thận", "theo dõi thận"],
-    "url": "https://kcb.vn/upload/2005611/20240826/QD_ban_hanh_HD_chan_doan__dieu_tri_benh_than_man_va_mot_so_benh_ly_than__2024_08_12_f0584.pdf",
+    "url": "https://kcb.vn/phac-do/quyet-dinh-so-2388-qd-byt-ngay-12-8-2024-ve-viec-ban-hanh-tai-lieu-chuyen-mon-huong-dan-chan-doan-va-dieu-tri-benh-than-.html?categoryId=101796520",
     "note": "Dùng làm căn cứ chuyên môn cho phân loại chức năng thận và theo dõi bệnh nhân bệnh thận mạn.",
-    "reviewedDate": "2026-07-17",
+    "reviewedDate": "2026-07-04",
     "status": "active"
   },
   {
@@ -64,59 +64,9 @@
     "name": "Thông tư 21/2013/TT-BYT – Hội đồng Thuốc và Điều trị trong bệnh viện",
     "priority": 4,
     "scope": ["phê duyệt danh mục thuốc", "quy trình cập nhật", "HĐT&ĐT"],
-    "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2013/08/tt-21_01.pdf",
+    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-21-2013-tt-byt-7406/4043.htm",
     "note": "Dùng làm căn cứ tổ chức quy trình duyệt, rà soát và cập nhật dữ liệu chuyên môn nội bộ.",
-    "reviewedDate": "2026-07-17",
-    "status": "active"
-  },
-  {
-    "id": "tt-18-2026-controlled-drugs",
-    "name": "Thông tư 18/2026/TT-BYT – Thuốc và nguyên liệu làm thuốc phải kiểm soát đặc biệt",
-    "priority": 2,
-    "scope": ["thuốc gây nghiện", "thuốc hướng thần", "tiền chất dùng làm thuốc", "thuốc phóng xạ", "thuốc phải kiểm soát đặc biệt"],
-    "url": "https://congbao.chinhphu.vn/van-ban/thong-tu-so-18-2026-tt-byt-469674.htm",
-    "note": "Có hiệu lực từ 16/07/2026; Thông tư 20/2017/TT-BYT và Thông tư 27/2024/TT-BYT hết hiệu lực kể từ ngày này.",
-    "reviewedDate": "2026-07-17",
-    "status": "active"
-  },
-  {
-    "id": "tt-26-2025-prescribing",
-    "name": "Thông tư 26/2025/TT-BYT – Đơn thuốc và kê đơn thuốc hóa dược, sinh phẩm",
-    "priority": 2,
-    "scope": ["kê đơn thuốc", "liều dùng", "đường dùng", "số lần dùng", "thời điểm dùng"],
-    "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/26-byt.pdf",
-    "note": "Quy định hiện hành về đơn thuốc và kê đơn thuốc hóa dược, sinh phẩm trong điều trị ngoại trú.",
-    "reviewedDate": "2026-07-17",
-    "status": "active"
-  },
-  {
-    "id": "tt-12-2025-drug-registration",
-    "name": "Thông tư 12/2025/TT-BYT – Đăng ký lưu hành thuốc, nguyên liệu làm thuốc",
-    "priority": 2,
-    "scope": ["đăng ký lưu hành", "tờ hướng dẫn sử dụng", "an toàn thuốc", "cảnh giác dược"],
-    "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/5/12-byt.pdf",
-    "note": "Căn cứ hiện hành để đối chiếu đăng ký lưu hành, tờ hướng dẫn sử dụng và báo cáo an toàn sau lưu hành.",
-    "reviewedDate": "2026-07-17",
-    "status": "active"
-  },
-  {
-    "id": "tt-30-2025-drug-quality",
-    "name": "Thông tư 30/2025/TT-BYT – Chất lượng, kiểm nghiệm và thu hồi thuốc",
-    "priority": 3,
-    "scope": ["chất lượng thuốc", "kiểm nghiệm", "thu hồi thuốc", "xử lý thuốc vi phạm"],
-    "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/30-byt.pdf",
-    "note": "Hướng dẫn hiện hành về chất lượng, kiểm nghiệm, thu hồi và xử lý thuốc, nguyên liệu làm thuốc vi phạm.",
-    "reviewedDate": "2026-07-17",
-    "status": "active"
-  },
-  {
-    "id": "tt-37-2024-bhyt-drugs",
-    "name": "Thông tư 37/2024/TT-BYT – Danh mục và thanh toán thuốc BHYT",
-    "priority": 3,
-    "scope": ["BHYT", "danh mục thuốc", "điều kiện thanh toán", "thuốc phóng xạ"],
-    "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2024/11/37-byt.pdf",
-    "note": "Quy định hiện hành về xây dựng, cập nhật danh mục và hướng dẫn thanh toán thuốc thuộc phạm vi hưởng BHYT.",
-    "reviewedDate": "2026-07-17",
+    "reviewedDate": "2026-07-04",
     "status": "active"
   }
 ]
