@@ -3,7 +3,7 @@
 */
 (function () {
   function resetDoseForm() {
-    const ids = ['age', 'wt', 'ht', 'sex', 'scr', 'drug'];
+    const ids = ['patientCode', 'age', 'wt', 'ht', 'sex', 'scr', 'drug'];
     ids.forEach(id => {
       const el = document.getElementById(id);
       if (!el) return;
@@ -25,7 +25,7 @@
       output.innerHTML = '<div>🧪</div><b>Chưa có kết quả</b><span>Nhập tuổi, cân nặng, creatinine và chọn kháng sinh để bắt đầu.</span>';
     }
 
-    const first = document.getElementById('age');
+    const first = document.getElementById('patientCode');
     if (first) first.focus();
   }
 

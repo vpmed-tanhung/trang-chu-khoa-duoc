@@ -93,14 +93,16 @@ $('#q').oninput=()=>{renderDrugList();const f=filtered();if(f.length&&!f.some(x=
 $('#drug').innerHTML=D.map(x=>`<option value="${x.id}">${esc(x.brand)} — ${esc(x.active)}</option>`).join('');const KEY='vpmed_dose_history_v6';try{localStorage.removeItem('vpmed_dose_history_v5');localStorage.removeItem('vpmed_dose_history_v4');localStorage.removeItem('vpmed_dose_history_v3')}catch{}
 function loadHist(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
 function saveHist(a){localStorage.setItem(KEY,JSON.stringify(a.slice(0,100)))}
-function renderHist(){const h=loadHist();$('#hist').innerHTML=h.map(x=>`<tr><td>${esc(x.time)}</td><td>${esc(x.crcl)} mL/ph</td><td>${esc(x.egfr||'—')}</td><td>${esc(x.drug)}</td><td>${esc(x.advice)}</td></tr>`).join('')||'<tr><td colspan="5" style="text-align:center">Chưa có lịch sử</td></tr>'}
+function renderHist(){const h=loadHist();$('#hist').innerHTML=h.map(x=>`<tr><td>${esc(x.time)}</td><td>${esc(x.patientCode||'—')}</td><td>${esc(x.crcl)} mL/ph</td><td>${esc(x.egfr||'—')}</td><td>${esc(x.drug)}</td><td>${esc(x.advice)}</td></tr>`).join('')||'<tr><td colspan="6" style="text-align:center">Chưa có lịch sử</td></tr>'}
 renderHist();$('#clear').onclick=()=>{if(confirm('Xóa toàn bộ lịch sử trên thiết bị này?')){saveHist([]);renderHist()}};
-$('#exportHist').onclick=()=>{const h=loadHist();if(!h.length){alert('Chưa có lịch sử để xuất.');return}const rows=[['Thời gian','CrCl','eGFR','Thuốc','Gợi ý'],...h.map(x=>[x.time,x.crcl,x.egfr||'',x.drug,x.advice])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='lich-su-tra-cuu-khang-sinh.csv';a.click();URL.revokeObjectURL(a.href)};
+$('#exportHist').onclick=()=>{const h=loadHist();if(!h.length){alert('Chưa có lịch sử để xuất.');return}const rows=[['Thời gian','Mã bệnh nhân','CrCl','eGFR','Thuốc','Gợi ý'],...h.map(x=>[x.time,x.patientCode||'',x.crcl,x.egfr||'',x.drug,x.advice])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='lich-su-tra-cuu-khang-sinh.csv';a.click();URL.revokeObjectURL(a.href)};
 $('#drug').addEventListener('change',()=>{const d=D.find(x=>String(x.id)===String($('#drug').value));$('#output').className='empty-state';$('#output').innerHTML=`<div>💊</div><b>Đã chọn ${esc(d?.brand||'kháng sinh')}</b><span>Bấm “Tính CrCl và gợi ý liều” để cập nhật đúng thuốc đang chọn.</span>`});
 
 // Bố cục kết quả chuẩn: Thuốc → Phân loại chức năng thận → Liều theo CrCl → Liều/24 giờ → Thông tin an toàn.
 $('#calc').onclick=()=>{
+  const patientCode=String($('#patientCode')?.value||'').trim();
   const age=+$('#age').value,wt=+$('#wt').value,ht=+$('#ht').value,scru=+$('#scr').value;
+  if(!patientCode){alert('Vui lòng nhập mã bệnh nhân trên HIS.');$('#patientCode')?.focus();return}
   if(!age||!wt||!scru){alert('Vui lòng nhập tuổi, cân nặng và creatinine.');return}
   const selectedId=String($('#drug').value),d=D.find(x=>String(x.id)===selectedId);
   if(!d){alert('Không tìm thấy dữ liệu của kháng sinh đang chọn. Vui lòng chọn lại.');return}
@@ -144,7 +146,7 @@ $('#calc').onclick=()=>{
       <div class="alert safety-note"><b>Kiểm tra an toàn:</b> CrCl Cockcroft–Gault được dùng để chọn ngưỡng liều khi nguồn quy định theo CrCl; eGFR CKD-EPI 2021 hỗ trợ phân loại chức năng thận. Chỉ áp dụng khi creatinin tương đối ổn định. Liều cuối cùng còn phụ thuộc chỉ định, mức độ nhiễm, vi sinh/MIC, cân nặng, dạng bào chế và tờ HDSD đúng chế phẩm.</div>
     </section>`;
   const h=loadHist();
-  h.unshift({time:new Date().toLocaleString('vi-VN'),crcl:crcl.toFixed(1),egfr:`${egfr.toFixed(1)} (${egfrCategory(egfr).stage})`,drug:`${d.brand} — ${d.active}`,advice});
+  h.unshift({time:new Date().toLocaleString('vi-VN'),patientCode,crcl:crcl.toFixed(1),egfr:`${egfr.toFixed(1)} (${egfrCategory(egfr).stage})`,drug:`${d.brand} — ${d.active}`,advice});
   saveHist(h);renderHist();
 };
 

@@ -200,6 +200,7 @@ def extract_detail(html: str, fallback_title: str) -> dict[str, Any]:
         if len(body_lines) >= 4:
             break
 
+    body_text = clean_text(" ".join(body_lines))
     summary = smart_truncate(" ".join(body_lines[:4]))
     if not summary:
         summary = f"Bản tin mới: {fallback_title}."
@@ -207,6 +208,99 @@ def extract_detail(html: str, fallback_title: str) -> dict[str, Any]:
     return {
         "date": date_text,
         "summary": summary,
+        "body": body_text,
+    }
+
+
+DRUG_RULES = (
+    (re.compile(r"pivoxil"), "Kháng sinh chứa ester pivoxil"),
+    (re.compile(r"valproat|valproic"), "Valproat (natri valproat/acid valproic)"),
+    (re.compile(r"methadon"), "Methadon"),
+    (re.compile(r"atorvastatin|simvastatin|clarithromycin"), "Atorvastatin; simvastatin; clarithromycin"),
+    (re.compile(r"orlistat"), "Orlistat"),
+    (re.compile(r"amiodaron"), "Amiodaron"),
+    (re.compile(r"opioid|morphin|tramadol|oxycodon|fentanyl"), "Opioid"),
+    (re.compile(r"corticosteroid|corticoid"), "Corticosteroid"),
+    (re.compile(r"ssri|snri|chong tram cam"), "Thuốc chống trầm cảm SSRI/SNRI"),
+    (re.compile(r"uc che men chuyen|\bace\b"), "Thuốc ức chế men chuyển ACE"),
+)
+
+
+def _sentences(value: str) -> list[str]:
+    result: list[str] = []
+    for sentence in re.split(r"(?<=[.!?…])\s+", clean_text(value)):
+        sentence = smart_truncate(sentence, 230)
+        if sentence and sentence not in result:
+            result.append(sentence)
+    return result[:12]
+
+
+def _pick(sentences: list[str], pattern: str) -> list[str]:
+    regex = re.compile(pattern)
+    return [sentence for sentence in sentences if regex.search(normalize_key(sentence))][:4]
+
+
+def auto_edit_alert(title: str, summary: str, body: str) -> dict[str, Any]:
+    full_text = clean_text(f"{title}. {summary}. {body}")
+    normalized = normalize_key(full_text)
+    source_sentences = _sentences(body or summary or title)
+    drugs = [label for pattern, label in DRUG_RULES if pattern.search(normalized)]
+    drug_text = "; ".join(dict.fromkeys(drugs)) or "Thuốc/nhóm thuốc nêu trong tiêu đề và nguồn gốc"
+
+    risk = _pick(source_sentences, r"nguy co|dac biet|tre em|tre so sinh|nguoi cao tuoi|suy than|suy gan|mang thai|tuoi sinh san|lieu cao|keo dai|phoi hop|benh nhan")
+    signs = _pick(source_sentences, r"dau hieu|trieu chung|ha duong|co giat|giam y thuc|chay mau|phat ban|kho tho|phu |dau |yeu co|roi loan|ton thuong|bien co|tu vong")
+    action = _pick(source_sentences, r"khuyen cao|\bcan\b|\bnen\b|tranh |ngung |dua |danh gia|ra soat|can nhac|thay the|giam lieu|huong dan|han che")
+    monitor = _pick(source_sentences, r"theo doi|kiem tra|xet nghiem|giam sat|dinh luong|ecg|men gan|creatinin|duong huyet|nong do|nhan biet")
+
+    risk = risk or [f"Ưu tiên rà soát người bệnh có yếu tố nguy cơ liên quan đến {drug_text}; đối chiếu chi tiết trong nguồn gốc."]
+    signs = signs or [f"Theo dõi biểu hiện bất thường mới xuất hiện trong thời gian sử dụng {drug_text}."]
+    action = action or [f"Rà soát chỉ định, liều, thời gian điều trị và thuốc dùng đồng thời trước khi tiếp tục {drug_text}."]
+    monitor = monitor or ["Theo dõi đáp ứng, phản ứng có hại và các xét nghiệm liên quan theo nội dung cảnh báo gốc."]
+
+    if re.search(r"tu vong|chong chi dinh|nghiem trong|khong hoi phuc|co giat|ngung tim|ngung ho hap", normalized):
+        level = "red"
+    elif re.search(r"nguy co|canh bao|ton thuong|chay mau|di tat", normalized):
+        level = "orange"
+    else:
+        level = "green"
+
+    if re.search(r"tuong tac|interaction", normalized):
+        category = "Tương tác thuốc"
+    elif re.search(r"mang thai|thai nhi|sinh san|cho con bu", normalized):
+        category = "Thai kỳ & sức khỏe sinh sản"
+    elif re.search(r"tre em|tre so sinh|nhi khoa", normalized):
+        category = "Đối tượng đặc biệt"
+    elif re.search(r"qua lieu|ngo doc", normalized):
+        category = "Quá liều & thuốc nguy cơ cao"
+    else:
+        category = "Cảnh báo an toàn thuốc"
+
+    systems: list[str] = []
+    for pattern, label in (
+        (r"tim|qt|nhip|huyet ap|mach", "Tim mạch"),
+        (r"than kinh|co giat|y thuc|tam than|dong kinh", "Thần kinh"),
+        (r"\bgan\b|men gan|\bmat\b|duong mat", "Gan mật"),
+        (r"suy than|creatinin|tieu co van", "Thận"),
+        (r"ha duong huyet|carnitin|noi tiet|chuyen hoa", "Chuyển hóa"),
+        (r"tre em|tre so sinh|nhi khoa", "Nhi khoa"),
+        (r"mang thai|thai nhi|sinh san", "Sản khoa"),
+    ):
+        if re.search(pattern, normalized):
+            systems.append(label)
+
+    return {
+        "level": level,
+        "category": category,
+        "system": " · ".join(dict.fromkeys(systems)) or "Toàn thân",
+        "interaction": bool(re.search(r"tuong tac|interaction", normalized)),
+        "drugs": drug_text,
+        "quick": smart_truncate(action[0], 260),
+        "risk": risk,
+        "signs": signs,
+        "action": action,
+        "monitor": monitor,
+        "autoEdited": True,
+        "editorialStatus": "auto-edited",
     }
 
 
@@ -245,26 +339,29 @@ def build_alert(title: str, url: str, detail: dict[str, Any]) -> dict[str, Any]:
     title_key = normalize_key(title)
     interaction = "tuong tac" in title_key or "interaction" in title_key
 
+    editorial = auto_edit_alert(title, detail.get("summary", ""), detail.get("body", ""))
     return {
         "id": f"auto-{digest}",
-        "level": "green",
+        "level": editorial["level"],
         "year": year,
         "date": date_text,
-        "category": "Bản tin mới từ nguồn chính thức",
-        "system": "Chưa phân loại",
-        "interaction": interaction,
+        "category": editorial["category"],
+        "system": editorial["system"],
+        "interaction": editorial["interaction"] or interaction,
         "title": title,
-        "drugs": "Mở nội dung gốc để xác định thuốc/nhóm thuốc.",
+        "drugs": editorial["drugs"],
         "summary": detail.get("summary", ""),
-        "quick": "Bản tin tự động, chưa biên tập chuyên môn. Dược sĩ cần đọc nguồn gốc trước khi sử dụng.",
-        "risk": [],
-        "signs": [],
-        "action": [],
-        "monitor": [],
+        "quick": editorial["quick"],
+        "risk": editorial["risk"],
+        "signs": editorial["signs"],
+        "action": editorial["action"],
+        "monitor": editorial["monitor"],
         "source": "Trung tâm Quốc gia về Thông tin thuốc và Theo dõi phản ứng có hại của thuốc",
         "url": normalize_source_url(url),
         "auto": True,
         "reviewed": False,
+        "autoEdited": True,
+        "editorialStatus": "auto-edited",
     }
 
 
@@ -342,8 +439,8 @@ def main(skip_if_fresh: bool = False) -> int:
         "generated_at": now.isoformat(timespec="seconds"),
         "source": LIST_URL,
         "review_status": (
-            "Bản tin tự động chưa thay thế nội dung đã được dược sĩ biên tập. "
-            "Cần mở nguồn gốc và rà soát trước khi sử dụng."
+            "Bản tin mới được tự động trích xuất và biên tập theo cấu trúc cảnh báo. "
+            "Cần mở nguồn gốc để kiểm chứng trước khi áp dụng lâm sàng."
         ),
         "alerts": alerts,
     }

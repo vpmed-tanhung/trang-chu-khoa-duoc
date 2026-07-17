@@ -89,6 +89,7 @@
     <div class="dose-layout">
       <aside class="form-card">
         <h3>Thông tin bệnh nhân</h3>
+        <label>Mã bệnh nhân trên HIS <small class="optional-note">chỉ nhập mã HIS, không nhập họ tên người bệnh</small><input id="patientCode" type="text" maxlength="30" autocomplete="off" spellcheck="false" placeholder="Nhập mã bệnh nhân" required></label>
         <div class="form-row"><label>Tuổi<input id="age" type="number" min="18" placeholder="65"></label><label>Cân nặng (kg)<input id="wt" type="number" min="1" step="0.1" placeholder="60"></label></div>
         <label>Chiều cao (cm) <small class="optional-note">không bắt buộc – dùng để quy đổi eGFR về mL/phút khi cần đánh giá liều</small><input id="ht" type="number" min="80" max="250" step="0.1" placeholder="165"></label>
         <div class="form-row"><label>Giới tính<select id="sex"><option value="m">Nam</option><option value="f">Nữ</option></select></label><label>Creatinine (µmol/L)<input id="scr" type="number" min="1" step="0.1" placeholder="90"></label></div>
@@ -99,8 +100,8 @@
       <div class="dose-main">
         <div id="output" class="empty-state"><div>🧪</div><b>Chưa có kết quả</b><span>Nhập tuổi, cân nặng, creatinine và chọn kháng sinh để bắt đầu.</span></div>
         <section class="section-card history-card">
-          <div class="section-heading"><div><span class="kicker">Lịch sử tra cứu</span><h2>Đã lưu trên thiết bị này</h2></div><div class="heading-actions"><button class="btn btn-soft" id="exportHist">Xuất CSV</button><button class="btn btn-danger-soft" id="clear">Xóa lịch sử</button></div></div>
-          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
+          <div class="section-heading"><div><span class="kicker">Lịch sử tra cứu</span><h2>Lịch sử dùng chung toàn bệnh viện</h2><small id="sharedHistoryStatus">Đang đồng bộ dữ liệu chung…</small></div><div class="heading-actions"><button class="btn btn-soft" id="exportHist">Xuất CSV</button><button class="btn btn-soft" id="clear">Làm mới lịch sử</button></div></div>
+          <div class="table-wrap"><table><thead><tr><th>Thời gian</th><th>Mã bệnh nhân</th><th>CrCl</th><th>eGFR</th><th>Thuốc</th><th>Gợi ý</th></tr></thead><tbody id="hist"></tbody></table></div>
         </section>
       </div>
     </div>
@@ -1242,7 +1243,6 @@ calc();
 <script src="vpmed-dose-reset.js"></script>
 <script src="vpmed-remove-quick-two-drug.js"></script>
 <script src="vpmed-history-sync.js"></script>
-<script src="vpmed-history-sync.js"></script>
 <script src="assets/disease_updates_2026.js"></script>
 <script src="assets/hepatotoxicity.js"></script>
 <script src="assets/pregnancy_lactation.js"></script>
@@ -1252,6 +1252,7 @@ calc();
 
   <script src="assets/pharmacovigilance_alerts_data.js?v=20260711"></script>
   <script src="assets/pharmacovigilance_auto_data.js?v=20260716-count44"></script>
+  <script src="assets/pharmacovigilance_auto_editor.js?v=20260717"></script>
   <script src="assets/pharmacovigilance_integration.js?v=20260713-restore42"></script>
   <script src="assets/pharmacovigilance_refresh_button.js?v=20260713-realtime-safe"></script>
   <script src="assets/system-loader.js?v=20260712-restore-ui"></script>
