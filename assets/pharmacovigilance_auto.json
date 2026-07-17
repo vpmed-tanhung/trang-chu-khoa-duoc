@@ -1,77 +1,49 @@
 {
-  "generated_at": "2026-07-17T09:32:44+07:00",
+  "generated_at": "2026-07-17T09:35:03+07:00",
   "source": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx",
-  "review_status": "Bản tin mới được tự động trích xuất và biên tập theo cấu trúc cảnh báo. Cần mở nguồn gốc để kiểm chứng trước khi áp dụng lâm sàng.",
+  "review_status": "Bản tin tự động chưa thay thế nội dung đã được dược sĩ biên tập. Cần mở nguồn gốc và rà soát trước khi sử dụng.",
   "alerts": [
     {
       "id": "auto-b5d334cfc7fee2",
-      "level": "red",
+      "level": "green",
       "year": "2026",
       "date": "15/07/2026",
-      "category": "Thai kỳ & sức khỏe sinh sản",
-      "system": "Thần kinh · Chuyển hóa · Nhi khoa · Sản khoa",
+      "category": "Bản tin mới từ nguồn chính thức",
+      "system": "Chưa phân loại",
       "interaction": false,
       "title": "PMDA: Nguy cơ hạ carnitin máu và hạ đường huyết nghiêm trọng ở trẻ em khi sử dụng các kháng sinh dạng tiền chất ester pivoxil",
-      "drugs": "Kháng sinh chứa ester pivoxil",
+      "drugs": "Mở nội dung gốc để xác định thuốc/nhóm thuốc.",
       "summary": "Các cảnh báo đối với các kháng sinh có chứa nhóm pivoxil đã từng được Cơ quan Quản lý Dược phẩm và Thiết bị Y tế Nhật Bản (PMDA) đề cập trong Bản tin \"Cảnh báo của PMDA về việc sử dụng thuốc hợp lý\" (Số 8, tháng 4/2012) khi PMDA ghi nhận được một số trường hợp trẻ em xuất hiện tình trạng hạ carnitin máu, hạ đường huyết nghiêm trọng, co giật, bệnh não (encephalopathy) khi sử dụng các kháng sinh này. Tình trạng hạ đường huyết nghiêm trọng do hạ carnitin máu có thể xuất hiện ngay trong ngày bắt đầu điều trị.",
-      "quick": "Tình trạng thiếu hụt carnitin có nguy cơ xảy ra cao hơn ở trẻ em do khả năng tự tổng hợp carnitin ở trẻ còn hạn chế và khối lượng cơ (nơi dự trữ carnitin chính) còn thấp, trong khi, kháng sinh ở dạng này cần tiêu tốn carnitin…",
-      "risk": [
-        "Ngoài ra, tình trạng giảm carnitin máu cũng được ghi nhận ở trẻ sơ sinh có mẹ sử dụng kháng sinh dạng tiền chất ester pivoxil trong thời kỳ mang thai.",
-        "Tình trạng thiếu hụt carnitin có nguy cơ xảy ra cao hơn ở trẻ em do khả năng tự tổng hợp carnitin ở trẻ còn hạn chế và khối lượng cơ (nơi dự trữ carnitin chính) còn thấp, trong khi, kháng sinh ở dạng này cần tiêu tốn carnitin…"
-      ],
-      "signs": [
-        "Theo dõi biểu hiện bất thường mới xuất hiện trong thời gian sử dụng Kháng sinh chứa ester pivoxil."
-      ],
-      "action": [
-        "Tình trạng thiếu hụt carnitin có nguy cơ xảy ra cao hơn ở trẻ em do khả năng tự tổng hợp carnitin ở trẻ còn hạn chế và khối lượng cơ (nơi dự trữ carnitin chính) còn thấp, trong khi, kháng sinh ở dạng này cần tiêu tốn carnitin…",
-        "Thiếu hụt carnitin gây cản trở quá trình chuyển hóa chất béo thành năng lượng, dẫn đến giảm khả năng duy trì đường huyết trong trạng thái nhịn ăn hoặc đói, từ đó gây hạ đường huyết nghiêm trọng."
-      ],
-      "monitor": [
-        "Theo dõi đáp ứng, phản ứng có hại và các xét nghiệm liên quan theo nội dung cảnh báo gốc."
-      ],
+      "quick": "Bản tin tự động, chưa biên tập chuyên môn. Dược sĩ cần đọc nguồn gốc trước khi sử dụng.",
+      "risk": [],
+      "signs": [],
+      "action": [],
+      "monitor": [],
       "source": "Trung tâm Quốc gia về Thông tin thuốc và Theo dõi phản ứng có hại của thuốc",
       "url": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTin/5846/pmda-nguy-co-ha-carnitin-mau-duong-huyet-nghiem-trong-o-tre-khi-dung-ks-chua-pivoxil.htm",
       "auto": true,
-      "reviewed": false,
-      "autoEdited": true,
-      "editorialStatus": "auto-edited"
+      "reviewed": false
     },
     {
       "id": "auto-06bd64c149e6de",
-      "level": "red",
+      "level": "green",
       "year": "2026",
       "date": "13/07/2026",
-      "category": "Thai kỳ & sức khỏe sinh sản",
-      "system": "Thần kinh · Gan mật · Sản khoa",
+      "category": "Bản tin mới từ nguồn chính thức",
+      "system": "Chưa phân loại",
       "interaction": false,
       "title": "Cân bằng giữa lợi ích - nguy cơ khi sử dụng valproat: Thông tin từ tạp chí Australian Prescriber",
-      "drugs": "Valproat (natri valproat/acid valproic)",
+      "drugs": "Mở nội dung gốc để xác định thuốc/nhóm thuốc.",
       "summary": "Natri valproat (valproat) được chỉ định trong điều trị động kinh, rối loạn lưỡng cực. Trong 15 năm qua, mô hình kê đơn tại Úc đã có sự thay đổi đáng kể; trước đây từng là thuốc chống động kinh phổ biến nhất, tuy nhiên hiện nay tần suất chỉ định valproat đã giảm dần do nguy cơ gây dị tật bẩm sinh và sự sẵn có của thuốc thay thế khác an toàn hơn. Trước những lo ngại gần đây về sự an toàn khi sử dụng valproat ở nam giới trong độ tuổi sinh sản, vai trò của valproat trong thực hành; đồng thời cân bằng giữa lợi ích và nguy cơ khi kê đơn người bệnh trong độ tuổi sinh sản đang được quan tâm thảo luận.",
-      "quick": "Trước những lo ngại gần đây về sự an toàn khi sử dụng valproat ở nam giới trong độ tuổi sinh sản, vai trò của valproat trong thực hành; đồng thời cân bằng giữa lợi ích và nguy cơ khi kê đơn người bệnh trong độ tuổi sinh sản…",
-      "risk": [
-        "Trong 15 năm qua, mô hình kê đơn tại Úc đã có sự thay đổi đáng kể; trước đây từng là thuốc chống động kinh phổ biến nhất, tuy nhiên hiện nay tần suất chỉ định valproat đã giảm dần do nguy cơ gây dị tật bẩm sinh và sự sẵn có của…",
-        "Trước những lo ngại gần đây về sự an toàn khi sử dụng valproat ở nam giới trong độ tuổi sinh sản, vai trò của valproat trong thực hành; đồng thời cân bằng giữa lợi ích và nguy cơ khi kê đơn người bệnh trong độ tuổi sinh sản…"
-      ],
-      "signs": [
-        "Natri valproat (valproat) được chỉ định trong điều trị động kinh, rối loạn lưỡng cực.",
-        "Valproat được phê duyệt là lựa chọn đầu tay trong điều trị các hội chứng động kinh toàn thể do di truyền, bao gồm cơn vắng ý thức, cơn giật cơ và cơn co cứng - co giật tại Úc.",
-        "Trong điều trị rối loạn lưỡng cực, vaproat được khuyến cáo dùng bổ trợ cho thuốc chống loạn thần để điều trị hưng cảm cấp tính, và là một lựa chọn điều trị duy trì khi không thể sử dụng lithium.",
-        "Valproat không được khuyến cáo để kiểm soát các triệu chứng rối loạn hành vi và tâm lý trong hội chứng sa sút trí tuệ do thuốc không đem lại hiệu quả cải thiện mà còn làm gia tăng biến cố bất lợi nghiêm trọng."
-      ],
-      "action": [
-        "Trước những lo ngại gần đây về sự an toàn khi sử dụng valproat ở nam giới trong độ tuổi sinh sản, vai trò của valproat trong thực hành; đồng thời cân bằng giữa lợi ích và nguy cơ khi kê đơn người bệnh trong độ tuổi sinh sản…",
-        "Trong điều trị rối loạn lưỡng cực, vaproat được khuyến cáo dùng bổ trợ cho thuốc chống loạn thần để điều trị hưng cảm cấp tính, và là một lựa chọn điều trị duy trì khi không thể sử dụng lithium.",
-        "Valproat không được khuyến cáo để kiểm soát các triệu chứng rối loạn hành vi và tâm lý trong hội chứng sa sút trí tuệ do thuốc không đem lại hiệu quả cải thiện mà còn làm gia tăng biến cố bất lợi nghiêm trọng."
-      ],
-      "monitor": [
-        "Theo dõi đáp ứng, phản ứng có hại và các xét nghiệm liên quan theo nội dung cảnh báo gốc."
-      ],
+      "quick": "Bản tin tự động, chưa biên tập chuyên môn. Dược sĩ cần đọc nguồn gốc trước khi sử dụng.",
+      "risk": [],
+      "signs": [],
+      "action": [],
+      "monitor": [],
       "source": "Trung tâm Quốc gia về Thông tin thuốc và Theo dõi phản ứng có hại của thuốc",
       "url": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTin/5845/can-bang-loi-ich-nguy-co-khi-su-dung-valproat-cho-benh-nhan-trong-tuoi-sinh-san.htm",
       "auto": true,
-      "reviewed": false,
-      "autoEdited": true,
-      "editorialStatus": "auto-edited"
+      "reviewed": false
     }
   ]
 }
