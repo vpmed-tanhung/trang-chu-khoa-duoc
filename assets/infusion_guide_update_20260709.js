@@ -10,7 +10,7 @@
   const GUIDE = {
   "metadata": {
     "title": "Cập nhật dữ liệu pha/truyền kháng sinh",
-    "hospital_page": "https://vpmed-tanhung.github.io/trang-chu-khoa-duoc/#home",
+    "hospital_page": "https://hotrolamsang.io.vn/#home",
     "extracted_from": "7 ảnh người dùng cung cấp trong cuộc trò chuyện",
     "created_at": "2026-07-09T07:30:56",
     "review_note": "Dữ liệu cần được dược sĩ lâm sàng/HĐT&ĐT đối chiếu tờ hướng dẫn sử dụng của đúng chế phẩm trước khi dùng chính thức.",
