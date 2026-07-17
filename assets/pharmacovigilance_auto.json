@@ -1,8 +1,39 @@
 {
-  "generated_at": "2026-07-17T09:58:51+07:00",
+  "generated_at": "2026-07-18T06:53:04+07:00",
   "source": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx",
   "review_status": "Bản tin mới được tự động trích xuất và biên tập theo cấu trúc cảnh báo. Cần mở nguồn gốc để kiểm chứng trước khi áp dụng lâm sàng.",
   "alerts": [
+    {
+      "id": "auto-a0653bc57bbbf8",
+      "level": "orange",
+      "year": "2026",
+      "date": "17/07/2026",
+      "category": "Cảnh báo an toàn thuốc",
+      "system": "Thần kinh · Gan mật",
+      "interaction": false,
+      "title": "WHO: Cảnh báo về thuốc giả DARZALEX (daratumumab) ở khu vực Châu Mỹ và Đông Nam Á",
+      "drugs": "Thuốc/nhóm thuốc nêu trong tiêu đề và nguồn gốc",
+      "summary": "Mới đây, Tổ chức Y tế (WHO) đưa ra cảnh báo về hai lô thuốc giả DARZALEX (daratumumab) dạng dung dịch tiêm truyền được phát hiện tại Maldives và Mexico. Cơ quan Quản lý Quốc gia ở cả hai nước đã báo cáo vụ việc trên cho WHO vào tháng 5 và tháng 6 năm 2026. Lô thuốc giả này đã được cung cấp hoặc phân phối mà chưa được cấp phép dẫn đến các bệnh viện đã tiếp nhận phải các thuốc giả mạo. Các sản phẩm giả mạo có sự sai khác về đặc điểm nhận dạng, thành phần hoặc nguồn gốc. Hãng sản xuất chính hãng JANSSEN xác nhận rằng số lô in trên các sản phẩm giả mạo bao gồm MYS7381 và STV1K01 là các số lô không hợp lệ.",
+      "quick": "Rà soát chỉ định, liều, thời gian điều trị và thuốc dùng đồng thời trước khi tiếp tục Thuốc/nhóm thuốc nêu trong tiêu đề và nguồn gốc.",
+      "risk": [
+        "Ưu tiên rà soát người bệnh có yếu tố nguy cơ liên quan đến Thuốc/nhóm thuốc nêu trong tiêu đề và nguồn gốc; đối chiếu chi tiết trong nguồn gốc."
+      ],
+      "signs": [
+        "Theo dõi biểu hiện bất thường mới xuất hiện trong thời gian sử dụng Thuốc/nhóm thuốc nêu trong tiêu đề và nguồn gốc."
+      ],
+      "action": [
+        "Rà soát chỉ định, liều, thời gian điều trị và thuốc dùng đồng thời trước khi tiếp tục Thuốc/nhóm thuốc nêu trong tiêu đề và nguồn gốc."
+      ],
+      "monitor": [
+        "Theo dõi đáp ứng, phản ứng có hại và các xét nghiệm liên quan theo nội dung cảnh báo gốc."
+      ],
+      "source": "Trung tâm Quốc gia về Thông tin thuốc và Theo dõi phản ứng có hại của thuốc",
+      "url": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTin/5847/who-canh-bao-ve-thuoc-gia-darzalex.htm",
+      "auto": true,
+      "reviewed": false,
+      "autoEdited": true,
+      "editorialStatus": "auto-edited"
+    },
     {
       "id": "auto-b5d334cfc7fee2",
       "level": "red",
