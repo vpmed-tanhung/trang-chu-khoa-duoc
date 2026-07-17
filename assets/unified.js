@@ -14,6 +14,7 @@ function filtered(){const q=norm($('#q').value),g=$('#group').value;return D.fil
 function renderDrugList(){const f=filtered();$('#drugList').innerHTML=f.map(x=>`<div class="drug-item ${x.id===selected?'active':''}" data-id="${x.id}"><b>${esc(x.brand)}</b><small>${esc(x.active)}</small><small>${esc(x.strength)} · ${esc(x.route)}</small></div>`).join('')||'<div class="alert">Không tìm thấy thuốc phù hợp.</div>';$$('.drug-item').forEach(e=>e.onclick=()=>{selected=+e.dataset.id;renderDrugList();renderProfile()})}
 const ul=a=>`<ul>${(a||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
 const sourceHtml=a=>`<div class="source-list">${(a||[]).map(x=>`<div class="source-line"><b>${esc(x.title)}</b><br><small>${esc(x.note)}</small>${x.url?`<br><a href="${esc(x.url)}" target="_blank" rel="noopener">Mở nguồn ↗</a>`:''}</div>`).join('')}</div>`;
+const directDoseSources=d=>`<div class="direct-dose-sources">${(d.doseSources||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.title)} ↗</a>`).join('')||'<span>Chưa có liên kết nguồn trực tiếp.</span>'}</div>`;
 
 function drugInteractionMatches(d){
   const raw=norm(String(d.active||'').replace(/\*/g,'').replace(/hydrochloride/g,'').replace(/acid clavulanic|acid clavulanic/g,'clavulanat'));
@@ -79,14 +80,13 @@ function ddiCards(d){
   if(found.length)return found.map(x=>`<div class="clinical-item"><b>${esc(x.name)}</b><p><strong>Mức độ:</strong> ${esc(x.level)}</p><p><strong>Hậu quả:</strong> ${esc(x.consequence)}</p><p><strong>Cơ chế:</strong> ${esc(x.mechanism)}</p><p><strong>Xử trí:</strong> ${esc(x.management)}</p><small>Nguồn: ${esc(x.source)}</small></div>`).join('');
   return `<div class="clinical-item"><b>Các tương tác cần rà soát</b>${detailList(d.clinicalDDI||[])}<small>Chưa có cặp chống chỉ định tương ứng trong danh mục 5948 được nhập; không đồng nghĩa phối hợp an toàn.</small></div>`;
 }
-function renderProfile(){const x=D.find(v=>v.id===selected)||filtered()[0];if(!x){$('#profile').innerHTML='<div class="alert">Chưa có dữ liệu.</div>';return}selected=x.id;const indications=x.indicationsDetailed||x.indications||[];$('#profile').innerHTML=`<span class="kicker">STT nội trú ${x.id}</span><h2>${esc(x.brand)}</h2><p><b>Hoạt chất:</b> ${esc(x.active)}</p><div class="meta"><div class="pill"><b>Nhóm:</b> ${esc(x.group)}</div><div class="pill"><b>Hàm lượng:</b> ${esc(x.strength)}</div><div class="pill"><b>Đường dùng:</b> ${esc(x.route)}</div></div><div class="tabs">${['Tổng quan','Liều & CrCl','Pha truyền','Chống chỉ định & ADR','Tương tác','Theo dõi & TDM','Nguồn'].map((t,i)=>`<button class="tab ${i===0?'active':''}" data-tab="t${i}">${t}</button>`).join('')}</div>
+function renderProfile(){const x=D.find(v=>v.id===selected)||filtered()[0];if(!x){$('#profile').innerHTML='<div class="alert">Chưa có dữ liệu.</div>';return}selected=x.id;const indications=x.indicationsDetailed||x.indications||[];$('#profile').innerHTML=`<span class="kicker">STT nội trú ${x.id}</span><h2>${esc(x.brand)}</h2><p><b>Hoạt chất:</b> ${esc(x.active)}</p><div class="meta"><div class="pill"><b>Nhóm:</b> ${esc(x.group)}</div><div class="pill"><b>Hàm lượng:</b> ${esc(x.strength)}</div><div class="pill"><b>Đường dùng:</b> ${esc(x.route)}</div></div><div class="tabs">${['Tổng quan','Liều & CrCl','Pha truyền','Chống chỉ định & ADR','Tương tác','Theo dõi & TDM'].map((t,i)=>`<button class="tab ${i===0?'active':''}" data-tab="t${i}">${t}</button>`).join('')}</div>
 <div class="tabpane active" id="t0"><div class="profile-grid"><div class="info-box"><h3>Cơ chế tác dụng</h3><p>${esc(x.mechanism)}</p><h3>Chỉ định</h3>${detailList(indications)}<div class="source-note"><b>Nguồn chỉ định:</b> ${esc(x.indicationSource||x.clinicalSourceNote||'Tờ HDSD của đúng chế phẩm.')}</div></div><div class="info-box"><h3>PK/PD</h3><p>${esc(x.pkpd)}</p><h3>Lưu ý sử dụng</h3><p>${esc(x.notes)}</p></div></div></div>
-<div class="tabpane" id="t1"><div class="profile-grid"><div class="info-box"><h3>Liều người lớn tham khảo</h3><p>${esc(x.standard)}</p><h3>Hiệu chỉnh theo CrCl</h3>${ul(x.renal)}<div class="dose-source-badge"><b>Mức xác minh:</b> ${esc(x.renalVerified||'Chưa xác minh đầy đủ')}</div></div><div class="info-box"><h3>HD</h3><p>${esc(x.hd)}</p><h3>CRRT</h3><p>${esc(x.crrt)}</p></div></div></div>
+<div class="tabpane" id="t1"><div class="profile-grid"><div class="info-box"><h3>Liều chi tiết</h3><p>${esc(x.doseDetail||x.standard)}</p><h3>Liều tối đa</h3><p>${esc(x.maxDose)}</p><h3>Hiệu chỉnh theo CrCl</h3>${ul(x.renal)}<div class="dose-source-badge"><b>Mức xác minh:</b> ${esc(x.renalVerified||'Chưa xác minh đầy đủ')}</div></div><div class="info-box"><h3>HD</h3><p>${esc(x.hd)}</p><h3>CRRT</h3><p>${esc(x.crrt)}</p><h3>Nguồn liều trực tiếp</h3>${directDoseSources(x)}</div></div></div>
 <div class="tabpane" id="t2"><div class="info-box"><h3>Pha truyền</h3>${infusionSections(x)}<div class="source-note"><b>Nguồn áp dụng:</b> ${esc(x.infusionSourceNote||x.clinicalSourceNote||'Tờ HDSD của đúng chế phẩm.')}</div></div></div>
-<div class="tabpane" id="t3"><div class="profile-grid"><div class="info-box"><h3>Chống chỉ định/cảnh báo chính</h3><p>${esc(x.contra)}</p><h3>Tương tác thuốc – bệnh lý</h3>${detailList(x.diseaseInteractions||[])}</div><div class="info-box"><h3>ADR quan trọng</h3><p>${esc(x.adr)}</p><div class="source-note"><b>Lưu ý:</b> phải đối chiếu chống chỉ định đầy đủ trên tờ HDSD đúng số đăng ký của chế phẩm.</div></div></div></div>
+<div class="tabpane" id="t3"><div class="profile-grid"><div class="info-box"><h3>Chống chỉ định/cảnh báo chính</h3><p>${esc(x.contra)}</p></div><div class="info-box"><h3>ADR quan trọng</h3><p>${esc(x.adr)}</p><div class="source-note"><b>Lưu ý:</b> phải đối chiếu chống chỉ định đầy đủ trên tờ HDSD đúng số đăng ký của chế phẩm.</div></div></div></div>
 <div class="tabpane" id="t4"><div class="profile-grid"><div class="info-box"><h3>Tương tác thuốc – thuốc</h3><div class="clinical-stack">${ddiCards(x)}</div></div><div class="info-box"><h3>Tương tác thuốc – bệnh lý</h3>${detailList(x.diseaseInteractions||[])}<button class="btn btn-primary" id="openInteractionFromDrug">Mở công cụ kiểm tra hai thuốc</button></div></div></div>
-<div class="tabpane" id="t5"><div class="info-box"><h3>TDM/theo dõi</h3><p>${esc(x.tdm)}</p><p>Theo dõi chức năng thận, gan, huyết học, điện giải, ECG và độc tính đặc hiệu tùy thuốc.</p></div></div>
-<div class="tabpane" id="t6"><div class="alert"><b>Ngày rà soát dữ liệu:</b> ${esc(x.reviewed||'Chưa ghi nhận')}. Liều, chỉ định, chống chỉ định và cách pha cuối cùng phải đối chiếu đúng tờ HDSD của chế phẩm và quy trình bệnh viện.</div>${sourceHtml(x.sources)}</div>`;$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.tabpane').forEach(z=>z.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab).classList.add('active')});$('#openInteractionFromDrug')?.addEventListener('click',()=>{$('#a').value=x.brand;showView('interactions')})}
+<div class="tabpane" id="t5"><div class="info-box"><h3>TDM/theo dõi</h3><p>${esc(x.tdm)}</p><p>Theo dõi chức năng thận, gan, huyết học, điện giải, ECG và độc tính đặc hiệu tùy thuốc.</p></div></div>`;$$('.tab').forEach(b=>b.onclick=()=>{$$('.tab,.tabpane').forEach(z=>z.classList.remove('active'));b.classList.add('active');$('#'+b.dataset.tab).classList.add('active')});$('#openInteractionFromDrug')?.addEventListener('click',()=>{$('#a').value=x.brand;showView('interactions')})}
 $('#q').oninput=()=>{renderDrugList();const f=filtered();if(f.length&&!f.some(x=>x.id===selected)){selected=f[0].id;renderProfile()}};$('#group').onchange=$('#q').oninput;groups();renderDrugList();renderProfile();
 
 // Dose
@@ -97,7 +97,56 @@ function renderHist(){const h=loadHist();$('#hist').innerHTML=h.map(x=>`<tr><td>
 renderHist();$('#clear').onclick=()=>{if(confirm('Xóa toàn bộ lịch sử trên thiết bị này?')){saveHist([]);renderHist()}};
 $('#exportHist').onclick=()=>{const h=loadHist();if(!h.length){alert('Chưa có lịch sử để xuất.');return}const rows=[['Thời gian','CrCl','eGFR','Thuốc','Gợi ý'],...h.map(x=>[x.time,x.crcl,x.egfr||'',x.drug,x.advice])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='lich-su-tra-cuu-khang-sinh.csv';a.click();URL.revokeObjectURL(a.href)};
 $('#drug').addEventListener('change',()=>{const d=D.find(x=>String(x.id)===String($('#drug').value));$('#output').className='empty-state';$('#output').innerHTML=`<div>💊</div><b>Đã chọn ${esc(d?.brand||'kháng sinh')}</b><span>Bấm “Tính CrCl và gợi ý liều” để cập nhật đúng thuốc đang chọn.</span>`});
-$('#calc').onclick=()=>{const age=+$('#age').value,wt=+$('#wt').value,ht=+$('#ht').value,scru=+$('#scr').value;if(!age||!wt||!scru){alert('Vui lòng nhập tuổi, cân nặng và creatinine.');return}const selectedId=String($('#drug').value);const d=D.find(x=>String(x.id)===selectedId);if(!d){alert('Không tìm thấy dữ liệu của kháng sinh đang chọn. Vui lòng chọn lại.');return}const scr=scru/88.4;let crcl=((140-age)*wt)/(72*scr);if($('#sex').value==='f')crcl*=.85;crcl=Math.max(0,crcl);const egfr=Math.max(0,calcEgfr2021(age,scr,$('#sex').value));const bsa=calcBsaMosteller(ht,wt);const egfrAbsolute=bsa?egfr*bsa/1.73:null;const rr=window.VPMED_GET_RENAL_DOSE?window.VPMED_GET_RENAL_DOSE(d.active,crcl):null;const chosen=rr?.hit?`${rr.hit.label}: ${rr.hit.text}`:(d.renal||[]).join(' ');const advice=$('#dialysis').checked?`HD: ${d.hd} | CRRT: ${d.crrt}`:chosen;const ddi=conciseDDI(d,3);const disease=(d.diseaseInteractions||[]).slice(0,4);$('#output').className='result-card';$('#output').innerHTML=`<span class="kicker">Kết quả đánh giá chức năng thận</span><div class="kidney-metrics"><div class="kidney-metric primary"><span>CrCl Cockcroft–Gault</span><strong>${crcl.toFixed(1)}</strong><small>mL/phút</small></div><div class="kidney-metric"><span>eGFR CKD-EPI 2021</span><strong>${egfr.toFixed(1)}</strong><small>mL/phút/1,73 m²</small></div>${egfrAbsolute?`<div class="kidney-metric"><span>eGFR không chuẩn hóa BSA</span><strong>${egfrAbsolute.toFixed(1)}</strong><small>mL/phút</small></div>`:''}</div><div class="selected-drug-banner"><span>Kháng sinh đang phân tích</span><strong>${esc(d.brand)} — ${esc(d.active)} (${esc(d.strength)})</strong></div>${renalAlertHtml(crcl)}${egfrAlertHtml(egfr,egfrAbsolute)}<div class="dose-decision"><span>Gợi ý theo CrCl của bệnh nhân</span><strong>${esc(chosen)}</strong><small>Nguồn/mức xác minh: ${esc(rr?.verified||d.renalVerified||'Chưa xác minh đầy đủ')}</small></div><div class="result-grid"><div class="info-box"><h3>Liều người lớn tham khảo</h3><p>${esc(d.standard)}</p><h3>Toàn bộ ngưỡng CrCl</h3>${ul(d.renal)}</div><div class="info-box"><h3>Pha truyền</h3>${infusionSections(d)}<h3>Tương tác thuốc – thuốc</h3>${detailList(ddi)}<h3>Tương tác thuốc – bệnh lý</h3>${detailList(disease)}<div class="source-note"><b>Nguồn pha truyền:</b> ${esc(d.infusionSourceNote||d.clinicalSourceNote||'Tờ HDSD và Quyết định 5948/QĐ-BYT.')}</div></div></div><div class="alert" style="margin-top:14px"><b>Kiểm tra an toàn:</b> CrCl Cockcroft–Gault được dùng để chọn ngưỡng liều khi nguồn của thuốc quy định theo CrCl; eGFR CKD-EPI 2021 dùng để phân loại G1–G5 và hỗ trợ đánh giá chức năng thận. Chỉ áp dụng các công thức khi creatinin tương đối ổn định. Liều cuối cùng còn phụ thuộc chỉ định, mức độ nhiễm, vi sinh/MIC, cân nặng dùng để tính liều, dạng bào chế và tờ HDSD đúng chế phẩm.</div>`;const h=loadHist();h.unshift({time:new Date().toLocaleString('vi-VN'),crcl:crcl.toFixed(1),egfr:`${egfr.toFixed(1)} (${egfrCategory(egfr).stage})`,drug:`${d.brand} — ${d.active}`,advice});saveHist(h);renderHist()};
+
+// Bố cục kết quả chuẩn: Thuốc → Phân loại chức năng thận → Liều theo CrCl → Liều/24 giờ → Thông tin an toàn.
+$('#calc').onclick=()=>{
+  const age=+$('#age').value,wt=+$('#wt').value,ht=+$('#ht').value,scru=+$('#scr').value;
+  if(!age||!wt||!scru){alert('Vui lòng nhập tuổi, cân nặng và creatinine.');return}
+  const selectedId=String($('#drug').value),d=D.find(x=>String(x.id)===selectedId);
+  if(!d){alert('Không tìm thấy dữ liệu của kháng sinh đang chọn. Vui lòng chọn lại.');return}
+  const scr=scru/88.4;
+  let crcl=((140-age)*wt)/(72*scr);
+  if($('#sex').value==='f')crcl*=.85;
+  crcl=Math.max(0,crcl);
+  const egfr=Math.max(0,calcEgfr2021(age,scr,$('#sex').value));
+  const bsa=calcBsaMosteller(ht,wt),egfrAbsolute=bsa?egfr*bsa/1.73:null;
+  const rr=window.VPMED_GET_RENAL_DOSE?window.VPMED_GET_RENAL_DOSE(d.active,crcl):null;
+  const chosen=rr?.hit?`${rr.hit.label}: ${rr.hit.text}`:(d.renal||[]).join(' ');
+  const advice=$('#dialysis').checked?`HD: ${d.hd} | CRRT: ${d.crrt}`:chosen;
+  const ddi=conciseDDI(d,4);
+  const stepHead=(number,title)=>`<div class="result-step-head"><span class="result-step-number">${number}</span><h2>${title}</h2></div>`;
+  $('#output').className='result-card clinical-result-flow';
+  $('#output').innerHTML=`
+    <section class="result-step drug-step">
+      ${stepHead(1,'Thuốc')}
+      <div class="selected-drug-banner"><span>Kháng sinh đang phân tích</span><strong>${esc(d.brand)} — ${esc(d.active)} (${esc(d.strength)}) · ${esc(d.route)}</strong></div>
+    </section>
+    <section class="result-step renal-step">
+      ${stepHead(2,'Phân loại chức năng thận')}
+      <div class="kidney-metrics"><div class="kidney-metric primary"><span>CrCl Cockcroft–Gault</span><strong>${crcl.toFixed(1)}</strong><small>mL/phút</small></div><div class="kidney-metric"><span>eGFR CKD-EPI 2021</span><strong>${egfr.toFixed(1)}</strong><small>mL/phút/1,73 m²</small></div>${egfrAbsolute?`<div class="kidney-metric"><span>eGFR không chuẩn hóa BSA</span><strong>${egfrAbsolute.toFixed(1)}</strong><small>mL/phút</small></div>`:''}</div>
+      ${renalAlertHtml(crcl)}${egfrAlertHtml(egfr,egfrAbsolute)}
+    </section>
+    <section class="result-step dose-crcl-section">
+      ${stepHead(3,'Liều theo CrCl')}
+      <div class="dose-current"><span>Gợi ý tại CrCl ${crcl.toFixed(1)} mL/phút</span><strong>${esc(chosen)}</strong><small>Nguồn/mức xác minh: ${esc(rr?.verified||d.renalVerified||'Chưa xác minh đầy đủ')}</small></div>
+      <div class="dose-detail-grid">
+        <div class="info-box"><h3>Liều chi tiết</h3><p>${esc(d.doseDetail||d.standard)}</p><h3>Liều tối đa</h3><p>${esc(d.maxDose)}</p><h3>Toàn bộ ngưỡng CrCl</h3>${ul(d.renal)}</div>
+        <div class="info-box"><h3>HD</h3><p>${esc(d.hd)}</p><h3>CRRT</h3><p>${esc(d.crrt)}</p><h3>Nguồn liều trực tiếp</h3>${directDoseSources(d)}</div>
+      </div>
+    </section>
+    <div id="dose24Anchor"></div>
+    <section class="result-step safety-step">
+      ${stepHead(5,'Thông tin an toàn')}
+      <div class="safety-grid">
+        <div class="info-box"><h3>Chống chỉ định/cảnh báo chính</h3><p>${esc(d.contra)}</p><h3>ADR quan trọng</h3><p>${esc(d.adr)}</p><h3>Theo dõi/TDM</h3><p>${esc(d.tdm)}</p></div>
+        <div class="info-box"><h3>Pha truyền/cách dùng</h3>${infusionSections(d)}<h3>Tương tác thuốc – thuốc</h3>${detailList(ddi)}<div class="source-note"><b>Nguồn pha truyền:</b> ${esc(d.infusionSourceNote||d.clinicalSourceNote||'Tờ HDSD đúng chế phẩm và quy trình bệnh viện.')}</div></div>
+      </div>
+      <div class="alert safety-note"><b>Kiểm tra an toàn:</b> CrCl Cockcroft–Gault được dùng để chọn ngưỡng liều khi nguồn quy định theo CrCl; eGFR CKD-EPI 2021 hỗ trợ phân loại chức năng thận. Chỉ áp dụng khi creatinin tương đối ổn định. Liều cuối cùng còn phụ thuộc chỉ định, mức độ nhiễm, vi sinh/MIC, cân nặng, dạng bào chế và tờ HDSD đúng chế phẩm.</div>
+    </section>`;
+  const h=loadHist();
+  h.unshift({time:new Date().toLocaleString('vi-VN'),crcl:crcl.toFixed(1),egfr:`${egfr.toFixed(1)} (${egfrCategory(egfr).stage})`,drug:`${d.brand} — ${d.active}`,advice});
+  saveHist(h);renderHist();
+};
 
 // Interactions - dữ liệu Bảng 3.1 Quyết định 5948/QĐ-BYT
 const aliases={};

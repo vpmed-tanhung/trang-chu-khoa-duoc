@@ -167,7 +167,21 @@
       let factor=1,h=8;if(crcl<=50&&crcl>=26)h=12;else if(crcl<26&&crcl>=10){factor=.5;h=12;}else if(crcl<10){factor=.5;h=24;}
       return [doseRangeScenario('Phác đồ thường dùng',names[0]||'Meropenem',1000*factor,1000*factor,h),doseRangeScenario('Nhiễm nặng/TKTW',names[0]||'Meropenem',2000*factor,2000*factor,h)];
     }
+    if(a.includes('spiramycin')&&a.includes('metronidazol')){
+      return [
+        unavailable('4 viên/ngày','Chế độ 4 viên/ngày, chia 2 lần trong bữa ăn.',{perDoseOverride:'2 viên = spiramycin 1,5 MIU + metronidazol 250 mg',intervalOverride:'Mỗi 12 giờ',frequencyOverride:'2 lần/24 giờ',totalOverride:'Spiramycin 3 MIU + metronidazol 500 mg/24 giờ'}),
+        unavailable('6 viên/ngày','Chế độ tối đa 6 viên/ngày, chia 3 lần trong bữa ăn.',{perDoseOverride:'2 viên = spiramycin 1,5 MIU + metronidazol 250 mg',intervalOverride:'Mỗi 8 giờ',frequencyOverride:'3 lần/24 giờ',totalOverride:'Spiramycin 4,5 MIU + metronidazol 750 mg/24 giờ'})
+      ];
+    }
     if(a.includes('metronidazol'))return [doseRangeScenario('Mỗi 8 giờ',names[0]||'Metronidazol',500,500,8),doseRangeScenario('Mỗi 12 giờ',names[0]||'Metronidazol',500,500,12)];
+    if(a.includes('ofloxacin')&&route.includes('tra mat'))return [unavailable('Thuốc mỡ tra mắt','Dạng dùng tại chỗ không quy đổi sang gam hoạt chất khi nhãn hàm lượng chưa được xác nhận.',{perDoseOverride:'Dải thuốc mỡ khoảng 1 cm/mắt bệnh',intervalOverride:'Mỗi 8 giờ',frequencyOverride:'3 lần/24 giờ',totalOverride:'3 lần tra/24 giờ; thường không quá 14 ngày'})];
+    if(a.includes('itraconazol'))return [doseRangeScenario('100 mg/ngày',names[0]||'Itraconazol',100,100,24),doseRangeScenario('200 mg/ngày',names[0]||'Itraconazol',200,200,24),doseRangeScenario('Liều tối đa thông thường',names[0]||'Itraconazol',200,200,12)];
+    if(a.includes('cefazolin')){
+      const name=names[0]||'Cefazolin';
+      if(crcl>30)return [doseRangeScenario('Nhiễm không biến chứng',name,1000,1000,8),doseRangeScenario('Nhiễm nặng/phức tạp',name,2000,2000,8)];
+      if(crcl>=10)return [doseRangeScenario('Nhiễm không biến chứng',name,1000,1000,12),doseRangeScenario('Nhiễm nặng/phức tạp',name,2000,2000,12)];
+      return [doseRangeScenario('Liều hiệu chỉnh',name,1000,1000,24)];
+    }
     if(a.includes('gentamicin')){
       const low=wt*5,high=wt*7;
       return [unavailable('Liều kéo dài 5–7 mg/kg',`Liều mỗi lần theo cân nặng ${fmt(wt)} kg; khoảng cách phải xác định bằng nomogram/TDM.`,{perDoseOverride:range(low,high,'mg'),intervalOverride:'Theo nomogram/TDM',frequencyOverride:'Theo nomogram/TDM',totalOverride:'Chưa xác định'})];
@@ -178,8 +192,18 @@
     }
     if(a.includes('benzathin'))return [unavailable('Liều phụ thuộc chỉ định','Chế phẩm dùng theo lịch ngày/tuần tùy chỉ định.',{perDoseOverride:d.strength||'1.200.000 IU',intervalOverride:'Theo chỉ định',frequencyOverride:'Theo lịch điều trị',totalOverride:'Không quy đổi sang g/24 giờ'})];
     if(a.includes('colistin'))return [unavailable('Không tự động quy đổi','Không quy đổi MIU colistimethate sodium sang gam hoạt chất khi chưa xác minh chuẩn đơn vị của đúng chế phẩm.',{perDoseOverride:d.strength||'2 MIU',intervalOverride:'Theo phác đồ chuyên khoa',frequencyOverride:'Theo phác đồ chuyên khoa',totalOverride:'Không quy đổi an toàn'})];
-    if(a.includes('fosfomycin'))return [unavailable('Liều phụ thuộc chỉ định','Dữ liệu hiện có nêu tỷ lệ phần trăm liều theo CrCl nhưng chưa có phác đồ nền cụ thể.',{perDoseOverride:d.strength||'2 g',intervalOverride:'Theo phác đồ nền',frequencyOverride:'Theo phác đồ nền',totalOverride:'Chưa tính'})];
-    if(a.includes('imipenem'))return [unavailable('Chưa đủ dữ liệu xác minh','Cần làm rõ lượng imipenem/cilastatin của đúng chế phẩm trước khi tách tổng từng hoạt chất.',{perDoseOverride:d.strength||'1,5 g',intervalOverride:'Theo HDSD',frequencyOverride:'Theo HDSD',totalOverride:'Chưa tách an toàn'})];
+    if(a.includes('fosfomycin')){
+      const factor=crcl>40?1:crcl>30?.7:crcl>20?.6:crcl>10?.4:.2,name=names[0]||'Fosfomycin';
+      return [doseRangeScenario('Phác đồ nền 12 g/ngày',name,3000*factor,3000*factor,6,6,{note:`Đã áp dụng ${fmt(factor*100)}% liều nền theo ngưỡng CrCl.`}),doseRangeScenario('Phác đồ nền 16 g/ngày',name,4000*factor,4000*factor,6,6,{note:`Đã áp dụng ${fmt(factor*100)}% liều nền theo ngưỡng CrCl.`}),doseRangeScenario('Nhiễm rất nặng – nền 24 g/ngày',name,6000*factor,6000*factor,6,6,{note:`Đã áp dụng ${fmt(factor*100)}% liều nền; chỉ chọn khi chỉ định/phác đồ cho phép.`})];
+    }
+    if(a.includes('imipenem')){
+      const nn=names.length>=2?names:['Imipenem','Cilastatin'];
+      if(crcl<15)return [unavailable('CrCl <15 mL/phút','Chỉ dùng khi HD được thực hiện trong vòng 48 giờ; cần chốt lịch dùng theo HD.',{perDoseOverride:'Theo bảng HD',intervalOverride:'Theo buổi HD',frequencyOverride:'Theo lịch lọc',totalOverride:'Không tự động tính'})];
+      if(crcl<30)return [comboScenario('Phác đồ 200 mg mỗi 6 giờ',nn,[[200,200],[200,200]],6),comboScenario('Phác đồ 500 mg mỗi 12 giờ',nn,[[500,500],[500,500]],12)];
+      if(crcl<60)return [comboScenario('Phác đồ 300 mg mỗi 6 giờ',nn,[[300,300],[300,300]],6),comboScenario('Phác đồ 500 mg mỗi 8 giờ',nn,[[500,500],[500,500]],8),comboScenario('Nhạy cảm trung gian',nn,[[500,500],[500,500]],6)];
+      if(crcl<90)return [comboScenario('Phác đồ 400 mg mỗi 6 giờ',nn,[[400,400],[400,400]],6),comboScenario('Phác đồ 500 mg mỗi 6 giờ',nn,[[500,500],[500,500]],6),comboScenario('Nhạy cảm trung gian',nn,[[750,750],[750,750]],8)];
+      return [comboScenario('Phác đồ 500 mg mỗi 6 giờ',nn,[[500,500],[500,500]],6),comboScenario('Phác đồ 1.000 mg mỗi 8 giờ',nn,[[1000,1000],[1000,1000]],8),comboScenario('Nhạy cảm trung gian',nn,[[1000,1000],[1000,1000]],6)];
+    }
     return [unavailable('Chưa có quy tắc quy đổi','Không tự suy diễn con số khi dữ liệu hiện tại chưa đủ.',{perDoseOverride:d.strength||'—',intervalOverride:'Chưa xác định',frequencyOverride:'Chưa xác định',totalOverride:'Chưa xác định'})];
   }
 
@@ -219,9 +243,9 @@
     const host=document.createElement('section');
     host.id='vpmedDose24Summary';host.className='dose24-card';
     const options=scenarios.map((s,i)=>`<option value="${i}">${esc(s.label)}</option>`).join('');
-    host.innerHTML=`<div class="dose24-head"><div><span class="kicker">Quy đổi liều dùng</span><h3>Liều và tổng hoạt chất trong 24 giờ</h3></div>${scenarios.length>1?`<label>Phác đồ đang tính<select id="vpmedDose24Scenario">${options}</select></label>`:''}</div><div id="vpmedDose24Body">${scenarioHtml(scenarios[0])}</div><div class="dose24-disclaimer"><b>Lưu ý:</b> Khối này chỉ quy đổi từ phác đồ đang hiển thị. Trường hợp TDM, HD, CRRT, lịch dùng cách ngày hoặc dữ liệu chưa đủ sẽ không tự suy diễn tổng liều.</div>`;
-    const anchor=output.querySelector('.dose-decision');
-    if(anchor)anchor.insertAdjacentElement('afterend',host);else output.prepend(host);
+    host.innerHTML=`<div class="dose24-head"><div><span class="kicker">Bước 4</span><h3>4 · Liều/24 giờ</h3></div>${scenarios.length>1?`<label>Phác đồ đang tính<select id="vpmedDose24Scenario">${options}</select></label>`:''}</div><div id="vpmedDose24Body">${scenarioHtml(scenarios[0])}</div><div class="dose24-disclaimer"><b>Lưu ý:</b> Khối này chỉ quy đổi từ phác đồ đang hiển thị. Trường hợp TDM, HD, CRRT, lịch dùng cách ngày hoặc dữ liệu chưa đủ sẽ không tự suy diễn tổng liều.</div>`;
+    const anchor=output.querySelector('#dose24Anchor');
+    if(anchor)anchor.replaceWith(host);else output.append(host);
     host.querySelector('#vpmedDose24Scenario')?.addEventListener('change',e=>{host.querySelector('#vpmedDose24Body').innerHTML=scenarioHtml(scenarios[+e.target.value]);});
   }
 
