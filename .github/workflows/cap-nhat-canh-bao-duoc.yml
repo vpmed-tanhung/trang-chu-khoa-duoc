@@ -11,7 +11,6 @@ on:
     paths:
       - 'assets/pharmacovigilance_refresh_button.js'
       - 'assets/pharmacovigilance_integration.js'
-      - 'assets/pharmacovigilance_auto_editor.js'
       - '.github/scripts/update_pharmacovigilance.py'
       - '.github/scripts/ensure_pharmacovigilance_refresh_button.py'
       - '.github/workflows/cap-nhat-canh-bao-duoc.yml'
@@ -60,7 +59,6 @@ jobs:
           node --check assets/pharmacovigilance_auto_data.js
           node --check assets/pharmacovigilance_refresh_button.js
           node --check assets/pharmacovigilance_integration.js
-          node --check assets/pharmacovigilance_auto_editor.js
 
       - name: Xác nhận 42 cảnh báo biên tập không bị thay đổi
         run: |

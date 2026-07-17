@@ -236,8 +236,7 @@
         const staticAlerts = embeddedStaticAlerts.length > fetchedStaticAlerts.length
           ? embeddedStaticAlerts
           : fetchedStaticAlerts;
-        const autoEditor = window.VPMED_PHARMACOVIGILANCE_AUTO_EDIT;
-        const autoAlerts = unwrapAlerts(autoPayload).map(item=>typeof autoEditor==='function'?autoEditor(item):item);
+        const autoAlerts = unwrapAlerts(autoPayload);
         this.alerts = mergeAlerts(staticAlerts, autoAlerts);
         if (!this.alerts.length) throw new Error('Không có dữ liệu cảnh báo');
         this.lastSyncDate = formatIsoDateTime(autoPayload?.generated_at) || this.latestDateText();
@@ -309,9 +308,9 @@
       this.$('#resultCount').textContent = `${list.length}/${this.alerts.length} cảnh báo`;
       this.$('#cards').innerHTML = list.length ? list.map((item) => `
         <article class="card"><div class="card-top ${escapeHtml(item.level)}"></div><div class="card-body">
-          <div class="meta"><span class="pill ${escapeHtml(item.level)}">${escapeHtml(LEVEL_NAMES[item.level] || item.level)}</span><span class="pill gray">${escapeHtml(item.category)}</span>${item.interaction ? '<span class="pill gray">Tương tác</span>' : ''}</div>
+          <div class="meta"><span class="pill ${escapeHtml(item.level)}">${escapeHtml(LEVEL_NAMES[item.level] || item.level)}</span><span class="pill gray">${escapeHtml(item.category)}</span>${item.interaction ? '<span class="pill gray">Tương tác</span>' : ''}${item.auto ? '<span class="pill auto">Tự động từ nguồn</span>' : ''}</div>
           <h3>${escapeHtml(item.title)}</h3><div class="drug">${escapeHtml(item.drugs || 'Xem nguồn gốc để xác định thuốc/nhóm thuốc')}</div><p class="summary">${escapeHtml(item.summary || '')}</p>
-          <div class="quick"><b>Điểm cần nhớ:</b> ${escapeHtml(item.quick || '')}</div>
+          <div class="quick"><b>${item.auto ? 'Trạng thái:' : 'Điểm cần nhớ:'}</b> ${escapeHtml(item.quick || '')}</div>
           <div class="card-foot"><span class="date">${escapeHtml(item.date || 'Chưa rõ ngày')} · ${escapeHtml(item.source || '')}</span><button class="detail-btn" data-id="${escapeHtml(item.id)}" type="button">Xem chi tiết</button></div>
         </div></article>`).join('') : '<div class="empty"><b>Không tìm thấy cảnh báo phù hợp.</b><br>Hãy đổi từ khóa hoặc đặt lại bộ lọc.</div>';
       this.$$('.detail-btn').forEach((button) => button.addEventListener('click', () => this.openDetail(button.dataset.id)));
@@ -325,14 +324,16 @@
     openDetail(id) {
       const item = this.alerts.find((entry) => entry.id === id);
       if (!item) return;
-      this.$('#modalMeta').innerHTML = `<span class="pill ${escapeHtml(item.level)}">${escapeHtml(LEVEL_NAMES[item.level] || item.level)}</span><span class="pill gray">${escapeHtml(item.category)}</span><span class="pill gray">${escapeHtml(item.date || 'Chưa rõ ngày')}</span>`;
+      this.$('#modalMeta').innerHTML = `<span class="pill ${escapeHtml(item.level)}">${escapeHtml(LEVEL_NAMES[item.level] || item.level)}</span><span class="pill gray">${escapeHtml(item.category)}</span><span class="pill gray">${escapeHtml(item.date || 'Chưa rõ ngày')}</span>${item.auto ? '<span class="pill auto">Tự động từ nguồn · Chưa biên tập</span>' : ''}`;
       this.$('#modalTitle').textContent = item.title;
+      const autoNotice = item.auto ? '<div class="box full alert-box auto-box"><h4>Bản tin tự động – chưa biên tập chuyên môn</h4><p>Nội dung này được ghi nhận tự động từ nguồn chính thức. Dược sĩ cần mở bài gốc, rà soát và biên tập trước khi sử dụng làm nội dung chuyên môn hoặc hỗ trợ quyết định lâm sàng.</p></div>' : '';
       this.$('#modalBody').innerHTML = `<div class="detail-grid">
-        <div class="box full alert-box"><h4>Thông tin cảnh báo</h4><p><b>Thuốc/nhóm thuốc:</b> ${escapeHtml(item.drugs || 'Thuốc/nhóm thuốc trong nguồn gốc')}</p><p>${escapeHtml(item.summary || '')}</p><p><b>Điểm cần nhớ:</b> ${escapeHtml(item.quick || '')}</p></div>
-        <div class="box"><h4>Đối tượng và yếu tố nguy cơ</h4>${this.listHtml(item.risk, 'Không có yếu tố nguy cơ riêng được trích xuất; xem nguồn gốc.')}</div>
-        <div class="box"><h4>Dấu hiệu cần nhận biết</h4>${this.listHtml(item.signs, 'Theo dõi biểu hiện bất thường được nêu trong nguồn gốc.')}</div>
-        <div class="box"><h4>Hành động cần xem xét</h4>${this.listHtml(item.action, 'Rà soát nguồn gốc trước khi đưa ra khuyến nghị.')}</div>
-        <div class="box"><h4>Nội dung cần theo dõi</h4>${this.listHtml(item.monitor, 'Theo dõi đáp ứng và phản ứng có hại liên quan.')}</div>
+        ${autoNotice}
+        <div class="box full alert-box"><h4>Thông tin cảnh báo</h4><p><b>Thuốc/nhóm thuốc:</b> ${escapeHtml(item.drugs || 'Chưa biên tập')}</p><p>${escapeHtml(item.summary || '')}</p><p><b>${item.auto ? 'Trạng thái:' : 'Điểm cần nhớ:'}</b> ${escapeHtml(item.quick || '')}</p></div>
+        <div class="box"><h4>Đối tượng và yếu tố nguy cơ</h4>${this.listHtml(item.risk, 'Chưa được phân loại trong bản tin tự động.')}</div>
+        <div class="box"><h4>Dấu hiệu cần nhận biết</h4>${this.listHtml(item.signs, 'Mở nguồn gốc để đọc nội dung đầy đủ.')}</div>
+        <div class="box"><h4>Hành động cần xem xét</h4>${this.listHtml(item.action, 'Dược sĩ rà soát trước khi đưa ra khuyến nghị.')}</div>
+        <div class="box"><h4>Nội dung cần theo dõi</h4>${this.listHtml(item.monitor, 'Chưa được biên tập.')}</div>
         <div class="box full source-box"><h4>Nguồn thông tin</h4><p><b>${escapeHtml(item.source || 'Nguồn chính thức')}</b></p><p class="source-link"><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">Mở nội dung gốc ↗</a></p></div>
       </div>`;
       this.$('#modal').classList.add('open');
