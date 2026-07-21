@@ -1,8 +1,43 @@
 {
-  "generated_at": "2026-07-21T06:56:21+07:00",
+  "generated_at": "2026-07-22T06:56:15+07:00",
   "source": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTinCGD.aspx",
   "review_status": "Bản tin mới được tự động trích xuất và biên tập theo cấu trúc cảnh báo. Cần mở nguồn gốc để kiểm chứng trước khi áp dụng lâm sàng.",
   "alerts": [
+    {
+      "id": "auto-df8566eb2eba0b",
+      "level": "orange",
+      "year": "2026",
+      "date": "21/07/2026",
+      "category": "Cảnh báo an toàn thuốc",
+      "system": "Toàn thân",
+      "interaction": false,
+      "title": "Health Canada: Nguy cơ nấc cụt kéo dài, dai dẳng hoặc tái phát khi sử dụng tramadol",
+      "drugs": "Opioid",
+      "summary": "Health Canada đã tiến hành đánh giá nguy cơ nấc cụt kéo dài, dai dẳng hoặc tái phát liên quan đến việc sử dụng tramadol. Quá trình đánh giá khởi đầu ngay khi Health Canada ghi nhận được các báo cáo ca về biến cố này tại Canada và trên thế giới. Nhìn chung, nấc cụt thường không gây hại. Tuy nhiên, tình trạng nấc cụt kéo dài (dưới 48 giờ), dai dẳng (kéo dài lớn hơn 48 giờ đến 1 tháng) hoặc tái phát (xuất hiện nhiều đợt, lặp đi lặp lại) có thể ảnh hưởng đáng kể đến chất lượng cuộc sống của người bệnh. Các cơn nấc cụt kéo dài trong nhiều giờ, nhiều ngày hoặc nhiều tháng có thể ảnh hưởng đến khả năng ăn uống, ngủ nghỉ và giao tiếp của người bệnh.",
+      "quick": "Health Canada đã tiến hành đánh giá dựa trên cơ sở dữ liệu từ hệ thống báo cáo về phản ứng có hại của Canada Về CSDL trong nước và quốc tế: Tại thời điểm rà soát, Health Canada ghi nhận 8 trường hợp nấc cụt kéo dài, dai dẳng…",
+      "risk": [
+        "Health Canada đã tiến hành đánh giá nguy cơ nấc cụt kéo dài, dai dẳng hoặc tái phát liên quan đến việc sử dụng tramadol.",
+        "Tuy nhiên, tình trạng nấc cụt kéo dài (dưới 48 giờ), dai dẳng (kéo dài lớn hơn 48 giờ đến 1 tháng) hoặc tái phát (xuất hiện nhiều đợt, lặp đi lặp lại) có thể ảnh hưởng đáng kể đến chất lượng cuộc sống của người bệnh.",
+        "Các cơn nấc cụt kéo dài trong nhiều giờ, nhiều ngày hoặc nhiều tháng có thể ảnh hưởng đến khả năng ăn uống, ngủ nghỉ và giao tiếp của người bệnh.",
+        "Health Canada đã tiến hành đánh giá dựa trên cơ sở dữ liệu từ hệ thống báo cáo về phản ứng có hại của Canada Về CSDL trong nước và quốc tế: Tại thời điểm rà soát, Health Canada ghi nhận 8 trường hợp nấc cụt kéo dài, dai dẳng…"
+      ],
+      "signs": [
+        "Quá trình đánh giá khởi đầu ngay khi Health Canada ghi nhận được các báo cáo ca về biến cố này tại Canada và trên thế giới."
+      ],
+      "action": [
+        "Health Canada đã tiến hành đánh giá dựa trên cơ sở dữ liệu từ hệ thống báo cáo về phản ứng có hại của Canada Về CSDL trong nước và quốc tế: Tại thời điểm rà soát, Health Canada ghi nhận 8 trường hợp nấc cụt kéo dài, dai dẳng…",
+        "Mặc dù có nhiều yếu tố gây nhiễu, như bệnh lý nền hoặc việc sử dụng đồng thời các thuốc kê đơn khác, cả 8 trường hợp đều được đánh giá có mối liên quan thuốc và ADR với mức độ “Có thể”.."
+      ],
+      "monitor": [
+        "Theo dõi đáp ứng, phản ứng có hại và các xét nghiệm liên quan theo nội dung cảnh báo gốc."
+      ],
+      "source": "Trung tâm Quốc gia về Thông tin thuốc và Theo dõi phản ứng có hại của thuốc",
+      "url": "https://canhgiacduoc.org.vn/CanhGiacDuoc/DiemTin/5848/health-canada-nac-cut-keo-dai-sau-dung-tramadol.htm",
+      "auto": true,
+      "reviewed": false,
+      "autoEdited": true,
+      "editorialStatus": "auto-edited"
+    },
     {
       "id": "auto-a0653bc57bbbf8",
       "level": "orange",
