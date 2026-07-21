@@ -1159,6 +1159,14 @@ calc();
       #view-sources .source-title-link{display:inline-flex;align-items:flex-start;gap:6px;color:#075d98;text-decoration:none}
       #view-sources .source-title-link:hover,#view-sources .source-title-link:focus{text-decoration:underline;text-underline-offset:3px}
       #view-sources .source-title-link .source-link-icon{font-size:.78em;line-height:1.45}
+      #view-sources .source-subtitle{margin-top:18px}
+      #view-sources .source-subtitle h2{margin-bottom:4px}
+      #view-sources .source-subtitle p{margin:0;color:var(--muted);font-size:13px}
+      #view-sources .source-grid{margin-top:12px}
+      #view-sources .source-card{min-height:auto;padding:14px;gap:8px}
+      #view-sources .source-card > div{font-size:22px;line-height:1}
+      #view-sources .source-card h3{margin:0;font-size:15px;line-height:1.45}
+      #view-sources .source-card p{margin:0;font-size:12px;line-height:1.45;flex:none}
     </style>
     <div class="back-home-wrap">
       <button type="button" class="back-home-btn" data-go="home" aria-label="Quay lại Trang chủ"><span aria-hidden="true">←</span> Quay lại Trang chủ</button>
@@ -1166,37 +1174,43 @@ calc();
     <div class="page-title"><div><span class="kicker">Nguồn dữ liệu chuyên môn</span><h1>Nguồn chính thức và nguyên tắc sử dụng</h1><p>Các nội dung trong hệ thống được ưu tiên đối chiếu từ văn bản, hướng dẫn chuyên môn và cơ sở dữ liệu do Bộ Y tế hoặc đơn vị trực thuộc Bộ Y tế công bố.</p></div></div>
     <section class="section-card">
       <div class="alert"><b>Thứ tự ưu tiên khi sử dụng:</b> (1) tờ hướng dẫn sử dụng đã được phê duyệt của đúng thuốc, hàm lượng và dạng bào chế; (2) hướng dẫn chẩn đoán, điều trị và hướng dẫn chuyên môn còn hiệu lực của Bộ Y tế; (3) Dược thư Quốc gia Việt Nam; (4) quy trình chuyên môn được Hội đồng Thuốc và Điều trị của bệnh viện phê duyệt. Thông tin trên website là công cụ hỗ trợ và cần được đối chiếu với tình trạng lâm sàng thực tế.</div>
+      <div class="source-subtitle">
+        <h2>Văn bản Bộ Y tế mới cập nhật</h2>
+      </div>
+      <div class="source-grid latest-documents-grid">
+        <article class="source-card"><div>💊</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/28-byt.signed.pdf">Thông tư 28/2026/TT-BYT – Danh mục thuốc, vắc xin, sinh phẩm và nguyên liệu làm thuốc theo mức độ rủi ro <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 01/07/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🌿</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/26-byt.signed.pdf">Thông tư 26/2026/TT-BYT – Danh mục dược liệu, thuốc cổ truyền có mức độ rủi ro trung bình <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 01/07/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🧪</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/25-byt.signed.pdf">Thông tư 25/2026/TT-BYT – Sửa đổi quy định về chất lượng xét nghiệm và hoạt động khám chữa bệnh <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 15/08/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🩻</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/24-byt.signed.pdf">Thông tư 24/2026/TT-BYT – Quản lý rủi ro sản phẩm, hàng hóa là thiết bị y tế <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 01/07/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🎁</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/5/16-byt.pdf">Thông tư 16/2026/TT-BYT – Chương trình hỗ trợ thuốc miễn phí cho cơ sở khám chữa bệnh <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 10/07/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🔎</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/4/06-byt.pdf">Thông tư 06/2026/TT-BYT – Mã hóa bệnh tật, nguyên nhân tử vong theo ICD-10 <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 01/07/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🌿</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/01/55-byt.pdf">Thông tư 55/2025/TT-BYT – Kê đơn thuốc cổ truyền, dược liệu và phối hợp thuốc hóa dược <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hiệu lực 01/03/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🧪</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/30-byt.pdf">Thông tư 30/2025/TT-BYT – Chất lượng, kiểm nghiệm và thu hồi thuốc <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Văn bản hiện hành · PDF toàn văn.</p></article>
+        <article class="source-card"><div>✍️</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/7/26-byt.pdf">Thông tư 26/2025/TT-BYT – Đơn thuốc và kê đơn thuốc hóa dược, sinh phẩm <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Văn bản hiện hành · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🧾</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/5/12-byt.pdf">Thông tư 12/2025/TT-BYT – Đăng ký lưu hành thuốc và nguyên liệu làm thuốc <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Văn bản hiện hành · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🏥</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/01/01-byt.pdf">Thông tư 01/2025/TT-BYT – Hướng dẫn thi hành một số điều của Luật Bảo hiểm y tế <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Văn bản hiện hành · PDF toàn văn.</p></article>
+        <article class="source-card"><div>📅</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://kcb.vn/upload/2005611/20260702/uploadiframe_openFile_do_98755.pdf">Quyết định 1986/QĐ-BYT – Sửa thời điểm áp dụng một số hướng dẫn quy trình kỹ thuật <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Ban hành 01/07/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🥗</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://kcb.vn/upload/2005611/20260620/uploadiframe_openFile_do_9cb35.pdf">Quyết định 1768/QĐ-BYT – Hướng dẫn chẩn đoán và điều trị dinh dưỡng cho người bệnh ung thư <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Ban hành 18/06/2026 · PDF toàn văn.</p></article>
+        <article class="source-card"><div>🦠</div><h3><a class="source-title-link" target="_blank" rel="noopener noreferrer" href="https://kcb.vn/upload/2005611/20260617/BYT__QD_ban_hanh_HDCDT_viem_gan_vi_rut_B_-_final_2_signed_8c1b5.pdf">Quyết định 1740/QĐ-BYT – Hướng dẫn chẩn đoán, điều trị viêm gan vi rút B <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Ban hành 16/06/2026 · PDF toàn văn.</p></article>
+      </div>
+
+      <div class="source-subtitle">
+        <h2>Hướng dẫn chuyên môn và cơ sở dữ liệu đang sử dụng</h2>
+      </div>
       <div class="source-grid">
-        <article class="source-card"><div>💊</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://dichvucong.dav.gov.vn/congbothuoc/index">Cơ sở dữ liệu thuốc được cấp giấy đăng ký lưu hành – Cục Quản lý Dược <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Nguồn ưu tiên để đối chiếu đúng số đăng ký, tên thuốc, hoạt chất, hàm lượng, dạng bào chế và hồ sơ công bố của từng chế phẩm.</p></article>
-
-        <article class="source-card"><div>📘</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1eteDcwhNagDUnWF3k6W3Do__SjKPt5Rk/view?usp=sharing">Công văn 192/VKNTTW-KHTH: phát hành Dược thư Quốc gia Việt Nam III – sách điện tử <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Công văn phát hành bản điện tử Dược thư Quốc gia Việt Nam III; Dược thư được Bộ Y tế ban hành theo Quyết định 3445/QĐ-BYT.</p></article>
-
-        <article class="source-card"><div>💉</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://kcb.vn/upload/2005611/20210723/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng-kh%C3%A1ng-sinh-C%E1%BA%ADp-nh%E1%BA%ADt-l%E1%BA%A7n-cu%E1%BB%91i-khi-in-09.01.2015.pdf">Quyết định 708/QĐ-BYT – Hướng dẫn sử dụng kháng sinh <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hướng dẫn của Bộ Y tế về nguyên tắc lựa chọn kháng sinh, PK/PD và sử dụng kháng sinh theo nhóm bệnh.</p></article>
-
-        <article class="source-card"><div>🧭</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://benhvienhatrung.vn/wp-content/uploads/2023/05/Qd2115.pdf">Quyết định 2115/QĐ-BYT – Sổ tay quản lý sử dụng kháng sinh cho bệnh viện tuyến huyện <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Sổ tay thực hành chương trình quản lý sử dụng kháng sinh tại bệnh viện tuyến huyện, ban hành năm 2023 và áp dụng trên phạm vi toàn quốc.</p></article>
-
-        <article class="source-card"><div>🧫</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://canhgiacduoc.org.vn/SiteData/3/UserFiles/VanBanPhapQuy/QD%20so%205631QLKS%20trong%20BV.pdf">Quyết định 5631/QĐ-BYT – Quản lý sử dụng kháng sinh trong bệnh viện <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Khung triển khai chương trình quản lý sử dụng kháng sinh trong bệnh viện; thay thế Quyết định 772/QĐ-BYT.</p></article>
-
-        <article class="source-card"><div>⚠️</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://bvdksadec.vn/Uploads/files/HD_DUOC-202112_%20Q%C4%90%20s%E1%BB%91%205948-Q%C4%90-BYT%20DANH%20MUC%20CAC%20CAP%20TUONG%20TAC%20THUOC%282%29.pdf">Quyết định 5948/QĐ-BYT – Danh mục tương tác thuốc chống chỉ định <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Danh mục tương tác thuốc chống chỉ định trong thực hành lâm sàng tại các cơ sở khám bệnh, chữa bệnh.</p></article>
-
-        <article class="source-card"><div>🛡️</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://benhvientamthansonla.vn/SiteFolders/bvtamthan/Quy%C3%AA%CC%81t%20%C4%91i%CC%A3nh%2029.Q%C4%90-BYT.pdf">Quyết định 29/QĐ-BYT – Hướng dẫn giám sát phản ứng có hại của thuốc <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hướng dẫn giám sát ADR tại các cơ sở khám bệnh, chữa bệnh; thay thế Quyết định 1088/QĐ-BYT.</p></article>
-
-        <article class="source-card"><div>🩺</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://kcb.vn/upload/2005611/20240826/QD_ban_hanh_HD_chan_doan__dieu_tri_benh_than_man_va_mot_so_benh_ly_than__2024_08_12_f0584.pdf">Quyết định 2388/QĐ-BYT năm 2024 – Hướng dẫn bệnh thận mạn và một số bệnh lý thận <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hướng dẫn chẩn đoán, điều trị, đánh giá eGFR, phân loại chức năng thận và theo dõi người bệnh.</p></article>
-
-        <article class="source-card"><div>📋</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2013/08/tt-21_01.pdf">Thông tư 21/2013/TT-BYT – Tổ chức và hoạt động của Hội đồng Thuốc và Điều trị <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Căn cứ tổ chức Hội đồng Thuốc và Điều trị, rà soát danh mục thuốc và phê duyệt hướng dẫn điều trị nội bộ.</p></article>
-
-        <article class="source-card"><div>📗</div><h3><a class="source-title-link" href="sources/danh-muc-khang-sinh-noi-tru.xlsx" download>Danh mục kháng sinh nội trú của bệnh viện <span class="source-link-icon" aria-hidden="true">↓</span></a></h3><p>Danh sách biệt dược, hoạt chất, hàm lượng và đường dùng hiện có tại Bệnh viện VPMED Tân Hưng.</p></article>
-
-        <article class="source-card"><div>🧾</div><h3><a class="source-title-link" href="sources/ICD10_BYT2026_ChinhThuc.xlsx" download>ICD-10 BYT 2026 <span class="source-link-icon" aria-hidden="true">↓</span></a></h3><p>Bảng mã ICD-10 dùng cho tra cứu mã bệnh, cảnh báo mã không dùng làm bệnh chính và mã cần chọn chi tiết hơn.</p></article>
-
-        <article class="source-card"><div>🏥</div><h3><a class="source-title-link" href="sources/DANH_SACH_THUOC_NGAY_07_07.xls" download>Danh sách thuốc kho nội trú ngày 07/07 <span class="source-link-icon" aria-hidden="true">↓</span></a></h3><p>Dữ liệu tên thuốc, hoạt chất, hàm lượng, đường dùng, số đăng ký, quy cách và hạn dùng từ danh mục nội trú.</p></article>
-
-        <article class="source-card"><div>📙</div><h3><a class="source-title-link" href="sources/danh-muc-tuong-tac-chong-chi-dinh.xls" download>633 cặp tương tác chống chỉ định nội bộ <span class="source-link-icon" aria-hidden="true">↓</span></a></h3><p>Dữ liệu được chuẩn hóa từ danh mục tương tác chống chỉ định, gồm hậu quả, cơ chế, cách xử trí và nguồn tham khảo.</p></article>
+        <article class="source-card"><div>💊</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://dichvucong.dav.gov.vn/congbothuoc/index">Cơ sở dữ liệu thuốc được cấp giấy đăng ký lưu hành – Cục Quản lý Dược <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Đối chiếu SĐK, hoạt chất, hàm lượng và dạng bào chế.</p></article>
+        <article class="source-card"><div>📘</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://drive.google.com/file/d/1eteDcwhNagDUnWF3k6W3Do__SjKPt5Rk/view?usp=sharing">Công văn 192/VKNTTW-KHTH: phát hành Dược thư Quốc gia Việt Nam III – sách điện tử <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Nguồn tham khảo dược lâm sàng trọng tâm.</p></article>
+        <article class="source-card"><div>💉</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://kcb.vn/upload/2005611/20210723/H%C6%B0%E1%BB%9Bng-d%E1%BA%ABn-s%E1%BB%AD-d%E1%BB%A5ng-kh%C3%A1ng-sinh-C%E1%BA%ADp-nh%E1%BA%ADt-l%E1%BA%A7n-cu%E1%BB%91i-khi-in-09.01.2015.pdf">Quyết định 708/QĐ-BYT – Hướng dẫn sử dụng kháng sinh <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Nguyên tắc sử dụng kháng sinh trong thực hành.</p></article>
+        <article class="source-card"><div>🧭</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://benhvienhatrung.vn/wp-content/uploads/2023/05/Qd2115.pdf">Quyết định 2115/QĐ-BYT – Sổ tay quản lý sử dụng kháng sinh cho bệnh viện tuyến huyện <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Tài liệu quản lý sử dụng kháng sinh.</p></article>
+        <article class="source-card"><div>🧫</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://canhgiacduoc.org.vn/SiteData/3/UserFiles/VanBanPhapQuy/QD%20so%205631QLKS%20trong%20BV.pdf">Quyết định 5631/QĐ-BYT – Quản lý sử dụng kháng sinh trong bệnh viện <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Khung triển khai chương trình quản lý kháng sinh.</p></article>
+        <article class="source-card"><div>⚠️</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://bvdksadec.vn/Uploads/files/HD_DUOC-202112_%20Q%C4%90%20s%E1%BB%91%205948-Q%C4%90-BYT%20DANH%20MUC%20CAC%20CAP%20TUONG%20TAC%20THUOC%282%29.pdf">Quyết định 5948/QĐ-BYT – Danh mục tương tác thuốc chống chỉ định <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Danh mục tương tác chống chỉ định cần ưu tiên rà soát.</p></article>
+        <article class="source-card"><div>🛡️</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://benhvientamthansonla.vn/SiteFolders/bvtamthan/Quy%C3%AA%CC%81t%20%C4%91i%CC%A3nh%2029.Q%C4%90-BYT.pdf">Quyết định 29/QĐ-BYT – Hướng dẫn giám sát phản ứng có hại của thuốc <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hướng dẫn giám sát ADR tại cơ sở khám chữa bệnh.</p></article>
+        <article class="source-card"><div>🩺</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://kcb.vn/upload/2005611/20240826/QD_ban_hanh_HD_chan_doan__dieu_tri_benh_than_man_va_mot_so_benh_ly_than__2024_08_12_f0584.pdf">Quyết định 2388/QĐ-BYT năm 2024 – Hướng dẫn bệnh thận mạn và một số bệnh lý thận <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Phân loại chức năng thận, eGFR và theo dõi người bệnh.</p></article>
+        <article class="source-card"><div>📋</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://datafiles.chinhphu.vn/cpp/files/vbpq/2013/08/tt-21_01.pdf">Thông tư 21/2013/TT-BYT – Tổ chức và hoạt động của Hội đồng Thuốc và Điều trị <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Căn cứ tổ chức và hoạt động của HĐT&ĐT.</p></article>
       </div>
 
       <div class="source-subtitle">
         <h2>Nguồn tham khảo cho PET/CT – Y học hạt nhân</h2>
-        <p>Chỉ giữ tài liệu đích có toàn văn/PDF của EANM, SNMMI, ACR và IAEA. Công thức tính liều vẫn ưu tiên SOP/file Excel nội bộ đã được đơn vị phê duyệt; không tạo thẻ liên kết nếu chưa có tệp SOP đích trong hệ thống.</p>
       </div>
       <div class="source-grid petct-source-grid">
         <article class="source-card"><div>🧬</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://link.springer.com/content/pdf/10.1007/s00259-014-2961-x.pdf">EANM procedure guideline for tumour imaging with 18F-FDG PET/CT – version 2.0 <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Hướng dẫn trực tiếp về chuẩn bị, ghi hình, định lượng, kiểm soát chất lượng và báo cáo FDG PET/CT trong ung thư.</p></article>
@@ -1212,7 +1226,7 @@ calc();
         <article class="source-card"><div>☢️</div><h3><a class="source-title-link" target="_blank" rel="noopener" href="https://www-pub.iaea.org/MTCD/Publications/PDF/PUB1775_web.pdf">IAEA Safety Standards SSG-46 – Radiation Protection and Safety in Medical Uses of Ionizing Radiation <span class="source-link-icon" aria-hidden="true">↗</span></a></h3><p>Tiêu chuẩn an toàn bức xạ cho người bệnh, nhân viên và cộng đồng trong sử dụng bức xạ ion hóa trong y tế.</p></article>
       </div>
 
-      <div class="alert source-note"><b>Ngày rà soát nguồn:</b> 15/07/2026. Tất cả liên kết công khai ở trên trỏ trực tiếp đến cơ sở dữ liệu hoặc tài liệu đích; các nguồn nội bộ trỏ trực tiếp đến tệp tương ứng. Với PET/CT, công thức tính liều ưu tiên theo SOP/file Excel nội bộ của đơn vị. Khi có văn bản/hướng dẫn mới hoặc SOP thay đổi, dữ liệu cần được cập nhật và trình Hội đồng Thuốc và Điều trị xem xét trước khi áp dụng chính thức.</div>
+      <div class="alert source-note"><b>Cập nhật nguồn:</b> 21/07/2026. Nhấp vào tên tài liệu để mở nội dung đầy đủ. Bác sĩ sử dụng nguồn để tra cứu, đối chiếu và cân nhắc theo tình trạng thực tế của người bệnh.</div>
     </section>
   </section>
 </main>
@@ -1234,6 +1248,7 @@ calc();
 <script src="assets/unified.js"></script>
 <script src="assets/antibiotic_consultation.js?v=20260716-inpatient-first"></script>
 <script src="assets/dose_24h_summary.js?v=20260711-safe"></script>
+<script src="assets/vancomycin_renal_v2.js?v=20260721-renal-v2"></script>
 <script src="assets/home_feature_sync.js"></script>
 <script src="assets/inpatient_medicines_20260707.js"></script>
 <script src="assets/icd10_byt2026_data.js"></script>

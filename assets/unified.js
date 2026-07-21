@@ -99,6 +99,14 @@ $('#exportHist').onclick=()=>{const h=loadHist();if(!h.length){alert('Chưa có 
 $('#drug').addEventListener('change',()=>{const d=D.find(x=>String(x.id)===String($('#drug').value));$('#output').className='empty-state';$('#output').innerHTML=`<div>💊</div><b>Đã chọn ${esc(d?.brand||'kháng sinh')}</b><span>Bấm “Tính CrCl và gợi ý liều” để cập nhật đúng thuốc đang chọn.</span>`});
 
 // Bố cục kết quả chuẩn: Thuốc → Phân loại chức năng thận → Liều theo CrCl → Liều/24 giờ → Thông tin an toàn.
+function scrollDoseResultIntoView(){
+  const output=$('#output');
+  if(!output?.classList.contains('result-card'))return;
+  const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  const stickyOffset=document.querySelector('.topbar')?.getBoundingClientRect().height||84;
+  const top=Math.max(0,output.getBoundingClientRect().top+window.scrollY-stickyOffset-12);
+  window.scrollTo({top,behavior:reduceMotion?'auto':'smooth'});
+}
 $('#calc').onclick=()=>{
   const patientCode=String($('#patientCode')?.value||'').trim();
   const age=+$('#age').value,wt=+$('#wt').value,ht=+$('#ht').value,scru=+$('#scr').value;
@@ -148,6 +156,7 @@ $('#calc').onclick=()=>{
   const h=loadHist();
   h.unshift({time:new Date().toLocaleString('vi-VN'),patientCode,crcl:crcl.toFixed(1),egfr:`${egfr.toFixed(1)} (${egfrCategory(egfr).stage})`,drug:`${d.brand} — ${d.active}`,advice});
   saveHist(h);renderHist();
+  setTimeout(scrollDoseResultIntoView,80);
 };
 
 // Interactions - dữ liệu Bảng 3.1 Quyết định 5948/QĐ-BYT
