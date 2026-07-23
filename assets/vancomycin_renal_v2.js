@@ -53,11 +53,11 @@
     return {doseMg,vialMg,vialWater,openedVials,stockMl,finalMl,diluentMl,durationMin,rateMlh,drops20};
   }
 
-  function nonRrtInterval(crcl){
-    if(crcl>90)return {label:'CrCl >90 mL/phút',hours:12};
-    if(crcl>=60)return {label:'CrCl 60–90 mL/phút',hours:12};
-    if(crcl>=20)return {label:'CrCl 20–59 mL/phút',hours:24};
-    return {label:'CrCl <20 mL/phút',hours:48};
+  function nonRrtRegimen(crcl){
+    if(crcl>=50)return {label:'CrCl ≥50 mL/phút',hours:12,doseMg:1000,text:'1 g mỗi 12 giờ'};
+    if(crcl>=30)return {label:'CrCl 30–49 mL/phút',hours:24,doseMg:1000,text:'1 g mỗi 24 giờ hoặc 15–20 mg/kg mỗi 24 giờ',weightBasedAlternative:true};
+    if(crcl>=15)return {label:'CrCl 15–29 mL/phút',hours:48,doseMg:1000,text:'1 g mỗi 48 giờ'};
+    return {label:'CrCl <15 mL/phút (chưa lọc máu)',hours:72,doseMg:1000,text:'1 g mỗi 72 giờ hoặc hiệu chỉnh theo TDM',tdmRequired:true};
   }
 
   function patientInputs(){
@@ -183,15 +183,17 @@
         plan.modeLabel='Vô niệu – không lọc máu';
         plan.alerts.push('Không tự động áp dụng lịch 1 g mỗi 7–10 ngày. Chỉ dùng liều tiếp theo khi có nồng độ thực đo và kế hoạch TDM được duyệt.');
       }else{
-        const interval=nonRrtInterval(crcl);
-        const raw=wt*15;
-        const practical=round250(raw);
-        plan.modeLabel='Suy giảm chức năng thận ổn định – không lọc máu';
-        plan.interval=interval;
-        plan.maintenance=doseObject(raw,'Liều duy trì khởi đầu',15);
-        plan.range={raw:[wt*15,wt*20],practical:[round250(wt*15),round250(wt*20)]};
-        plan.total24=practical*24/interval.hours;
-        plan.notes.push('Khoảng cách trên là lựa chọn khởi đầu từ bảng thực hành v2; phải thay bằng liều theo AUC/TDM ngay khi có nồng độ.');
+        const regimen=nonRrtRegimen(crcl);
+        plan.modeLabel=`Thận ổn định – ${regimen.label}`;
+        plan.interval={label:`Mỗi ${regimen.hours} giờ`,hours:regimen.hours};
+        plan.maintenance=doseObject(regimen.doseMg,'Liều duy trì khởi đầu theo CSDL thận 23/07/2026',regimen.doseMg/wt);
+        plan.range=regimen.weightBasedAlternative
+          ?{raw:[wt*15,wt*20],practical:[round250(wt*15),round250(wt*20)]}
+          :{raw:[regimen.doseMg,regimen.doseMg],practical:[regimen.doseMg,regimen.doseMg]};
+        plan.total24=regimen.doseMg*24/regimen.hours;
+        plan.notes.push(`${regimen.label}: ${regimen.text}. Đây là liều duy trì khởi đầu theo CSDL thận ngày 23/07/2026.`);
+        plan.notes.push('Tiếp tục hiệu chỉnh theo AUC/TDM ngay khi có nồng độ; đánh giá lại sớm nếu creatinine hoặc lượng nước tiểu thay đổi.');
+        if(regimen.tdmRequired)plan.alerts.push('CrCl <15 mL/phút chưa lọc máu: ưu tiên TDM để quyết định liều tiếp theo; không lặp liều máy móc khi chức năng thận biến động.');
 
         const auc=input.measuredAuc,target=input.targetAuc,current=input.currentDaily;
         if(auc&&current&&target){
@@ -199,11 +201,11 @@
             plan.alerts.push('AUC mục tiêu phải nằm trong 400–600 mg·giờ/L khi áp dụng cho nhiễm MRSA nặng và MIC BMD giả định 1 mg/L. Chưa dùng phép hiệu chỉnh AUC.');
           }else{
             const adjustedDaily=current*target/auc;
-            const adjustedPerDose=adjustedDaily*interval.hours/24;
+            const adjustedPerDose=adjustedDaily*regimen.hours/24;
             plan.auc={measured:auc,currentDaily:current,target,adjustedDaily,adjustedPerDose,practicalPerDose:round250(adjustedPerDose)};
             plan.maintenance=doseObject(adjustedPerDose,'Liều hiệu chỉnh theo AUC thực đo',adjustedPerDose/wt);
             plan.maintenance.practicalMg=plan.auc.practicalPerDose;
-            plan.total24=plan.auc.practicalPerDose*24/interval.hours;
+            plan.total24=plan.auc.practicalPerDose*24/regimen.hours;
           }
         }
       }
@@ -385,7 +387,10 @@
       d.doseDetail='Người lớn nhiễm MRSA nặng/ICU: có thể cân nhắc liều nạp 20–35 mg/kg cân nặng thực, tối đa 3.000 mg; liều duy trì không chốt chỉ bằng trough hoặc CrCl. Trẻ ≥3 tháng có chức năng thận bình thường: 60–80 mg/kg/ngày chia mỗi 6–8 giờ; khi suy thận ổn định, dữ liệu PK quần thể hỗ trợ khởi đầu 45 mg/kg/ngày = 15 mg/kg mỗi 8 giờ. Trẻ sơ sinh/<3 tháng: khoảng liều và khoảng cách phụ thuộc PMA, cân nặng, SCr; ưu tiên công cụ Bayesian/quy trình sơ sinh.';
       d.maxDose='Người lớn: liều nạp không quá 3.000 mg; người béo phì thường không quá 4.500 mg/ngày trước TDM. Nhi khoa: liều kinh nghiệm tối đa thường 3.600 mg/ngày khi chức năng thận đầy đủ; đa số không cần quá 3.000 mg/ngày, phải theo nồng độ.';
       d.renal=[
-        'Người lớn, thận ổn định: tính liều theo cân nặng + CrCl để chọn lịch khởi đầu; đạt AUC24/MIC 400–600 trong 24–48 giờ và thay liều khởi đầu bằng liều theo nồng độ.',
+        'CrCl ≥50 mL/phút: 1 g mỗi 12 giờ.',
+        'CrCl 30–49 mL/phút: 1 g mỗi 24 giờ hoặc 15–20 mg/kg mỗi 24 giờ.',
+        'CrCl 15–29 mL/phút: 1 g mỗi 48 giờ.',
+        'CrCl <15 mL/phút (chưa lọc máu): 1 g mỗi 72 giờ hoặc hiệu chỉnh theo TDM.',
         'Người lớn AKI/creatinine biến động hoặc vô niệu: không dùng lịch cố định chỉ theo CrCl; dùng liều ban đầu rồi định liều lại theo AUC/nồng độ và diễn biến thận.',
         'Trẻ ≥3 tháng suy thận ổn định: 45 mg/kg/ngày, chia 15 mg/kg mỗi 8 giờ là phác đồ khởi đầu từ dữ liệu PK; theo dõi hằng ngày vì thanh thải có thể hồi phục nhanh trong 5 ngày đầu.',
         'Trẻ ≥3 tháng AKI: không lập lịch duy trì cố định; phải TDM sớm và hiệu chỉnh theo diễn biến.',
@@ -439,9 +444,9 @@
       while(safetyBox.firstChild)details.appendChild(safetyBox.firstChild);
       safetyBox.appendChild(details);
     }
-    const interactionHeading=[...(infusionBox?.querySelectorAll('h3')||[])].find(x=>/Tương tác/.test(x.textContent));
-    if(interactionHeading){
-      const details=document.createElement('details');details.className='vanco-safety-details';details.innerHTML='<summary>Tương tác thuốc và nguồn pha truyền</summary>';
+    const interactionHeading=[...(infusionBox?.children||[])].find(x=>x.tagName==='H3'&&/Tương tác/.test(x.textContent));
+    if(interactionHeading&&!infusionBox.querySelector(':scope > .vanco-interaction-details')){
+      const details=document.createElement('details');details.className='vanco-safety-details vanco-interaction-details';details.innerHTML='<summary>Tương tác thuốc và nguồn pha truyền</summary>';
       let node=interactionHeading;
       while(node){const next=node.nextSibling;details.appendChild(node);node=next;}
       infusionBox.appendChild(details);

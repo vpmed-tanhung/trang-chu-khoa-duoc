@@ -13,6 +13,18 @@ function groups(){const g=[...new Set(D.map(x=>x.group).filter(Boolean))].sort()
 function filtered(){const q=norm($('#q').value),g=$('#group').value;return D.filter(x=>(!g||x.group===g)&&(!q||norm([x.brand,x.active,x.group,x.strength,x.route].join(' ')).includes(q)))}
 function renderDrugList(){const f=filtered();$('#drugList').innerHTML=f.map(x=>`<div class="drug-item ${x.id===selected?'active':''}" data-id="${x.id}"><b>${esc(x.brand)}</b><small>${esc(x.active)}</small><small>${esc(x.strength)} · ${esc(x.route)}</small></div>`).join('')||'<div class="alert">Không tìm thấy thuốc phù hợp.</div>';$$('.drug-item').forEach(e=>e.onclick=()=>{selected=+e.dataset.id;renderDrugList();renderProfile()})}
 const ul=a=>`<ul>${(a||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+function renalDoseTableHtml(drug){
+  const bands=[],notes=[];
+  (drug.renal||[]).forEach(item=>{
+    const match=String(item).match(/^(CrCl\s+[^:]+):\s*(.+)$/i);
+    if(match)bands.push({label:match[1],dose:match[2]});
+    else notes.push(item);
+  });
+  if(!bands.length)return ul(drug.renal);
+  return `<div class="renal-dose-table">
+    <div class="renal-dose-table-grid">${bands.map(band=>`<div class="renal-dose-cell"><span class="renal-dose-label">${esc(band.label)}</span><span class="renal-dose-value">${esc(band.dose)}</span></div>`).join('')}</div>
+  </div>${notes.length?`<div class="renal-dose-notes">${ul(notes)}</div>`:''}`;
+}
 const sourceHtml=a=>`<div class="source-list">${(a||[]).map(x=>`<div class="source-line"><b>${esc(x.title)}</b><br><small>${esc(x.note)}</small>${x.url?`<br><a href="${esc(x.url)}" target="_blank" rel="noopener">Mở nguồn ↗</a>`:''}</div>`).join('')}</div>`;
 const directDoseSources=d=>`<div class="direct-dose-sources">${(d.doseSources||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${esc(x.title)} ↗</a>`).join('')||'<span>Chưa có liên kết nguồn trực tiếp.</span>'}</div>`;
 
@@ -82,7 +94,7 @@ function ddiCards(d){
 }
 function renderProfile(){const x=D.find(v=>v.id===selected)||filtered()[0];if(!x){$('#profile').innerHTML='<div class="alert">Chưa có dữ liệu.</div>';return}selected=x.id;const indications=x.indicationsDetailed||x.indications||[];$('#profile').innerHTML=`<span class="kicker">STT nội trú ${x.id}</span><h2>${esc(x.brand)}</h2><p><b>Hoạt chất:</b> ${esc(x.active)}</p><div class="meta"><div class="pill"><b>Nhóm:</b> ${esc(x.group)}</div><div class="pill"><b>Hàm lượng:</b> ${esc(x.strength)}</div><div class="pill"><b>Đường dùng:</b> ${esc(x.route)}</div></div><div class="tabs">${['Tổng quan','Liều & CrCl','Pha truyền','Chống chỉ định & ADR','Tương tác','Theo dõi & TDM'].map((t,i)=>`<button class="tab ${i===0?'active':''}" data-tab="t${i}">${t}</button>`).join('')}</div>
 <div class="tabpane active" id="t0"><div class="profile-grid"><div class="info-box"><h3>Cơ chế tác dụng</h3><p>${esc(x.mechanism)}</p><h3>Chỉ định</h3>${detailList(indications)}<div class="source-note"><b>Nguồn chỉ định:</b> ${esc(x.indicationSource||x.clinicalSourceNote||'Tờ HDSD của đúng chế phẩm.')}</div></div><div class="info-box"><h3>PK/PD</h3><p>${esc(x.pkpd)}</p><h3>Lưu ý sử dụng</h3><p>${esc(x.notes)}</p></div></div></div>
-<div class="tabpane" id="t1"><div class="profile-grid"><div class="info-box"><h3>Liều chi tiết</h3><p>${esc(x.doseDetail||x.standard)}</p><h3>Liều tối đa</h3><p>${esc(x.maxDose)}</p><h3>Hiệu chỉnh theo CrCl</h3>${ul(x.renal)}<div class="dose-source-badge"><b>Mức xác minh:</b> ${esc(x.renalVerified||'Chưa xác minh đầy đủ')}</div></div><div class="info-box"><h3>HD</h3><p>${esc(x.hd)}</p><h3>CRRT</h3><p>${esc(x.crrt)}</p><h3>Nguồn liều trực tiếp</h3>${directDoseSources(x)}</div></div></div>
+<div class="tabpane" id="t1"><div class="profile-grid"><div class="info-box"><h3>Liều chi tiết</h3><p>${esc(x.doseDetail||x.standard)}</p><h3>Liều tối đa</h3><p>${esc(x.maxDose)}</p><h3>Hiệu chỉnh theo CrCl</h3>${renalDoseTableHtml(x)}</div><div class="info-box"><h3>HD</h3><p>${esc(x.hd)}</p><h3>CRRT</h3><p>${esc(x.crrt)}</p><h3>Nguồn liều trực tiếp</h3>${directDoseSources(x)}</div></div></div>
 <div class="tabpane" id="t2"><div class="info-box"><h3>Pha truyền</h3>${infusionSections(x)}<div class="source-note"><b>Nguồn áp dụng:</b> ${esc(x.infusionSourceNote||x.clinicalSourceNote||'Tờ HDSD của đúng chế phẩm.')}</div></div></div>
 <div class="tabpane" id="t3">${window.VPMED_CONTRA_ADR_HTML?window.VPMED_CONTRA_ADR_HTML(x):''}</div>
 <div class="tabpane" id="t4"><div class="profile-grid"><div class="info-box"><h3>Tương tác thuốc – thuốc</h3><div class="clinical-stack">${ddiCards(x)}</div></div><div class="info-box"><h3>Tương tác thuốc – bệnh lý</h3>${detailList(x.diseaseInteractions||[])}<button class="btn btn-primary" id="openInteractionFromDrug">Mở công cụ kiểm tra hai thuốc</button></div></div></div>
@@ -138,9 +150,9 @@ $('#calc').onclick=()=>{
     </section>
     <section class="result-step dose-crcl-section">
       ${stepHead(3,'Liều theo CrCl')}
-      <div class="dose-current"><span>Gợi ý tại CrCl ${crcl.toFixed(1)} mL/phút</span><strong>${esc(chosen)}</strong><small>Nguồn/mức xác minh: ${esc(rr?.verified||d.renalVerified||'Chưa xác minh đầy đủ')}</small></div>
+      <div class="dose-current"><span>Gợi ý tại CrCl ${crcl.toFixed(1)} mL/phút</span><strong>${esc(chosen)}</strong></div>
       <div class="dose-detail-grid">
-        <div class="info-box"><h3>Liều chi tiết</h3><p>${esc(d.doseDetail||d.standard)}</p><h3>Liều tối đa</h3><p>${esc(d.maxDose)}</p><h3>Toàn bộ ngưỡng CrCl</h3>${ul(d.renal)}</div>
+        <div class="info-box"><h3>Liều chi tiết</h3><p>${esc(d.doseDetail||d.standard)}</p><h3>Liều tối đa</h3><p>${esc(d.maxDose)}</p><h3>Toàn bộ ngưỡng CrCl</h3>${renalDoseTableHtml(d)}</div>
         <div class="info-box"><h3>HD</h3><p>${esc(d.hd)}</p><h3>CRRT</h3><p>${esc(d.crrt)}</p><h3>Nguồn liều trực tiếp</h3>${directDoseSources(d)}</div>
       </div>
     </section>
