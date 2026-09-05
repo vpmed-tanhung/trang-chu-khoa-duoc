@@ -91,6 +91,15 @@
       encodeURIComponent(storageBucket) + '/' + encodeStoragePath(storagePath);
   }
 
+  function removeStorageObject(storagePath, accessToken) {
+    if (!storagePath) return Promise.resolve(null);
+    return serverRequest('/storage/v1/object/remove/' + encodeURIComponent(storageBucket), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefixes: [storagePath] })
+    }, accessToken);
+  }
+
   function normalizeServerDocument(documentItem) {
     return {
       id: documentItem.id,
@@ -400,7 +409,7 @@
     return getStaffAccessToken().then(function (token) {
       return serverRequest('/rest/v1/drug_documents?id=eq.' + encodeURIComponent(documentItem.id), { method: 'DELETE', headers: { Prefer: 'return=minimal' } }, token).then(function () {
         if (!documentItem.storagePath) return;
-        return serverRequest('/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(documentItem.storagePath), { method: 'DELETE' }, token).catch(function () {
+        return removeStorageObject(documentItem.storagePath, token).catch(function () {
           // Bản ghi đã xóa; lỗi dọn file cũ không được làm thất bại thao tác của nhân viên.
           return null;
         });
@@ -840,11 +849,7 @@
         throw error;
       }
 
-      return serverRequest(
-        '/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(storagePath),
-        { method: 'DELETE' },
-        accessToken
-      ).catch(function () {}).then(function () {
+      return removeStorageObject(storagePath, accessToken).catch(function () {}).then(function () {
         throw error;
       });
     });

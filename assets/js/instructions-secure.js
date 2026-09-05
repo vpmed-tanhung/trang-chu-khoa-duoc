@@ -88,7 +88,7 @@
     }).then(function () {
       if (!instruction.storagePath) return;
       return accessToken().then(function (token) {
-        return request('/storage/v1/object/' + encodeURIComponent(bucket) + '/' + encodePath(instruction.storagePath), { method: 'DELETE' }, token);
+        return removeStorageObject(instruction.storagePath, token);
       }).catch(function () { return null; });
     }).then(function () { window.dispatchEvent(new Event('khoa-duoc-auth-changed')); }).catch(function () { window.alert('Không thể xóa HDSD. Vui lòng thử lại.'); });
   }
@@ -111,6 +111,11 @@
     return Array.prototype.map.call(bytes, function (value) { return value.toString(16).padStart(2, '0'); }).join('');
   }
   function encodePath(path) { return String(path).split('/').map(encodeURIComponent).join('/'); }
+  function removeStorageObject(path, token) {
+    return request('/storage/v1/object/remove/' + encodeURIComponent(bucket), {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prefixes: [path] })
+    }, token);
+  }
   function uploadInstruction(file, title, signedDate) {
     var path = 'hdsd/' + signedDate.slice(0, 7) + '/' + secureId() + '.pdf';
     var token = '';
@@ -128,7 +133,7 @@
       }, token);
     }).catch(function (error) {
       if (!uploaded || !token) throw error;
-      return request('/storage/v1/object/' + encodeURIComponent(bucket) + '/' + encodePath(path), { method: 'DELETE' }, token).catch(function () {}).then(function () { throw error; });
+      return removeStorageObject(path, token).catch(function () {}).then(function () { throw error; });
     });
   }
   function init() {
