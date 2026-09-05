@@ -1118,7 +1118,7 @@ textarea {
 
 .instruction-row {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-columns: 48px minmax(0, 1fr) auto;
   gap: 20px;
   align-items: center;
   padding: 18px 0;
@@ -1201,7 +1201,7 @@ textarea {
 
 .document-row {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-columns: 48px minmax(0, 1fr) auto;
   gap: 20px;
   align-items: center;
   padding: 19px 0;
@@ -1218,6 +1218,13 @@ textarea {
 .document-body {
   display: grid;
   gap: 4px;
+}
+
+.document-row-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 108px;
 }
 
 .document-title {
@@ -1612,7 +1619,7 @@ textarea {
   }
 
   .instruction-row {
-    grid-template-columns: 36px minmax(0, 1fr);
+    grid-template-columns: 36px minmax(0, 1fr) auto;
     gap: 12px;
   }
 
@@ -1627,10 +1634,12 @@ textarea {
   }
 
   .document-row {
-    grid-template-columns: 36px minmax(0, 1fr);
+    grid-template-columns: 36px minmax(0, 1fr) auto;
     gap: 13px;
     padding: 17px 0;
   }
+
+  .document-row-actions { min-width: 0; }
 
 }
 

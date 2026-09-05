@@ -41,6 +41,20 @@
     return documents.filter(isValidDocument);
   }
 
+  function getBaseInstructions() {
+    var instructions = Array.isArray(window.DRUG_INSTRUCTIONS) ? window.DRUG_INSTRUCTIONS : [];
+    return instructions.filter(function (item) {
+      return item && item.title && item.file;
+    }).map(function (item) {
+      return {
+        title: item.title,
+        keywords: item.keywords || '',
+        file: item.file,
+        url: 'assets/documents/huong-dan-su-dung/' + encodeStoragePath(item.file)
+      };
+    });
+  }
+
   function hasServerConfig() {
     return /^https:\/\//i.test(supabaseUrl) && publishableKey.length >= 20;
   }
@@ -176,11 +190,13 @@
 
   function loadDocuments() {
     var baseDocuments = getBaseDocuments();
+    var baseInstructions = getBaseInstructions();
 
-    return Promise.all([loadServerDocuments(), loadServerInstructions()]).then(function (results) {
-      return mergeDocuments(baseDocuments, results[0], results[1]);
-    }).catch(function () {
-      return sortDocuments(baseDocuments);
+    return Promise.all([
+      loadServerDocuments().catch(function () { return []; }),
+      loadServerInstructions().catch(function () { return []; })
+    ]).then(function (results) {
+      return mergeDocuments(baseDocuments, results[0], baseInstructions.concat(results[1]));
     });
   }
 
@@ -340,6 +356,7 @@
         var row = document.createElement('article');
         var number = document.createElement('span');
         var body = document.createElement('div');
+        var actions = document.createElement('div');
         var date = document.createElement('time');
         var attachmentNote = null;
 
@@ -347,6 +364,7 @@
         number.className = 'document-number';
         number.textContent = String(index + 1).padStart(2, '0');
         body.className = 'document-body';
+        actions.className = 'document-row-actions';
         date.dateTime = documentItem.signedDate;
         date.textContent = 'Ngày ký ban hành: ' + formatDate(documentItem.signedDate);
         body.appendChild(createPdfLink(documentItem, 'document-title'));
@@ -381,11 +399,12 @@
               window.alert('Không thể xóa tài liệu. Vui lòng thử lại.');
             });
           });
-          body.appendChild(deleteButton);
+          actions.appendChild(deleteButton);
         }
 
         row.appendChild(number);
         row.appendChild(body);
+        row.appendChild(actions);
         list.appendChild(row);
       });
 
@@ -495,7 +514,7 @@
     }
 
     try {
-      var storedSession = JSON.parse(sessionStorage.getItem(staffSessionKey) || 'null');
+      var storedSession = JSON.parse(localStorage.getItem(staffSessionKey) || sessionStorage.getItem(staffSessionKey) || 'null');
       if (storedSession && storedSession.access_token && storedSession.refresh_token) {
         authSession = storedSession;
         return authSession;
@@ -513,8 +532,10 @@
     try {
       if (authSession) {
         sessionStorage.setItem(staffSessionKey, JSON.stringify(authSession));
+        localStorage.setItem(staffSessionKey, JSON.stringify(authSession));
       } else {
         sessionStorage.removeItem(staffSessionKey);
+        localStorage.removeItem(staffSessionKey);
       }
     } catch (error) {
       return;
@@ -597,8 +618,10 @@
         clearStaffSession();
       }
       return staffAuthenticated;
-    }).catch(function () {
-      clearStaffSession();
+    }).catch(function (error) {
+      if (error && (error.status === 400 || error.status === 401 || error.status === 403)) {
+        clearStaffSession();
+      }
       return false;
     });
   }

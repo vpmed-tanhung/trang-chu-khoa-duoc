@@ -82,12 +82,14 @@
       var row = document.createElement('article');
       var number = document.createElement('span');
       var body = document.createElement('div');
+      var actions = document.createElement('div');
       var link = document.createElement('a');
       var note = document.createElement('small');
       row.className = 'instruction-row';
       number.className = 'instruction-number';
       number.textContent = String(index + 1).padStart(2, '0');
       body.className = 'instruction-body';
+      actions.className = 'document-row-actions';
       link.className = 'instruction-title';
       link.href = instruction.url || instructionUrl(instruction.file);
       link.target = '_blank';
@@ -106,10 +108,11 @@
         remove.addEventListener('click', function () {
           if (typeof window.KHOA_DUOC_DELETE_INSTRUCTION === 'function') window.KHOA_DUOC_DELETE_INSTRUCTION(instruction);
         });
-        body.appendChild(remove);
+        actions.appendChild(remove);
       }
       row.appendChild(number);
       row.appendChild(body);
+      row.appendChild(actions);
       directory.appendChild(row);
     });
   }

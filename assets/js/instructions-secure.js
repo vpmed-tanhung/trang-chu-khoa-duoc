@@ -31,14 +31,19 @@
   }
   function readSession() {
     if (session) return session;
-    try { session = JSON.parse(sessionStorage.getItem(sessionKey) || 'null'); } catch (error) { session = null; }
+    try { session = JSON.parse(localStorage.getItem(sessionKey) || sessionStorage.getItem(sessionKey) || 'null'); } catch (error) { session = null; }
     return session;
   }
   function writeSession(value) {
     session = value || null;
     try {
-      if (session) sessionStorage.setItem(sessionKey, JSON.stringify(session));
-      else sessionStorage.removeItem(sessionKey);
+      if (session) {
+        sessionStorage.setItem(sessionKey, JSON.stringify(session));
+        localStorage.setItem(sessionKey, JSON.stringify(session));
+      } else {
+        sessionStorage.removeItem(sessionKey);
+        localStorage.removeItem(sessionKey);
+      }
     } catch (error) {}
   }
   function clearSession() { authenticated = false; writeSession(null); }

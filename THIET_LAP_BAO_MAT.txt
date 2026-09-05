@@ -35,11 +35,11 @@ BƯỚC 4 — ĐƯA WEBSITE LÊN GIT VÀ KIỂM TRA
 
 BƯỚC 5 — ĐĂNG HƯỚNG DẪN SỬ DỤNG VÀ TỰ ĐỐI CHIẾU
 1. Mở mục Hướng dẫn sử dụng, đăng nhập bằng cùng tài khoản nhân viên.
-2. Tải PDF HDSD, nhập tên thuốc và ngày ký. Hệ thống lưu trên máy chủ và công khai bản PDF.
+2. Tải PDF HDSD và nhập tên thuốc. Hệ thống tự ghi ngày tải lên và công khai bản PDF.
 3. Khi tên thuốc trong HDSD trùng với tên/ từ khóa của tài liệu Thông tin thuốc, website tự thêm liên kết “Mở tờ Hướng dẫn sử dụng” ở cuối bài.
 4. Tài liệu mới luôn dùng cùng mẫu hiển thị và tự cập nhật ở cả hai trang; không cần sửa file dữ liệu tĩnh.
 
-Lưu ý: ngày ký và tên thuốc là dữ liệu pháp lý của tài liệu. Hệ thống không tự đoán từ ngày tải lên để tránh gắn nhầm thuốc hoặc nhầm ngày; có thể bổ sung bộ đọc PDF/OCR phía máy chủ khi đã thống nhất nguồn và quy tắc nhận diện.
+Lưu ý: ngày hiển thị của HDSD là ngày tải lên, không phải ngày ký in trong PDF.
 
 CƠ CHẾ BẢO VỆ ĐÃ CÓ
 - Mật khẩu được xác minh bởi Supabase Auth, không nằm trong HTML hoặc JavaScript.
