@@ -70,6 +70,13 @@
       });
     }).then(function (allowed) { authenticated = allowed === true; if (!authenticated) clearSession(); return authenticated; }).catch(function () { clearSession(); return false; });
   }
+  function signOutLocal() {
+    var current = readSession();
+    var logoutRequest = current && configured()
+      ? request('/auth/v1/logout?scope=local', { method: 'POST' }, current.access_token).catch(function () {})
+      : Promise.resolve();
+    return logoutRequest.finally(function () { clearSession(); });
+  }
   function setStatus(id, message, type) {
     var status = document.getElementById(id);
     if (!status) return;
@@ -173,7 +180,12 @@
       setStatus('staff-login-status', 'Đang xác thực...', '');
       request('/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, password: password }) }).then(function (payload) { writeSession(normalizeSession(payload)); return validate(); }).then(function (allowed) { if (!allowed) throw new Error('Không có quyền.'); renderAccess(); window.dispatchEvent(new Event('khoa-duoc-auth-changed')); closeDialog('staff-login-dialog'); }).catch(function () { setStatus('staff-login-status', 'Email, mật khẩu hoặc quyền truy cập không đúng.', 'error'); document.getElementById('staff-password').value = ''; }).finally(function () { if (submit) submit.disabled = false; });
     });
-    if (logout) logout.addEventListener('click', function () { accessToken().catch(function () {}).then(function () { clearSession(); renderAccess(); window.dispatchEvent(new Event('khoa-duoc-auth-changed')); }); });
+    if (logout) logout.addEventListener('click', function () {
+      signOutLocal().then(function () {
+        renderAccess();
+        window.dispatchEvent(new Event('khoa-duoc-auth-changed'));
+      });
+    });
     if (add) add.addEventListener('click', function () { if (!authenticated) { openDialog('staff-login-dialog'); return; } openDialog('instruction-upload-dialog'); });
     ['close-instruction-upload', 'cancel-instruction-upload'].forEach(function (id) { var button = document.getElementById(id); if (button) button.addEventListener('click', function () { closeDialog('instruction-upload-dialog'); }); });
     if (uploadDialog) uploadDialog.addEventListener('click', function (event) { if (event.target === uploadDialog) closeDialog('instruction-upload-dialog'); });
