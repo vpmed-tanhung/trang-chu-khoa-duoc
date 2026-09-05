@@ -156,7 +156,10 @@
     var uploadSubmit = document.getElementById('submit-instruction-upload');
     var cancelUpload = document.getElementById('cancel-instruction-upload');
     renderAccess();
-    if (loginDialog && loginForm) validate().then(renderAccess);
+    if (loginDialog && loginForm) validate().then(function () {
+      renderAccess();
+      window.dispatchEvent(new Event('khoa-duoc-auth-changed'));
+    });
     if (login) login.addEventListener('click', function () { openDialog('staff-login-dialog'); if (!configured()) setStatus('staff-login-status', 'Máy chủ bảo mật chưa được cấu hình.', 'error'); });
     ['close-staff-login', 'cancel-staff-login'].forEach(function (id) { var button = document.getElementById(id); if (button) button.addEventListener('click', function () { closeDialog('staff-login-dialog'); }); });
     if (loginDialog) loginDialog.addEventListener('click', function (event) { if (event.target === loginDialog) closeDialog('staff-login-dialog'); });
@@ -168,9 +171,9 @@
       if (!configured()) { setStatus('staff-login-status', 'Máy chủ bảo mật chưa được cấu hình.', 'error'); return; }
       if (submit) submit.disabled = true;
       setStatus('staff-login-status', 'Đang xác thực...', '');
-      request('/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, password: password }) }).then(function (payload) { writeSession(normalizeSession(payload)); return validate(); }).then(function (allowed) { if (!allowed) throw new Error('Không có quyền.'); renderAccess(); closeDialog('staff-login-dialog'); }).catch(function () { setStatus('staff-login-status', 'Email, mật khẩu hoặc quyền truy cập không đúng.', 'error'); document.getElementById('staff-password').value = ''; }).finally(function () { if (submit) submit.disabled = false; });
+      request('/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, password: password }) }).then(function (payload) { writeSession(normalizeSession(payload)); return validate(); }).then(function (allowed) { if (!allowed) throw new Error('Không có quyền.'); renderAccess(); window.dispatchEvent(new Event('khoa-duoc-auth-changed')); closeDialog('staff-login-dialog'); }).catch(function () { setStatus('staff-login-status', 'Email, mật khẩu hoặc quyền truy cập không đúng.', 'error'); document.getElementById('staff-password').value = ''; }).finally(function () { if (submit) submit.disabled = false; });
     });
-    if (logout) logout.addEventListener('click', function () { accessToken().catch(function () {}).then(function () { clearSession(); renderAccess(); }); });
+    if (logout) logout.addEventListener('click', function () { accessToken().catch(function () {}).then(function () { clearSession(); renderAccess(); window.dispatchEvent(new Event('khoa-duoc-auth-changed')); }); });
     if (add) add.addEventListener('click', function () { if (!authenticated) { openDialog('staff-login-dialog'); return; } openDialog('instruction-upload-dialog'); });
     ['close-instruction-upload', 'cancel-instruction-upload'].forEach(function (id) { var button = document.getElementById(id); if (button) button.addEventListener('click', function () { closeDialog('instruction-upload-dialog'); }); });
     if (uploadDialog) uploadDialog.addEventListener('click', function (event) { if (event.target === uploadDialog) closeDialog('instruction-upload-dialog'); });

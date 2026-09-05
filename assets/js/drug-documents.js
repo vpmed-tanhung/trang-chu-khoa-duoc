@@ -819,7 +819,10 @@
       return;
     }
 
-    validateStaffSession().then(renderStaffAccess);
+    validateStaffSession().then(function () {
+      renderStaffAccess();
+      return refreshDocuments();
+    });
 
     loginButton.addEventListener('click', function () {
       openStaffLoginDialog(dialog);
