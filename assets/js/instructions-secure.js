@@ -73,12 +73,24 @@
     status.classList.toggle('is-success', type === 'success');
   }
   function renderAccess() {
+    window.KHOA_DUOC_STAFF_AUTHENTICATED = authenticated;
     var login = document.getElementById('open-staff-login');
     var controls = document.getElementById('document-staff-controls');
     var add = document.getElementById('open-instruction-upload');
     if (login) login.hidden = authenticated;
     if (controls) controls.hidden = !authenticated;
     if (add) add.hidden = !authenticated;
+  }
+  function deleteInstruction(instruction) {
+    if (!authenticated || !instruction || !instruction.id) return;
+    accessToken().then(function (token) {
+      return request('/rest/v1/drug_instructions?id=eq.' + encodeURIComponent(instruction.id), { method: 'DELETE', headers: { Prefer: 'return=minimal' } }, token);
+    }).then(function () {
+      if (!instruction.storagePath) return;
+      return accessToken().then(function (token) {
+        return request('/storage/v1/object/' + encodeURIComponent(bucket) + '/' + encodePath(instruction.storagePath), { method: 'DELETE' }, token);
+      });
+    }).then(function () { window.dispatchEvent(new Event('khoa-duoc-auth-changed')); }).catch(function () { window.alert('Không thể xóa HDSD. Vui lòng thử lại.'); });
   }
   function closeDialog(id) {
     var dialog = document.getElementById(id);
@@ -120,6 +132,7 @@
     });
   }
   function init() {
+    window.KHOA_DUOC_DELETE_INSTRUCTION = deleteInstruction;
     var login = document.getElementById('open-staff-login');
     var logout = document.getElementById('staff-logout');
     var loginDialog = document.getElementById('staff-login-dialog');
@@ -157,8 +170,8 @@
       if (!authenticated) { closeDialog('instruction-upload-dialog'); return; }
       var file = fileInput.files && fileInput.files[0];
       var title = document.getElementById('instruction-pdf-title').value.trim().replace(/\s+/g, ' ');
-      var signedDate = document.getElementById('instruction-signed-date').value;
-      if (!file || !title || !/^\d{4}-\d{2}-\d{2}$/.test(signedDate)) { setStatus('instruction-upload-status', 'Vui lòng chọn PDF, nhập tên thuốc và ngày ký.', 'error'); return; }
+      var signedDate = new Date().toISOString().slice(0, 10);
+      if (!file || !title) { setStatus('instruction-upload-status', 'Vui lòng chọn PDF và nhập tên thuốc.', 'error'); return; }
       uploadSubmit.disabled = true; setStatus('instruction-upload-status', 'Đang tải HDSD lên máy chủ...', '');
       validate().then(function (allowed) { if (!allowed) throw new Error('Hết phiên.'); return uploadInstruction(file, title, signedDate); }).then(function () { localStorage.setItem('khoa-duoc-documents-updated', String(Date.now())); setStatus('instruction-upload-status', 'Đã thêm HDSD; các bài Thông tin thuốc sẽ tự đối chiếu.', 'success'); window.setTimeout(function () { closeDialog('instruction-upload-dialog'); window.location.reload(); }, 700); }).catch(function () { setStatus('instruction-upload-status', 'Không thể tải HDSD lên máy chủ.', 'error'); }).finally(function () { uploadSubmit.disabled = false; });
     });

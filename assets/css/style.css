@@ -1052,6 +1052,21 @@ textarea {
   text-underline-offset: 3px;
 }
 
+.document-delete-button {
+  width: fit-content;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid #d92d20;
+  background: #fff5f4;
+  color: #b42318;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.document-delete-button:disabled { opacity: 0.55; cursor: wait; }
+
 .instruction-search-section {
   padding-block: 38px 72px;
 }

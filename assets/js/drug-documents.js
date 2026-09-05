@@ -98,6 +98,7 @@
       signedDate: documentItem.signed_date,
       file: documentItem.file_name,
       url: publicDocumentUrl(documentItem.storage_path),
+      storagePath: documentItem.storage_path,
       uploaded: true
     };
   }
@@ -359,6 +360,21 @@
           body.appendChild(hdsdLink);
         }
 
+        if (documentItem.uploaded && staffAuthenticated) {
+          var deleteButton = document.createElement('button');
+          deleteButton.type = 'button';
+          deleteButton.className = 'document-delete-button';
+          deleteButton.textContent = 'Xóa tài liệu';
+          deleteButton.addEventListener('click', function () {
+            deleteButton.disabled = true;
+            deleteServerDocument(documentItem).then(refreshDocuments).catch(function () {
+              deleteButton.disabled = false;
+              window.alert('Không thể xóa tài liệu. Vui lòng thử lại.');
+            });
+          });
+          body.appendChild(deleteButton);
+        }
+
         row.appendChild(number);
         row.appendChild(body);
         list.appendChild(row);
@@ -378,6 +394,15 @@
     renderRecentDocuments(documents);
     renderArchives(documents);
     renderDocumentDirectory(documents);
+  }
+
+  function deleteServerDocument(documentItem) {
+    return getStaffAccessToken().then(function (token) {
+      return serverRequest('/rest/v1/drug_documents?id=eq.' + encodeURIComponent(documentItem.id), { method: 'DELETE', headers: { Prefer: 'return=minimal' } }, token).then(function () {
+        if (!documentItem.storagePath) return;
+        return serverRequest('/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(documentItem.storagePath), { method: 'DELETE' }, token);
+      });
+    });
   }
 
   function refreshDocuments() {
@@ -721,6 +746,7 @@
 
       signInStaff(email, password).then(function () {
         renderStaffAccess();
+        refreshDocuments();
         closeStaffLoginDialog(dialog);
 
         var addButton = document.getElementById('open-document-upload');
@@ -743,6 +769,7 @@
     logoutButton.addEventListener('click', function () {
       signOutStaff().then(function () {
         renderStaffAccess();
+        refreshDocuments();
 
         var uploadDialog = document.getElementById('document-upload-dialog');
         if (uploadDialog && uploadDialog.open) {

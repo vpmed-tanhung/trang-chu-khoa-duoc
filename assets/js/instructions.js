@@ -32,9 +32,11 @@
     }).then(function (rows) {
       return Array.isArray(rows) ? rows.map(function (row) {
         return {
+          id: row.id,
           title: row.title,
           keywords: row.keywords || '',
           file: row.file_name,
+          storagePath: row.storage_path,
           signedDate: row.signed_date,
           url: supabaseUrl + '/storage/v1/object/public/' + encodeURIComponent(String(serverConfig.storageBucket || 'drug-documents')) + '/' + String(row.storage_path || '').split('/').map(encodeURIComponent).join('/'),
           uploaded: true
@@ -95,6 +97,17 @@
       note.textContent = instruction.signedDate ? 'Hướng dẫn sử dụng · ' + instruction.signedDate.split('-').reverse().join('/') : 'Hướng dẫn sử dụng';
       body.appendChild(link);
       body.appendChild(note);
+      if (instruction.uploaded && window.KHOA_DUOC_STAFF_AUTHENTICATED === true) {
+        var remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'document-delete-button';
+        remove.textContent = 'Xóa tài liệu';
+        remove.dataset.instructionId = instruction.id || '';
+        remove.addEventListener('click', function () {
+          if (typeof window.KHOA_DUOC_DELETE_INSTRUCTION === 'function') window.KHOA_DUOC_DELETE_INSTRUCTION(instruction);
+        });
+        body.appendChild(remove);
+      }
       row.appendChild(number);
       row.appendChild(body);
       directory.appendChild(row);
@@ -120,4 +133,5 @@
   }
 
   document.addEventListener('DOMContentLoaded', initInstructionDirectory);
+  window.addEventListener('khoa-duoc-auth-changed', initInstructionDirectory);
 }());
