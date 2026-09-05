@@ -177,8 +177,38 @@
   }
 
   function getDoseTokens(value) {
-    var text = normalizeMatchText(value).replace(/\s+/g, '');
-    return text.match(/\d+(?:[.,]\d+)?(?:mcg|mg|ml|iu|g|%)/g) || [];
+    var text = String(value || '').toLocaleLowerCase('vi')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/,/g, '.')
+      .replace(/μg|µg/g, 'mcg');
+    var doses = [];
+    var seen = {};
+    var pattern = /(\d+(?:\.\d+)?)(?:\s*\/\s*(\d+(?:\.\d+)?))?\s*(mcg|mg|ml|iu|g|%)(?![a-z])/g;
+    var match;
+
+    while ((match = pattern.exec(text)) !== null) {
+      var unit = match[3];
+      var firstDose = String(Number(match[1])) + unit;
+      if (!seen[firstDose]) {
+        seen[firstDose] = true;
+        doses.push(firstDose);
+      }
+      if (match[2]) {
+        var secondDose = String(Number(match[2])) + unit;
+        if (!seen[secondDose]) {
+          seen[secondDose] = true;
+          doses.push(secondDose);
+        }
+      }
+    }
+
+    return doses.sort();
+  }
+
+  function containsAllTokens(containerTokens, requiredTokens) {
+    return requiredTokens.every(function (token) {
+      return containerTokens.indexOf(token) !== -1;
+    });
   }
 
   function loadServerInstructions() {
@@ -195,14 +225,15 @@
     var documentTokens = getProductTokens(documentItem.title);
     var documentDoses = getDoseTokens(documentItem.title);
     if (!documentTokens.length) return null;
-    var documentSignature = documentTokens.join('|');
     var candidates = instructions.filter(function (item) {
       var instructionTokens = getProductTokens(item.title);
-      if (!instructionTokens.length || instructionTokens.join('|') !== documentSignature) return false;
+      if (!instructionTokens.length || !containsAllTokens(documentTokens, instructionTokens)) return false;
 
       var instructionDoses = getDoseTokens(item.title);
-      if (documentDoses.length && instructionDoses.length) {
-        return instructionDoses.some(function (dose) { return documentDoses.indexOf(dose) !== -1; });
+      if (documentDoses.length || instructionDoses.length) {
+        return documentDoses.length > 0 &&
+          instructionDoses.length > 0 &&
+          documentDoses.join('|') === instructionDoses.join('|');
       }
       return true;
     });
