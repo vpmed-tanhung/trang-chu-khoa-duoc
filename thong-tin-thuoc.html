@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thông tin thuốc &#8211; Khoa Dược Bệnh viện VPMED TÂN HƯNG</title>
+<meta name="description" content="Thư mục tài liệu thông tin thuốc của Khoa Dược Bệnh viện VPMED Tân Hưng, sắp xếp theo ngày ký ban hành.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="document-page">
+
+<a class="skip-link" href="#noi-dung-chinh">Chuyển đến nội dung chính</a>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="index.html" aria-label="Trang chủ Khoa Dược, Bệnh viện VPMED Tân Hưng">
+      <img class="brand-logo" src="assets/images/logo-vpmed.png" alt="Logo Bệnh viện VPMED Tân Hưng">
+      <span class="brand-text">
+        <span class="dept">Khoa Dược</span>
+        <span class="hospital">Bệnh Viện VPMED TÂN HƯNG</span>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Mở menu" aria-controls="main-nav" aria-expanded="false">
+      <span></span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
+      <ul>
+        <li><a href="index.html#gioi-thieu">Giới thiệu</a></li>
+        <li><a href="index.html#chuc-nang">Chức năng &#8211; nhiệm vụ</a></li>
+        <li><a href="index.html#to-chuc">Cơ cấu tổ chức</a></li>
+        <li><a href="index.html#ban-tin" class="active">Bản tin Dược lâm sàng</a></li>
+        <li><a href="index.html#lien-he">Liên hệ</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="noi-dung-chinh">
+  <section class="document-hero">
+    <div class="container">
+      <a class="back-link" href="index.html#ban-tin" aria-label="Quay lại Bản tin Dược lâm sàng">&#8592; Bản tin Dược lâm sàng</a>
+      <div class="document-hero-grid">
+        <div>
+          <div class="kicker">Chuyên mục</div>
+          <h1>Thông tin thuốc</h1>
+        </div>
+        <div class="document-staff-actions">
+          <button class="document-login-button" id="open-staff-login" type="button">Đăng nhập nhân viên</button>
+          <div class="document-staff-controls" id="document-staff-controls" hidden>
+            <span class="document-staff-badge">Nhân viên Khoa Dược</span>
+            <button class="document-add-button" id="open-document-upload" type="button" hidden>
+              <span aria-hidden="true">+</span> Thêm tài liệu
+            </button>
+            <button class="document-logout-button" id="staff-logout" type="button">Đăng xuất</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="document-directory-section" aria-label="Danh sách tài liệu thông tin thuốc">
+    <div class="container">
+      <div id="drug-document-directory">
+        <p class="document-empty">Đang cập nhật danh sách tài liệu...</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="document-login-dialog" id="staff-login-dialog" aria-labelledby="staff-login-title">
+  <form id="staff-login-form">
+    <div class="document-upload-header">
+      <div>
+        <div class="kicker">Khoa Dược</div>
+        <h2 id="staff-login-title">Đăng nhập nhân viên</h2>
+      </div>
+      <button class="document-dialog-close" id="close-staff-login" type="button" aria-label="Đóng">×</button>
+    </div>
+
+    <div class="document-login-fields">
+      <label class="document-form-field">
+        <span>Tài khoản</span>
+        <input id="staff-username" name="username" type="text" autocomplete="username" autocapitalize="none" required>
+      </label>
+
+      <label class="document-form-field">
+        <span>Mật khẩu</span>
+        <input id="staff-password" name="password" type="password" autocomplete="current-password" required>
+      </label>
+
+      <p class="document-upload-status" id="staff-login-status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div class="document-upload-actions">
+      <button class="document-upload-cancel" id="cancel-staff-login" type="button">Hủy</button>
+      <button class="document-upload-submit" type="submit">Đăng nhập</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="document-upload-dialog" id="document-upload-dialog" aria-labelledby="document-upload-title">
+  <form id="document-upload-form">
+    <div class="document-upload-header">
+      <div>
+        <div class="kicker">Thông tin thuốc</div>
+        <h2 id="document-upload-title">Thêm tài liệu PDF</h2>
+      </div>
+      <button class="document-dialog-close" id="close-document-upload" type="button" aria-label="Đóng">×</button>
+    </div>
+
+    <div class="document-upload-grid">
+      <div class="document-upload-fields">
+        <label class="document-form-field">
+          <span>Tệp tài liệu PDF</span>
+          <input id="document-pdf-file" name="pdf" type="file" accept="application/pdf,.pdf" required>
+        </label>
+
+        <label class="document-form-field">
+          <span>Tiêu đề tài liệu</span>
+          <input id="document-pdf-title" name="title" type="text" maxlength="240" autocomplete="off" required>
+          <small>Nhập nguyên văn dòng in đậm: nhóm thuốc + tên thuốc + hàm lượng.</small>
+        </label>
+
+        <label class="document-form-field">
+          <span>Ngày ký ban hành</span>
+          <input id="document-signed-date" name="signedDate" type="date" required>
+        </label>
+
+        <p class="document-upload-status" id="document-upload-status" role="status" aria-live="polite"></p>
+      </div>
+
+      <div class="document-pdf-preview-wrap">
+        <div class="document-pdf-preview-label">Xem PDF để đối chiếu tiêu đề và ngày ký</div>
+        <object id="document-pdf-preview" class="document-pdf-preview" type="application/pdf" aria-label="Bản xem trước tài liệu PDF">
+          <p>Trình duyệt không hỗ trợ xem trước PDF.</p>
+        </object>
+        <p class="document-pdf-preview-empty" id="document-pdf-preview-empty">Chọn một tệp PDF để xem trước.</p>
+      </div>
+    </div>
+
+    <div class="document-upload-actions">
+      <button class="document-upload-cancel" id="cancel-document-upload" type="button">Hủy</button>
+      <button class="document-upload-submit" id="submit-document-upload" type="submit">Thêm tài liệu</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="footer-disclaimer">
+  <strong>MIỄN TRỪ TRÁCH NHIỆM PHÁP LÝ:</strong>
+  <em>
+    Thông tin trên website này chỉ mang tính chất tham khảo; không được xem là tư vấn y khoa và không nhằm mục đích thay thế cho tư vấn, chẩn đoán hoặc điều trị từ nhân viên y tế tại bệnh viện. Khi có vấn đề về sức khỏe hoặc cần hỗ trợ cấp cứu, người đọc cần liên hệ cơ sở y tế gần nhất.
+  </em>
+</div>
+
+<footer class="site-footer" id="lien-he">
+  <div class="container">
+    <div>
+      <h5>Khoa Dược &#8211; Bệnh Viện VPMED TÂN HƯNG</h5>
+      <p>Địa chỉ: Số 1 Tô Ngọc Vân, Phường Tân Hưng, TP.Hải Phòng, Việt Nam</p>
+      <p>Email: khoaduoc@vpmed.vn</p>
+    </div>
+    <div>
+      <h5>Liên kết</h5>
+      <ul>
+        <li><a href="index.html">Giới thiệu khoa</a></li>
+        <li><a href="index.html#ban-tin">Bản tin Dược lâm sàng</a></li>
+        <li><a href="index.html#chuc-nang">Chức năng &#8211; nhiệm vụ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Liên hệ nhanh</h5>
+      <ul>
+        <li>Tổng đài: 1900 58 88 58</li>
+        <li>Trực thường trú: 0986.386.576 (Ds. Tuyên)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Bệnh Viện VPMED TÂN HƯNG. Bản quyền thuộc Khoa Dược.</div>
+</footer>
+
+<script src="assets/js/drug-documents-data.js"></script>
+<script src="assets/js/drug-documents.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
