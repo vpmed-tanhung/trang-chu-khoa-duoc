@@ -5,16 +5,16 @@
     'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
     'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
   ];
-  var databaseName = 'khoa-duoc-thong-tin-thuoc';
-  var databaseVersion = 1;
-  var documentStoreName = 'documents';
-  var staffSessionKey = 'khoa-duoc-staff-session';
-  var demoStaffUsername = 'khoaduoc';
-  var demoStaffPassword = 'KhoaDuoc@2026';
+  var serverConfig = window.KHOA_DUOC_SERVER || {};
+  var supabaseUrl = String(serverConfig.supabaseUrl || '').replace(/\/+$/, '');
+  var publishableKey = String(serverConfig.supabasePublishableKey || '');
+  var storageBucket = String(serverConfig.storageBucket || 'drug-documents');
+  var maxUploadBytes = Number(serverConfig.maxUploadBytes) || 26214400;
+  var staffSessionKey = 'khoa-duoc-secure-staff-session';
   var documentsCache = [];
   var previewObjectUrl = '';
-  var documentObjectUrls = [];
-  var databasePromise = null;
+  var authSession = null;
+  var refreshPromise = null;
   var staffAuthenticated = false;
   var updateChannel = typeof BroadcastChannel === 'function'
     ? new BroadcastChannel('khoa-duoc-thong-tin-thuoc')
@@ -41,100 +41,78 @@
     return documents.filter(isValidDocument);
   }
 
-  function openDatabase() {
-    if (databasePromise) {
-      return databasePromise;
+  function hasServerConfig() {
+    return /^https:\/\//i.test(supabaseUrl) && publishableKey.length >= 20;
+  }
+
+  function encodeStoragePath(path) {
+    return String(path || '').split('/').map(encodeURIComponent).join('/');
+  }
+
+  function serverRequest(path, options, accessToken) {
+    var requestOptions = options || {};
+    var headers = new Headers(requestOptions.headers || {});
+
+    if (!hasServerConfig()) {
+      return Promise.reject(new Error('Máy chủ bảo mật chưa được cấu hình.'));
     }
 
-    databasePromise = new Promise(function (resolve, reject) {
-      if (!window.indexedDB) {
-        reject(new Error('Trình duyệt không hỗ trợ lưu tài liệu.'));
-        return;
-      }
+    headers.set('apikey', publishableKey);
+    if (accessToken) {
+      headers.set('Authorization', 'Bearer ' + accessToken);
+    }
 
-      var request = window.indexedDB.open(databaseName, databaseVersion);
-
-      request.onupgradeneeded = function () {
-        var database = request.result;
-        if (!database.objectStoreNames.contains(documentStoreName)) {
-          database.createObjectStore(documentStoreName, { keyPath: 'id' });
+    requestOptions.headers = headers;
+    return fetch(supabaseUrl + path, requestOptions).then(function (response) {
+      return response.text().then(function (bodyText) {
+        var payload = null;
+        if (bodyText) {
+          try {
+            payload = JSON.parse(bodyText);
+          } catch (error) {
+            payload = bodyText;
+          }
         }
-      };
 
-      request.onsuccess = function () {
-        resolve(request.result);
-      };
+        if (!response.ok) {
+          var requestError = new Error('Yêu cầu máy chủ không thành công.');
+          requestError.status = response.status;
+          requestError.payload = payload;
+          throw requestError;
+        }
 
-      request.onerror = function () {
-        reject(request.error || new Error('Không thể mở kho tài liệu.'));
-      };
-    });
-
-    return databasePromise;
-  }
-
-  function loadStoredDocuments() {
-    return openDatabase().then(function (database) {
-      return new Promise(function (resolve, reject) {
-        var transaction = database.transaction(documentStoreName, 'readonly');
-        var request = transaction.objectStore(documentStoreName).getAll();
-
-        request.onsuccess = function () {
-          resolve(Array.isArray(request.result) ? request.result : []);
-        };
-
-        request.onerror = function () {
-          reject(request.error || new Error('Không thể đọc tài liệu đã thêm.'));
-        };
+        return payload;
       });
     });
   }
 
-  function saveStoredDocument(documentItem) {
-    return openDatabase().then(function (database) {
-      return new Promise(function (resolve, reject) {
-        var transaction = database.transaction(documentStoreName, 'readwrite');
-        transaction.objectStore(documentStoreName).add(documentItem);
-
-        transaction.oncomplete = function () {
-          resolve(documentItem);
-        };
-
-        transaction.onerror = function () {
-          reject(transaction.error || new Error('Không thể lưu tài liệu.'));
-        };
-
-        transaction.onabort = function () {
-          reject(transaction.error || new Error('Không thể lưu tài liệu.'));
-        };
-      });
-    });
+  function publicDocumentUrl(storagePath) {
+    return supabaseUrl + '/storage/v1/object/public/' +
+      encodeURIComponent(storageBucket) + '/' + encodeStoragePath(storagePath);
   }
 
-  function releaseDocumentObjectUrls() {
-    documentObjectUrls.forEach(function (url) {
-      URL.revokeObjectURL(url);
-    });
-    documentObjectUrls = [];
-  }
-
-  function normalizeUploadedDocument(documentItem) {
-    var objectUrl = documentItem.pdfBlob instanceof Blob
-      ? URL.createObjectURL(documentItem.pdfBlob)
-      : '';
-
-    if (objectUrl) {
-      documentObjectUrls.push(objectUrl);
-    }
-
+  function normalizeServerDocument(documentItem) {
     return {
       id: documentItem.id,
       title: documentItem.title,
-      signedDate: documentItem.signedDate,
-      file: documentItem.fileName,
-      url: objectUrl,
+      signedDate: documentItem.signed_date,
+      file: documentItem.file_name,
+      url: publicDocumentUrl(documentItem.storage_path),
       uploaded: true
     };
+  }
+
+  function loadServerDocuments() {
+    if (!hasServerConfig()) {
+      return Promise.resolve([]);
+    }
+
+    return serverRequest(
+      '/rest/v1/drug_documents?select=id,title,signed_date,file_name,storage_path,created_at&order=signed_date.desc,title.asc',
+      { method: 'GET', headers: { Accept: 'application/json' } }
+    ).then(function (documents) {
+      return Array.isArray(documents) ? documents.map(normalizeServerDocument) : [];
+    });
   }
 
   function mergeDocuments(baseDocuments, uploadedDocuments) {
@@ -158,9 +136,8 @@
   function loadDocuments() {
     var baseDocuments = getBaseDocuments();
 
-    releaseDocumentObjectUrls();
-    return loadStoredDocuments().then(function (uploadedDocuments) {
-      return mergeDocuments(baseDocuments, uploadedDocuments.map(normalizeUploadedDocument));
+    return loadServerDocuments().then(function (uploadedDocuments) {
+      return mergeDocuments(baseDocuments, uploadedDocuments);
     }).catch(function () {
       return sortDocuments(baseDocuments);
     });
@@ -435,25 +412,144 @@
   }
 
   function readStaffSession() {
-    try {
-      return sessionStorage.getItem(staffSessionKey) === 'authenticated';
-    } catch (error) {
-      return staffAuthenticated;
+    if (authSession) {
+      return authSession;
     }
+
+    try {
+      var storedSession = JSON.parse(sessionStorage.getItem(staffSessionKey) || 'null');
+      if (storedSession && storedSession.access_token && storedSession.refresh_token) {
+        authSession = storedSession;
+        return authSession;
+      }
+    } catch (error) {
+      return null;
+    }
+
+    return null;
   }
 
-  function writeStaffSession(isAuthenticated) {
-    staffAuthenticated = isAuthenticated;
+  function writeStaffSession(session) {
+    authSession = session || null;
 
     try {
-      if (isAuthenticated) {
-        sessionStorage.setItem(staffSessionKey, 'authenticated');
+      if (authSession) {
+        sessionStorage.setItem(staffSessionKey, JSON.stringify(authSession));
       } else {
         sessionStorage.removeItem(staffSessionKey);
       }
     } catch (error) {
       return;
     }
+  }
+
+  function clearStaffSession() {
+    staffAuthenticated = false;
+    writeStaffSession(null);
+  }
+
+  function normalizeAuthSession(payload) {
+    var expiresAt = Number(payload && payload.expires_at);
+    if (!expiresAt && payload && payload.expires_in) {
+      expiresAt = Math.floor(Date.now() / 1000) + Number(payload.expires_in);
+    }
+
+    return {
+      access_token: payload.access_token,
+      refresh_token: payload.refresh_token,
+      expires_at: expiresAt || 0
+    };
+  }
+
+  function refreshStaffSession(session) {
+    if (refreshPromise) {
+      return refreshPromise;
+    }
+
+    refreshPromise = serverRequest('/auth/v1/token?grant_type=refresh_token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refresh_token: session.refresh_token })
+    }).then(function (payload) {
+      var refreshedSession = normalizeAuthSession(payload);
+      writeStaffSession(refreshedSession);
+      return refreshedSession;
+    }).catch(function (error) {
+      clearStaffSession();
+      throw error;
+    }).finally(function () {
+      refreshPromise = null;
+    });
+
+    return refreshPromise;
+  }
+
+  function getStaffAccessToken() {
+    var session = readStaffSession();
+    if (!session) {
+      return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
+    }
+
+    if (session.expires_at > Math.floor(Date.now() / 1000) + 60) {
+      return Promise.resolve(session.access_token);
+    }
+
+    return refreshStaffSession(session).then(function (refreshedSession) {
+      return refreshedSession.access_token;
+    });
+  }
+
+  function validateStaffSession() {
+    if (!hasServerConfig() || !readStaffSession()) {
+      clearStaffSession();
+      return Promise.resolve(false);
+    }
+
+    return getStaffAccessToken().then(function (accessToken) {
+      return serverRequest('/auth/v1/user', { method: 'GET' }, accessToken).then(function () {
+        return serverRequest('/rest/v1/rpc/is_pharmacy_staff', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: '{}'
+        }, accessToken);
+      });
+    }).then(function (hasPermission) {
+      staffAuthenticated = hasPermission === true;
+      if (!staffAuthenticated) {
+        clearStaffSession();
+      }
+      return staffAuthenticated;
+    }).catch(function () {
+      clearStaffSession();
+      return false;
+    });
+  }
+
+  function signInStaff(email, password) {
+    return serverRequest('/auth/v1/token?grant_type=password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: password })
+    }).then(function (payload) {
+      writeStaffSession(normalizeAuthSession(payload));
+      return validateStaffSession();
+    }).then(function (isAuthorized) {
+      if (!isAuthorized) {
+        throw new Error('Tài khoản không có quyền nhân viên Khoa Dược.');
+      }
+      return true;
+    });
+  }
+
+  function signOutStaff() {
+    var session = readStaffSession();
+    var request = session && hasServerConfig()
+      ? serverRequest('/auth/v1/logout?scope=local', { method: 'POST' }, session.access_token).catch(function () {})
+      : Promise.resolve();
+
+    return request.finally(function () {
+      clearStaffSession();
+    });
   }
 
   function setStaffLoginStatus(message, type) {
@@ -468,7 +564,7 @@
   }
 
   function renderStaffAccess() {
-    var isAuthenticated = readStaffSession();
+    var isAuthenticated = staffAuthenticated;
     var loginButton = document.getElementById('open-staff-login');
     var controls = document.getElementById('document-staff-controls');
     var addButton = document.getElementById('open-document-upload');
@@ -528,14 +624,20 @@
     var cancelButton = document.getElementById('cancel-staff-login');
     var form = document.getElementById('staff-login-form');
 
+    staffAuthenticated = false;
     renderStaffAccess();
 
     if (!loginButton || !logoutButton || !dialog || !form) {
       return;
     }
 
+    validateStaffSession().then(renderStaffAccess);
+
     loginButton.addEventListener('click', function () {
       openStaffLoginDialog(dialog);
+      if (!hasServerConfig()) {
+        setStaffLoginStatus('Máy chủ bảo mật chưa được cấu hình.', 'error');
+      }
     });
 
     [closeButton, cancelButton].forEach(function (button) {
@@ -562,38 +664,118 @@
 
       var usernameInput = document.getElementById('staff-username');
       var passwordInput = document.getElementById('staff-password');
-      var username = usernameInput ? usernameInput.value.trim() : '';
+      var submitButton = form.querySelector('button[type="submit"]');
+      var email = usernameInput ? usernameInput.value.trim().toLowerCase() : '';
       var password = passwordInput ? passwordInput.value : '';
 
-      if (username !== demoStaffUsername || password !== demoStaffPassword) {
-        setStaffLoginStatus('Tài khoản hoặc mật khẩu không đúng.', 'error');
+      if (!hasServerConfig()) {
+        setStaffLoginStatus('Máy chủ bảo mật chưa được cấu hình.', 'error');
+        return;
+      }
+
+      if (submitButton) {
+        submitButton.disabled = true;
+      }
+      setStaffLoginStatus('Đang xác thực...', '');
+
+      signInStaff(email, password).then(function () {
+        renderStaffAccess();
+        closeStaffLoginDialog(dialog);
+
+        var addButton = document.getElementById('open-document-upload');
+        if (addButton) {
+          addButton.focus();
+        }
+      }).catch(function () {
+        setStaffLoginStatus('Email, mật khẩu hoặc quyền truy cập không đúng.', 'error');
         if (passwordInput) {
           passwordInput.value = '';
           passwordInput.focus();
         }
-        return;
-      }
-
-      writeStaffSession(true);
-      renderStaffAccess();
-      closeStaffLoginDialog(dialog);
-
-      var addButton = document.getElementById('open-document-upload');
-      if (addButton) {
-        addButton.focus();
-      }
+      }).finally(function () {
+        if (submitButton) {
+          submitButton.disabled = false;
+        }
+      });
     });
 
     logoutButton.addEventListener('click', function () {
-      writeStaffSession(false);
-      renderStaffAccess();
+      signOutStaff().then(function () {
+        renderStaffAccess();
 
-      var uploadDialog = document.getElementById('document-upload-dialog');
-      if (uploadDialog && uploadDialog.open) {
-        closeUploadDialog(uploadDialog);
+        var uploadDialog = document.getElementById('document-upload-dialog');
+        if (uploadDialog && uploadDialog.open) {
+          closeUploadDialog(uploadDialog);
+        }
+
+        loginButton.focus();
+      });
+    });
+  }
+
+  function createSecureId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+      return window.crypto.randomUUID();
+    }
+
+    if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+      var randomBytes = new Uint8Array(16);
+      window.crypto.getRandomValues(randomBytes);
+      return Array.prototype.map.call(randomBytes, function (value) {
+        return value.toString(16).padStart(2, '0');
+      }).join('');
+    }
+
+    throw new Error('Trình duyệt không hỗ trợ tạo mã tệp an toàn.');
+  }
+
+  function uploadServerDocument(file, title, signedDate) {
+    var storagePath = signedDate.slice(0, 7) + '/' + createSecureId() + '.pdf';
+    var accessToken = '';
+    var uploaded = false;
+
+    return getStaffAccessToken().then(function (token) {
+      accessToken = token;
+      return serverRequest(
+        '/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(storagePath),
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/pdf',
+            'Cache-Control': '3600',
+            'x-upsert': 'false'
+          },
+          body: file
+        },
+        accessToken
+      );
+    }).then(function () {
+      uploaded = true;
+      return serverRequest('/rest/v1/drug_documents', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({
+          title: title,
+          signed_date: signedDate,
+          file_name: file.name.slice(0, 255),
+          storage_path: storagePath
+        })
+      }, accessToken);
+    }).catch(function (error) {
+      if (!uploaded || !accessToken) {
+        throw error;
       }
 
-      loginButton.focus();
+      return serverRequest(
+        '/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(storagePath),
+        { method: 'DELETE' },
+        accessToken
+      ).catch(function () {}).then(function () {
+        throw error;
+      });
     });
   }
 
@@ -611,7 +793,7 @@
     }
 
     openButton.addEventListener('click', function () {
-      if (!readStaffSession()) {
+      if (!staffAuthenticated) {
         var staffLoginDialog = document.getElementById('staff-login-dialog');
         if (staffLoginDialog) {
           openStaffLoginDialog(staffLoginDialog);
@@ -669,7 +851,7 @@
     form.addEventListener('submit', function (event) {
       event.preventDefault();
 
-      if (!readStaffSession()) {
+      if (!staffAuthenticated) {
         closeUploadDialog(dialog);
         renderStaffAccess();
         return;
@@ -683,6 +865,11 @@
 
       if (!file || !title || !/^\d{4}-\d{2}-\d{2}$/.test(signedDate)) {
         setUploadStatus('Vui lòng chọn PDF, nhập đúng tiêu đề và ngày ký ban hành.', 'error');
+        return;
+      }
+
+      if (file.size > maxUploadBytes) {
+        setUploadStatus('Tệp PDF vượt quá giới hạn 25 MB.', 'error');
         return;
       }
 
@@ -707,14 +894,13 @@
           throw new Error('Tệp được chọn không phải PDF hợp lệ.');
         }
 
-        return saveStoredDocument({
-          id: 'uploaded-' + Date.now() + '-' + Math.random().toString(36).slice(2),
-          title: title,
-          signedDate: signedDate,
-          fileName: file.name,
-          pdfBlob: file,
-          createdAt: new Date().toISOString()
-        });
+        return validateStaffSession();
+      }).then(function (isAuthorized) {
+        if (!isAuthorized) {
+          throw new Error('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.');
+        }
+
+        return uploadServerDocument(file, title, signedDate);
       }).then(function () {
         signalDocumentsChanged();
         return refreshDocuments();
@@ -728,7 +914,12 @@
           }
         }, 650);
       }).catch(function (error) {
-        setUploadStatus(error.message || 'Không thể thêm tài liệu.', 'error');
+        if (!staffAuthenticated) {
+          setUploadStatus('Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.', 'error');
+          renderStaffAccess();
+        } else {
+          setUploadStatus('Không thể tải tài liệu lên máy chủ. Vui lòng thử lại.', 'error');
+        }
       }).finally(function () {
         submitButton.disabled = false;
         if (cancelButton) {
@@ -751,7 +942,6 @@
 
     window.addEventListener('beforeunload', function () {
       clearPreview();
-      releaseDocumentObjectUrls();
       if (updateChannel) {
         updateChannel.close();
       }

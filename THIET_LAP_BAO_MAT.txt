@@ -1,0 +1,42 @@
+THIẾT LẬP ĐĂNG NHẬP NHÂN VIÊN BẰNG MÁY CHỦ SUPABASE
+
+Phiên bản này đã xóa hoàn toàn tài khoản và mật khẩu thử khỏi mã website.
+Mật khẩu cũ đã từng xuất hiện công khai, vì vậy tuyệt đối không dùng lại.
+
+BƯỚC 1 — TẠO MÁY CHỦ
+1. Đăng nhập https://supabase.com và tạo một Project.
+2. Mở SQL Editor.
+3. Chạy toàn bộ file: supabase/01_CAU_HINH_MAY_CHU.sql
+
+BƯỚC 2 — TẠO TÀI KHOẢN NHÂN VIÊN
+1. Mở Authentication > Users > Add user.
+2. Email: khoaduoc@vpmed.vn
+3. Tạo một mật khẩu mới, mạnh và chưa từng sử dụng ở nơi khác.
+4. Bật xác nhận email cho tài khoản nếu màn hình có lựa chọn này.
+5. Quay lại SQL Editor và chạy file: supabase/02_CAP_QUYEN_NHAN_VIEN.sql
+
+BƯỚC 3 — KẾT NỐI WEBSITE
+1. Trong Supabase, mở nút Connect hoặc Settings > API Keys.
+2. Sao chép Project URL và Publishable key (bắt đầu bằng sb_publishable_).
+3. Mở file assets/js/server-config.js.
+4. Điền hai giá trị vào đúng vị trí:
+
+   supabaseUrl: 'PROJECT URL CỦA BẠN',
+   supabasePublishableKey: 'PUBLISHABLE KEY CỦA BẠN',
+
+Publishable key được thiết kế để đặt trong website. Không đưa Secret key hoặc
+service_role key vào bất kỳ file nào của website.
+
+BƯỚC 4 — ĐƯA WEBSITE LÊN GIT VÀ KIỂM TRA
+1. Tải toàn bộ thư mục website lên Git như bình thường.
+2. Mở mục Thông tin thuốc và đăng nhập bằng email nhân viên cùng mật khẩu mới.
+3. Tải thử một PDF nhỏ hơn 25 MB.
+4. Mở website bằng cửa sổ ẩn danh để kiểm tra tài liệu mới đã hiển thị công khai.
+
+CƠ CHẾ BẢO VỆ ĐÃ CÓ
+- Mật khẩu được xác minh bởi Supabase Auth, không nằm trong HTML hoặc JavaScript.
+- Quyền nhân viên được kiểm tra lại từ máy chủ khi mở trang và trước khi tải PDF.
+- Người ngoài chỉ có quyền đọc; chính sách RLS chặn ghi dữ liệu ở phía máy chủ.
+- Kho tệp chỉ nhận PDF, giới hạn 25 MB và chỉ tài khoản được cấp quyền mới tải lên.
+- Phiên đăng nhập được xác thực với máy chủ, không thể mở quyền bằng cách sửa sessionStorage.
+- Tiêu đề tài liệu được hiển thị bằng textContent để ngăn chèn mã HTML.

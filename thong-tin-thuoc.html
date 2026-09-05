@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://*.supabase.co; img-src 'self' data:; object-src 'self' blob:; frame-src 'self' blob:; style-src 'self'; script-src 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Thông tin thuốc &#8211; Khoa Dược Bệnh viện VPMED TÂN HƯNG</title>
 <meta name="description" content="Thư mục tài liệu thông tin thuốc của Khoa Dược Bệnh viện VPMED Tân Hưng, sắp xếp theo ngày ký ban hành.">
 <link rel="stylesheet" href="assets/css/style.css">
@@ -79,8 +81,8 @@
 
     <div class="document-login-fields">
       <label class="document-form-field">
-        <span>Tài khoản</span>
-        <input id="staff-username" name="username" type="text" autocomplete="username" autocapitalize="none" required>
+        <span>Email nhân viên</span>
+        <input id="staff-username" name="email" type="email" autocomplete="username" autocapitalize="none" required>
       </label>
 
       <label class="document-form-field">
@@ -179,6 +181,7 @@
 </footer>
 
 <script src="assets/js/drug-documents-data.js"></script>
+<script src="assets/js/server-config.js"></script>
 <script src="assets/js/drug-documents.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
