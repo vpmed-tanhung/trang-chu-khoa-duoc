@@ -89,7 +89,7 @@
       if (!instruction.storagePath) return;
       return accessToken().then(function (token) {
         return request('/storage/v1/object/' + encodeURIComponent(bucket) + '/' + encodePath(instruction.storagePath), { method: 'DELETE' }, token);
-      });
+      }).catch(function () { return null; });
     }).then(function () { window.dispatchEvent(new Event('khoa-duoc-auth-changed')); }).catch(function () { window.alert('Không thể xóa HDSD. Vui lòng thử lại.'); });
   }
   function closeDialog(id) {

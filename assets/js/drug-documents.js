@@ -400,7 +400,10 @@
     return getStaffAccessToken().then(function (token) {
       return serverRequest('/rest/v1/drug_documents?id=eq.' + encodeURIComponent(documentItem.id), { method: 'DELETE', headers: { Prefer: 'return=minimal' } }, token).then(function () {
         if (!documentItem.storagePath) return;
-        return serverRequest('/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(documentItem.storagePath), { method: 'DELETE' }, token);
+        return serverRequest('/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(documentItem.storagePath), { method: 'DELETE' }, token).catch(function () {
+          // Bản ghi đã xóa; lỗi dọn file cũ không được làm thất bại thao tác của nhân viên.
+          return null;
+        });
       });
     });
   }
