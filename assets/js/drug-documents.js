@@ -12,6 +12,8 @@
   var maxUploadBytes = Number(serverConfig.maxUploadBytes) || 26214400;
   var staffSessionKey = 'khoa-duoc-secure-staff-session';
   var documentsCache = [];
+  var combinedPdfCache = {};
+  var combinedObjectUrls = [];
   var previewObjectUrl = '';
   var authSession = null;
   var refreshPromise = null;
@@ -145,6 +147,31 @@
       .replace(/[^a-z0-9]+/g, ' ').trim();
   }
 
+  function getProductTokens(value) {
+    var ignored = {
+      thuoc: true, dieu: true, tri: true, khang: true, sinh: true, chong: true,
+      ung: true, thu: true, giai: true, doc: true, va: true, cac: true,
+      benh: true, glucose: true, mau: true, tang: true, huyet: true, ap: true,
+      nhom: true, dung: true, dich: true, tiem: true, vien: true, nang: true,
+      bom: true, xit: true, huong: true, dan: true, su: true, hdsd: true,
+      ham: true, luong: true, bao: true, phim: true, tra: true, mat: true,
+      nho: true, hon: true, nhuan: true, trang: true, loi: true, tieu: true,
+      gian: true, tron: true, calci: true, calcium: true, acid: true,
+      mg: true, ml: true, mcg: true, ug: true, iu: true
+    };
+    var seen = {};
+    return normalizeMatchText(value).split(' ').filter(function (token) {
+      if (token.length < 3 || ignored[token] || /^\d/.test(token) || seen[token]) return false;
+      seen[token] = true;
+      return true;
+    }).sort();
+  }
+
+  function getDoseTokens(value) {
+    var text = normalizeMatchText(value).replace(/\s+/g, '');
+    return text.match(/\d+(?:[.,]\d+)?(?:mcg|mg|ml|iu|g|%)/g) || [];
+  }
+
   function loadServerInstructions() {
     if (!hasServerConfig()) return Promise.resolve([]);
     return serverRequest('/rest/v1/drug_instructions?select=id,title,keywords,signed_date,file_name,storage_path&order=created_at.desc', { method: 'GET', headers: { Accept: 'application/json' } })
@@ -156,15 +183,22 @@
   }
 
   function findMatchingInstruction(documentItem, instructions) {
-    var docText = normalizeMatchText(documentItem.title);
-    var docTokens = docText.split(' ').filter(function (token) { return token.length >= 4; });
-    return instructions.map(function (item) {
-      var haystack = normalizeMatchText(item.title + ' ' + item.keywords);
-      var tokens = haystack.split(' ').filter(function (token) { return token.length >= 4; });
-      var overlap = tokens.filter(function (token) { return docTokens.indexOf(token) !== -1; });
-      var exactTitle = normalizeMatchText(item.title) && (docText.indexOf(normalizeMatchText(item.title)) !== -1 || haystack.indexOf(docText) !== -1);
-      return { item: item, score: exactTitle ? 100 : overlap.length * 10 + (overlap.some(function (token) { return token.length >= 7; }) ? 1 : 0) };
-    }).filter(function (match) { return match.score >= 11; }).sort(function (a, b) { return b.score - a.score; })[0]?.item || null;
+    var documentTokens = getProductTokens(documentItem.title);
+    var documentDoses = getDoseTokens(documentItem.title);
+    if (!documentTokens.length) return null;
+    var documentSignature = documentTokens.join('|');
+    var candidates = instructions.filter(function (item) {
+      var instructionTokens = getProductTokens(item.title);
+      if (!instructionTokens.length || instructionTokens.join('|') !== documentSignature) return false;
+
+      var instructionDoses = getDoseTokens(item.title);
+      if (documentDoses.length && instructionDoses.length) {
+        return instructionDoses.some(function (dose) { return documentDoses.indexOf(dose) !== -1; });
+      }
+      return true;
+    });
+
+    return candidates.length === 1 ? candidates[0] : null;
   }
 
   function mergeDocuments(baseDocuments, uploadedDocuments, instructions) {
@@ -240,6 +274,49 @@
     return 'assets/documents/thong-tin-thuoc/' + fileName.split('/').map(encodeURIComponent).join('/');
   }
 
+  function prepareCombinedPdf(documentItem) {
+    var primaryUrl = documentItem.url || documentUrl(documentItem.file);
+    var cacheKey = primaryUrl + '|' + documentItem.hdsdUrl;
+    if (combinedPdfCache[cacheKey]) return combinedPdfCache[cacheKey];
+    if (!window.PDFLib || !window.PDFLib.PDFDocument) {
+      return Promise.reject(new Error('Bộ ghép PDF chưa được tải.'));
+    }
+
+    combinedPdfCache[cacheKey] = Promise.all([
+      fetch(primaryUrl).then(function (response) {
+        if (!response.ok) throw new Error('Không đọc được bản có chữ ký.');
+        return response.arrayBuffer();
+      }),
+      fetch(documentItem.hdsdUrl).then(function (response) {
+        if (!response.ok) throw new Error('Không đọc được tờ HDSD.');
+        return response.arrayBuffer();
+      })
+    ]).then(function (files) {
+      return Promise.all([
+        window.PDFLib.PDFDocument.load(files[0], { ignoreEncryption: true }),
+        window.PDFLib.PDFDocument.load(files[1], { ignoreEncryption: true }),
+        window.PDFLib.PDFDocument.create()
+      ]);
+    }).then(function (documents) {
+      var signedPdf = documents[0];
+      var instructionPdf = documents[1];
+      var mergedPdf = documents[2];
+      return mergedPdf.copyPages(signedPdf, signedPdf.getPageIndices()).then(function (signedPages) {
+        signedPages.forEach(function (page) { mergedPdf.addPage(page); });
+        return mergedPdf.copyPages(instructionPdf, instructionPdf.getPageIndices());
+      }).then(function (instructionPages) {
+        instructionPages.forEach(function (page) { mergedPdf.addPage(page); });
+        return mergedPdf.save();
+      });
+    }).then(function (bytes) {
+      var objectUrl = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
+      combinedObjectUrls.push(objectUrl);
+      return objectUrl;
+    });
+
+    return combinedPdfCache[cacheKey];
+  }
+
   function createPdfLink(documentItem, className) {
     var link = document.createElement('a');
     link.href = documentItem.url || documentUrl(documentItem.file);
@@ -250,6 +327,26 @@
 
     if (className) {
       link.className = className;
+    }
+
+    if (documentItem.hdsdUrl && !documentItem.hdsdFile) {
+      link.setAttribute('aria-label', documentItem.title + ' — mở bản có chữ ký kèm Hướng dẫn sử dụng');
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        var viewer = window.open('', '_blank');
+        if (viewer) {
+          viewer.opener = null;
+          viewer.document.title = 'Đang ghép tài liệu...';
+          viewer.document.body.textContent = 'Đang ghép bản có chữ ký và Hướng dẫn sử dụng...';
+        }
+        prepareCombinedPdf(documentItem).then(function (url) {
+          if (viewer) viewer.location.replace(url);
+          else window.open(url, '_blank');
+        }).catch(function () {
+          if (viewer) viewer.location.replace(link.href);
+          else window.open(link.href, '_blank');
+        });
+      });
     }
 
     return link;
@@ -370,21 +467,11 @@
         body.appendChild(createPdfLink(documentItem, 'document-title'));
         body.appendChild(date);
 
-        if (documentItem.hdsdFile) {
+        if (documentItem.hdsdFile || documentItem.hdsdUrl) {
           attachmentNote = document.createElement('span');
           attachmentNote.className = 'document-attachment-note';
           attachmentNote.textContent = 'Bản có chữ ký + Hướng dẫn sử dụng';
           body.appendChild(attachmentNote);
-        }
-
-        if (documentItem.hdsdUrl) {
-          var hdsdLink = document.createElement('a');
-          hdsdLink.className = 'document-hdsd-link';
-          hdsdLink.href = documentItem.hdsdUrl;
-          hdsdLink.target = '_blank';
-          hdsdLink.rel = 'noopener';
-          hdsdLink.textContent = 'Mở tờ Hướng dẫn sử dụng' + (documentItem.hdsdTitle ? ': ' + documentItem.hdsdTitle : '');
-          body.appendChild(hdsdLink);
         }
 
         if (documentItem.uploaded && staffAuthenticated) {
@@ -1046,6 +1133,8 @@
 
     window.addEventListener('beforeunload', function () {
       clearPreview();
+      combinedObjectUrls.forEach(function (url) { URL.revokeObjectURL(url); });
+      combinedObjectUrls = [];
       if (updateChannel) {
         updateChannel.close();
       }
