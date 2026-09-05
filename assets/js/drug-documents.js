@@ -286,6 +286,13 @@
     return 'assets/documents/thong-tin-thuoc/' + fileName.split('/').map(encodeURIComponent).join('/');
   }
 
+  function useSameTabPdfViewer() {
+    return typeof window.matchMedia === 'function' && (
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 820px)').matches
+    );
+  }
+
   function prepareCombinedPdf(documentItem) {
     var primaryUrl = documentItem.url || documentUrl(documentItem.file);
     var cacheKey = primaryUrl + '|' + documentItem.hdsdUrl;
@@ -331,8 +338,9 @@
 
   function createPdfLink(documentItem, className) {
     var link = document.createElement('a');
-    link.href = documentItem.url || documentUrl(documentItem.file);
-    link.target = '_blank';
+    var primaryUrl = documentItem.url || documentUrl(documentItem.file);
+    link.href = primaryUrl;
+    link.target = useSameTabPdfViewer() ? '_self' : '_blank';
     link.rel = 'noopener';
     link.textContent = documentItem.title;
     link.setAttribute('aria-label', documentItem.title + ' — mở PDF trong thẻ mới');
@@ -345,6 +353,20 @@
       link.setAttribute('aria-label', documentItem.title + ' — mở bản có chữ ký kèm Hướng dẫn sử dụng');
       link.addEventListener('click', function (event) {
         event.preventDefault();
+
+        if (useSameTabPdfViewer()) {
+          if (link.getAttribute('aria-busy') === 'true') return;
+          link.setAttribute('aria-busy', 'true');
+          prepareCombinedPdf(documentItem).then(function (url) {
+            window.location.assign(url);
+          }).catch(function () {
+            window.location.assign(primaryUrl);
+          }).finally(function () {
+            link.removeAttribute('aria-busy');
+          });
+          return;
+        }
+
         var viewer = window.open('', '_blank');
         if (viewer) {
           viewer.opener = null;

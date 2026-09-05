@@ -17,6 +17,13 @@
     return 'assets/documents/huong-dan-su-dung/' + String(fileName || '').split('/').map(encodeURIComponent).join('/');
   }
 
+  function useSameTabPdfViewer() {
+    return typeof window.matchMedia === 'function' && (
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 820px)').matches
+    );
+  }
+
   function getStaticInstructions() {
     var instructions = Array.isArray(window.DRUG_INSTRUCTIONS) ? window.DRUG_INSTRUCTIONS : [];
     return instructions.filter(function (instruction) { return Boolean(instruction && instruction.title && instruction.file); });
@@ -107,7 +114,7 @@
       actions.className = 'document-row-actions';
       link.className = 'instruction-title';
       link.href = instruction.url || instructionUrl(instruction.file);
-      link.target = '_blank';
+      link.target = useSameTabPdfViewer() ? '_self' : '_blank';
       link.rel = 'noopener';
       link.textContent = instruction.title;
       link.setAttribute('aria-label', instruction.title + ' — mở PDF trong thẻ mới');

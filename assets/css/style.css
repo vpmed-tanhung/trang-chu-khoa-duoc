@@ -1649,6 +1649,14 @@ textarea {
 
   .document-row-actions { min-width: 0; }
 
+  .document-title,
+  .instruction-title {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    align-items: center;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
