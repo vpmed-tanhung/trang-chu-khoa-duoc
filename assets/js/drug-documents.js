@@ -115,7 +115,35 @@
     });
   }
 
-  function mergeDocuments(baseDocuments, uploadedDocuments) {
+  function normalizeMatchText(value) {
+    return String(value || '').toLocaleLowerCase('vi')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]+/g, ' ').trim();
+  }
+
+  function loadServerInstructions() {
+    if (!hasServerConfig()) return Promise.resolve([]);
+    return serverRequest('/rest/v1/drug_instructions?select=id,title,keywords,signed_date,file_name,storage_path&order=created_at.desc', { method: 'GET', headers: { Accept: 'application/json' } })
+      .then(function (rows) {
+        return Array.isArray(rows) ? rows.map(function (row) {
+          return { title: row.title, keywords: row.keywords || '', signedDate: row.signed_date, file: row.file_name, url: publicDocumentUrl(row.storage_path), server: true };
+        }) : [];
+      });
+  }
+
+  function findMatchingInstruction(documentItem, instructions) {
+    var docText = normalizeMatchText(documentItem.title);
+    var docTokens = docText.split(' ').filter(function (token) { return token.length >= 4; });
+    return instructions.map(function (item) {
+      var haystack = normalizeMatchText(item.title + ' ' + item.keywords);
+      var tokens = haystack.split(' ').filter(function (token) { return token.length >= 4; });
+      var overlap = tokens.filter(function (token) { return docTokens.indexOf(token) !== -1; });
+      var exactTitle = normalizeMatchText(item.title) && (docText.indexOf(normalizeMatchText(item.title)) !== -1 || haystack.indexOf(docText) !== -1);
+      return { item: item, score: exactTitle ? 100 : overlap.length * 10 + (overlap.some(function (token) { return token.length >= 7; }) ? 1 : 0) };
+    }).filter(function (match) { return match.score >= 11; }).sort(function (a, b) { return b.score - a.score; })[0]?.item || null;
+  }
+
+  function mergeDocuments(baseDocuments, uploadedDocuments, instructions) {
     var seen = {};
 
     return sortDocuments(baseDocuments.concat(uploadedDocuments).filter(function (documentItem) {
@@ -129,6 +157,9 @@
       }
 
       seen[key] = true;
+      var matched = findMatchingInstruction(documentItem, instructions || []);
+      if (matched && !documentItem.hdsdUrl) documentItem.hdsdUrl = matched.url || ('assets/documents/huong-dan-su-dung/' + encodeURIComponent(matched.file || ''));
+      if (matched) documentItem.hdsdTitle = matched.title;
       return true;
     }));
   }
@@ -136,8 +167,8 @@
   function loadDocuments() {
     var baseDocuments = getBaseDocuments();
 
-    return loadServerDocuments().then(function (uploadedDocuments) {
-      return mergeDocuments(baseDocuments, uploadedDocuments);
+    return Promise.all([loadServerDocuments(), loadServerInstructions()]).then(function (results) {
+      return mergeDocuments(baseDocuments, results[0], results[1]);
     }).catch(function () {
       return sortDocuments(baseDocuments);
     });
@@ -316,6 +347,16 @@
           attachmentNote.className = 'document-attachment-note';
           attachmentNote.textContent = 'Bản có chữ ký + Hướng dẫn sử dụng';
           body.appendChild(attachmentNote);
+        }
+
+        if (documentItem.hdsdUrl) {
+          var hdsdLink = document.createElement('a');
+          hdsdLink.className = 'document-hdsd-link';
+          hdsdLink.href = documentItem.hdsdUrl;
+          hdsdLink.target = '_blank';
+          hdsdLink.rel = 'noopener';
+          hdsdLink.textContent = 'Mở tờ Hướng dẫn sử dụng' + (documentItem.hdsdTitle ? ': ' + documentItem.hdsdTitle : '');
+          body.appendChild(hdsdLink);
         }
 
         row.appendChild(number);
@@ -827,6 +868,11 @@
       }
 
       showPreview(file);
+
+      var titleInput = document.getElementById('document-pdf-title');
+      if (titleInput && !titleInput.value.trim()) {
+        titleInput.value = file.name.replace(/\.pdf$/i, '').replace(/[_-]+/g, ' ').replace(/\s+/g, ' ').trim();
+      }
     });
 
     [closeButton, cancelButton].forEach(function (button) {

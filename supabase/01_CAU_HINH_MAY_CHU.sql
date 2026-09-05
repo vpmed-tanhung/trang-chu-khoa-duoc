@@ -119,4 +119,50 @@ for delete
 to authenticated
 using (bucket_id = 'drug-documents' and public.is_pharmacy_staff());
 
+create table if not exists public.drug_instructions (
+  id uuid primary key default gen_random_uuid(),
+  title text not null check (char_length(title) between 1 and 240),
+  keywords text not null default '',
+  signed_date date not null,
+  file_name text not null check (char_length(file_name) between 1 and 255),
+  storage_path text not null unique check (storage_path ~ '^hdsd/[0-9]{4}-[0-9]{2}/[a-f0-9-]+[.]pdf$'),
+  created_by uuid not null default auth.uid() references auth.users(id),
+  created_at timestamptz not null default now(),
+  unique (title, signed_date)
+);
+
+alter table public.drug_instructions enable row level security;
+revoke all on table public.drug_instructions from anon, authenticated;
+grant select on table public.drug_instructions to anon, authenticated;
+grant insert, update, delete on table public.drug_instructions to authenticated;
+
+drop policy if exists "Public can read drug instructions" on public.drug_instructions;
+create policy "Public can read drug instructions"
+on public.drug_instructions
+for select
+to anon, authenticated
+using (true);
+
+drop policy if exists "Pharmacy staff can insert drug instructions" on public.drug_instructions;
+create policy "Pharmacy staff can insert drug instructions"
+on public.drug_instructions
+for insert
+to authenticated
+with check (public.is_pharmacy_staff() and created_by = auth.uid());
+
+drop policy if exists "Pharmacy staff can update drug instructions" on public.drug_instructions;
+create policy "Pharmacy staff can update drug instructions"
+on public.drug_instructions
+for update
+to authenticated
+using (public.is_pharmacy_staff())
+with check (public.is_pharmacy_staff() and created_by = auth.uid());
+
+drop policy if exists "Pharmacy staff can delete drug instructions" on public.drug_instructions;
+create policy "Pharmacy staff can delete drug instructions"
+on public.drug_instructions
+for delete
+to authenticated
+using (public.is_pharmacy_staff());
+
 commit;

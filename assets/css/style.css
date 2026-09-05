@@ -1041,6 +1041,17 @@ textarea {
   font-weight: 750;
 }
 
+.document-hdsd-link {
+  display: inline-flex;
+  width: fit-content;
+  margin-top: 8px;
+  color: var(--navy-900);
+  font-size: 0.82rem;
+  font-weight: 750;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .instruction-search-section {
   padding-block: 38px 72px;
 }

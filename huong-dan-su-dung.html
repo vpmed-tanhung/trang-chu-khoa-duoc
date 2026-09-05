@@ -41,9 +41,21 @@
   <section class="document-hero">
     <div class="container">
       <a class="back-link" href="index.html#ban-tin" aria-label="Quay lại Bản tin Dược lâm sàng">&#8592; Bản tin Dược lâm sàng</a>
-      <div>
-        <div class="kicker">Chuyên mục</div>
-        <h1>Hướng dẫn sử dụng</h1>
+      <div class="document-hero-grid">
+        <div>
+          <div class="kicker">Chuyên mục</div>
+          <h1>Hướng dẫn sử dụng</h1>
+        </div>
+        <div class="document-staff-actions">
+          <button class="document-login-button" id="open-staff-login" type="button">Đăng nhập nhân viên</button>
+          <div class="document-staff-controls" id="document-staff-controls" hidden>
+            <span class="document-staff-badge">Nhân viên Khoa Dược</span>
+            <button class="document-add-button" id="open-instruction-upload" type="button" hidden>
+              <span aria-hidden="true">+</span> Thêm HDSD
+            </button>
+            <button class="document-logout-button" id="staff-logout" type="button">Đăng xuất</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -64,6 +76,74 @@
     </div>
   </section>
 </main>
+
+<dialog class="document-login-dialog" id="staff-login-dialog" aria-labelledby="staff-login-title">
+  <form id="staff-login-form">
+    <div class="document-upload-header">
+      <div>
+        <div class="kicker">Khoa Dược</div>
+        <h2 id="staff-login-title">Đăng nhập nhân viên</h2>
+      </div>
+      <button class="document-dialog-close" id="close-staff-login" type="button" aria-label="Đóng">×</button>
+    </div>
+    <div class="document-login-fields">
+      <label class="document-form-field">
+        <span>Email nhân viên</span>
+        <input id="staff-username" name="email" type="email" autocomplete="username" autocapitalize="none" required>
+      </label>
+      <label class="document-form-field">
+        <span>Mật khẩu</span>
+        <input id="staff-password" name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <p class="document-upload-status" id="staff-login-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="document-upload-actions">
+      <button class="document-upload-cancel" id="cancel-staff-login" type="button">Hủy</button>
+      <button class="document-upload-submit" type="submit">Đăng nhập</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog class="document-upload-dialog" id="instruction-upload-dialog" aria-labelledby="instruction-upload-title">
+  <form id="instruction-upload-form">
+    <div class="document-upload-header">
+      <div>
+        <div class="kicker">Hướng dẫn sử dụng</div>
+        <h2 id="instruction-upload-title">Thêm tờ HDSD PDF</h2>
+      </div>
+      <button class="document-dialog-close" id="close-instruction-upload" type="button" aria-label="Đóng">×</button>
+    </div>
+    <div class="document-upload-grid">
+      <div class="document-upload-fields">
+        <label class="document-form-field">
+          <span>Tệp HDSD PDF</span>
+          <input id="instruction-pdf-file" type="file" accept="application/pdf,.pdf" required>
+        </label>
+        <label class="document-form-field">
+          <span>Tên thuốc / tên tờ HDSD</span>
+          <input id="instruction-pdf-title" type="text" maxlength="240" required>
+          <small>Nhập tên thuốc chính xác để hệ thống tự đối chiếu với Thông tin thuốc.</small>
+        </label>
+        <label class="document-form-field">
+          <span>Ngày ký ban hành</span>
+          <input id="instruction-signed-date" type="date" required>
+        </label>
+        <p class="document-upload-status" id="instruction-upload-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="document-pdf-preview-wrap">
+        <div class="document-pdf-preview-label">Xem PDF để kiểm tra tờ HDSD</div>
+        <object id="instruction-pdf-preview" class="document-pdf-preview" type="application/pdf" aria-label="Bản xem trước tờ HDSD">
+          <p>Trình duyệt không hỗ trợ xem trước PDF.</p>
+        </object>
+        <p class="document-pdf-preview-empty" id="instruction-pdf-preview-empty">Chọn một tệp PDF để xem trước.</p>
+      </div>
+    </div>
+    <div class="document-upload-actions">
+      <button class="document-upload-cancel" id="cancel-instruction-upload" type="button">Hủy</button>
+      <button class="document-upload-submit" id="submit-instruction-upload" type="submit">Thêm HDSD</button>
+    </div>
+  </form>
+</dialog>
 
 <div class="footer-disclaimer">
   <strong>MIỄN TRỪ TRÁCH NHIỆM PHÁP LÝ:</strong>
@@ -99,7 +179,9 @@
 </footer>
 
 <script src="assets/js/instructions-data.js"></script>
+<script src="assets/js/server-config.js"></script>
 <script src="assets/js/instructions.js"></script>
+<script src="assets/js/instructions-secure.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

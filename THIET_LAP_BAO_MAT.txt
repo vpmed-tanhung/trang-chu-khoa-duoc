@@ -6,7 +6,7 @@ Mật khẩu cũ đã từng xuất hiện công khai, vì vậy tuyệt đối 
 BƯỚC 1 — TẠO MÁY CHỦ
 1. Đăng nhập https://supabase.com và tạo một Project.
 2. Mở SQL Editor.
-3. Chạy toàn bộ file: supabase/01_CAU_HINH_MAY_CHU.sql
+3. Chạy toàn bộ file: supabase/01_CAU_HINH_MAY_CHU.sql. Nếu đã chạy bản cũ, chạy lại toàn bộ file mới để tạo thêm bảng HDSD.
 
 BƯỚC 2 — TẠO TÀI KHOẢN NHÂN VIÊN
 1. Mở Authentication > Users > Add user.
@@ -32,6 +32,14 @@ BƯỚC 4 — ĐƯA WEBSITE LÊN GIT VÀ KIỂM TRA
 2. Mở mục Thông tin thuốc và đăng nhập bằng email nhân viên cùng mật khẩu mới.
 3. Tải thử một PDF nhỏ hơn 25 MB.
 4. Mở website bằng cửa sổ ẩn danh để kiểm tra tài liệu mới đã hiển thị công khai.
+
+BƯỚC 5 — ĐĂNG HƯỚNG DẪN SỬ DỤNG VÀ TỰ ĐỐI CHIẾU
+1. Mở mục Hướng dẫn sử dụng, đăng nhập bằng cùng tài khoản nhân viên.
+2. Tải PDF HDSD, nhập tên thuốc và ngày ký. Hệ thống lưu trên máy chủ và công khai bản PDF.
+3. Khi tên thuốc trong HDSD trùng với tên/ từ khóa của tài liệu Thông tin thuốc, website tự thêm liên kết “Mở tờ Hướng dẫn sử dụng” ở cuối bài.
+4. Tài liệu mới luôn dùng cùng mẫu hiển thị và tự cập nhật ở cả hai trang; không cần sửa file dữ liệu tĩnh.
+
+Lưu ý: ngày ký và tên thuốc là dữ liệu pháp lý của tài liệu. Hệ thống không tự đoán từ ngày tải lên để tránh gắn nhầm thuốc hoặc nhầm ngày; có thể bổ sung bộ đọc PDF/OCR phía máy chủ khi đã thống nhất nguồn và quy tắc nhận diện.
 
 CƠ CHẾ BẢO VỆ ĐÃ CÓ
 - Mật khẩu được xác minh bởi Supabase Auth, không nằm trong HTML hoặc JavaScript.
