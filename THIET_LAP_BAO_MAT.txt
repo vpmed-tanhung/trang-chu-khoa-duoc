@@ -41,6 +41,13 @@ BƯỚC 5 — ĐĂNG HƯỚNG DẪN SỬ DỤNG VÀ TỰ ĐỐI CHIẾU
 
 Lưu ý: ngày hiển thị của HDSD là ngày tải lên, không phải ngày ký in trong PDF.
 
+BƯỚC 6 — CHUYỂN TOÀN BỘ DỮ LIỆU CŨ SANG SUPABASE
+1. Chạy lại file supabase/01_CAU_HINH_MAY_CHU.sql để tạo bảng theo dõi chuyển dữ liệu.
+2. Đưa bản website chuyển dữ liệu lên GitHub Pages.
+3. Đăng nhập nhân viên tại trang Thông tin thuốc.
+4. Bấm “Chuyển dữ liệu cũ” và giữ nguyên trang cho đến khi báo hoàn tất.
+5. Sau khi hoàn tất, dùng bản website đã loại PDF tĩnh khỏi Git. Từ thời điểm này, nút Xóa ở mọi dòng sẽ xóa thật bản ghi và PDF trên Supabase.
+
 CƠ CHẾ BẢO VỆ ĐÃ CÓ
 - Mật khẩu được xác minh bởi Supabase Auth, không nằm trong HTML hoặc JavaScript.
 - Quyền nhân viên được kiểm tra lại từ máy chủ khi mở trang và trước khi tải PDF.

@@ -45,16 +45,31 @@
     });
   }
 
+  function loadContentMigrations() {
+    if (!hasServerConfig()) return Promise.resolve([]);
+    return fetch(supabaseUrl + '/rest/v1/content_migrations?select=migration_key', {
+      method: 'GET', headers: { apikey: publishableKey, Accept: 'application/json' }
+    }).then(function (response) {
+      if (!response.ok) throw new Error('Không thể đọc trạng thái chuyển dữ liệu.');
+      return response.json();
+    }).then(function (rows) {
+      return Array.isArray(rows) ? rows.map(function (row) { return row.migration_key; }) : [];
+    });
+  }
+
   function loadInstructions() {
     var staticInstructions = getStaticInstructions();
-    return loadServerInstructions().catch(function () { return []; }).then(function (serverInstructions) {
-      var seen = {};
-      return staticInstructions.concat(serverInstructions).filter(function (instruction) {
-        var key = normalizeText(instruction.title) + '|' + String(instruction.signedDate || '');
-        if (seen[key]) return false;
-        seen[key] = true;
-        return true;
-      }).sort(function (first, second) { return first.title.localeCompare(second.title, 'vi'); });
+    return Promise.all([
+      loadServerInstructions().catch(function () { return []; }),
+      loadContentMigrations().catch(function () { return []; })
+    ]).then(function (results) {
+      var serverInstructions = results[0];
+      var completed = results[1];
+      var serverTitles = {};
+      serverInstructions.forEach(function (item) { serverTitles[normalizeText(item.title)] = true; });
+      if (completed.indexOf('drug_instructions_v1') !== -1) staticInstructions = [];
+      staticInstructions = staticInstructions.filter(function (item) { return !serverTitles[normalizeText(item.title)]; });
+      return serverInstructions.concat(staticInstructions).sort(function (first, second) { return first.title.localeCompare(second.title, 'vi'); });
     });
   }
 

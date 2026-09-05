@@ -1227,6 +1227,14 @@ textarea {
   min-width: 108px;
 }
 
+.document-migration-status {
+  display: block;
+  margin-top: 8px;
+  color: var(--slate-700);
+  font-size: 0.78rem;
+  text-align: right;
+}
+
 .document-title {
   color: var(--navy-900);
   font-size: 1rem;

@@ -141,6 +141,15 @@
     });
   }
 
+  function loadContentMigrations() {
+    if (!hasServerConfig()) return Promise.resolve([]);
+    return serverRequest('/rest/v1/content_migrations?select=migration_key', {
+      method: 'GET', headers: { Accept: 'application/json' }
+    }).then(function (rows) {
+      return Array.isArray(rows) ? rows.map(function (row) { return row.migration_key; }) : [];
+    });
+  }
+
   function normalizeMatchText(value) {
     return String(value || '').toLocaleLowerCase('vi')
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -204,7 +213,7 @@
   function mergeDocuments(baseDocuments, uploadedDocuments, instructions) {
     var seen = {};
 
-    return sortDocuments(baseDocuments.concat(uploadedDocuments).filter(function (documentItem) {
+    return sortDocuments(uploadedDocuments.concat(baseDocuments).filter(function (documentItem) {
       if (!isValidDocument(documentItem)) {
         return false;
       }
@@ -228,9 +237,12 @@
 
     return Promise.all([
       loadServerDocuments().catch(function () { return []; }),
-      loadServerInstructions().catch(function () { return []; })
+      loadServerInstructions().catch(function () { return []; }),
+      loadContentMigrations().catch(function () { return []; })
     ]).then(function (results) {
-      return mergeDocuments(baseDocuments, results[0], baseInstructions.concat(results[1]));
+      if (results[2].indexOf('drug_documents_v1') !== -1) baseDocuments = [];
+      if (results[2].indexOf('drug_instructions_v1') !== -1) baseInstructions = [];
+      return mergeDocuments(baseDocuments, results[0], results[1].concat(baseInstructions));
     });
   }
 
@@ -756,6 +768,7 @@
     var loginButton = document.getElementById('open-staff-login');
     var controls = document.getElementById('document-staff-controls');
     var addButton = document.getElementById('open-document-upload');
+    var migrationButton = document.getElementById('migrate-legacy-documents');
 
     if (loginButton) {
       loginButton.hidden = isAuthenticated;
@@ -767,6 +780,11 @@
 
     if (addButton) {
       addButton.hidden = !isAuthenticated;
+    }
+
+    if (migrationButton) {
+      migrationButton.hidden = !isAuthenticated;
+      if (isAuthenticated) refreshMigrationButton();
     }
   }
 
@@ -968,6 +986,145 @@
     });
   }
 
+  function setMigrationStatus(message, isError) {
+    var status = document.getElementById('document-migration-status');
+    if (!status) return;
+    status.textContent = message || '';
+    status.style.color = isError ? '#b42318' : '';
+  }
+
+  function refreshMigrationButton() {
+    var button = document.getElementById('migrate-legacy-documents');
+    if (!button || !staffAuthenticated) return;
+    loadContentMigrations().then(function (keys) {
+      button.hidden = keys.indexOf('drug_documents_v1') !== -1 && keys.indexOf('drug_instructions_v1') !== -1;
+    }).catch(function () { button.hidden = false; });
+  }
+
+  function fetchLegacyPdf(url, fileName) {
+    return fetch(url).then(function (response) {
+      if (!response.ok) throw new Error('Không đọc được PDF cũ: ' + fileName);
+      return response.blob();
+    }).then(function (blob) {
+      if (blob.size > maxUploadBytes) throw new Error('PDF vượt quá 25 MB: ' + fileName);
+      return new File([blob], fileName, { type: 'application/pdf' });
+    });
+  }
+
+  function uploadLegacyInstruction(item, signedDate) {
+    var storagePath = 'hdsd/' + signedDate.slice(0, 7) + '/' + createSecureId() + '.pdf';
+    var token = '';
+    var uploaded = false;
+    return fetchLegacyPdf(item.url, item.file).then(function (file) {
+      return getStaffAccessToken().then(function (accessToken) {
+        token = accessToken;
+        return serverRequest('/storage/v1/object/' + encodeURIComponent(storageBucket) + '/' + encodeStoragePath(storagePath), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/pdf', 'Cache-Control': '3600', 'x-upsert': 'false' },
+          body: file
+        }, token);
+      }).then(function () {
+        uploaded = true;
+        return serverRequest('/rest/v1/drug_instructions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+          body: JSON.stringify({
+            title: item.title,
+            keywords: item.keywords || '',
+            signed_date: signedDate,
+            file_name: item.file.slice(0, 255),
+            storage_path: storagePath
+          })
+        }, token);
+      });
+    }).catch(function (error) {
+      if (!uploaded || !token) throw error;
+      return removeStorageObject(storagePath, token).catch(function () {}).then(function () { throw error; });
+    });
+  }
+
+  function markMigrationComplete(key) {
+    return getStaffAccessToken().then(function (token) {
+      return serverRequest('/rest/v1/content_migrations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Prefer: 'resolution=ignore-duplicates,return=minimal' },
+        body: JSON.stringify({ migration_key: key })
+      }, token);
+    });
+  }
+
+  function runSequentially(items, worker, onProgress) {
+    return items.reduce(function (promise, item, index) {
+      return promise.then(function () {
+        onProgress(index + 1, items.length, item);
+        return worker(item);
+      });
+    }, Promise.resolve());
+  }
+
+  function migrateLegacyContent() {
+    var button = document.getElementById('migrate-legacy-documents');
+    var staticDocuments = getBaseDocuments();
+    var staticInstructions = getBaseInstructions();
+    var today = new Date().toISOString().slice(0, 10);
+    if (button) button.disabled = true;
+    setMigrationStatus('Đang kiểm tra dữ liệu cũ...', false);
+
+    return Promise.all([loadServerDocuments(), loadServerInstructions(), loadContentMigrations()]).then(function (results) {
+      var serverDocuments = results[0];
+      var serverInstructions = results[1];
+      var completed = results[2];
+      var documentKeys = {};
+      var instructionKeys = {};
+      serverDocuments.forEach(function (item) { documentKeys[normalizeMatchText(item.title) + '|' + item.signedDate] = true; });
+      serverInstructions.forEach(function (item) { instructionKeys[normalizeMatchText(item.title)] = true; });
+
+      var pendingDocuments = completed.indexOf('drug_documents_v1') !== -1 ? [] : staticDocuments.filter(function (item) {
+        return !documentKeys[normalizeMatchText(item.title) + '|' + item.signedDate];
+      });
+      var pendingInstructions = completed.indexOf('drug_instructions_v1') !== -1 ? [] : staticInstructions.filter(function (item) {
+        return !instructionKeys[normalizeMatchText(item.title)];
+      });
+
+      return runSequentially(pendingDocuments, function (item) {
+        var sourceUrl = documentUrl(item.file);
+        return fetchLegacyPdf(sourceUrl, item.file).then(function (file) {
+          return uploadServerDocument(file, item.title, item.signedDate);
+        });
+      }, function (current, total) {
+        setMigrationStatus('Đang chuyển Thông tin thuốc: ' + current + '/' + total, false);
+      }).then(function () {
+        return completed.indexOf('drug_documents_v1') === -1 ? markMigrationComplete('drug_documents_v1') : null;
+      }).then(function () {
+        return runSequentially(pendingInstructions, function (item) {
+          return uploadLegacyInstruction(item, today);
+        }, function (current, total) {
+          setMigrationStatus('Đang chuyển HDSD: ' + current + '/' + total, false);
+        });
+      }).then(function () {
+        return completed.indexOf('drug_instructions_v1') === -1 ? markMigrationComplete('drug_instructions_v1') : null;
+      });
+    }).then(function () {
+      setMigrationStatus('Đã chuyển toàn bộ dữ liệu. Mọi tài liệu đều có thể xóa thật.', false);
+      signalDocumentsChanged();
+      return refreshDocuments();
+    }).catch(function (error) {
+      setMigrationStatus(error && error.message ? error.message : 'Không thể chuyển dữ liệu cũ.', true);
+    }).finally(function () {
+      if (button) button.disabled = false;
+      refreshMigrationButton();
+    });
+  }
+
+  function initLegacyMigration() {
+    var button = document.getElementById('migrate-legacy-documents');
+    if (!button) return;
+    button.addEventListener('click', function () {
+      if (!staffAuthenticated) return;
+      migrateLegacyContent();
+    });
+  }
+
   function initUploadDialog() {
     var openButton = document.getElementById('open-document-upload');
     var dialog = document.getElementById('document-upload-dialog');
@@ -1147,6 +1304,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     initStaffAccess();
     initUploadDialog();
+    initLegacyMigration();
     refreshDocuments();
   });
 }());

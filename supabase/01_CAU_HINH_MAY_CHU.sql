@@ -165,4 +165,24 @@ for delete
 to authenticated
 using (public.is_pharmacy_staff());
 
+create table if not exists public.content_migrations (
+  migration_key text primary key check (migration_key in ('drug_documents_v1', 'drug_instructions_v1')),
+  completed_by uuid not null default auth.uid() references auth.users(id),
+  completed_at timestamptz not null default now()
+);
+
+alter table public.content_migrations enable row level security;
+revoke all on table public.content_migrations from anon, authenticated;
+grant select on table public.content_migrations to anon, authenticated;
+grant insert on table public.content_migrations to authenticated;
+
+drop policy if exists "Public can read content migrations" on public.content_migrations;
+create policy "Public can read content migrations"
+on public.content_migrations for select to anon, authenticated using (true);
+
+drop policy if exists "Pharmacy staff can complete content migrations" on public.content_migrations;
+create policy "Pharmacy staff can complete content migrations"
+on public.content_migrations for insert to authenticated
+with check (public.is_pharmacy_staff() and completed_by = auth.uid());
+
 commit;
