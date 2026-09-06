@@ -11,6 +11,9 @@
   var authenticated = false;
   var refreshPromise = null;
   var posts = [];
+  var currentPage = 1;
+  var totalPages = 1;
+  var hasNextPage = false;
   var previewUrl = '';
   var channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('khoa-duoc-posts') : null;
 
@@ -37,7 +40,7 @@
           failure.payload = payload;
           throw failure;
         }
-        return payload;
+        return opts.returnMeta ? { data: payload, headers: response.headers } : payload;
       });
     });
   }
@@ -212,11 +215,34 @@
     return Array.prototype.map.call(bytes, function (value) { return value.toString(16).padStart(2, '0'); }).join('');
   }
 
-  function loadPosts() {
-    if (!configured()) return Promise.resolve([]);
-    return request('/rest/v1/posts?select=id,title,category,excerpt,publish_date,week_number,author,file_name,storage_path,created_at&order=created_at.desc&limit=5', { method: 'GET', headers: { Accept: 'application/json' } }).then(function (rows) {
-      return Array.isArray(rows) ? rows : [];
+  function loadPosts(page) {
+    if (!configured()) return Promise.resolve({ rows: [], total: 0, hasNext: false });
+    var requestedPage = Math.max(1, Number(page) || 1);
+    var offset = (requestedPage - 1) * 5;
+    return request('/rest/v1/posts?select=id,title,category,excerpt,publish_date,week_number,author,file_name,storage_path,created_at&order=created_at.desc&limit=5&offset=' + offset, {
+      method: 'GET',
+      returnMeta: true,
+      headers: { Accept: 'application/json', Prefer: 'count=exact' }
+    }).then(function (result) {
+      var rows = Array.isArray(result.data) ? result.data : [];
+      var contentRange = result.headers && result.headers.get('content-range');
+      var total = 0;
+      var match = contentRange && contentRange.match(/\/([0-9]+|\*)$/);
+      if (match && match[1] !== '*') total = Number(match[1]);
+      return { rows: rows, total: total, hasNext: total ? offset + rows.length < total : rows.length === 5 };
     });
+  }
+
+  function renderPagination() {
+    var pagination = document.getElementById('post-pagination');
+    var previous = document.getElementById('post-page-prev');
+    var next = document.getElementById('post-page-next');
+    var label = document.getElementById('post-page-label');
+    var visible = totalPages > 1 || currentPage > 1;
+    if (pagination) pagination.hidden = !visible;
+    if (previous) previous.disabled = currentPage <= 1;
+    if (next) next.disabled = !hasNextPage;
+    if (label) label.textContent = 'Trang ' + currentPage + (totalPages > 1 ? ' / ' + totalPages : '');
   }
 
   function removeStorageObject(path, token) {
@@ -247,7 +273,7 @@
     if (!ledger) return;
     ledger.textContent = '';
     if (!items.length) {
-      var empty = document.createElement('p'); empty.className = 'document-empty'; empty.textContent = 'Chưa có bản tin trên Supabase.'; ledger.appendChild(empty); return;
+      var empty = document.createElement('p'); empty.className = 'document-empty'; empty.textContent = 'Chưa có bản tin trên Supabase.'; ledger.appendChild(empty); renderPagination(); return;
     }
     items.slice(0, 5).forEach(function (item) {
       var row = document.createElement('article'); row.className = 'ledger-row';
@@ -269,25 +295,36 @@
         remove.textContent = 'Xóa bản tin';
         remove.addEventListener('click', function () {
           remove.disabled = true;
-          setStatus('post-upload-status', 'Đang xóa bản tin...', '');
+          setStatus('post-list-status', 'Đang xóa bản tin...', '');
           deletePost(item).then(function () {
             if (channel) channel.postMessage('refresh');
             return refresh();
           }).then(function () {
-            setStatus('post-upload-status', 'Đã xóa bản tin và tệp PDF.', 'success');
+            setStatus('post-list-status', 'Đã xóa bản tin và tệp PDF.', 'success');
           }).catch(function () {
             remove.disabled = false;
-            setStatus('post-upload-status', 'Không thể xóa bản tin. Vui lòng thử lại.', 'error');
+            setStatus('post-list-status', 'Không thể xóa bản tin. Vui lòng thử lại.', 'error');
           });
         });
         body.appendChild(remove);
       }
       row.appendChild(stamp); row.appendChild(body); ledger.appendChild(row);
     });
+    renderPagination();
   }
 
   function refresh() {
-    return loadPosts().then(function (items) { posts = items; renderPosts(items); return items; }).catch(function () { renderPosts([]); return []; });
+    return loadPosts(currentPage).then(function (result) {
+      if (!result.rows.length && currentPage > 1) {
+        currentPage -= 1;
+        return refresh();
+      }
+      posts = result.rows;
+      hasNextPage = result.hasNext;
+      totalPages = result.total ? Math.max(1, Math.ceil(result.total / 5)) : Math.max(currentPage, result.hasNext ? currentPage + 1 : currentPage);
+      renderPosts(posts);
+      return posts;
+    }).catch(function () { posts = []; hasNextPage = false; totalPages = 1; renderPosts([]); return []; });
   }
 
   function openDialog(id) {
@@ -312,8 +349,10 @@
     var previewEmpty = document.getElementById('post-pdf-preview-empty');
     var dateOutput = document.getElementById('post-detected-date');
     var titleOutput = document.getElementById('post-detected-title');
+    var previousPage = document.getElementById('post-page-prev');
+    var nextPage = document.getElementById('post-page-next');
     renderAccess();
-    validateStaff().then(function () { renderAccess(); return refresh(); });
+    validateStaff().then(function () { renderAccess(); renderPosts(posts); return refresh(); });
     if (loginButton) loginButton.addEventListener('click', function () { openDialog('post-login-dialog'); if (!configured()) setStatus('post-login-status', 'Máy chủ Supabase chưa được cấu hình.', 'error'); });
     ['close-post-login', 'cancel-post-login'].forEach(function (id) { var node = document.getElementById(id); if (node) node.addEventListener('click', function () { closeDialog('post-login-dialog'); }); });
     if (loginForm) loginForm.addEventListener('submit', function (event) {
@@ -321,9 +360,22 @@
       var email = document.getElementById('post-login-email').value.trim().toLowerCase();
       var password = document.getElementById('post-login-password').value;
       setStatus('post-login-status', 'Đang xác thực...', '');
-      signIn(email, password).then(function () { renderAccess(); closeDialog('post-login-dialog'); }).catch(function () { setStatus('post-login-status', 'Email, mật khẩu hoặc quyền admin không đúng.', 'error'); });
+      signIn(email, password).then(function () {
+        renderAccess();
+        renderPosts(posts);
+        closeDialog('post-login-dialog');
+        return refresh();
+      }).catch(function () { setStatus('post-login-status', 'Email, mật khẩu hoặc quyền admin không đúng.', 'error'); });
     });
-    if (logoutButton) logoutButton.addEventListener('click', function () { signOut().then(function () { renderAccess(); }); });
+    if (logoutButton) logoutButton.addEventListener('click', function () {
+      signOut().then(function () {
+        renderAccess();
+        renderPosts(posts);
+        return refresh();
+      });
+    });
+    if (previousPage) previousPage.addEventListener('click', function () { if (currentPage > 1) { currentPage -= 1; refresh(); } });
+    if (nextPage) nextPage.addEventListener('click', function () { if (hasNextPage) { currentPage += 1; refresh(); } });
     if (uploadButton) uploadButton.addEventListener('click', function () { if (authenticated) openDialog('post-upload-dialog'); else openDialog('post-login-dialog'); });
     ['close-post-upload', 'close-post-upload-cancel'].forEach(function (id) { var node = document.getElementById(id); if (node) node.addEventListener('click', function () { closeDialog('post-upload-dialog'); }); });
     if (fileInput) fileInput.addEventListener('change', function () {

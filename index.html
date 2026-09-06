@@ -160,8 +160,16 @@
       </div>
     </div>
     <div class="bulletin-layout">
-      <div class="ledger scroll-region" id="bulletin-ledger" tabindex="0" aria-label="Danh sách bản tin Dược lâm sàng">
-        <p class="document-empty">Đang tải bản tin từ Supabase...</p>
+      <div class="bulletin-main">
+        <div class="ledger scroll-region" id="bulletin-ledger" tabindex="0" aria-label="Danh sách bản tin Dược lâm sàng">
+          <p class="document-empty">Đang tải bản tin từ Supabase...</p>
+        </div>
+        <nav class="post-pagination" id="post-pagination" aria-label="Phân trang bản tin" hidden>
+          <button class="document-add-button" id="post-page-prev" type="button">← Trang trước</button>
+          <span id="post-page-label" aria-live="polite">Trang 1</span>
+          <button class="document-add-button" id="post-page-next" type="button">Trang sau →</button>
+        </nav>
+        <p class="document-upload-status post-list-status" id="post-list-status" role="status" aria-live="polite"></p>
       </div>
 
       <aside class="bulletin-sidebar" aria-label="Thông tin bản tin">

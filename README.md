@@ -27,6 +27,8 @@ Website được triển khai trực tuyến thông qua GitHub Pages và tên mi
 
 Trang chủ không chứa bài viết mẫu. `assets/js/posts.js` truy vấn đúng 5 bản ghi mới nhất bằng `order=created_at.desc&limit=5`.
 
+Khi có quá 5 bản ghi, nút phân trang xuất hiện; mỗi lần chuyển trang dùng `offset` để đọc 5 bài tiếp theo từ Supabase.
+
 Tài khoản được cấp trong `pharmacy_staff_members` là admin của luồng bản tin. Admin tải PDF lên ngay tại khu vực Bản tin; tệp được lưu vào Storage, còn metadata được ghi vào bảng `posts` với `author = 'admin'`.
 
 Sau khi đăng nhập, admin có nút “Xóa bản tin”. Thao tác xóa bản ghi `posts` và dọn tệp PDF tương ứng trong Storage; người xem thông thường không thấy nút này và bị RLS chặn thao tác xóa.
