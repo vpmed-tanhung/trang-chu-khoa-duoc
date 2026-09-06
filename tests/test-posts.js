@@ -26,8 +26,10 @@ const posts = context.window.KHOA_DUOC_POSTS;
 assert.strictEqual(posts.formatDate('2026-09-06'), '06/09/2026');
 
 assert.ok(!/Tuần\s+['"+]/.test(source), 'Không được tiếp tục tạo tiêu đề theo tuần.');
-assert.ok(source.includes("link.textContent = 'Bản tin Dược'"));
+assert.ok(source.includes("link.textContent = item.title || 'Bản tin Dược'"));
 assert.ok(source.includes("(item.author || 'admin') + ' - ' + formatDate(item.publish_date)"));
 assert.ok(!source.includes('actualPostDateIso'), 'Không được thay ngày gốc bằng created_at.');
+assert.ok(source.includes("document.getElementById('post-title')"));
+assert.ok(source.includes("titleInput.value.trim().replace(/\\s+/g, ' ')"));
 
 console.log('Đã kiểm tra ngày đăng thực tế và tiêu đề bản tin: OK');

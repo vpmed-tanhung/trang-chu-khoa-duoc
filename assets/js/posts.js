@@ -224,7 +224,7 @@
       var row = document.createElement('article'); row.className = 'ledger-row';
       var body = document.createElement('div'); body.className = 'ledger-body';
       var heading = document.createElement('h3');
-      var link = document.createElement('a'); link.href = item.storage_path ? publicUrl(item.storage_path) : '#'; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Bản tin Dược'; heading.appendChild(link);
+      var link = document.createElement('a'); link.href = item.storage_path ? publicUrl(item.storage_path) : '#'; link.target = '_blank'; link.rel = 'noopener'; link.textContent = item.title || 'Bản tin Dược'; heading.appendChild(link);
       body.appendChild(heading);
       var meta = document.createElement('div'); meta.className = 'ledger-meta'; meta.textContent = (item.author || 'admin') + ' - ' + formatDate(item.publish_date); body.appendChild(meta);
       if (item.excerpt) { var excerpt = document.createElement('p'); excerpt.textContent = item.excerpt; body.appendChild(excerpt); }
@@ -287,7 +287,7 @@
     var fileInput = document.getElementById('post-pdf-file');
     var preview = document.getElementById('post-pdf-preview');
     var previewEmpty = document.getElementById('post-pdf-preview-empty');
-    var titleOutput = document.getElementById('post-detected-title');
+    var titleInput = document.getElementById('post-title');
     var previousPage = document.getElementById('post-page-prev');
     var nextPage = document.getElementById('post-page-next');
     renderAccess();
@@ -323,14 +323,13 @@
       if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) { setStatus('post-upload-status', 'Chỉ chấp nhận tệp PDF.', 'error'); fileInput.value = ''; return; }
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       previewUrl = URL.createObjectURL(file); if (preview) preview.data = previewUrl; if (previewEmpty) previewEmpty.hidden = true;
-      if (titleOutput) titleOutput.value = 'Bản tin Dược';
       setStatus('post-upload-status', 'Đã chọn PDF.', 'success');
     });
     if (uploadForm) uploadForm.addEventListener('submit', function (event) {
       event.preventDefault();
       if (!authenticated) { setStatus('post-upload-status', 'Phiên admin không hợp lệ.', 'error'); return; }
-      var file = fileInput.files && fileInput.files[0]; var publishDate = localDateIso(); var title = 'Bản tin Dược';
-      if (!file) { setStatus('post-upload-status', 'Vui lòng chọn PDF.', 'error'); return; }
+      var file = fileInput.files && fileInput.files[0]; var publishDate = localDateIso(); var title = titleInput ? titleInput.value.trim().replace(/\s+/g, ' ') : '';
+      if (!file || !title) { setStatus('post-upload-status', 'Vui lòng chọn PDF và nhập tiêu đề.', 'error'); return; }
       if (file.size > maxBytes) { setStatus('post-upload-status', 'Tệp PDF vượt quá giới hạn 25 MB.', 'error'); return; }
       var path = 'posts/' + publishDate.slice(0, 7) + '/' + safeId() + '.pdf'; var uploaded = false; var token = '';
       setStatus('post-upload-status', 'Đang tải bản tin lên Supabase...', '');
