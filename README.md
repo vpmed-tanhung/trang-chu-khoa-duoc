@@ -2,10 +2,6 @@
 
 Phiên bản hiện tại: **v1.1.8**
 
-Sau khi cập nhật mã nguồn, chạy một lần tệp `supabase/04_CHO_PHEP_SUA_TIEU_DE.sql` trong Supabase SQL Editor để admin có thể sửa tiêu đề của mọi nội dung đã lưu.
-
-Ở phiên bản này, Thông tin thuốc và HDSD được đối chiếu lại theo cả hai chiều sau mỗi lần tải lên. Tên thuốc được chuẩn hóa, bỏ các từ mô tả dạng bào chế và quy đổi tương đương `1 g = 1000 mg`; hệ thống không tự ghép khi kết quả còn mơ hồ hoặc hàm lượng khác nhau.
-
 Website cung cấp thông tin và tài liệu chuyên môn phục vụ hoạt động của Khoa Dược.
 
 ## 📚 Nội dung chính
