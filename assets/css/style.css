@@ -451,6 +451,26 @@ textarea {
   margin-bottom: 36px;
 }
 
+.bulletin-section .section-head {
+  display: flex;
+  max-width: none;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.post-staff-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.post-staff-actions [hidden] {
+  display: none !important;
+}
+
 .section-head h2 {
   color: var(--brand-blue);
 }
@@ -1508,6 +1528,16 @@ textarea {
 
   .section-head {
     margin-bottom: 28px;
+  }
+
+  .bulletin-section .section-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .post-staff-actions {
+    justify-content: flex-start;
   }
 
   .divided-list {

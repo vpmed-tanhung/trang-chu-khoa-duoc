@@ -149,64 +149,19 @@
 <section class="section bulletin-section" id="ban-tin">
   <div class="container">
     <div class="section-head">
-      <h2>Bản tin Dược lâm sàng</h2>
-      <p>Dành cho bác sĩ, điều dưỡng và dược sĩ trong bệnh viện.</p>
+      <div>
+        <h2>Bản tin Dược lâm sàng</h2>
+        <p>Dành cho bác sĩ, điều dưỡng và dược sĩ trong bệnh viện.</p>
+      </div>
+      <div class="post-staff-actions" aria-label="Quản trị bản tin">
+        <button class="document-login-button" id="open-post-login" type="button">Đăng nhập admin</button>
+        <button class="document-add-button" id="open-post-upload" type="button" hidden><span aria-hidden="true">+</span> Tải PDF bản tin</button>
+        <button class="document-logout-button" id="post-logout" type="button" hidden>Đăng xuất</button>
+      </div>
     </div>
     <div class="bulletin-layout">
-      <div class="ledger scroll-region" tabindex="0" aria-label="Danh sách bản tin Dược lâm sàng">
-        <article class="ledger-row">
-          <div class="date-stamp"><span class="day">31</span><span class="month">Th8</span></div>
-          <div class="ledger-body">
-            <h3>Bản tin Dược lâm sàng &#8211; Tuần 5, tháng 8/2026</h3>
-            <div class="ledger-meta">Đơn vị Thông tin thuốc &#8211; Thông tin thuốc</div>
-            <p>Cập nhật khuyến cáo liều dùng kháng sinh nhóm carbapenem trên người bệnh suy thận, kèm bảng hiệu chỉnh liều theo độ lọc cầu thận.</p>
-          </div>
-        </article>
-
-        <article class="ledger-row">
-          <div class="date-stamp"><span class="day">24</span><span class="month">Th8</span></div>
-          <div class="ledger-body">
-            <h3>Bản tin Dược lâm sàng &#8211; Tuần 4, tháng 8/2026</h3>
-            <div class="ledger-meta">Đơn vị Thông tin thuốc &#8211; Thông tin thuốc</div>
-            <p>Danh mục thuốc mới trúng thầu quý III và hướng dẫn bảo quản thuốc trong điều kiện thời tiết nắng nóng kéo dài.</p>
-          </div>
-        </article>
-
-        <article class="ledger-row">
-          <div class="date-stamp"><span class="day">17</span><span class="month">Th8</span></div>
-          <div class="ledger-body">
-            <h3>Bản tin Dược lâm sàng &#8211; Tuần 3, tháng 8/2026</h3>
-            <div class="ledger-meta">Đơn vị Cảnh giác dược &#8211; Cảnh báo an toàn</div>
-            <p>Cảnh báo an toàn thuốc từ Cục Quản lý Dược liên quan đến một số biệt dược chứa hoạt chất cần giám sát chặt.</p>
-          </div>
-        </article>
-
-        <article class="ledger-row">
-          <div class="date-stamp"><span class="day">10</span><span class="month">Th8</span></div>
-          <div class="ledger-body">
-            <h3>Bản tin Dược lâm sàng &#8211; Tuần 2, tháng 8/2026</h3>
-            <div class="ledger-meta">Đơn vị Dược lâm sàng &#8211; Tương tác thuốc</div>
-            <p>Tổng hợp các cặp tương tác thuốc thường gặp trong đơn ngoại trú và hướng xử trí thay thế.</p>
-          </div>
-        </article>
-
-        <article class="ledger-row">
-          <div class="date-stamp"><span class="day">03</span><span class="month">Th8</span></div>
-          <div class="ledger-body">
-            <h3>Bản tin Dược lâm sàng &#8211; Tuần 1, tháng 8/2026</h3>
-            <div class="ledger-meta">Đơn vị Thông tin thuốc &#8211; Hướng dẫn sử dụng</div>
-            <p>Cập nhật hướng dẫn pha truyền một số thuốc tiêm tĩnh mạch theo khuyến cáo của nhà sản xuất.</p>
-          </div>
-        </article>
-
-        <article class="ledger-row">
-          <div class="date-stamp"><span class="day">27</span><span class="month">Th7</span></div>
-          <div class="ledger-body">
-            <h3>Bản tin Dược lâm sàng &#8211; Tuần 4, tháng 7/2026</h3>
-            <div class="ledger-meta">Đơn vị Kho &amp; Cấp phát &#8211; Thông báo</div>
-            <p>Thông báo thay đổi quy trình lĩnh thuốc gây nghiện, hướng thần tại các khoa lâm sàng.</p>
-          </div>
-        </article>
+      <div class="ledger scroll-region" id="bulletin-ledger" tabindex="0" aria-label="Danh sách bản tin Dược lâm sàng">
+        <p class="document-empty">Đang tải bản tin từ Supabase...</p>
       </div>
 
       <aside class="bulletin-sidebar" aria-label="Thông tin bản tin">
@@ -237,6 +192,35 @@
   </div>
 </section>
 </main>
+
+<dialog class="document-login-dialog" id="post-login-dialog" aria-labelledby="post-login-title">
+  <form id="post-login-form">
+    <div class="document-upload-header"><div><div class="kicker">Quản trị bản tin</div><h2 id="post-login-title">Đăng nhập admin</h2></div><button class="document-dialog-close" id="close-post-login" type="button" aria-label="Đóng">×</button></div>
+    <div class="document-login-fields">
+      <label class="document-form-field"><span>Email admin</span><input id="post-login-email" type="email" autocomplete="username" required></label>
+      <label class="document-form-field"><span>Mật khẩu</span><input id="post-login-password" type="password" autocomplete="current-password" required></label>
+      <p class="document-upload-status" id="post-login-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="document-upload-actions"><button class="document-upload-cancel" id="cancel-post-login" type="button">Hủy</button><button class="document-upload-submit" type="submit">Đăng nhập</button></div>
+  </form>
+</dialog>
+
+<dialog class="document-upload-dialog" id="post-upload-dialog" aria-labelledby="post-upload-title">
+  <form id="post-upload-form">
+    <div class="document-upload-header"><div><div class="kicker">Bản tin Dược lâm sàng</div><h2 id="post-upload-title">Tải lên PDF bản tin</h2></div><button class="document-dialog-close" id="close-post-upload" type="button" aria-label="Đóng">×</button></div>
+    <div class="document-upload-grid">
+      <div class="document-upload-fields">
+        <label class="document-form-field"><span>Tệp PDF</span><input id="post-pdf-file" type="file" accept="application/pdf,.pdf" required></label>
+        <label class="document-form-field"><span>Ngày nhận diện</span><input id="post-detected-date" type="date" readonly required></label>
+        <label class="document-form-field"><span>Tiêu đề chuẩn hóa</span><input id="post-detected-title" type="text" maxlength="240" readonly required></label>
+        <small>Hệ thống đọc ngày trong PDF (hoặc tên tệp); nếu không có sẽ dùng ngày tải lên và tự tính tuần 1–5.</small>
+        <p class="document-upload-status" id="post-upload-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="document-pdf-preview-wrap"><div class="document-pdf-preview-label">Xem trước PDF</div><object id="post-pdf-preview" class="document-pdf-preview" type="application/pdf" aria-label="Bản xem trước PDF"></object><p class="document-pdf-preview-empty" id="post-pdf-preview-empty">Chọn PDF để xem trước.</p></div>
+    </div>
+    <div class="document-upload-actions"><button class="document-upload-cancel" id="close-post-upload-cancel" type="button">Hủy</button><button class="document-upload-submit" type="submit">Đăng bản tin</button></div>
+  </form>
+</dialog>
 
 <div class="footer-disclaimer">
   <strong>MIỄN TRỪ TRÁCH NHIỆM PHÁP LÝ:</strong>
@@ -274,6 +258,7 @@
 <script src="assets/js/instructions-data.js"></script>
 <script src="assets/js/drug-documents-data.js"></script>
 <script src="assets/js/server-config.js"></script>
+<script src="assets/js/posts.js"></script>
 <script src="assets/js/vendor/pdf-lib.min.js"></script>
 <script src="assets/js/drug-documents.js"></script>
 <script src="assets/js/instructions.js"></script>

@@ -14,6 +14,7 @@ BƯỚC 2 — TẠO TÀI KHOẢN NHÂN VIÊN
 3. Tạo một mật khẩu mới, mạnh và chưa từng sử dụng ở nơi khác.
 4. Bật xác nhận email cho tài khoản nếu màn hình có lựa chọn này.
 5. Quay lại SQL Editor và chạy file: supabase/02_CAP_QUYEN_NHAN_VIEN.sql
+6. Chạy file supabase/03_TAO_BANG_BAN_TIN.sql để tạo bảng `posts`, chỉ mục theo `created_at` và chính sách Storage cho PDF bản tin.
 
 BƯỚC 3 — KẾT NỐI WEBSITE
 1. Trong Supabase, mở nút Connect hoặc Settings > API Keys.
@@ -32,6 +33,7 @@ BƯỚC 4 — ĐƯA WEBSITE LÊN GIT VÀ KIỂM TRA
 2. Mở mục Thông tin thuốc và đăng nhập bằng email nhân viên cùng mật khẩu mới.
 3. Tải thử một PDF nhỏ hơn 25 MB.
 4. Mở website bằng cửa sổ ẩn danh để kiểm tra tài liệu mới đã hiển thị công khai.
+5. Tại khu vực “Bản tin Dược lâm sàng”, đăng nhập admin rồi bấm “Tải PDF bản tin”. Tiêu đề và ngày được khóa theo kết quả nhận diện; mã nguồn không cài dữ liệu mẫu.
 
 BƯỚC 5 — ĐĂNG HƯỚNG DẪN SỬ DỤNG VÀ TỰ ĐỐI CHIẾU
 1. Mở mục Hướng dẫn sử dụng, đăng nhập bằng cùng tài khoản nhân viên.
