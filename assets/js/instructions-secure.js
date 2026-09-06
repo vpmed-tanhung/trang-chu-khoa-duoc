@@ -110,17 +110,61 @@
       window.dispatchEvent(new Event('khoa-duoc-auth-changed'));
     }).catch(function () { window.alert('Không thể xóa HDSD. Vui lòng thử lại.'); });
   }
+
+  function updateInstructionTitle(instruction, title) {
+    if (!authenticated || !instruction || !instruction.id) return Promise.reject(new Error('Không có quyền sửa tiêu đề.'));
+    return accessToken().then(function (token) {
+      return request('/rest/v1/drug_instructions?id=eq.' + encodeURIComponent(instruction.id), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ title: title })
+      }, token);
+    }).then(function () {
+      instruction.title = title;
+      signalInstructionChanged();
+      window.dispatchEvent(new Event('khoa-duoc-auth-changed'));
+    });
+  }
   function closeDialog(id) {
     var dialog = document.getElementById(id);
     if (!dialog) return;
     var form = dialog.querySelector('form');
     if (form) form.reset();
+    if (id === 'instruction-upload-dialog') clearInstructionPreview();
     if (typeof dialog.close === 'function') dialog.close(); else dialog.removeAttribute('open');
   }
   function openDialog(id) {
     var dialog = document.getElementById(id);
     if (!dialog) return;
     if (typeof dialog.showModal === 'function') dialog.showModal(); else dialog.setAttribute('open', '');
+  }
+
+  function clearInstructionPreview() {
+    var preview = document.getElementById('instruction-pdf-preview');
+    var empty = document.getElementById('instruction-pdf-preview-empty');
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      previewUrl = '';
+    }
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.clearPdfPreview(preview, empty);
+    else {
+      if (preview) { preview.removeAttribute('data'); preview.classList.remove('is-visible'); }
+      if (empty) empty.hidden = false;
+    }
+  }
+
+  function showInstructionPreview(file) {
+    var preview = document.getElementById('instruction-pdf-preview');
+    var empty = document.getElementById('instruction-pdf-preview-empty');
+    clearInstructionPreview();
+    if (!preview || !file) return;
+    previewUrl = URL.createObjectURL(file);
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.showPdfPreview(preview, empty, previewUrl);
+    else {
+      preview.data = previewUrl;
+      preview.classList.add('is-visible');
+      if (empty) empty.hidden = true;
+    }
   }
   function secureId() {
     if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
@@ -162,6 +206,7 @@
   }
   function init() {
     window.KHOA_DUOC_DELETE_INSTRUCTION = deleteInstruction;
+    window.KHOA_DUOC_UPDATE_INSTRUCTION_TITLE = updateInstructionTitle;
     var login = document.getElementById('open-staff-login');
     var logout = document.getElementById('staff-logout');
     var loginDialog = document.getElementById('staff-login-dialog');
@@ -181,7 +226,10 @@
     });
     if (login) login.addEventListener('click', function () { openDialog('staff-login-dialog'); if (!configured()) setStatus('staff-login-status', 'Máy chủ bảo mật chưa được cấu hình.', 'error'); });
     ['close-staff-login', 'cancel-staff-login'].forEach(function (id) { var button = document.getElementById(id); if (button) button.addEventListener('click', function () { closeDialog('staff-login-dialog'); }); });
-    if (loginDialog) loginDialog.addEventListener('click', function (event) { if (event.target === loginDialog) closeDialog('staff-login-dialog'); });
+    if (loginDialog) {
+      loginDialog.addEventListener('click', function (event) { if (event.target === loginDialog) closeDialog('staff-login-dialog'); });
+      loginDialog.addEventListener('cancel', function (event) { event.preventDefault(); closeDialog('staff-login-dialog'); });
+    }
     if (loginForm) loginForm.addEventListener('submit', function (event) {
       event.preventDefault();
       var email = document.getElementById('staff-username').value.trim().toLowerCase();
@@ -200,8 +248,11 @@
     });
     if (add) add.addEventListener('click', function () { if (!authenticated) { openDialog('staff-login-dialog'); return; } openDialog('instruction-upload-dialog'); });
     ['close-instruction-upload', 'cancel-instruction-upload'].forEach(function (id) { var button = document.getElementById(id); if (button) button.addEventListener('click', function () { closeDialog('instruction-upload-dialog'); }); });
-    if (uploadDialog) uploadDialog.addEventListener('click', function (event) { if (event.target === uploadDialog) closeDialog('instruction-upload-dialog'); });
-    if (fileInput) fileInput.addEventListener('change', function () { var file = fileInput.files && fileInput.files[0]; setStatus('instruction-upload-status', '', ''); if (!file) return; if ((file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) || file.size > maxBytes) { setStatus('instruction-upload-status', 'Chỉ nhận PDF hợp lệ, tối đa 25 MB.', 'error'); fileInput.value = ''; return; } if (previewUrl) URL.revokeObjectURL(previewUrl); previewUrl = URL.createObjectURL(file); preview.data = previewUrl; preview.classList.add('is-visible'); if (empty) empty.hidden = true; });
+    if (uploadDialog) {
+      uploadDialog.addEventListener('click', function (event) { if (event.target === uploadDialog) closeDialog('instruction-upload-dialog'); });
+      uploadDialog.addEventListener('cancel', function (event) { event.preventDefault(); closeDialog('instruction-upload-dialog'); });
+    }
+    if (fileInput) fileInput.addEventListener('change', function () { var file = fileInput.files && fileInput.files[0]; setStatus('instruction-upload-status', '', ''); if (!file) { clearInstructionPreview(); return; } if ((file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) || file.size > maxBytes) { clearInstructionPreview(); setStatus('instruction-upload-status', 'Chỉ nhận PDF hợp lệ, tối đa 25 MB.', 'error'); fileInput.value = ''; return; } showInstructionPreview(file); });
     if (uploadForm) uploadForm.addEventListener('submit', function (event) {
       event.preventDefault();
       if (!authenticated) { closeDialog('instruction-upload-dialog'); return; }

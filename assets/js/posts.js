@@ -160,6 +160,13 @@
     return baseUrl + '/storage/v1/object/public/' + encodeURIComponent(bucket) + '/' + String(path || '').split('/').map(encodeURIComponent).join('/');
   }
 
+  function configurePdfLink(link) {
+    if (window.KHOA_DUOC_DEVICE) return window.KHOA_DUOC_DEVICE.configurePdfLink(link);
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    return link;
+  }
+
   function safeId() {
     if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
     var bytes = new Uint8Array(16); window.crypto.getRandomValues(bytes);
@@ -219,6 +226,17 @@
     });
   }
 
+  function updatePostTitle(item, title) {
+    if (!authenticated || !item || !item.id) return Promise.reject(new Error('Không có quyền sửa tiêu đề.'));
+    return accessToken().then(function (token) {
+      return request('/rest/v1/posts?id=eq.' + encodeURIComponent(item.id), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ title: title })
+      }, token);
+    });
+  }
+
   function renderPosts(items) {
     var ledger = document.getElementById('bulletin-ledger');
     if (!ledger) return;
@@ -230,11 +248,34 @@
       var row = document.createElement('article'); row.className = 'ledger-row';
       var body = document.createElement('div'); body.className = 'ledger-body';
       var heading = document.createElement('h3');
-      var link = document.createElement('a'); link.href = item.storage_path ? publicUrl(item.storage_path) : '#'; link.target = '_blank'; link.rel = 'noopener'; link.textContent = item.title || 'Bản tin Dược'; heading.appendChild(link);
+      var link = document.createElement('a'); link.href = item.storage_path ? publicUrl(item.storage_path) : '#'; link.textContent = item.title || 'Bản tin Dược'; configurePdfLink(link); heading.appendChild(link);
       body.appendChild(heading);
       var meta = document.createElement('div'); meta.className = 'ledger-meta'; meta.textContent = (item.author || 'admin') + ' - ' + formatDate(item.publish_date); body.appendChild(meta);
       if (item.excerpt) { var excerpt = document.createElement('p'); excerpt.textContent = item.excerpt; body.appendChild(excerpt); }
       if (authenticated && item.id) {
+        var controls = document.createElement('div');
+        controls.className = 'document-row-actions post-row-actions';
+        var edit = document.createElement('button');
+        edit.type = 'button';
+        edit.className = 'document-edit-button';
+        edit.textContent = 'Sửa tiêu đề';
+        edit.addEventListener('click', function () {
+          if (!window.KHOA_DUOC_TITLE_EDITOR) return;
+          window.KHOA_DUOC_TITLE_EDITOR.open({
+            container: body,
+            display: heading,
+            before: meta,
+            title: item.title,
+            onSave: function (nextTitle) {
+              return updatePostTitle(item, nextTitle).then(function () {
+                item.title = nextTitle;
+                if (channel) channel.postMessage('refresh');
+                signalRecentContentChanged();
+                return refresh();
+              });
+            }
+          });
+        });
         var remove = document.createElement('button');
         remove.type = 'button';
         remove.className = 'document-delete-button post-delete-button';
@@ -253,7 +294,9 @@
             setStatus('post-list-status', 'Không thể xóa bản tin. Vui lòng thử lại.', 'error');
           });
         });
-        body.appendChild(remove);
+        controls.appendChild(edit);
+        controls.appendChild(remove);
+        body.appendChild(controls);
       }
       row.appendChild(body); ledger.appendChild(row);
     });
@@ -282,7 +325,36 @@
   function closeDialog(id) {
     var dialog = document.getElementById(id); if (!dialog) return;
     var form = dialog.querySelector('form'); if (form) form.reset();
+    if (id === 'post-upload-dialog') clearPostPreview();
     if (typeof dialog.close === 'function') dialog.close(); else dialog.removeAttribute('open');
+  }
+
+  function clearPostPreview() {
+    var preview = document.getElementById('post-pdf-preview');
+    var empty = document.getElementById('post-pdf-preview-empty');
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      previewUrl = '';
+    }
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.clearPdfPreview(preview, empty);
+    else {
+      if (preview) { preview.removeAttribute('data'); preview.classList.remove('is-visible'); }
+      if (empty) empty.hidden = false;
+    }
+  }
+
+  function showPostPreview(file) {
+    var preview = document.getElementById('post-pdf-preview');
+    var empty = document.getElementById('post-pdf-preview-empty');
+    clearPostPreview();
+    if (!preview || !file) return;
+    previewUrl = URL.createObjectURL(file);
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.showPdfPreview(preview, empty, previewUrl);
+    else {
+      preview.data = previewUrl;
+      preview.classList.add('is-visible');
+      if (empty) empty.hidden = true;
+    }
   }
 
   function init() {
@@ -324,12 +396,17 @@
     if (nextPage) nextPage.addEventListener('click', function () { if (hasNextPage) { currentPage += 1; refresh(); } });
     if (uploadButton) uploadButton.addEventListener('click', function () { if (authenticated) openDialog('post-upload-dialog'); else openDialog('post-login-dialog'); });
     ['close-post-upload', 'close-post-upload-cancel'].forEach(function (id) { var node = document.getElementById(id); if (node) node.addEventListener('click', function () { closeDialog('post-upload-dialog'); }); });
+    ['post-login-dialog', 'post-upload-dialog'].forEach(function (id) {
+      var dialog = document.getElementById(id);
+      if (!dialog) return;
+      dialog.addEventListener('cancel', function (event) { event.preventDefault(); closeDialog(id); });
+      dialog.addEventListener('click', function (event) { if (event.target === dialog) closeDialog(id); });
+    });
     if (fileInput) fileInput.addEventListener('change', function () {
       var file = fileInput.files && fileInput.files[0];
-      if (!file) return;
-      if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) { setStatus('post-upload-status', 'Chỉ chấp nhận tệp PDF.', 'error'); fileInput.value = ''; return; }
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
-      previewUrl = URL.createObjectURL(file); if (preview) preview.data = previewUrl; if (previewEmpty) previewEmpty.hidden = true;
+      if (!file) { clearPostPreview(); return; }
+      if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) { clearPostPreview(); setStatus('post-upload-status', 'Chỉ chấp nhận tệp PDF.', 'error'); fileInput.value = ''; return; }
+      showPostPreview(file);
       setStatus('post-upload-status', 'Đã chọn PDF.', 'success');
     });
     if (uploadForm) uploadForm.addEventListener('submit', function (event) {
@@ -346,6 +423,6 @@
     window.addEventListener('beforeunload', function () { if (previewUrl) URL.revokeObjectURL(previewUrl); if (channel) channel.close(); if (contentChannel) contentChannel.close(); });
   }
 
-  window.KHOA_DUOC_POSTS = { localDateIso: localDateIso, formatDate: formatDate, refresh: refresh, deletePost: deletePost };
+  window.KHOA_DUOC_POSTS = { localDateIso: localDateIso, formatDate: formatDate, refresh: refresh, deletePost: deletePost, updatePostTitle: updatePostTitle };
   document.addEventListener('DOMContentLoaded', init);
 }());

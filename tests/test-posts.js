@@ -31,5 +31,8 @@ assert.ok(source.includes("(item.author || 'admin') + ' - ' + formatDate(item.pu
 assert.ok(!source.includes('actualPostDateIso'), 'Không được thay ngày gốc bằng created_at.');
 assert.ok(source.includes("document.getElementById('post-title')"));
 assert.ok(source.includes("titleInput.value.trim().replace(/\\s+/g, ' ')"));
+assert.ok(source.includes('configurePdfLink(link)'), 'Bản tin Dược phải dùng cơ chế mở PDF đa thiết bị.');
+assert.ok(source.includes('showPostPreview(file)'), 'Bản xem trước phải có phương án tương thích thiết bị.');
+assert.ok(source.includes('updatePostTitle'), 'Admin phải có thể sửa tiêu đề bản tin đã đăng.');
 
 console.log('Đã kiểm tra ngày đăng thực tế và tiêu đề bản tin: OK');

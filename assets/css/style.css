@@ -9,6 +9,7 @@
   --slate-900: #102a43;
   --slate-700: #3f5d72;
   --slate-600: #5c7486;
+  --slate-500: #6b8292;
   --slate-300: #c8dce6;
   --slate-200: #deebf0;
   --slate-100: #edf6f8;
@@ -31,7 +32,7 @@ html {
 }
 
 body {
-  min-width: 320px;
+  min-width: 0;
   margin: 0;
   overflow-x: hidden;
   background: var(--white);
@@ -41,6 +42,33 @@ body {
   line-height: 1.62;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video,
+object {
+  max-width: 100%;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+li,
+dd {
+  overflow-wrap: anywhere;
 }
 
 body.nav-open {
@@ -618,6 +646,12 @@ textarea {
   line-height: 1.42;
 }
 
+.ledger-body h3 a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}
+
 .ledger-meta {
   margin-bottom: 9px;
   color: var(--slate-600);
@@ -847,6 +881,7 @@ textarea {
 .document-upload-dialog {
   width: min(980px, calc(100% - 32px));
   max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
   margin: auto;
   padding: 0;
   overflow: auto;
@@ -857,6 +892,8 @@ textarea {
 
 .document-login-dialog {
   width: min(440px, calc(100% - 32px));
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
   margin: auto;
   padding: 0;
   overflow: hidden;
@@ -954,6 +991,8 @@ textarea {
 
 .document-form-field input {
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   min-height: 42px;
   padding: 8px 10px;
   border: 1px solid var(--slate-300);
@@ -995,6 +1034,30 @@ textarea {
 
 .document-pdf-preview.is-visible {
   display: block;
+}
+
+.document-pdf-preview-open {
+  display: none;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border: 1px solid var(--brand-blue);
+  background: var(--brand-blue);
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.document-pdf-preview-open:hover {
+  border-color: var(--navy-900);
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.document-pdf-preview-open[hidden] {
+  display: none !important;
 }
 
 .document-pdf-preview-empty {
@@ -1100,6 +1163,81 @@ textarea {
 }
 
 .document-delete-button:disabled { opacity: 0.55; cursor: wait; }
+
+.document-edit-button {
+  width: fit-content;
+  margin-top: 8px;
+  padding: 5px 9px;
+  border: 1px solid var(--brand-blue);
+  background: var(--white);
+  color: var(--brand-blue);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.document-edit-button:hover {
+  background: var(--brand-blue);
+  color: var(--white);
+}
+
+.inline-title-editor {
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  margin: 0 0 8px;
+}
+
+.inline-title-editor input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid var(--focus);
+  background: var(--white);
+  color: var(--slate-900);
+  font-size: 1rem;
+}
+
+.inline-title-editor input:focus {
+  outline: 2px solid rgba(0, 143, 168, 0.2);
+}
+
+.inline-title-editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.inline-title-cancel,
+.inline-title-save {
+  min-height: 40px;
+  padding: 7px 12px;
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  color: var(--navy-900);
+  font-size: 0.82rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.inline-title-save {
+  border-color: var(--brand-blue);
+  background: var(--brand-blue);
+  color: var(--white);
+}
+
+.inline-title-status {
+  min-height: 20px;
+  color: var(--slate-600);
+  font-size: 0.78rem;
+}
+
+.inline-title-status.is-error {
+  color: #b42318;
+  font-weight: 700;
+}
 
 .instruction-search-section {
   padding-block: 38px 72px;
@@ -1256,9 +1394,15 @@ textarea {
 
 .document-row-actions {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
+  gap: 8px;
   min-width: 108px;
+}
+
+.post-row-actions {
+  justify-content: flex-start;
 }
 
 .document-migration-status {
@@ -1389,9 +1533,14 @@ textarea {
     right: 0;
     left: 0;
     display: none;
+    max-height: calc(100vh - 68px);
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
     border-top: 1px solid var(--slate-200);
     border-bottom: 1px solid var(--slate-300);
     background: var(--white);
+    -webkit-overflow-scrolling: touch;
   }
 
   .main-nav.open {
@@ -1568,17 +1717,12 @@ textarea {
     padding: 22px 20px;
   }
 
-  .scroll-region {
-    max-height: 600px;
-    padding-right: 8px;
-  }
-
-  .sidebar-scroll {
-    max-height: 220px;
-  }
-
+  .scroll-region,
+  .sidebar-scroll,
   .archive-scroll {
-    max-height: 180px;
+    max-height: none;
+    padding-right: 0;
+    overflow: visible;
   }
 
   .ledger-body {
@@ -1622,27 +1766,36 @@ textarea {
   }
 
   .document-upload-dialog {
-    width: calc(100% - 20px);
-    max-height: calc(100vh - 20px);
+    width: calc(100% - 12px);
+    max-height: calc(100vh - 12px);
+    max-height: calc(100dvh - 12px);
+  }
+
+  .document-login-dialog {
+    width: calc(100% - 12px);
+    max-height: calc(100vh - 12px);
+    max-height: calc(100dvh - 12px);
+    overflow-y: auto;
   }
 
   .document-upload-header,
-  .document-upload-grid,
-  .document-upload-actions {
+  .document-upload-grid {
     padding-right: 16px;
     padding-left: 16px;
   }
 
+  .document-upload-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    padding-left: max(16px, env(safe-area-inset-left));
+    background: var(--white);
+  }
+
   .document-upload-grid {
     grid-template-columns: 1fr;
-  }
-
-  .document-pdf-preview-wrap {
-    min-height: 330px;
-  }
-
-  .document-pdf-preview {
-    height: 286px;
   }
 
   .back-link {
@@ -1663,7 +1816,7 @@ textarea {
   }
 
   .instruction-row {
-    grid-template-columns: 36px minmax(0, 1fr) auto;
+    grid-template-columns: 36px minmax(0, 1fr);
     gap: 12px;
   }
 
@@ -1678,12 +1831,16 @@ textarea {
   }
 
   .document-row {
-    grid-template-columns: 36px minmax(0, 1fr) auto;
+    grid-template-columns: 36px minmax(0, 1fr);
     gap: 13px;
     padding: 17px 0;
   }
 
-  .document-row-actions { min-width: 0; }
+  .document-row-actions {
+    grid-column: 2;
+    min-width: 0;
+    justify-content: flex-start;
+  }
 
   .document-title,
   .instruction-title {
@@ -1693,6 +1850,108 @@ textarea {
     align-items: center;
   }
 
+}
+
+@media (max-width: 900px), (pointer: coarse) {
+  .document-pdf-preview-wrap {
+    display: flex;
+    min-height: 180px;
+    flex-direction: column;
+  }
+
+  .document-pdf-preview {
+    display: none !important;
+  }
+
+  .document-pdf-preview-empty {
+    position: static;
+    display: grid;
+    min-height: 88px;
+    flex: 1;
+    padding: 20px 16px;
+  }
+
+  .document-pdf-preview-open:not([hidden]) {
+    display: inline-flex;
+    margin: 0 16px 16px;
+  }
+
+  .document-add-button,
+  .document-login-button,
+  .document-logout-button,
+  .document-upload-cancel,
+  .document-upload-submit,
+  .document-edit-button,
+  .document-delete-button,
+  .document-dialog-close,
+  .inline-title-cancel,
+  .inline-title-save,
+  .tag-row a,
+  .tag-row span {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 420px) {
+  .site-header .container {
+    gap: 10px;
+  }
+
+  .container,
+  .main-nav ul,
+  .footer-disclaimer {
+    width: min(100% - 24px, var(--max-width));
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-logo {
+    width: 76px;
+    flex-basis: 76px;
+  }
+
+  .brand-text {
+    min-width: 0;
+  }
+
+  .brand-text .dept {
+    font-size: 0.9rem;
+  }
+
+  .brand-text .hospital {
+    font-size: 0.66rem;
+  }
+
+  .nav-toggle {
+    flex: 0 0 44px;
+  }
+
+  .post-pagination,
+  .document-upload-actions {
+    flex-wrap: wrap;
+  }
+
+  .document-upload-actions > button {
+    flex: 1 1 120px;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand-logo {
+    width: 68px;
+    flex-basis: 68px;
+  }
+
+  .brand-text .hospital {
+    display: none;
+  }
+}
+
+.footer-bottom {
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -18,6 +18,7 @@
   }
 
   function useSameTabPdfViewer() {
+    if (window.KHOA_DUOC_DEVICE) return window.KHOA_DUOC_DEVICE.preferSameTab();
     return typeof window.matchMedia === 'function' && (
       window.matchMedia('(pointer: coarse)').matches ||
       window.matchMedia('(max-width: 820px)').matches
@@ -114,14 +115,33 @@
       actions.className = 'document-row-actions';
       link.className = 'instruction-title';
       link.href = instruction.url || instructionUrl(instruction.file);
-      link.target = useSameTabPdfViewer() ? '_self' : '_blank';
-      link.rel = 'noopener';
+      if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.configurePdfLink(link);
+      else {
+        link.target = useSameTabPdfViewer() ? '_self' : '_blank';
+        link.rel = 'noopener noreferrer';
+      }
       link.textContent = instruction.title;
-      link.setAttribute('aria-label', instruction.title + ' — mở PDF trong thẻ mới');
+      link.setAttribute('aria-label', instruction.title + ' — mở PDF');
       note.textContent = instruction.signedDate ? 'Hướng dẫn sử dụng · ' + instruction.signedDate.split('-').reverse().join('/') : 'Hướng dẫn sử dụng';
       body.appendChild(link);
       body.appendChild(note);
       if (instruction.uploaded && window.KHOA_DUOC_STAFF_AUTHENTICATED === true) {
+        var edit = document.createElement('button');
+        edit.type = 'button';
+        edit.className = 'document-edit-button';
+        edit.textContent = 'Sửa tiêu đề';
+        edit.addEventListener('click', function () {
+          if (!window.KHOA_DUOC_TITLE_EDITOR || typeof window.KHOA_DUOC_UPDATE_INSTRUCTION_TITLE !== 'function') return;
+          window.KHOA_DUOC_TITLE_EDITOR.open({
+            container: body,
+            display: link,
+            before: note,
+            title: instruction.title,
+            onSave: function (nextTitle) {
+              return window.KHOA_DUOC_UPDATE_INSTRUCTION_TITLE(instruction, nextTitle);
+            }
+          });
+        });
         var remove = document.createElement('button');
         remove.type = 'button';
         remove.className = 'document-delete-button';
@@ -130,6 +150,7 @@
         remove.addEventListener('click', function () {
           if (typeof window.KHOA_DUOC_DELETE_INSTRUCTION === 'function') window.KHOA_DUOC_DELETE_INSTRUCTION(instruction);
         });
+        actions.appendChild(edit);
         actions.appendChild(remove);
       }
       row.appendChild(number);

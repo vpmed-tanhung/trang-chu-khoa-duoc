@@ -53,7 +53,6 @@ on public.posts for update to authenticated
 using (public.is_pharmacy_admin())
 with check (
   public.is_pharmacy_admin()
-  and created_by = auth.uid()
   and author = 'admin'
 );
 

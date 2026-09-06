@@ -61,7 +61,7 @@ on public.drug_documents
 for update
 to authenticated
 using (public.is_pharmacy_staff())
-with check (public.is_pharmacy_staff() and created_by = auth.uid());
+with check (public.is_pharmacy_staff());
 
 drop policy if exists "Pharmacy staff can delete drug documents" on public.drug_documents;
 create policy "Pharmacy staff can delete drug documents"
@@ -156,7 +156,7 @@ on public.drug_instructions
 for update
 to authenticated
 using (public.is_pharmacy_staff())
-with check (public.is_pharmacy_staff() and created_by = auth.uid());
+with check (public.is_pharmacy_staff());
 
 drop policy if exists "Pharmacy staff can delete drug instructions" on public.drug_instructions;
 create policy "Pharmacy staff can delete drug instructions"

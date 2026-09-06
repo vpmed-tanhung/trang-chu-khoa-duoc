@@ -428,6 +428,7 @@
   }
 
   function useSameTabPdfViewer() {
+    if (window.KHOA_DUOC_DEVICE) return window.KHOA_DUOC_DEVICE.preferSameTab();
     return typeof window.matchMedia === 'function' && (
       window.matchMedia('(pointer: coarse)').matches ||
       window.matchMedia('(max-width: 820px)').matches
@@ -481,10 +482,13 @@
     var link = document.createElement('a');
     var primaryUrl = documentItem.url || documentUrl(documentItem.file);
     link.href = primaryUrl;
-    link.target = useSameTabPdfViewer() ? '_self' : '_blank';
-    link.rel = 'noopener';
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.configurePdfLink(link);
+    else {
+      link.target = useSameTabPdfViewer() ? '_self' : '_blank';
+      link.rel = 'noopener noreferrer';
+    }
     link.textContent = documentItem.title;
-    link.setAttribute('aria-label', documentItem.title + ' — mở PDF trong thẻ mới');
+    link.setAttribute('aria-label', documentItem.title + ' — mở PDF');
 
     if (className) {
       link.className = className;
@@ -516,10 +520,12 @@
         }
         prepareCombinedPdf(documentItem).then(function (url) {
           if (viewer) viewer.location.replace(url);
-          else window.open(url, '_blank');
+          else if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.openPdf(url);
+          else window.location.assign(url);
         }).catch(function () {
           if (viewer) viewer.location.replace(link.href);
-          else window.open(link.href, '_blank');
+          else if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.openPdf(link.href);
+          else window.location.assign(link.href);
         });
       });
     }
@@ -601,8 +607,11 @@
     if (item.documentItem) return createPdfLink(item.documentItem);
     var link = document.createElement('a');
     link.href = item.url || '#';
-    link.target = useSameTabPdfViewer() ? '_self' : '_blank';
-    link.rel = 'noopener';
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.configurePdfLink(link);
+    else {
+      link.target = useSameTabPdfViewer() ? '_self' : '_blank';
+      link.rel = 'noopener noreferrer';
+    }
     link.textContent = item.title;
     return link;
   }
@@ -696,6 +705,7 @@
         var actions = document.createElement('div');
         var date = document.createElement('time');
         var attachmentNote = null;
+        var titleLink = null;
 
         row.className = 'document-row';
         number.className = 'document-number';
@@ -704,7 +714,8 @@
         actions.className = 'document-row-actions';
         date.dateTime = documentItem.signedDate;
         date.textContent = 'Ngày ký ban hành: ' + formatDate(documentItem.signedDate);
-        body.appendChild(createPdfLink(documentItem, 'document-title'));
+        titleLink = createPdfLink(documentItem, 'document-title');
+        body.appendChild(titleLink);
         body.appendChild(date);
 
         if (documentItem.hdsdFile || documentItem.hdsdUrl) {
@@ -715,6 +726,26 @@
         }
 
         if (documentItem.uploaded && staffAuthenticated) {
+          var editButton = document.createElement('button');
+          editButton.type = 'button';
+          editButton.className = 'document-edit-button';
+          editButton.textContent = 'Sửa tiêu đề';
+          editButton.addEventListener('click', function () {
+            if (!window.KHOA_DUOC_TITLE_EDITOR) return;
+            window.KHOA_DUOC_TITLE_EDITOR.open({
+              container: body,
+              display: titleLink,
+              before: date,
+              title: documentItem.title,
+              onSave: function (nextTitle) {
+                return updateServerDocumentTitle(documentItem, nextTitle).then(function () {
+                  documentItem.title = nextTitle;
+                  signalDocumentsChanged();
+                  return refreshDocuments();
+                });
+              }
+            });
+          });
           var deleteButton = document.createElement('button');
           deleteButton.type = 'button';
           deleteButton.className = 'document-delete-button';
@@ -726,6 +757,7 @@
               window.alert('Không thể xóa tài liệu. Vui lòng thử lại.');
             });
           });
+          actions.appendChild(editButton);
           actions.appendChild(deleteButton);
         }
 
@@ -763,6 +795,17 @@
     });
   }
 
+  function updateServerDocumentTitle(documentItem, title) {
+    if (!documentItem || !documentItem.id) return Promise.reject(new Error('Tài liệu chưa được lưu trên máy chủ.'));
+    return getStaffAccessToken().then(function (token) {
+      return serverRequest('/rest/v1/drug_documents?id=eq.' + encodeURIComponent(documentItem.id), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({ title: title })
+      }, token);
+    });
+  }
+
   function refreshDocuments() {
     return loadDocuments().then(function (content) {
       var recentContent = buildRecentContent(content.documents, content.instructions, content.posts);
@@ -792,11 +835,14 @@
     }
 
     if (preview) {
-      preview.removeAttribute('data');
-      preview.classList.remove('is-visible');
+      if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.clearPdfPreview(preview, empty);
+      else {
+        preview.removeAttribute('data');
+        preview.classList.remove('is-visible');
+      }
     }
 
-    if (empty) {
+    if (empty && !window.KHOA_DUOC_DEVICE) {
       empty.hidden = false;
     }
   }
@@ -811,10 +857,11 @@
     }
 
     previewObjectUrl = URL.createObjectURL(file);
-    preview.data = previewObjectUrl;
-    preview.classList.add('is-visible');
-    if (empty) {
-      empty.hidden = true;
+    if (window.KHOA_DUOC_DEVICE) window.KHOA_DUOC_DEVICE.showPdfPreview(preview, empty, previewObjectUrl);
+    else {
+      preview.data = previewObjectUrl;
+      preview.classList.add('is-visible');
+      if (empty) empty.hidden = true;
     }
   }
 
