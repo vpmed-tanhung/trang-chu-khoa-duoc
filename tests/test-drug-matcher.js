@@ -1,0 +1,101 @@
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const vm = require('vm');
+
+const source = fs.readFileSync(
+  path.join(__dirname, '..', 'assets', 'js', 'drug-documents.js'),
+  'utf8'
+);
+
+const context = {
+  window: {
+    KHOA_DUOC_SERVER: {},
+    addEventListener() {}
+  },
+  document: {
+    addEventListener() {}
+  },
+  URL,
+  Blob,
+  Headers,
+  fetch() {
+    return Promise.reject(new Error('Không gọi mạng trong kiểm thử.'));
+  },
+  localStorage: {
+    getItem() { return null; },
+    setItem() {},
+    removeItem() {}
+  },
+  sessionStorage: {
+    getItem() { return null; },
+    setItem() {},
+    removeItem() {}
+  },
+  console,
+  setTimeout,
+  clearTimeout
+};
+
+vm.createContext(context);
+vm.runInContext(source, context);
+const matcher = context.window.KHOA_DUOC_DRUG_MATCHER;
+
+assert.ok(matcher, 'Phải công khai bộ đối chiếu để kiểm thử.');
+
+function match(documentTitle, instructions) {
+  return matcher.findMatchingInstruction(
+    { title: documentTitle },
+    instructions.map(function (item) {
+      return typeof item === 'string' ? { title: item } : item;
+    })
+  );
+}
+
+assert.strictEqual(
+  match('Thuốc kháng sinh Meropenem 1g', [
+    'HƯỚNG DẪN SỬ DỤNG THUỐC BỘT PHA TIÊM MEROPENEM 1g'
+  ]).title,
+  'HƯỚNG DẪN SỬ DỤNG THUỐC BỘT PHA TIÊM MEROPENEM 1g'
+);
+
+assert.strictEqual(
+  match('Thuốc kháng sinh Meropenem 1 g', [
+    'Meropenem Kabi 1g',
+    'Thuốc bột pha tiêm Meropenem 1g'
+  ]).title,
+  'Thuốc bột pha tiêm Meropenem 1g',
+  'Ưu tiên HDSD có tên thuốc trùng chính xác hơn tên có thêm nhãn hiệu.'
+);
+
+assert.strictEqual(
+  match('Meropenem 1000 mg', ['Meropenem 1 g']).title,
+  'Meropenem 1 g',
+  '1 g phải tương đương 1000 mg.'
+);
+
+assert.strictEqual(
+  match('Meropenem 500 mg', ['Meropenem 1 g']),
+  null,
+  'Không được ghép khi hàm lượng khác nhau.'
+);
+
+assert.strictEqual(
+  match('Amoxicillin Clavulanat 1g', [
+    'Amoxicillin 1g',
+    'Clavulanat 1g'
+  ]),
+  null,
+  'Không được tự ghép khi có hai kết quả ngang điểm nhưng khác thuốc.'
+);
+
+assert.strictEqual(
+  match('Thuốc kháng sinh Meropenem 1g', [{
+    title: 'Tờ hướng dẫn sử dụng',
+    keywords: 'Meropenem 1 g'
+  }]).keywords,
+  'Meropenem 1 g',
+  'Phải đối chiếu cả từ khóa/hoạt chất của HDSD.'
+);
+
+console.log('Đã kiểm tra bộ đối chiếu thuốc/HDSD: OK');

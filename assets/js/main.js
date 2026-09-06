@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+  var configuredVersion = String((window.KHOA_DUOC_SERVER || {}).appVersion || '').trim();
+  document.querySelectorAll('[data-app-version]').forEach(function (label) {
+    if (configuredVersion) label.textContent = 'v' + configuredVersion.replace(/^v/i, '');
+  });
+
   var toggle = document.querySelector('.nav-toggle');
   var navigation = document.querySelector('.main-nav');
   var navigationLinks = document.querySelectorAll('.main-nav a');

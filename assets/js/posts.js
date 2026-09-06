@@ -141,63 +141,8 @@
     return now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
   }
 
-  function validDate(year, month, day) {
-    var date = new Date(year, month - 1, day);
-    return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
-  }
-
-  function extractDateFromText(text) {
-    var source = String(text || '').slice(0, 400000);
-    var weekMatch = source.match(/(?:tuần|tuan)[\s_-]*(\d)\D{0,20}(?:tháng|thang)[\s_-]*(\d{1,2})\D{0,10}(\d{4})/i) || source.match(/(\d{4})[\s_-]+(\d{1,2})[\s_-]+(?:tuần|tuan)[\s_-]*(\d)/i);
-    if (weekMatch) {
-      var week; var month; var year;
-      if (/^\d{4}/.test(weekMatch[1])) {
-        year = Number(weekMatch[1]); month = Number(weekMatch[2]); week = Number(weekMatch[3]);
-      } else {
-        week = Number(weekMatch[1]); month = Number(weekMatch[2]); year = Number(weekMatch[3]);
-      }
-      var weekDay = Math.min(29, (week - 1) * 7 + 1);
-      if (week >= 1 && week <= 5 && validDate(year, month, weekDay)) return year + '-' + String(month).padStart(2, '0') + '-' + String(weekDay).padStart(2, '0');
-    }
-    var patterns = [
-      /(?:ngày\s*)?(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/i,
-      /(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})/i,
-      /ngày\s+(\d{1,2})\s+tháng\s+(\d{1,2})\s+năm\s+(\d{4})/i
-    ];
-    for (var i = 0; i < patterns.length; i += 1) {
-      var match = source.match(patterns[i]);
-      if (!match) continue;
-      var day; var month; var year;
-      if (patterns[i] === patterns[1]) {
-        year = Number(match[1]); month = Number(match[2]); day = Number(match[3]);
-      } else {
-        day = Number(match[1]); month = Number(match[2]); year = Number(match[3]);
-      }
-      if (validDate(year, month, day)) return year + '-' + String(month).padStart(2, '0') + '-' + String(day).padStart(2, '0');
-    }
-    return '';
-  }
-
-  function extractDateFromFile(file) {
-    var fileNameDate = extractDateFromText(file.name);
-    if (fileNameDate) return Promise.resolve(fileNameDate);
-    return file.slice(0, Math.min(file.size, 4000000)).arrayBuffer().then(function (buffer) {
-      var bytes = new Uint8Array(buffer);
-      var text = '';
-      try { text = new TextDecoder('latin1').decode(bytes); } catch (error) {
-        text = Array.prototype.map.call(bytes, function (value) { return String.fromCharCode(value); }).join('');
-      }
-      return extractDateFromText(text) || localDateIso();
-    }).catch(function () { return localDateIso(); });
-  }
-
   function weekOfMonth(day) {
     return Math.min(5, Math.floor((Number(day) - 1) / 7) + 1);
-  }
-
-  function normalizedTitle(isoDate) {
-    var parts = isoDate.split('-');
-    return 'Bản tin Dược lâm sàng – Tuần ' + weekOfMonth(Number(parts[2])) + ', tháng ' + Number(parts[1]) + '/' + parts[0];
   }
 
   function formatDate(isoDate) {
@@ -277,16 +222,11 @@
     }
     items.slice(0, 5).forEach(function (item) {
       var row = document.createElement('article'); row.className = 'ledger-row';
-      var stamp = document.createElement('div'); stamp.className = 'date-stamp';
-      var date = String(item.publish_date || '').split('-');
-      var day = document.createElement('span'); day.className = 'day'; day.textContent = date[2] || '--';
-      var month = document.createElement('span'); month.className = 'month'; month.textContent = date[1] ? 'Th' + Number(date[1]) : '';
-      stamp.appendChild(day); stamp.appendChild(month);
       var body = document.createElement('div'); body.className = 'ledger-body';
       var heading = document.createElement('h3');
-      var link = document.createElement('a'); link.href = item.storage_path ? publicUrl(item.storage_path) : '#'; link.target = '_blank'; link.rel = 'noopener'; link.textContent = item.title || ''; heading.appendChild(link);
+      var link = document.createElement('a'); link.href = item.storage_path ? publicUrl(item.storage_path) : '#'; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Bản tin Dược'; heading.appendChild(link);
       body.appendChild(heading);
-      var meta = document.createElement('div'); meta.className = 'ledger-meta'; meta.textContent = (item.category || 'Bản tin Dược lâm sàng') + ' – ' + (item.author || 'admin'); body.appendChild(meta);
+      var meta = document.createElement('div'); meta.className = 'ledger-meta'; meta.textContent = (item.author || 'admin') + ' - ' + formatDate(item.publish_date); body.appendChild(meta);
       if (item.excerpt) { var excerpt = document.createElement('p'); excerpt.textContent = item.excerpt; body.appendChild(excerpt); }
       if (authenticated && item.id) {
         var remove = document.createElement('button');
@@ -308,7 +248,7 @@
         });
         body.appendChild(remove);
       }
-      row.appendChild(stamp); row.appendChild(body); ledger.appendChild(row);
+      row.appendChild(body); ledger.appendChild(row);
     });
     renderPagination();
   }
@@ -347,7 +287,6 @@
     var fileInput = document.getElementById('post-pdf-file');
     var preview = document.getElementById('post-pdf-preview');
     var previewEmpty = document.getElementById('post-pdf-preview-empty');
-    var dateOutput = document.getElementById('post-detected-date');
     var titleOutput = document.getElementById('post-detected-title');
     var previousPage = document.getElementById('post-page-prev');
     var nextPage = document.getElementById('post-page-next');
@@ -384,14 +323,14 @@
       if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name)) { setStatus('post-upload-status', 'Chỉ chấp nhận tệp PDF.', 'error'); fileInput.value = ''; return; }
       if (previewUrl) URL.revokeObjectURL(previewUrl);
       previewUrl = URL.createObjectURL(file); if (preview) preview.data = previewUrl; if (previewEmpty) previewEmpty.hidden = true;
-      setStatus('post-upload-status', 'Đang nhận diện ngày trong PDF...', '');
-      extractDateFromFile(file).then(function (isoDate) { if (dateOutput) dateOutput.value = isoDate; if (titleOutput) titleOutput.value = normalizedTitle(isoDate); setStatus('post-upload-status', 'Đã nhận diện ngày ' + formatDate(isoDate) + '.', 'success'); });
+      if (titleOutput) titleOutput.value = 'Bản tin Dược';
+      setStatus('post-upload-status', 'Đã chọn PDF.', 'success');
     });
     if (uploadForm) uploadForm.addEventListener('submit', function (event) {
       event.preventDefault();
       if (!authenticated) { setStatus('post-upload-status', 'Phiên admin không hợp lệ.', 'error'); return; }
-      var file = fileInput.files && fileInput.files[0]; var publishDate = dateOutput && dateOutput.value; var title = titleOutput && titleOutput.value.trim();
-      if (!file || !/^\d{4}-\d{2}-\d{2}$/.test(publishDate)) { setStatus('post-upload-status', 'Vui lòng chọn PDF để hệ thống nhận diện ngày.', 'error'); return; }
+      var file = fileInput.files && fileInput.files[0]; var publishDate = localDateIso(); var title = 'Bản tin Dược';
+      if (!file) { setStatus('post-upload-status', 'Vui lòng chọn PDF.', 'error'); return; }
       if (file.size > maxBytes) { setStatus('post-upload-status', 'Tệp PDF vượt quá giới hạn 25 MB.', 'error'); return; }
       var path = 'posts/' + publishDate.slice(0, 7) + '/' + safeId() + '.pdf'; var uploaded = false; var token = '';
       setStatus('post-upload-status', 'Đang tải bản tin lên Supabase...', '');
@@ -401,6 +340,6 @@
     window.addEventListener('beforeunload', function () { if (previewUrl) URL.revokeObjectURL(previewUrl); if (channel) channel.close(); });
   }
 
-  window.KHOA_DUOC_POSTS = { extractDateFromText: extractDateFromText, extractDateFromFile: extractDateFromFile, weekOfMonth: weekOfMonth, normalizedTitle: normalizedTitle, refresh: refresh, deletePost: deletePost };
+  window.KHOA_DUOC_POSTS = { localDateIso: localDateIso, formatDate: formatDate, refresh: refresh, deletePost: deletePost };
   document.addEventListener('DOMContentLoaded', init);
 }());

@@ -602,40 +602,13 @@ textarea {
 
 .ledger-row {
   display: grid;
-  grid-template-columns: 76px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   border-bottom: 1px solid var(--slate-300);
   padding: 22px 0;
 }
 
-.date-stamp {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 3px;
-  border-right: 1px solid var(--slate-300);
-  color: var(--brand-blue);
-  text-align: center;
-}
-
-.date-stamp .day {
-  display: block;
-  font-size: 1.7rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.date-stamp .month {
-  display: block;
-  margin-top: 6px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .ledger-body {
-  padding: 0 0 0 24px;
+  padding: 0;
 }
 
 .ledger-body h3 {
@@ -1594,10 +1567,6 @@ textarea {
     padding: 22px 20px;
   }
 
-  .ledger-row {
-    grid-template-columns: 58px minmax(0, 1fr);
-  }
-
   .scroll-region {
     max-height: 600px;
     padding-right: 8px;
@@ -1611,12 +1580,8 @@ textarea {
     max-height: 180px;
   }
 
-  .date-stamp .day {
-    font-size: 1.35rem;
-  }
-
   .ledger-body {
-    padding-left: 17px;
+    padding-left: 0;
   }
 
   .bulletin-sidebar {

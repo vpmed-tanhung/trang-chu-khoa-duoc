@@ -11,6 +11,9 @@
   var authenticated = false;
   var refreshPromise = null;
   var previewUrl = '';
+  var updateChannel = typeof BroadcastChannel === 'function'
+    ? new BroadcastChannel('khoa-duoc-thong-tin-thuoc')
+    : null;
 
   function configured() { return /^https:\/\//i.test(baseUrl) && publishableKey.length >= 20; }
   function request(path, options, token) {
@@ -102,7 +105,10 @@
       return accessToken().then(function (token) {
         return removeStorageObject(instruction.storagePath, token);
       }).catch(function () { return null; });
-    }).then(function () { window.dispatchEvent(new Event('khoa-duoc-auth-changed')); }).catch(function () { window.alert('Không thể xóa HDSD. Vui lòng thử lại.'); });
+    }).then(function () {
+      signalInstructionChanged();
+      window.dispatchEvent(new Event('khoa-duoc-auth-changed'));
+    }).catch(function () { window.alert('Không thể xóa HDSD. Vui lòng thử lại.'); });
   }
   function closeDialog(id) {
     var dialog = document.getElementById(id);
@@ -127,6 +133,12 @@
     return request('/storage/v1/object/remove/' + encodeURIComponent(bucket), {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prefixes: [path] })
     }, token);
+  }
+  function signalInstructionChanged() {
+    if (updateChannel) updateChannel.postMessage('refresh');
+    try {
+      localStorage.setItem('khoa-duoc-documents-updated', String(Date.now()));
+    } catch (error) {}
   }
   function uploadInstruction(file, title, signedDate) {
     var path = 'hdsd/' + signedDate.slice(0, 7) + '/' + secureId() + '.pdf';
@@ -198,7 +210,11 @@
       var signedDate = new Date().toISOString().slice(0, 10);
       if (!file || !title) { setStatus('instruction-upload-status', 'Vui lòng chọn PDF và nhập tên thuốc.', 'error'); return; }
       uploadSubmit.disabled = true; setStatus('instruction-upload-status', 'Đang tải HDSD lên máy chủ...', '');
-      validate().then(function (allowed) { if (!allowed) throw new Error('Hết phiên.'); return uploadInstruction(file, title, signedDate); }).then(function () { localStorage.setItem('khoa-duoc-documents-updated', String(Date.now())); setStatus('instruction-upload-status', 'Đã thêm HDSD; các bài Thông tin thuốc sẽ tự đối chiếu.', 'success'); window.setTimeout(function () { closeDialog('instruction-upload-dialog'); window.location.reload(); }, 700); }).catch(function () { setStatus('instruction-upload-status', 'Không thể tải HDSD lên máy chủ.', 'error'); }).finally(function () { uploadSubmit.disabled = false; });
+      validate().then(function (allowed) { if (!allowed) throw new Error('Hết phiên.'); return uploadInstruction(file, title, signedDate); }).then(function () { signalInstructionChanged(); setStatus('instruction-upload-status', 'Đã thêm HDSD và đối chiếu lại toàn bộ Thông tin thuốc.', 'success'); window.setTimeout(function () { closeDialog('instruction-upload-dialog'); window.location.reload(); }, 700); }).catch(function () { setStatus('instruction-upload-status', 'Không thể tải HDSD lên máy chủ.', 'error'); }).finally(function () { uploadSubmit.disabled = false; });
+    });
+    window.addEventListener('beforeunload', function () {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      if (updateChannel) updateChannel.close();
     });
   }
   document.addEventListener('DOMContentLoaded', init);

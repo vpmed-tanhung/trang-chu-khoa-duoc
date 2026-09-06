@@ -153,6 +153,7 @@
   function normalizeMatchText(value) {
     return String(value || '').toLocaleLowerCase('vi')
       .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd')
       .replace(/[^a-z0-9]+/g, ' ').trim();
   }
 
@@ -165,8 +166,14 @@
       bom: true, xit: true, huong: true, dan: true, su: true, hdsd: true,
       ham: true, luong: true, bao: true, phim: true, tra: true, mat: true,
       nho: true, hon: true, nhuan: true, trang: true, loi: true, tieu: true,
-      gian: true, tron: true, calci: true, calcium: true, acid: true,
-      mg: true, ml: true, mcg: true, ug: true, iu: true
+      gian: true, tron: true, acid: true,
+      mg: true, ml: true, mcg: true, ug: true, iu: true,
+      bot: true, pha: true, tiem: true, truyen: true, uong: true,
+      duoi: true, dang: true, thanh: true, phan: true, hoat: true, chat: true,
+      hydrate: true, hydrat: true, trihydrate: true, trihydrat: true,
+      injection: true, inject: true, inj: true, tablet: true, tablets: true,
+      capsule: true, capsules: true, solution: true, powder: true, for: true,
+      use: true, kem: true
     };
     var seen = {};
     return normalizeMatchText(value).split(' ').filter(function (token) {
@@ -183,22 +190,22 @@
       .replace(/μg|µg/g, 'mcg');
     var doses = [];
     var seen = {};
-    var pattern = /(\d+(?:\.\d+)?)(?:\s*\/\s*(\d+(?:\.\d+)?))?\s*(mcg|mg|ml|iu|g|%)(?![a-z])/g;
+    var pattern = /(\d+(?:\.\d+)?)\s*(mcg|mg|ml|iu|g|%)(?![a-z])/g;
     var match;
 
+    function normalizeDose(amount, unit) {
+      var numericAmount = Number(amount);
+      if (unit === 'g') return 'mass:' + String(numericAmount * 1000) + 'mg';
+      if (unit === 'mcg') return 'mass:' + String(numericAmount / 1000) + 'mg';
+      if (unit === 'mg') return 'mass:' + String(numericAmount) + 'mg';
+      return unit + ':' + String(numericAmount);
+    }
+
     while ((match = pattern.exec(text)) !== null) {
-      var unit = match[3];
-      var firstDose = String(Number(match[1])) + unit;
-      if (!seen[firstDose]) {
-        seen[firstDose] = true;
-        doses.push(firstDose);
-      }
-      if (match[2]) {
-        var secondDose = String(Number(match[2])) + unit;
-        if (!seen[secondDose]) {
-          seen[secondDose] = true;
-          doses.push(secondDose);
-        }
+      var normalizedDose = normalizeDose(match[1], match[2]);
+      if (!seen[normalizedDose]) {
+        seen[normalizedDose] = true;
+        doses.push(normalizedDose);
       }
     }
 
@@ -209,6 +216,60 @@
     return requiredTokens.every(function (token) {
       return containerTokens.indexOf(token) !== -1;
     });
+  }
+
+  function countCommonTokens(firstTokens, secondTokens) {
+    return firstTokens.filter(function (token) {
+      return secondTokens.indexOf(token) !== -1;
+    }).length;
+  }
+
+  function haveCommonDose(firstDoses, secondDoses) {
+    return firstDoses.some(function (dose) {
+      return secondDoses.indexOf(dose) !== -1;
+    });
+  }
+
+  function instructionIdentityText(instruction) {
+    return [instruction.title, instruction.keywords].filter(Boolean).join(' ');
+  }
+
+  function scoreInstructionMatch(documentItem, instruction) {
+    var documentTokens = getProductTokens(documentItem.title);
+    var instructionTokens = getProductTokens(instructionIdentityText(instruction));
+    var documentDoses = getDoseTokens(documentItem.title);
+    var instructionDoses = getDoseTokens(instructionIdentityText(instruction));
+    var commonTokens = countCommonTokens(documentTokens, instructionTokens);
+    var smallerTokenCount = Math.min(documentTokens.length, instructionTokens.length);
+    var sameProductTokens = documentTokens.join('|') === instructionTokens.join('|');
+    var oneProductContainsOther = containsAllTokens(documentTokens, instructionTokens) ||
+      containsAllTokens(instructionTokens, documentTokens);
+    var score = 0;
+
+    if (!documentTokens.length || !instructionTokens.length || !commonTokens) return null;
+
+    if (sameProductTokens) {
+      score += 100;
+    } else if (oneProductContainsOther) {
+      score += 80;
+    } else if (commonTokens >= 2 && commonTokens / smallerTokenCount >= 0.75) {
+      score += 55;
+    } else {
+      return null;
+    }
+
+    if (documentDoses.length && instructionDoses.length) {
+      if (!haveCommonDose(documentDoses, instructionDoses)) return null;
+      score += documentDoses.join('|') === instructionDoses.join('|') ? 40 : 30;
+    } else if (!documentDoses.length && !instructionDoses.length) {
+      score += 10;
+    }
+
+    return {
+      instruction: instruction,
+      score: score,
+      identityKey: instructionTokens.join('|') + '::' + instructionDoses.join('|')
+    };
   }
 
   function loadServerInstructions() {
@@ -222,23 +283,21 @@
   }
 
   function findMatchingInstruction(documentItem, instructions) {
-    var documentTokens = getProductTokens(documentItem.title);
-    var documentDoses = getDoseTokens(documentItem.title);
-    if (!documentTokens.length) return null;
-    var candidates = instructions.filter(function (item) {
-      var instructionTokens = getProductTokens(item.title);
-      if (!instructionTokens.length || !containsAllTokens(documentTokens, instructionTokens)) return false;
-
-      var instructionDoses = getDoseTokens(item.title);
-      if (documentDoses.length || instructionDoses.length) {
-        return documentDoses.length > 0 &&
-          instructionDoses.length > 0 &&
-          documentDoses.join('|') === instructionDoses.join('|');
-      }
-      return true;
+    var candidates = instructions.map(function (item) {
+      return scoreInstructionMatch(documentItem, item);
+    }).filter(Boolean).sort(function (first, second) {
+      var scoreOrder = second.score - first.score;
+      if (scoreOrder) return scoreOrder;
+      return String(second.instruction.signedDate || '').localeCompare(String(first.instruction.signedDate || ''));
     });
 
-    return candidates.length === 1 ? candidates[0] : null;
+    if (!candidates.length) return null;
+    if (candidates.length > 1 &&
+        candidates[0].score === candidates[1].score &&
+        candidates[0].identityKey !== candidates[1].identityKey) {
+      return null;
+    }
+    return candidates[0].instruction;
   }
 
   function mergeDocuments(baseDocuments, uploadedDocuments, instructions) {
@@ -1359,5 +1418,12 @@
     initUploadDialog();
     initLegacyMigration();
     refreshDocuments();
+  });
+
+  window.KHOA_DUOC_DRUG_MATCHER = Object.freeze({
+    normalizeText: normalizeMatchText,
+    productTokens: getProductTokens,
+    doseTokens: getDoseTokens,
+    findMatchingInstruction: findMatchingInstruction
   });
 }());
