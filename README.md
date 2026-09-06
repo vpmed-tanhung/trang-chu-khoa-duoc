@@ -29,6 +29,8 @@ Trang chủ không chứa bài viết mẫu. `assets/js/posts.js` truy vấn đ�
 
 Tài khoản được cấp trong `pharmacy_staff_members` là admin của luồng bản tin. Admin tải PDF lên ngay tại khu vực Bản tin; tệp được lưu vào Storage, còn metadata được ghi vào bảng `posts` với `author = 'admin'`.
 
+Sau khi đăng nhập, admin có nút “Xóa bản tin”. Thao tác xóa bản ghi `posts` và dọn tệp PDF tương ứng trong Storage; người xem thông thường không thấy nút này và bị RLS chặn thao tác xóa.
+
 Luồng ngày/tuần dùng các hàm `extractDateFromText`, `extractDateFromFile`, `weekOfMonth` và `normalizedTitle` trong `assets/js/posts.js`. Hệ thống ưu tiên ngày trong tên tệp/PDF, sau đó dùng ngày tải lên; tuần được tính theo các khoảng 1–7, 8–14, 15–21, 22–28 và 29 trở đi.
 
 ## 📱 Khả năng sử dụng

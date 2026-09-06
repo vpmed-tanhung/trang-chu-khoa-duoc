@@ -219,6 +219,29 @@
     });
   }
 
+  function removeStorageObject(path, token) {
+    if (!path) return Promise.resolve(null);
+    return request('/storage/v1/object/remove/' + encodeURIComponent(bucket), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prefixes: [path] })
+    }, token);
+  }
+
+  function deletePost(item) {
+    if (!authenticated || !item || !item.id) return Promise.reject(new Error('Không có quyền xóa bản tin.'));
+    return accessToken().then(function (token) {
+      return request('/rest/v1/posts?id=eq.' + encodeURIComponent(item.id), {
+        method: 'DELETE',
+        headers: { Prefer: 'return=minimal' }
+      }, token).then(function () {
+        return removeStorageObject(item.storage_path, token).catch(function () {
+          return null;
+        });
+      });
+    });
+  }
+
   function renderPosts(items) {
     var ledger = document.getElementById('bulletin-ledger');
     if (!ledger) return;
@@ -239,6 +262,26 @@
       body.appendChild(heading);
       var meta = document.createElement('div'); meta.className = 'ledger-meta'; meta.textContent = (item.category || 'Bản tin Dược lâm sàng') + ' – ' + (item.author || 'admin'); body.appendChild(meta);
       if (item.excerpt) { var excerpt = document.createElement('p'); excerpt.textContent = item.excerpt; body.appendChild(excerpt); }
+      if (authenticated && item.id) {
+        var remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'document-delete-button post-delete-button';
+        remove.textContent = 'Xóa bản tin';
+        remove.addEventListener('click', function () {
+          remove.disabled = true;
+          setStatus('post-upload-status', 'Đang xóa bản tin...', '');
+          deletePost(item).then(function () {
+            if (channel) channel.postMessage('refresh');
+            return refresh();
+          }).then(function () {
+            setStatus('post-upload-status', 'Đã xóa bản tin và tệp PDF.', 'success');
+          }).catch(function () {
+            remove.disabled = false;
+            setStatus('post-upload-status', 'Không thể xóa bản tin. Vui lòng thử lại.', 'error');
+          });
+        });
+        body.appendChild(remove);
+      }
       row.appendChild(stamp); row.appendChild(body); ledger.appendChild(row);
     });
   }
@@ -306,6 +349,6 @@
     window.addEventListener('beforeunload', function () { if (previewUrl) URL.revokeObjectURL(previewUrl); if (channel) channel.close(); });
   }
 
-  window.KHOA_DUOC_POSTS = { extractDateFromText: extractDateFromText, extractDateFromFile: extractDateFromFile, weekOfMonth: weekOfMonth, normalizedTitle: normalizedTitle, refresh: refresh };
+  window.KHOA_DUOC_POSTS = { extractDateFromText: extractDateFromText, extractDateFromFile: extractDateFromFile, weekOfMonth: weekOfMonth, normalizedTitle: normalizedTitle, refresh: refresh, deletePost: deletePost };
   document.addEventListener('DOMContentLoaded', init);
 }());
