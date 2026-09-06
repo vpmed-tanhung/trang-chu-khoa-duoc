@@ -699,7 +699,8 @@ textarea {
 }
 
 #recent-drug-documents a,
-#drug-document-archives a {
+#drug-document-archives a,
+#drug-document-archives .archive-summary {
   display: inline-block;
   color: var(--navy-900);
   font-weight: 650;

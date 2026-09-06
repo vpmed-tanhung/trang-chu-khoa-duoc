@@ -98,4 +98,17 @@ assert.strictEqual(
   'Phải đối chiếu cả từ khóa/hoạt chất của HDSD.'
 );
 
+const recentContent = matcher.buildRecentContent(
+  [{ title: 'Tài liệu thuốc', signedDate: '2026-07-10', createdAt: '2026-07-10T08:00:00Z' }],
+  [{ title: 'Tờ hướng dẫn', signedDate: '2026-07-11', createdAt: '2026-07-11T08:00:00Z', url: '/hdsd.pdf' }],
+  [{ title: 'Bài cảnh báo', publishDate: '2026-07-12', createdAt: '2026-07-12T08:00:00Z', url: '/post.pdf' }]
+);
+
+assert.deepStrictEqual(
+  Array.from(recentContent, function (item) { return item.type; }),
+  ['post', 'instruction', 'document'],
+  'Bài viết mới phải tổng hợp và sắp xếp đủ bài viết, HDSD và Thông tin thuốc.'
+);
+assert.strictEqual(matcher.groupRecentContentByMonth(recentContent)['2026-07'], 3);
+
 console.log('Đã kiểm tra bộ đối chiếu thuốc/HDSD: OK');

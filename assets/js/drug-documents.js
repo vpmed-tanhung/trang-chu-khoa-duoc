@@ -124,6 +124,7 @@
       file: documentItem.file_name,
       url: publicDocumentUrl(documentItem.storage_path),
       storagePath: documentItem.storage_path,
+      createdAt: documentItem.created_at || '',
       uploaded: true
     };
   }
@@ -274,12 +275,31 @@
 
   function loadServerInstructions() {
     if (!hasServerConfig()) return Promise.resolve([]);
-    return serverRequest('/rest/v1/drug_instructions?select=id,title,keywords,signed_date,file_name,storage_path&order=created_at.desc', { method: 'GET', headers: { Accept: 'application/json' } })
+    return serverRequest('/rest/v1/drug_instructions?select=id,title,keywords,signed_date,file_name,storage_path,created_at&order=created_at.desc', { method: 'GET', headers: { Accept: 'application/json' } })
       .then(function (rows) {
         return Array.isArray(rows) ? rows.map(function (row) {
-          return { title: row.title, keywords: row.keywords || '', signedDate: row.signed_date, file: row.file_name, url: publicDocumentUrl(row.storage_path), server: true };
+          return { title: row.title, keywords: row.keywords || '', signedDate: row.signed_date, file: row.file_name, url: publicDocumentUrl(row.storage_path), createdAt: row.created_at || '', server: true };
         }) : [];
       });
+  }
+
+  function loadServerPosts() {
+    if (!hasServerConfig()) return Promise.resolve([]);
+    return serverRequest('/rest/v1/posts?select=id,title,category,publish_date,author,storage_path,created_at&order=created_at.desc', {
+      method: 'GET',
+      headers: { Accept: 'application/json' }
+    }).then(function (rows) {
+      return Array.isArray(rows) ? rows.map(function (row) {
+        return {
+          title: row.title,
+          category: row.category || '',
+          publishDate: row.publish_date,
+          author: row.author || '',
+          url: publicDocumentUrl(row.storage_path),
+          createdAt: row.created_at || ''
+        };
+      }) : [];
+    });
   }
 
   function findMatchingInstruction(documentItem, instructions) {
@@ -328,11 +348,17 @@
     return Promise.all([
       loadServerDocuments().catch(function () { return []; }),
       loadServerInstructions().catch(function () { return []; }),
-      loadContentMigrations().catch(function () { return []; })
+      loadContentMigrations().catch(function () { return []; }),
+      loadServerPosts().catch(function () { return []; })
     ]).then(function (results) {
       if (results[2].indexOf('drug_documents_v1') !== -1) baseDocuments = [];
       if (results[2].indexOf('drug_instructions_v1') !== -1) baseInstructions = [];
-      return mergeDocuments(baseDocuments, results[0], results[1].concat(baseInstructions));
+      var instructions = results[1].concat(baseInstructions);
+      return {
+        documents: mergeDocuments(baseDocuments, results[0], instructions),
+        instructions: instructions,
+        posts: results[3]
+      };
     });
   }
 
@@ -500,7 +526,63 @@
     categoryLink.setAttribute('aria-label', 'Mở thư mục Thông tin thuốc, có ' + documents.length + ' tài liệu');
   }
 
-  function renderRecentDocuments(documents) {
+  function buildRecentContent(documents, instructions, posts) {
+    var recentContent = [];
+    var seen = {};
+
+    (documents || []).forEach(function (documentItem) {
+      recentContent.push({
+        type: 'document',
+        title: documentItem.title,
+        displayDate: documentItem.signedDate,
+        createdAt: documentItem.createdAt || documentItem.signedDate,
+        documentItem: documentItem
+      });
+    });
+
+    (instructions || []).forEach(function (instruction) {
+      recentContent.push({
+        type: 'instruction',
+        title: instruction.title,
+        displayDate: instruction.signedDate,
+        createdAt: instruction.createdAt || instruction.signedDate,
+        url: instruction.url || ('assets/documents/huong-dan-su-dung/' + encodeStoragePath(instruction.file || ''))
+      });
+    });
+
+    (posts || []).forEach(function (post) {
+      recentContent.push({
+        type: 'post',
+        title: post.title,
+        displayDate: post.publishDate,
+        createdAt: post.createdAt || post.publishDate,
+        url: post.url
+      });
+    });
+
+    return recentContent.filter(function (item) {
+      if (!item.title || !/^\d{4}-\d{2}-\d{2}/.test(item.displayDate || '')) return false;
+      var key = item.type + '|' + item.title + '|' + item.displayDate + '|' + (item.url || '');
+      if (seen[key]) return false;
+      seen[key] = true;
+      return true;
+    }).sort(function (first, second) {
+      var dateOrder = String(second.createdAt || '').localeCompare(String(first.createdAt || ''));
+      return dateOrder || first.title.localeCompare(second.title, 'vi');
+    });
+  }
+
+  function createRecentContentLink(item) {
+    if (item.documentItem) return createPdfLink(item.documentItem);
+    var link = document.createElement('a');
+    link.href = item.url || '#';
+    link.target = useSameTabPdfViewer() ? '_self' : '_blank';
+    link.rel = 'noopener';
+    link.textContent = item.title;
+    return link;
+  }
+
+  function renderRecentContent(recentContent) {
     var recentList = document.getElementById('recent-drug-documents');
 
     if (!recentList) {
@@ -509,33 +591,42 @@
 
     recentList.textContent = '';
 
-    documents.slice(0, 6).forEach(function (documentItem) {
+    recentContent.forEach(function (item) {
       var listItem = document.createElement('li');
       var date = document.createElement('time');
-      date.dateTime = documentItem.signedDate;
-      date.textContent = formatDate(documentItem.signedDate);
-      listItem.appendChild(createPdfLink(documentItem));
+      date.dateTime = item.displayDate;
+      date.textContent = formatDate(item.displayDate.slice(0, 10));
+      listItem.appendChild(createRecentContentLink(item));
       listItem.appendChild(date);
       recentList.appendChild(listItem);
     });
   }
 
-  function renderArchives(documents) {
+  function groupRecentContentByMonth(recentContent) {
+    return (recentContent || []).reduce(function (groups, item) {
+      var monthKey = String(item.displayDate || '').slice(0, 7);
+      if (!/^\d{4}-\d{2}$/.test(monthKey)) return groups;
+      groups[monthKey] = (groups[monthKey] || 0) + 1;
+      return groups;
+    }, {});
+  }
+
+  function renderArchives(recentContent) {
     var archiveList = document.getElementById('drug-document-archives');
 
     if (!archiveList) {
       return;
     }
 
-    var groups = groupByMonth(documents);
+    var groups = groupRecentContentByMonth(recentContent);
     archiveList.textContent = '';
 
     Object.keys(groups).sort().reverse().forEach(function (monthKey) {
       var listItem = document.createElement('li');
-      var link = document.createElement('a');
-      link.href = 'thong-tin-thuoc.html#luu-tru-' + monthKey;
-      link.textContent = formatMonth(monthKey) + ' (' + groups[monthKey].length + ')';
-      listItem.appendChild(link);
+      var summary = document.createElement('span');
+      summary.className = 'archive-summary';
+      summary.textContent = formatMonth(monthKey) + ' (' + groups[monthKey] + ')';
+      listItem.appendChild(summary);
       archiveList.appendChild(listItem);
     });
   }
@@ -627,11 +718,11 @@
     });
   }
 
-  function renderAll(documents) {
+  function renderAll(documents, recentContent) {
     documentsCache = documents;
     renderCategoryCount(documents);
-    renderRecentDocuments(documents);
-    renderArchives(documents);
+    renderRecentContent(recentContent);
+    renderArchives(recentContent);
     renderDocumentDirectory(documents);
   }
 
@@ -648,9 +739,10 @@
   }
 
   function refreshDocuments() {
-    return loadDocuments().then(function (documents) {
-      renderAll(documents);
-      return documents;
+    return loadDocuments().then(function (content) {
+      var recentContent = buildRecentContent(content.documents, content.instructions, content.posts);
+      renderAll(content.documents, recentContent);
+      return content.documents;
     });
   }
 
@@ -1424,6 +1516,8 @@
     normalizeText: normalizeMatchText,
     productTokens: getProductTokens,
     doseTokens: getDoseTokens,
-    findMatchingInstruction: findMatchingInstruction
+    findMatchingInstruction: findMatchingInstruction,
+    buildRecentContent: buildRecentContent,
+    groupRecentContentByMonth: groupRecentContentByMonth
   });
 }());

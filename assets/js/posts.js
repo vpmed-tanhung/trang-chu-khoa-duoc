@@ -16,6 +16,7 @@
   var hasNextPage = false;
   var previewUrl = '';
   var channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('khoa-duoc-posts') : null;
+  var contentChannel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('khoa-duoc-thong-tin-thuoc') : null;
 
   function configured() {
     return /^https:\/\//i.test(baseUrl) && apiKey.length >= 20;
@@ -124,6 +125,11 @@
     node.textContent = message || '';
     node.classList.toggle('is-error', type === 'error');
     node.classList.toggle('is-success', type === 'success');
+  }
+
+  function signalRecentContentChanged() {
+    if (contentChannel) contentChannel.postMessage('refresh');
+    try { localStorage.setItem('khoa-duoc-documents-updated', String(Date.now())); } catch (error) {}
   }
 
   function renderAccess() {
@@ -238,6 +244,7 @@
           setStatus('post-list-status', 'Đang xóa bản tin...', '');
           deletePost(item).then(function () {
             if (channel) channel.postMessage('refresh');
+            signalRecentContentChanged();
             return refresh();
           }).then(function () {
             setStatus('post-list-status', 'Đã xóa bản tin và tệp PDF.', 'success');
@@ -333,10 +340,10 @@
       if (file.size > maxBytes) { setStatus('post-upload-status', 'Tệp PDF vượt quá giới hạn 25 MB.', 'error'); return; }
       var path = 'posts/' + publishDate.slice(0, 7) + '/' + safeId() + '.pdf'; var uploaded = false; var token = '';
       setStatus('post-upload-status', 'Đang tải bản tin lên Supabase...', '');
-      accessToken().then(function (value) { token = value; return request('/storage/v1/object/' + encodeURIComponent(bucket) + '/' + path.split('/').map(encodeURIComponent).join('/'), { method: 'POST', headers: { 'Content-Type': 'application/pdf', 'x-upsert': 'false' }, body: file }, token); }).then(function () { uploaded = true; return request('/rest/v1/posts', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ title: title, category: 'Bản tin Dược lâm sàng', excerpt: null, publish_date: publishDate, week_number: weekOfMonth(Number(publishDate.slice(8, 10))), author: 'admin', file_name: file.name.slice(0, 255), storage_path: path }) }, token); }).then(function () { if (channel) channel.postMessage('refresh'); setStatus('post-upload-status', 'Đã đăng bản tin.', 'success'); return refresh(); }).then(function () { window.setTimeout(function () { closeDialog('post-upload-dialog'); }, 500); }).catch(function () { if (uploaded && token) request('/storage/v1/object/remove/' + encodeURIComponent(bucket), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prefixes: [path] }) }, token).catch(function () {}); setStatus('post-upload-status', 'Không thể tải bản tin lên Supabase.', 'error'); });
+      accessToken().then(function (value) { token = value; return request('/storage/v1/object/' + encodeURIComponent(bucket) + '/' + path.split('/').map(encodeURIComponent).join('/'), { method: 'POST', headers: { 'Content-Type': 'application/pdf', 'x-upsert': 'false' }, body: file }, token); }).then(function () { uploaded = true; return request('/rest/v1/posts', { method: 'POST', headers: { 'Content-Type': 'application/json', Prefer: 'return=minimal' }, body: JSON.stringify({ title: title, category: 'Bản tin Dược lâm sàng', excerpt: null, publish_date: publishDate, week_number: weekOfMonth(Number(publishDate.slice(8, 10))), author: 'admin', file_name: file.name.slice(0, 255), storage_path: path }) }, token); }).then(function () { if (channel) channel.postMessage('refresh'); signalRecentContentChanged(); setStatus('post-upload-status', 'Đã đăng bản tin.', 'success'); return refresh(); }).then(function () { window.setTimeout(function () { closeDialog('post-upload-dialog'); }, 500); }).catch(function () { if (uploaded && token) request('/storage/v1/object/remove/' + encodeURIComponent(bucket), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ prefixes: [path] }) }, token).catch(function () {}); setStatus('post-upload-status', 'Không thể tải bản tin lên Supabase.', 'error'); });
     });
     if (channel) channel.addEventListener('message', refresh);
-    window.addEventListener('beforeunload', function () { if (previewUrl) URL.revokeObjectURL(previewUrl); if (channel) channel.close(); });
+    window.addEventListener('beforeunload', function () { if (previewUrl) URL.revokeObjectURL(previewUrl); if (channel) channel.close(); if (contentChannel) contentChannel.close(); });
   }
 
   window.KHOA_DUOC_POSTS = { localDateIso: localDateIso, formatDate: formatDate, refresh: refresh, deletePost: deletePost };

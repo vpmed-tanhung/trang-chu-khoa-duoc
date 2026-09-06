@@ -1,6 +1,6 @@
 # 💊 Website Khoa Dược
 
-Phiên bản hiện tại: **v1.1.4**
+Phiên bản hiện tại: **v1.1.5**
 
 Ở phiên bản này, Thông tin thuốc và HDSD được đối chiếu lại theo cả hai chiều sau mỗi lần tải lên. Tên thuốc được chuẩn hóa, bỏ các từ mô tả dạng bào chế và quy đổi tương đương `1 g = 1000 mg`; hệ thống không tự ghép khi kết quả còn mơ hồ hoặc hàm lượng khác nhau.
 
