@@ -98,6 +98,29 @@ assert.strictEqual(
   'Phải đối chiếu cả từ khóa/hoạt chất của HDSD.'
 );
 
+const cefoperazonMatch = match('Thông tin thuốc mới Thuốc kháng sinh Cefoperazon 1000 mg', [{
+  title: 'SUNEWTAM 2g',
+  keywords: 'Cefoperazon 1000 mg Sulbactam 1000 mg'
+}, {
+  title: 'HƯỚNG DẪN SỬ DỤNG THUỐC CEFOPERAZONE 1000 CEFOPERAZONE 2000',
+  keywords: ''
+}]);
+
+assert.strictEqual(
+  cefoperazonMatch.title,
+  'HƯỚNG DẪN SỬ DỤNG THUỐC CEFOPERAZONE 1000 CEFOPERAZONE 2000',
+  'Cefoperazon phải ghép với HDSD Cefoperazone, không được ghép SUNEWTAM theo từ khóa.'
+);
+
+assert.strictEqual(
+  match('Thuốc kháng sinh Cefoperazon 1000 mg', [{
+    title: 'SUNEWTAM 2g',
+    keywords: 'Cefoperazon 1000 mg Sulbactam 1000 mg'
+  }]),
+  null,
+  'Không được dùng hoạt chất trong từ khóa để ghép HDSD mang tên thuốc khác.'
+);
+
 const recentContent = matcher.buildRecentContent(
   [{ title: 'Tài liệu thuốc', signedDate: '2026-07-10', createdAt: '2026-07-10T08:00:00Z' }],
   [{ title: 'Tờ hướng dẫn', signedDate: '2026-07-11', createdAt: '2026-07-11T08:00:00Z', url: '/hdsd.pdf' }],

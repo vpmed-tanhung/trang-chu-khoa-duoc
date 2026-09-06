@@ -160,7 +160,8 @@
 
   function getProductTokens(value) {
     var ignored = {
-      thuoc: true, dieu: true, tri: true, khang: true, sinh: true, chong: true,
+      thuoc: true, thong: true, tin: true, moi: true,
+      dieu: true, tri: true, khang: true, sinh: true, chong: true,
       ung: true, thu: true, giai: true, doc: true, va: true, cac: true,
       benh: true, glucose: true, mau: true, tang: true, huyet: true, ap: true,
       nhom: true, dung: true, dich: true, tiem: true, vien: true, nang: true,
@@ -215,14 +216,41 @@
 
   function containsAllTokens(containerTokens, requiredTokens) {
     return requiredTokens.every(function (token) {
-      return containerTokens.indexOf(token) !== -1;
+      return containerTokens.some(function (containerToken) {
+        return equivalentProductToken(containerToken, token);
+      });
     });
   }
 
   function countCommonTokens(firstTokens, secondTokens) {
     return firstTokens.filter(function (token) {
-      return secondTokens.indexOf(token) !== -1;
+      return secondTokens.some(function (secondToken) {
+        return equivalentProductToken(token, secondToken);
+      });
     }).length;
+  }
+
+  function equivalentProductToken(firstToken, secondToken) {
+    var first = String(firstToken || '');
+    var second = String(secondToken || '');
+
+    if (first === second) return true;
+
+    // Một số tên hoạt chất tiếng Việt lược chữ "e" cuối, ví dụ
+    // Cefoperazon/Cefoperazone. Chỉ chấp nhận đúng biến thể này ở từ dài.
+    if (Math.min(first.length, second.length) < 8 || Math.abs(first.length - second.length) !== 1) {
+      return false;
+    }
+
+    var longer = first.length > second.length ? first : second;
+    var shorter = first.length > second.length ? second : first;
+    return longer.charAt(longer.length - 1) === 'e' && longer.slice(0, -1) === shorter;
+  }
+
+  function sameProductTokens(firstTokens, secondTokens) {
+    return firstTokens.length === secondTokens.length &&
+      containsAllTokens(firstTokens, secondTokens) &&
+      containsAllTokens(secondTokens, firstTokens);
   }
 
   function haveCommonDose(firstDoses, secondDoses) {
@@ -237,27 +265,24 @@
 
   function scoreInstructionMatch(documentItem, instruction) {
     var documentTokens = getProductTokens(documentItem.title);
-    var instructionTokens = getProductTokens(instructionIdentityText(instruction));
+    var instructionTitleTokens = getProductTokens(instruction.title);
+    var instructionKeywordTokens = getProductTokens(instruction.keywords);
+    // Không dùng hoạt chất trong từ khóa để ghép một HDSD đang mang tên thuốc
+    // khác. Từ khóa chỉ là phương án dự phòng cho tiêu đề chung chung.
+    var instructionTokens = instructionTitleTokens.length ? instructionTitleTokens : instructionKeywordTokens;
     var documentDoses = getDoseTokens(documentItem.title);
     var instructionDoses = getDoseTokens(instructionIdentityText(instruction));
     var commonTokens = countCommonTokens(documentTokens, instructionTokens);
-    var smallerTokenCount = Math.min(documentTokens.length, instructionTokens.length);
-    var sameProductTokens = documentTokens.join('|') === instructionTokens.join('|');
-    var oneProductContainsOther = containsAllTokens(documentTokens, instructionTokens) ||
-      containsAllTokens(instructionTokens, documentTokens);
+    var sameProduct = sameProductTokens(documentTokens, instructionTokens);
     var score = 0;
 
     if (!documentTokens.length || !instructionTokens.length || !commonTokens) return null;
 
-    if (sameProductTokens) {
-      score += 100;
-    } else if (oneProductContainsOther) {
-      score += 80;
-    } else if (commonTokens >= 2 && commonTokens / smallerTokenCount >= 0.75) {
-      score += 55;
-    } else {
-      return null;
-    }
+    // Chỉ tự ghép khi toàn bộ tên thuốc trùng nhau. Không ghép gần đúng hoặc
+    // ghép theo một hoạt chất chung vì có thể nối nhầm sang thuốc phối hợp/
+    // tên thương mại khác.
+    if (!sameProduct) return null;
+    score += 100;
 
     if (documentDoses.length && instructionDoses.length) {
       if (!haveCommonDose(documentDoses, instructionDoses)) return null;
