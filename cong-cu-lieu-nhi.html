@@ -1,4 +1,346 @@
-<!DOCTYPE html>
-<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'self'; form-action 'self'"><title>Tính liều kháng sinh Nhi · Khoa Dược</title><link rel="stylesheet" href="assets/css/style.css?v=1.2.0"><link rel="stylesheet" href="assets/css/clinical-tools.css?v=1.2.0"></head>
-<body class="clinical-tool-page" data-clinical-tool="pediatric"><a class="skip-link" href="#noi-dung-chinh">Chuyển đến nội dung chính</a><header class="site-header"><div class="container"><a class="brand" href="index.html" aria-label="Trang chủ Khoa Dược"><img class="brand-logo" src="assets/images/logo-vpmed.png" alt="Logo Bệnh viện VPMED Tân Hưng"><span class="brand-text"><span class="dept">Khoa Dược</span><span class="hospital">Bệnh Viện VPMED TÂN HƯNG</span></span></a><button class="nav-toggle" type="button" aria-label="Mở menu" aria-controls="main-nav" aria-expanded="false"><span></span></button><nav class="main-nav" id="main-nav" aria-label="Điều hướng chính"><ul><li><a href="index.html">Trang chủ</a></li><li><a class="active" href="index.html#cong-cu">Công cụ lâm sàng</a></li><li><a href="thong-tin-thuoc.html">Thông tin thuốc</a></li><li><a href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a></li></ul></nav></div></header>
-<main id="noi-dung-chinh"><section class="clinical-hero"><div class="container"><a class="clinical-breadcrumb" href="index.html#cong-cu">← Quay lại Công cụ lâm sàng</a><div class="clinical-kicker">Công cụ 03</div><h1>Tính liều kháng sinh Nhi</h1><p>Tính riêng rõ ràng giữa mg/kg/ngày và mg/kg/lần; có PMA, cân nặng, lịch sử tra cứu và các khóa an toàn cơ bản cho trẻ em.</p></div></section><section class="container clinical-layout"><div><section class="clinical-panel"><div class="clinical-panel-header"><h2>Thông tin trẻ</h2></div><div class="clinical-panel-body"><form id="pediatric-form"><div class="clinical-form-grid"><div class="clinical-field"><label for="pediatric-age-years">Tuổi (năm tròn)</label><input id="pediatric-age-years" type="number" min="0" max="17" step="1" value="0" required></div><div class="clinical-field"><label for="pediatric-age-months">Tháng thêm (0–11)</label><input id="pediatric-age-months" type="number" min="0" max="11" step="1" value="0"></div><div class="clinical-field"><label for="pediatric-pna">Tuổi sau sinh PNA (ngày)</label><input id="pediatric-pna" type="number" min="0" step="1" placeholder="Nhập nếu là trẻ sơ sinh"></div><div class="clinical-field"><label for="pediatric-ga">Tuổi thai lúc sinh (tuần)</label><input id="pediatric-ga" type="number" min="20" max="45" step="0.1" placeholder="Dùng để tính PMA"></div><div class="clinical-field"><label for="pediatric-weight">Cân nặng (kg)</label><input id="pediatric-weight" type="number" min="0.1" step="0.01" required></div><div class="clinical-field"><label for="pediatric-drug">Kháng sinh</label><select id="pediatric-drug"><option value="">— Chọn thuốc —</option></select></div></div><div class="clinical-actions"><button class="clinical-button primary" type="submit">Tính liều Nhi</button></div></form><div id="pediatric-result" class="clinical-result" aria-live="polite"></div></div></section><section class="clinical-panel clinical-panel-spaced"><div class="clinical-panel-header"><h2>Khóa an toàn đang áp dụng</h2></div><div class="clinical-panel-body"><div class="clinical-check-list"><div class="clinical-check-item">✓ Phân biệt độc lập <strong>mg/kg/ngày</strong> và <strong>mg/kg/lần</strong>.</div><div class="clinical-check-item">✓ Khóa bệnh nhân từ đủ 18 tuổi.</div><div class="clinical-check-item">✓ Khóa Ceftriaxone ở trẻ sơ sinh ≤28 ngày.</div><div class="clinical-check-item">✓ Hiển thị PMA khi đủ tuổi thai và PNA.</div></div></div></section></div><aside class="clinical-panel"><div class="clinical-panel-header"><h2>Lịch sử tra cứu</h2></div><div class="clinical-panel-body"><div id="pediatric-history"></div><button class="clinical-button danger" id="pediatric-clear-history" type="button">Xóa lịch sử trên thiết bị</button><p class="clinical-source-note">Lịch sử chỉ lưu cục bộ trên trình duyệt.</p></div></aside></section><section class="container clinical-bottom-note"><p class="clinical-note"><strong>Lưu ý:</strong> Liều Nhi thay đổi theo chỉ định, mức độ nhiễm khuẩn, chức năng cơ quan và phác đồ. Dữ liệu tích hợp ban đầu có phạm vi giới hạn; cần xác nhận trước khi sử dụng cho người bệnh.</p></section></main><footer class="site-footer clinical-footer"><div class="container"><div><h5>Khoa Dược – Bệnh Viện VPMED TÂN HƯNG</h5><p>Công cụ hỗ trợ chuyên môn nội bộ.</p></div></div><div class="footer-bottom">© 2026 Bệnh Viện VPMED TÂN HƯNG · <span data-app-version>v1.2.0</span></div></footer><script src="assets/js/server-config.js?v=1.2.0"></script><script src="assets/js/global-auth.js?v=1.2.1"></script><script src="assets/js/clinical-tools-data.js?v=1.2.0"></script><script src="assets/js/clinical-tools.js?v=1.2.0"></script><script src="assets/js/main.js?v=1.2.0"></script></body></html>
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'self'; form-action 'self'">
+
+<title>TÃ­nh liá»u khÃ¡ng sinh Nhi &amp; MIC Â· Khoa DÆ°á»£c</title>
+
+<link rel="stylesheet" href="assets/css/style.css?v=2.0">
+<link rel="stylesheet" href="assets/css/clinical-pages.css?v=2.0">
+</head>
+
+<body class="clinical-tool-page" data-clinical-tool="pediatric">
+
+<a class="skip-link" href="#noi-dung-chinh">
+  Chuyá»ƒn Ä‘áº¿n ná»™i dung chÃ­nh
+</a>
+
+<header class="site-header">
+  <div class="container">
+
+    <a class="brand" href="index.html" aria-label="Trang chá»§ Khoa DÆ°á»£c">
+      <img
+        class="brand-logo"
+        src="assets/images/logo-vpmed.png"
+        alt="Logo Bá»‡nh viá»‡n VPMED TÃ¢n HÆ°ng"
+      >
+
+      <span class="brand-text">
+        <span class="dept">Khoa DÆ°á»£c</span>
+        <span class="hospital">Bá»‡nh Viá»‡n VPMED TÃ‚N HÆ¯NG</span>
+      </span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Má»Ÿ menu"
+      aria-controls="main-nav"
+      aria-expanded="false"
+    >
+      <span></span>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Äiá»u hÆ°á»›ng chÃ­nh">
+      <ul>
+        <li>
+          <a href="index.html">Trang chá»§</a>
+        </li>
+
+        <li>
+          <a class="active" href="index.html#cong-cu">
+            CÃ´ng cá»¥ lÃ¢m sÃ ng
+          </a>
+        </li>
+
+        <li>
+          <a href="thong-tin-thuoc.html">
+            ThÃ´ng tin thuá»‘c
+          </a>
+        </li>
+
+        <li>
+          <a href="huong-dan-su-dung.html">
+            HÆ°á»›ng dáº«n sá»­ dá»¥ng
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<main id="noi-dung-chinh">
+
+  <section class="ct-hero">
+    <div class="ct-container">
+
+      <a class="ct-back" href="index.html#cong-cu">
+        â† Quay láº¡i Trang chá»§
+      </a>
+
+      <p class="ct-kicker">
+        CÃ´ng cá»¥ lÃ¢m sÃ ng Â· Tra cá»©u liá»u nhi khoa
+      </p>
+
+      <h1>
+        TÃ­nh liá»u khÃ¡ng sinh Nhi &amp; MIC
+      </h1>
+
+      <p class="ct-lead">
+        Tra liá»u khÃ¡ng sinh theo tuá»•i, cÃ¢n náº·ng vÃ  Ä‘iá»u kiá»‡n sÆ¡ sinh (PNA, tuá»•i thai);
+        hiá»ƒn thá»‹ má»¥c tiÃªu PK/PD theo MIC.
+      </p>
+
+    </div>
+  </section>
+
+  <section class="ct-page">
+    <div class="ct-container">
+
+      <div class="ct-grid">
+
+        <div class="ct-col ct-col-form">
+
+          <section class="ct-card">
+            <header class="ct-card-header">
+              <h2>ThÃ´ng tin bá»‡nh nhi</h2>
+            </header>
+
+            <div class="ct-card-body">
+
+              <form id="pediatric-form" novalidate>
+
+                <div class="ct-form-grid">
+
+                  <div class="ct-field full">
+                    <label for="pediatric-his">MÃ£ bá»‡nh nhÃ¢n (HIS)</label>
+                    <input
+                      id="pediatric-his"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="VD: BN 000123"
+                    >
+                    <small>MÃ£ Ä‘á»ƒ nháº­n diá»‡n ca, hiá»ƒn thá»‹ trong lá»‹ch sá»­. KhÃ´ng nháº­p há» tÃªn.</small>
+                  </div>
+
+                  <div class="ct-field full">
+                    <label for="pediatric-unit">Khoa / phÃ²ng (tÃ¹y chá»n)</label>
+                    <input
+                      id="pediatric-unit"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="VD: Nhi, SÆ¡ sinh..."
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="pediatric-age-years">Tuá»•i (nÄƒm)</label>
+                    <input
+                      id="pediatric-age-years"
+                      type="number"
+                      min="0"
+                      max="17"
+                      step="1"
+                      required
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="pediatric-age-months">ThÃ¡ng láº» (0â€“11)</label>
+                    <input
+                      id="pediatric-age-months"
+                      type="number"
+                      min="0"
+                      max="11"
+                      step="1"
+                      required
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="pediatric-pna">PNA (ngÃ y, dÆ°á»›i 1 thÃ¡ng)</label>
+                    <input
+                      id="pediatric-pna"
+                      type="number"
+                      min="0"
+                      step="1"
+                      placeholder="TÃ¹y chá»n"
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="pediatric-ga">Tuá»•i thai (tuáº§n)</label>
+                    <input
+                      id="pediatric-ga"
+                      type="number"
+                      min="22"
+                      max="44"
+                      step="0.1"
+                      placeholder="TÃ¹y chá»n"
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="pediatric-weight">CÃ¢n náº·ng (kg)</label>
+                    <input
+                      id="pediatric-weight"
+                      type="number"
+                      min="0.1"
+                      step="0.01"
+                      required
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="pediatric-mic">MIC (mg/L = Âµg/mL)</label>
+                    <input
+                      id="pediatric-mic"
+                      type="number"
+                      min="0.001"
+                      step="0.001"
+                      placeholder="Káº¿t quáº£ khÃ¡ng sinh Ä‘á»“"
+                    >
+                    <small>MIC khÃ´ng tá»± Ä‘á»™ng thay Ä‘á»•i liá»u.</small>
+                  </div>
+
+                  <div class="ct-field full">
+                    <label for="pediatric-drug">KhÃ¡ng sinh</label>
+                    <select id="pediatric-drug">
+                      <option value="">
+                        â€” Chá»n thuá»‘c â€”
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="ct-field full">
+                    <label for="pediatric-pkpd-target">ÄÃ­ch PK/PD theo MIC</label>
+                    <select id="pediatric-pkpd-target">
+                      <option value="">
+                        â€” Chá»n sau khi chá»n thuá»‘c â€”
+                      </option>
+                    </select>
+                  </div>
+
+                </div>
+
+                <div class="ct-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                  >
+                    TÃ­nh liá»u vÃ  gá»£i Ã½ theo nguá»“n
+                  </button>
+
+                  <button
+                    class="btn btn-outline"
+                    id="pediatric-reset"
+                    type="button"
+                  >
+                    Reset / nháº­p ca má»›i
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+          </section>
+
+        </div>
+
+        <div class="ct-col ct-col-result">
+
+          <section
+            id="pediatric-result"
+            class="ct-result-box"
+            aria-live="polite"
+          >
+            <div class="ct-result-empty">
+              <div class="ct-result-icon" aria-hidden="true">ðŸ§ª</div>
+              <h3>ChÆ°a cÃ³ káº¿t quáº£</h3>
+              <p>Nháº­p thÃ´ng tin bá»‡nh nhi á»Ÿ cá»™t bÃªn trÃ¡i<br>rá»“i báº¥m <strong>TÃ­nh liá»u vÃ  gá»£i Ã½ theo nguá»“n</strong>.</p>
+            </div>
+          </section>
+
+          <section class="ct-card ct-history">
+            <header class="ct-card-header ct-history-header">
+              <h2>Lá»‹ch sá»­ tra cá»©u</h2>
+              <div class="ct-toolbar">
+                <button class="btn btn-outline btn-sm" id="pediatric-refresh" type="button">â†» LÃ m má»›i</button>
+                <button class="btn btn-outline btn-sm" id="pediatric-export" type="button">Xuáº¥t CSV</button>
+                <button class="btn btn-danger-outline btn-sm" id="pediatric-clear" type="button">XÃ³a toÃ n bá»™</button>
+              </div>
+            </header>
+
+            <div class="ct-card-body">
+              <div class="ct-table-wrap">
+                <table class="ct-table">
+                  <thead>
+                    <tr>
+                      <th>Thá»i gian</th>
+                      <th>MÃ£ bá»‡nh nhÃ¢n</th>
+                      <th>Khoa/phÃ²ng</th>
+                      <th>Liá»u</th>
+                      <th>Thuá»‘c</th>
+                      <th>Gá»£i Ã½</th>
+                      <th class="ct-ta-right">Quáº£n lÃ½</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pediatric-history"></tbody>
+                </table>
+                <div class="ct-empty" id="pediatric-history-empty">ChÆ°a cÃ³ ca tra cá»©u nÃ o trÃªn thiáº¿t bá»‹.</div>
+              </div>
+              <p class="ct-note-sm">Lá»‹ch sá»­ chá»‰ lÆ°u cá»¥c bá»™ trÃªn trÃ¬nh duyá»‡t.</p>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <div class="ct-note">
+        <strong>Cáº£nh bÃ¡o:</strong>
+        Dá»¯ liá»‡u liá»u theo nguá»“n tham kháº£o; pháº£i Ä‘á»‘i chiáº¿u tuá»•i thai, bá»‡nh lÃ½ ná»n,
+        chá»©c nÄƒng gan tháº­n vÃ  phÃ¡c Ä‘á»“ cá»§a bá»‡nh viá»‡n trÆ°á»›c khi sá»­ dá»¥ng.
+        CÃ´ng cá»¥ khÃ´ng tá»± chá»n liá»u cho tráº» sÆ¡ sinh dÆ°á»›i 1 thÃ¡ng náº¿u thiáº¿u PNA.
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer clinical-footer">
+
+  <div class="container">
+    <div>
+      <h5>
+        Khoa DÆ°á»£c â€“ Bá»‡nh Viá»‡n VPMED TÃ‚N HÆ¯NG
+      </h5>
+
+      <p>
+        CÃ´ng cá»¥ há»— trá»£ chuyÃªn mÃ´n ná»™i bá»™.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    Â© 2026 Bá»‡nh Viá»‡n VPMED TÃ‚N HÆ¯NG Â·
+    <span data-app-version>v1.2.0</span>
+  </div>
+
+</footer>
+
+<script src="assets/js/server-config.js?v=1.2.0"></script>
+<script src="assets/js/global-auth.js?v=1.2.1"></script>
+<script src="assets/js/clinical-tools-data.js?v=1.2.4"></script>
+
+<script src="assets/js/module3-pediatric-dosing.js?v=1.0.0"></script>
+
+<script src="assets/js/clinical-pages.js?v=2.0"></script>
+<script src="assets/js/main.js?v=1.2.0"></script>
+
+</body>
+</html>

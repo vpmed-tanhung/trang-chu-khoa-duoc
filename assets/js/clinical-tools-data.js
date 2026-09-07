@@ -2,6 +2,48 @@
   'use strict';
 
   window.KHOA_DUOC_CLINICAL_DATA = {
+    featuredTools: [
+      {
+        id: 'kiem-tra-tuong-tac-thuoc',
+        title: 'Kiểm tra tương tác thuốc',
+        desc: 'Kiểm tra giữa hai thuốc hoặc quét toàn bộ danh mục thuốc.',
+        status: 'SẴN SÀNG',
+        badgeText: 'SẴN SÀNG',
+        actionText: 'Tra cứu công cụ',
+        link: 'cong-cu-tuong-tac-thuoc.html',
+        icon: 'scanner'
+      },
+      {
+        id: 'tinh-lieu-khang-sinh-crcl',
+        title: 'Tính liều kháng sinh & CrCl/eGFR',
+        desc: 'Ước tính chức năng thận, cảnh báo chỉnh liều và lưu lịch sử.',
+        status: 'SẴN SÀNG',
+        badgeText: 'SẴN SÀNG',
+        actionText: 'Mở công cụ',
+        link: 'cong-cu-lieu-khang-sinh.html',
+        icon: 'document'
+      },
+      {
+        id: 'tinh-lieu-khang-sinh-nhi',
+        title: 'Tính liều kháng sinh Nhi',
+        desc: 'Tính theo tuổi, PMA, cân nặng; phân biệt mg/kg/ngày và mg/kg/lần.',
+        status: 'SẴN SÀNG',
+        badgeText: 'SẴN SÀNG',
+        actionText: 'Mở công cụ',
+        link: 'cong-cu-lieu-nhi.html',
+        icon: 'user'
+      },
+      {
+        id: 'tinh-lieu-pet-ct',
+        title: 'Tính liều PET/CT',
+        desc: 'Tính hoạt độ, bù phân rã và thể tích rút theo mốc thời gian.',
+        status: 'SẴN SÀNG',
+        badgeText: 'SẴN SÀNG',
+        actionText: 'Mở công cụ',
+        link: 'cong-cu-pet-ct.html',
+        icon: 'target'
+      }
+    ],
     source: {
       name: 'Hệ thống Hỗ trợ Dược lâm sàng | VPMED Tân Hưng',
       url: 'https://hotrolamsang.io.vn/',

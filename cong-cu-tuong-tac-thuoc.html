@@ -1,31 +1,265 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'self'; form-action 'self'">
-<title>Kiểm tra tương tác thuốc · Khoa Dược</title>
-<link rel="stylesheet" href="assets/css/style.css?v=1.2.4">
-<link rel="stylesheet" href="assets/css/clinical-tools.css?v=1.2.4">
+
+<title>Kiá»ƒm tra tÆ°Æ¡ng tÃ¡c thuá»‘c Â· Khoa DÆ°á»£c</title>
+
+<link rel="stylesheet" href="assets/css/style.css?v=2.0">
+<link rel="stylesheet" href="assets/css/clinical-pages.css?v=2.0">
 </head>
+
 <body class="clinical-tool-page" data-clinical-tool="interaction">
-<a class="skip-link" href="#noi-dung-chinh">Chuyển đến nội dung chính</a>
-<header class="site-header"><div class="container">
-  <a class="brand" href="index.html" aria-label="Trang chủ Khoa Dược"><img class="brand-logo" src="assets/images/logo-vpmed.png" alt="Logo Bệnh viện VPMED Tân Hưng"><span class="brand-text"><span class="dept">Khoa Dược</span><span class="hospital">Bệnh Viện VPMED TÂN HƯNG</span></span></a>
-  <button class="nav-toggle" type="button" aria-label="Mở menu" aria-controls="main-nav" aria-expanded="false"><span></span></button>
-  <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính"><ul><li><a href="index.html">Trang chủ</a></li><li><a class="active" href="index.html#cong-cu">Công cụ lâm sàng</a></li><li><a href="thong-tin-thuoc.html">Thông tin thuốc</a></li><li><a href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a></li></ul></nav>
-</div></header>
-<main id="noi-dung-chinh">
-<section class="clinical-hero"><div class="container"><a class="clinical-breadcrumb" href="index.html#cong-cu">← Quay lại Công cụ lâm sàng</a><div class="clinical-kicker">Công cụ 01</div><h1>Kiểm tra tương tác thuốc</h1><p>Kiểm tra nhanh giữa hai thuốc hoặc quét toàn bộ danh mục thuốc nhập vào. Kết quả chỉ phản ánh bộ quy tắc được tích hợp trong website.</p></div></section>
-<section class="container clinical-layout">
-  <div>
-    <section class="clinical-panel"><div class="clinical-panel-header"><h2>Kiểm tra hai thuốc</h2></div><div class="clinical-panel-body"><form id="interaction-form"><div class="clinical-form-grid"><div class="clinical-field"><label for="interaction-first">Thuốc thứ nhất</label><input id="interaction-first" type="text" autocomplete="off" placeholder="Ví dụ: Warfarin" required></div><div class="clinical-field"><label for="interaction-second">Thuốc thứ hai</label><input id="interaction-second" type="text" autocomplete="off" placeholder="Ví dụ: Metronidazole" required></div></div><div class="clinical-actions"><button class="clinical-button primary" type="submit">Kiểm tra tương tác</button></div></form><div id="interaction-result" class="clinical-result" aria-live="polite"></div></div></section>
-    <section class="clinical-panel clinical-panel-spaced"><div class="clinical-panel-header"><h2>Quét toàn bộ danh mục</h2></div><div class="clinical-panel-body"><label class="clinical-field full" for="interaction-list"><span>Danh sách thuốc</span><textarea id="interaction-list" placeholder="Mỗi thuốc một dòng hoặc ngăn cách bằng dấu phẩy\nWarfarin\nTrimethoprim/Sulfamethoxazole\nMetronidazole"></textarea></label><p class="clinical-help">Kết quả được cập nhật khi nhập. Nếu không có cảnh báo, vẫn cần kiểm tra nguồn tương tác chuyên dụng khi quyết định điều trị.</p></div></section>
+
+<a class="skip-link" href="#noi-dung-chinh">
+  Chuyá»ƒn Ä‘áº¿n ná»™i dung chÃ­nh
+</a>
+
+<header class="site-header">
+  <div class="container">
+
+    <a class="brand" href="index.html" aria-label="Trang chá»§ Khoa DÆ°á»£c">
+      <img
+        class="brand-logo"
+        src="assets/images/logo-vpmed.png"
+        alt="Logo Bá»‡nh viá»‡n VPMED TÃ¢n HÆ°ng"
+      >
+
+      <span class="brand-text">
+        <span class="dept">Khoa DÆ°á»£c</span>
+        <span class="hospital">Bá»‡nh Viá»‡n VPMED TÃ‚N HÆ¯NG</span>
+      </span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      type="button"
+      aria-label="Má»Ÿ menu"
+      aria-controls="main-nav"
+      aria-expanded="false"
+    >
+      <span></span>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Äiá»u hÆ°á»›ng chÃ­nh">
+      <ul>
+        <li>
+          <a href="index.html">Trang chá»§</a>
+        </li>
+
+        <li>
+          <a class="active" href="index.html#cong-cu">
+            CÃ´ng cá»¥ lÃ¢m sÃ ng
+          </a>
+        </li>
+
+        <li>
+          <a href="thong-tin-thuoc.html">
+            ThÃ´ng tin thuá»‘c
+          </a>
+        </li>
+
+        <li>
+          <a href="huong-dan-su-dung.html">
+            HÆ°á»›ng dáº«n sá»­ dá»¥ng
+          </a>
+        </li>
+      </ul>
+    </nav>
+
   </div>
-  <aside class="clinical-panel"><div class="clinical-panel-header"><h2>Lịch sử tra cứu</h2></div><div class="clinical-panel-body"><div id="interaction-history"></div><button class="clinical-button danger" id="interaction-clear-history" type="button">Xóa lịch sử trên thiết bị</button><p class="clinical-source-note">Lịch sử được lưu cục bộ trên trình duyệt, không đồng bộ giữa các máy.</p></div></aside>
-</section>
-<section class="container clinical-bottom-note"><p class="clinical-note"><strong>Lưu ý:</strong> Công cụ không thay thế đánh giá bệnh nhân, liều dùng, chức năng gan thận, dị ứng và phác đồ của bệnh viện. Bộ quy tắc hiện tại là bộ dữ liệu cấu hình ban đầu, không phải cơ sở dữ liệu tương tác đầy đủ.</p></section>
+</header>
+
+<main id="noi-dung-chinh">
+
+  <section class="ct-hero">
+    <div class="ct-container">
+
+      <a class="ct-back" href="index.html#cong-cu">
+        â† Quay láº¡i Trang chá»§
+      </a>
+
+      <p class="ct-kicker">
+        CÃ´ng cá»¥ lÃ¢m sÃ ng Â· Kiá»ƒm tra tÆ°Æ¡ng tÃ¡c
+      </p>
+
+      <h1>
+        Kiá»ƒm tra tÆ°Æ¡ng tÃ¡c thuá»‘c
+      </h1>
+
+      <p class="ct-lead">
+        SÃ ng lá»c tÆ°Æ¡ng tÃ¡c thuá»‘c â€” thuá»‘c theo cáº·p hoáº·c theo danh sÃ¡ch
+        (má»—i thuá»‘c má»™t dÃ²ng, hoáº·c ngÄƒn cÃ¡ch báº±ng dáº¥u pháº©y).
+      </p>
+
+    </div>
+  </section>
+
+  <section class="ct-page">
+    <div class="ct-container">
+
+      <div class="ct-grid">
+
+        <div class="ct-col ct-col-form">
+
+          <section class="ct-card">
+            <header class="ct-card-header">
+              <h2>ThÃ´ng tin tra cá»©u</h2>
+            </header>
+
+            <div class="ct-card-body">
+
+              <form id="interaction-form" novalidate>
+
+                <div class="ct-form-grid">
+
+                  <div class="ct-field">
+                    <label for="interaction-first">Thuá»‘c thá»© nháº¥t</label>
+                    <input
+                      id="interaction-first"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="VD: Warfarin"
+                    >
+                  </div>
+
+                  <div class="ct-field">
+                    <label for="interaction-second">Thuá»‘c thá»© hai</label>
+                    <input
+                      id="interaction-second"
+                      type="text"
+                      autocomplete="off"
+                      placeholder="VD: Clarithromycin"
+                    >
+                  </div>
+
+                  <div class="ct-field full">
+                    <label for="interaction-list">Hoáº·c danh sÃ¡ch nhiá»u thuá»‘c</label>
+                    <textarea
+                      id="interaction-list"
+                      placeholder="Má»—i thuá»‘c má»™t dÃ²ng hoáº·c ngÄƒn cÃ¡ch báº±ng dáº¥u pháº©y"
+                    ></textarea>
+                  </div>
+
+                </div>
+
+                <div class="ct-actions">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                  >
+                    Kiá»ƒm tra tÆ°Æ¡ng tÃ¡c
+                  </button>
+
+                  <button
+                    class="btn btn-outline"
+                    id="interaction-reset"
+                    type="button"
+                  >
+                    Reset / nháº­p cáº·p má»›i
+                  </button>
+                </div>
+
+              </form>
+
+            </div>
+          </section>
+
+        </div>
+
+        <div class="ct-col ct-col-result">
+
+          <section
+            id="interaction-result"
+            class="ct-result-box"
+            aria-live="polite"
+          >
+            <div class="ct-result-empty">
+              <div class="ct-result-icon" aria-hidden="true">ðŸ§ª</div>
+              <h3>ChÆ°a cÃ³ káº¿t quáº£</h3>
+              <p>Nháº­p hai thuá»‘c hoáº·c danh sÃ¡ch thuá»‘c<br>rá»“i báº¥m <strong>Kiá»ƒm tra tÆ°Æ¡ng tÃ¡c</strong>.</p>
+            </div>
+          </section>
+
+          <section class="ct-card ct-history">
+            <header class="ct-card-header ct-history-header">
+              <h2>Lá»‹ch sá»­ tra cá»©u</h2>
+              <div class="ct-toolbar">
+                <button class="btn btn-outline btn-sm" id="interaction-refresh" type="button">â†» LÃ m má»›i</button>
+                <button class="btn btn-outline btn-sm" id="interaction-export" type="button">Xuáº¥t CSV</button>
+                <button class="btn btn-danger-outline btn-sm" id="interaction-clear" type="button">XÃ³a toÃ n bá»™</button>
+              </div>
+            </header>
+
+            <div class="ct-card-body">
+              <div class="ct-table-wrap">
+                <table class="ct-table">
+                  <thead>
+                    <tr>
+                      <th>Thá»i gian</th>
+                      <th>Cáº·p thuá»‘c</th>
+                      <th>Khoa/phÃ²ng</th>
+                      <th>Cáº£nh bÃ¡o</th>
+                      <th>Thuá»‘c</th>
+                      <th>Gá»£i Ã½</th>
+                      <th class="ct-ta-right">Quáº£n lÃ½</th>
+                    </tr>
+                  </thead>
+                  <tbody id="interaction-history"></tbody>
+                </table>
+                <div class="ct-empty" id="interaction-history-empty">ChÆ°a cÃ³ ca tra cá»©u nÃ o trÃªn thiáº¿t bá»‹.</div>
+              </div>
+              <p class="ct-note-sm">Lá»‹ch sá»­ chá»‰ lÆ°u cá»¥c bá»™ trÃªn trÃ¬nh duyá»‡t.</p>
+            </div>
+          </section>
+
+        </div>
+
+      </div>
+
+      <div class="ct-note">
+        <strong>LÆ°u Ã½:</strong>
+        Káº¿t quáº£ sÃ ng lá»c khÃ´ng thay tháº¿ Ä‘á»‘i chiáº¿u trÃªn nguá»“n tÆ°Æ¡ng tÃ¡c chuyÃªn dá»¥ng
+        (drugs.com, Lexicomp, tÃ i liá»‡u DÆ°á»£c Ä‘iá»ƒn) vÃ  quy trÃ¬nh kiá»ƒm tra Ä‘Æ¡n cá»§a bá»‡nh viá»‡n.
+        Viá»‡c khÃ´ng phÃ¡t hiá»‡n tÆ°Æ¡ng tÃ¡c khÃ´ng Ä‘á»“ng nghÄ©a vá»›i viá»‡c an toÃ n tuyá»‡t Ä‘á»‘i.
+      </div>
+
+    </div>
+  </section>
+
 </main>
-<footer class="site-footer clinical-footer"><div class="container"><div><h5>Khoa Dược – Bệnh Viện VPMED TÂN HƯNG</h5><p>Công cụ hỗ trợ chuyên môn nội bộ.</p></div></div><div class="footer-bottom">© 2026 Bệnh Viện VPMED TÂN HƯNG · <span data-app-version>v1.2.0</span></div></footer>
-<script src="assets/js/server-config.js?v=1.2.0"></script><script src="assets/js/global-auth.js?v=1.2.1"></script><script src="assets/js/clinical-tools-data.js?v=1.2.0"></script><script src="assets/js/clinical-tools.js?v=1.2.0"></script><script src="assets/js/main.js?v=1.2.0"></script>
-</body></html>
+
+<footer class="site-footer clinical-footer">
+
+  <div class="container">
+    <div>
+      <h5>
+        Khoa DÆ°á»£c â€“ Bá»‡nh Viá»‡n VPMED TÃ‚N HÆ¯NG
+      </h5>
+
+      <p>
+        CÃ´ng cá»¥ há»— trá»£ chuyÃªn mÃ´n ná»™i bá»™.
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    Â© 2026 Bá»‡nh Viá»‡n VPMED TÃ‚N HÆ¯NG Â·
+    <span data-app-version>v1.2.0</span>
+  </div>
+
+</footer>
+
+<script src="assets/js/server-config.js?v=1.2.0"></script>
+<script src="assets/js/global-auth.js?v=1.2.1"></script>
+<script src="assets/js/clinical-tools-data.js?v=1.2.4"></script>
+
+<script src="assets/js/module1-interactions-ci.js?v=1.0.0"></script>
+
+<script src="assets/js/clinical-pages.js?v=2.0"></script>
+<script src="assets/js/main.js?v=1.2.0"></script>
+
+</body>
+</html>
