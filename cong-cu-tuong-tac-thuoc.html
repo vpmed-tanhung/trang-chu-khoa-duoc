@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'self'; form-action 'self'">
+<title>Kiểm tra tương tác thuốc · Khoa Dược</title>
+<link rel="stylesheet" href="assets/css/style.css?v=1.2.4">
+<link rel="stylesheet" href="assets/css/clinical-tools.css?v=1.2.4">
+</head>
+<body class="clinical-tool-page" data-clinical-tool="interaction">
+<a class="skip-link" href="#noi-dung-chinh">Chuyển đến nội dung chính</a>
+<header class="site-header"><div class="container">
+  <a class="brand" href="index.html" aria-label="Trang chủ Khoa Dược"><img class="brand-logo" src="assets/images/logo-vpmed.png" alt="Logo Bệnh viện VPMED Tân Hưng"><span class="brand-text"><span class="dept">Khoa Dược</span><span class="hospital">Bệnh Viện VPMED TÂN HƯNG</span></span></a>
+  <button class="nav-toggle" type="button" aria-label="Mở menu" aria-controls="main-nav" aria-expanded="false"><span></span></button>
+  <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính"><ul><li><a href="index.html">Trang chủ</a></li><li><a class="active" href="index.html#cong-cu">Công cụ lâm sàng</a></li><li><a href="thong-tin-thuoc.html">Thông tin thuốc</a></li><li><a href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a></li></ul></nav>
+</div></header>
+<main id="noi-dung-chinh">
+<section class="clinical-hero"><div class="container"><a class="clinical-breadcrumb" href="index.html#cong-cu">← Quay lại Công cụ lâm sàng</a><div class="clinical-kicker">Công cụ 01</div><h1>Kiểm tra tương tác thuốc</h1><p>Kiểm tra nhanh giữa hai thuốc hoặc quét toàn bộ danh mục thuốc nhập vào. Kết quả chỉ phản ánh bộ quy tắc được tích hợp trong website.</p></div></section>
+<section class="container clinical-layout">
+  <div>
+    <section class="clinical-panel"><div class="clinical-panel-header"><h2>Kiểm tra hai thuốc</h2></div><div class="clinical-panel-body"><form id="interaction-form"><div class="clinical-form-grid"><div class="clinical-field"><label for="interaction-first">Thuốc thứ nhất</label><input id="interaction-first" type="text" autocomplete="off" placeholder="Ví dụ: Warfarin" required></div><div class="clinical-field"><label for="interaction-second">Thuốc thứ hai</label><input id="interaction-second" type="text" autocomplete="off" placeholder="Ví dụ: Metronidazole" required></div></div><div class="clinical-actions"><button class="clinical-button primary" type="submit">Kiểm tra tương tác</button></div></form><div id="interaction-result" class="clinical-result" aria-live="polite"></div></div></section>
+    <section class="clinical-panel clinical-panel-spaced"><div class="clinical-panel-header"><h2>Quét toàn bộ danh mục</h2></div><div class="clinical-panel-body"><label class="clinical-field full" for="interaction-list"><span>Danh sách thuốc</span><textarea id="interaction-list" placeholder="Mỗi thuốc một dòng hoặc ngăn cách bằng dấu phẩy\nWarfarin\nTrimethoprim/Sulfamethoxazole\nMetronidazole"></textarea></label><p class="clinical-help">Kết quả được cập nhật khi nhập. Nếu không có cảnh báo, vẫn cần kiểm tra nguồn tương tác chuyên dụng khi quyết định điều trị.</p></div></section>
+  </div>
+  <aside class="clinical-panel"><div class="clinical-panel-header"><h2>Lịch sử tra cứu</h2></div><div class="clinical-panel-body"><div id="interaction-history"></div><button class="clinical-button danger" id="interaction-clear-history" type="button">Xóa lịch sử trên thiết bị</button><p class="clinical-source-note">Lịch sử được lưu cục bộ trên trình duyệt, không đồng bộ giữa các máy.</p></div></aside>
+</section>
+<section class="container clinical-bottom-note"><p class="clinical-note"><strong>Lưu ý:</strong> Công cụ không thay thế đánh giá bệnh nhân, liều dùng, chức năng gan thận, dị ứng và phác đồ của bệnh viện. Bộ quy tắc hiện tại là bộ dữ liệu cấu hình ban đầu, không phải cơ sở dữ liệu tương tác đầy đủ.</p></section>
+</main>
+<footer class="site-footer clinical-footer"><div class="container"><div><h5>Khoa Dược – Bệnh Viện VPMED TÂN HƯNG</h5><p>Công cụ hỗ trợ chuyên môn nội bộ.</p></div></div><div class="footer-bottom">© 2026 Bệnh Viện VPMED TÂN HƯNG · <span data-app-version>v1.2.0</span></div></footer>
+<script src="assets/js/server-config.js?v=1.2.0"></script><script src="assets/js/global-auth.js?v=1.2.1"></script><script src="assets/js/clinical-tools-data.js?v=1.2.0"></script><script src="assets/js/clinical-tools.js?v=1.2.0"></script><script src="assets/js/main.js?v=1.2.0"></script>
+</body></html>

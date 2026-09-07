@@ -56,6 +56,9 @@
     return { access_token: payload.access_token, refresh_token: payload.refresh_token, expires_at: expiresAt || 0 };
   }
   function accessToken() {
+    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.getAccessToken === 'function') {
+      return window.KHOA_DUOC_AUTH.getAccessToken();
+    }
     var current = readSession();
     if (!current) return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
     if (current.expires_at > Math.floor(Date.now() / 1000) + 60) return Promise.resolve(current.access_token);
@@ -66,6 +69,12 @@
     return refreshPromise;
   }
   function validate() {
+    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.validate === 'function') {
+      return window.KHOA_DUOC_AUTH.validate().then(function (allowed) {
+        authenticated = allowed === true;
+        return authenticated;
+      });
+    }
     if (!configured() || !readSession()) { clearSession(); return Promise.resolve(false); }
     return accessToken().then(function (token) {
       return request('/auth/v1/user', { method: 'GET' }, token).then(function () {
@@ -220,6 +229,11 @@
     var uploadSubmit = document.getElementById('submit-instruction-upload');
     var cancelUpload = document.getElementById('cancel-instruction-upload');
     renderAccess();
+    window.addEventListener('khoa-duoc-auth-changed', function () {
+      authenticated = window.KHOA_DUOC_STAFF_AUTHENTICATED === true;
+      if (!authenticated) session = null;
+      renderAccess();
+    });
     if (loginDialog && loginForm) validate().then(function () {
       renderAccess();
       window.dispatchEvent(new Event('khoa-duoc-auth-changed'));

@@ -171,14 +171,17 @@ textarea {
   align-items: center;
   justify-content: space-between;
   gap: 28px;
+  width: min(100% - 40px, 1320px);
 }
 
 .brand {
   display: inline-flex;
+  flex: 0 0 auto;
   align-items: center;
   gap: 13px;
   color: var(--navy-950);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .brand:hover {
@@ -195,6 +198,7 @@ textarea {
 
 .brand-text {
   display: flex;
+  min-width: max-content;
   flex-direction: column;
   line-height: 1.3;
 }
@@ -232,6 +236,61 @@ textarea {
   white-space: nowrap;
 }
 
+.main-nav {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.main-nav > ul {
+  justify-content: flex-end;
+}
+
+.main-nav li {
+  position: relative;
+}
+
+.main-nav li.has-dropdown > a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.main-nav .nav-caret {
+  color: var(--brand-blue);
+  font-size: 0.8em;
+  line-height: 1;
+}
+
+.main-nav .nav-dropdown {
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 0;
+  z-index: 35;
+  display: none;
+  min-width: 235px;
+  padding: 6px 0;
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  box-shadow: 0 14px 30px rgba(8, 36, 63, 0.12);
+}
+
+.main-nav li:hover > .nav-dropdown,
+.main-nav li:focus-within > .nav-dropdown {
+  display: block;
+}
+
+.main-nav .nav-dropdown a {
+  padding: 10px 14px;
+  font-size: 0.84rem;
+  white-space: normal;
+}
+
+.main-nav .nav-dropdown a::after {
+  right: 14px;
+  left: 14px;
+  bottom: 2px;
+}
+
 .main-nav a::after {
   position: absolute;
   right: 10px;
@@ -253,6 +312,193 @@ textarea {
 .main-nav a:hover::after,
 .main-nav a.active::after {
   transform: scaleX(1);
+}
+
+.global-auth-wrap {
+  display: flex;
+  flex: 0 0 auto;
+  min-width: max-content;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.global-auth-button,
+.global-auth-logout {
+  min-height: 36px;
+  padding: 6px 12px;
+  border: 1px solid var(--brand-blue);
+  background: var(--white);
+  color: var(--brand-blue);
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.global-auth-button:hover,
+.global-auth-logout:hover {
+  background: var(--brand-blue);
+  color: var(--white);
+}
+
+.global-auth-badge {
+  padding: 5px 8px;
+  border: 1px solid #abdcca;
+  background: #effaf3;
+  color: #067647;
+  font-size: 0.75rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.global-auth-wrap [hidden] {
+  display: none !important;
+}
+
+.legacy-login-trigger,
+#open-staff-login,
+#open-post-login,
+#staff-logout,
+#post-logout,
+.legacy-login-dialog,
+#staff-login-dialog,
+#post-login-dialog {
+  display: none !important;
+}
+
+.global-auth-dialog {
+  width: min(440px, calc(100% - 32px));
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  color: var(--slate-900);
+}
+
+.global-auth-dialog::backdrop {
+  background: rgba(8, 36, 63, 0.72);
+}
+
+.global-auth-dialog form {
+  margin: 0;
+}
+
+.global-auth-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 24px 18px;
+  border-bottom: 1px solid var(--slate-300);
+  background: linear-gradient(120deg, #f5faff 0%, #f1fbfd 58%, #effbf6 100%);
+}
+
+.global-auth-header .kicker {
+  margin-bottom: 5px;
+  color: var(--brand-blue);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.global-auth-header h2 {
+  font-size: 1.45rem;
+}
+
+.global-auth-close {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  color: var(--navy-950);
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.global-auth-fields {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.global-auth-fields label {
+  display: grid;
+  gap: 7px;
+}
+
+.global-auth-fields label > span {
+  color: var(--navy-900);
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.global-auth-fields input {
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 10px;
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  color: var(--slate-900);
+}
+
+.global-auth-fields input:focus {
+  border-color: var(--focus);
+  outline: 2px solid rgba(0, 143, 168, 0.2);
+}
+
+.global-auth-fields p {
+  min-height: 22px;
+  margin: 0;
+  color: var(--slate-600);
+  font-size: 0.82rem;
+}
+
+.global-auth-fields p.is-error {
+  color: #a12723;
+}
+
+.global-auth-fields p.is-success {
+  color: #067647;
+}
+
+.global-auth-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+  padding: 0 24px 24px;
+}
+
+.global-auth-cancel,
+.global-auth-submit {
+  min-height: 40px;
+  padding: 8px 14px;
+  border: 1px solid var(--slate-300);
+  background: var(--white);
+  color: var(--navy-800);
+  font-size: 0.84rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.global-auth-submit {
+  border-color: var(--brand-blue);
+  background: linear-gradient(90deg, var(--brand-blue), var(--brand-cyan));
+  color: var(--white);
+}
+
+.global-auth-cancel:hover {
+  background: var(--slate-100);
+}
+
+.global-auth-submit:hover {
+  background: linear-gradient(90deg, var(--navy-900), var(--navy-700));
 }
 
 .nav-toggle {
@@ -1543,6 +1789,23 @@ textarea {
     -webkit-overflow-scrolling: touch;
   }
 
+  .main-nav > ul {
+    justify-content: initial;
+  }
+
+  .main-nav .nav-dropdown {
+    position: static;
+    display: block;
+    min-width: 0;
+    padding: 0 0 0 14px;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .main-nav .nav-dropdown a {
+    padding: 10px 0;
+  }
+
   .main-nav.open {
     display: block;
   }
@@ -1566,6 +1829,10 @@ textarea {
 
   .main-nav li:last-child a {
     border-bottom: 0;
+  }
+
+  .global-auth-wrap {
+    margin-left: auto;
   }
 }
 
@@ -1618,6 +1885,7 @@ textarea {
 
   .site-header .container {
     min-height: 68px;
+    width: min(100% - 32px, var(--max-width));
   }
 
   .brand-logo {
@@ -1631,6 +1899,39 @@ textarea {
 
   .brand-text .hospital {
     font-size: 0.74rem;
+  }
+
+  .global-auth-wrap {
+    gap: 4px;
+  }
+
+  .global-auth-button,
+  .global-auth-logout {
+    padding-inline: 8px;
+    font-size: 0.74rem;
+  }
+
+  .global-auth-badge {
+    display: none;
+  }
+
+  .global-auth-dialog {
+    width: calc(100% - 12px);
+    max-height: calc(100vh - 12px);
+    max-height: calc(100dvh - 12px);
+    overflow-y: auto;
+  }
+
+  .global-auth-header,
+  .global-auth-fields {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .global-auth-actions {
+    padding-right: 16px;
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    padding-left: 16px;
   }
 
   .main-nav ul {
