@@ -295,6 +295,93 @@
     document.getElementById('interaction-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('interaction')); renderHistory('interaction', history); });
   }
 
+  function crclBand(crcl) {
+    if (crcl >= 50) return 0;
+    if (crcl >= 30) return 1;
+    if (crcl >= 15) return 2;
+    return 3;
+  }
+
+  function renderRenalWarning(drug) {
+    if (!drug.warning) return '';
+    var rows = [
+      ['Tích lũy khi suy thận', drug.warning.accumulation],
+      ['Độc tính thận', drug.warning.nephro],
+      ['Độc tính thần kinh', drug.warning.neuro],
+      ['TDM', drug.warning.tdm]
+    ].map(function (pair) {
+      return '<tr><th>' + escapeHtml(pair[0]) + '</th><td>' + escapeHtml(pair[1]) + '</td></tr>';
+    }).join('');
+    var monitoring = drug.warning.monitoring ? '<p class="clinical-help"><strong>Giám sát:</strong> ' + escapeHtml(drug.warning.monitoring) + '</p>' : '';
+    return '<h3>Cảnh báo dược lâm sàng</h3><div class="clinical-table-wrap"><table class="clinical-table"><tbody>' + rows + '</tbody></table></div>' + monitoring;
+  }
+
+  function renderRenalDoseTable(drug, crcl) {
+    if (!Array.isArray(drug.crcl) || !drug.crcl.length) return '';
+    var index = crclBand(crcl);
+    var rows = drug.crcl.map(function (band, i) {
+      var mark = i === index ? ' <strong style="color:#8a5a00">(nhóm của bệnh nhân)</strong>' : '';
+      var highlight = i === index ? ' style="background:#fff3d6"' : '';
+      return '<tr' + highlight + '><td>' + escapeHtml(band.label) + mark + '</td><td>' + escapeHtml(band.dose) + '</td></tr>';
+    }).join('');
+    return '<h3>Liều theo chức năng thận (CrCl)</h3><div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Mức lọc cầu thận</th><th>Liều khuyến cáo</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+  }
+
+  function renderRenalDialysis(drug, dialysis) {
+    if (!drug) return '';
+    if (!dialysis) return '<p class="clinical-help"><strong>Lọc máu:</strong> nếu bệnh nhân đang chạy thận (HD) hoặc lọc máu liên tục (CRRT), tích chọn ở form để xem phác đồ liều riêng.</p>';
+    var parts = [];
+    if (drug.hd) {
+      var hdRows = [
+        ['Liều nạp', drug.hd.loading],
+        ['Liều duy trì', drug.hd.maintenance],
+        ['Sau buổi lọc', drug.hd.postHd]
+      ].map(function (pair) {
+        return '<tr><th>' + escapeHtml(pair[0]) + '</th><td>' + escapeHtml(pair[1] || '—') + '</td></tr>';
+      }).join('');
+      parts.push('<h3>Trong chạy thận ngắt quãng (HD)</h3><div class="clinical-table-wrap"><table class="clinical-table"><tbody>' + hdRows + '</tbody></table></div>' + (drug.hd.note ? '<p class="clinical-help">' + escapeHtml(drug.hd.note) + '</p>' : ''));
+    }
+    if (drug.crrt) {
+      var crrtRows = [
+        ['CVVH', drug.crrt.cvvh],
+        ['CVVHD', drug.crrt.cvvhd],
+        ['CVVHDF', drug.crrt.cvvhdf]
+      ].map(function (pair) {
+        return '<tr><th>' + escapeHtml(pair[0]) + '</th><td>' + escapeHtml(pair[1] || '—') + '</td></tr>';
+      }).join('');
+      parts.push('<h3>Trong lọc máu liên tục (CRRT)</h3><div class="clinical-table-wrap"><table class="clinical-table"><tbody>' + crrtRows + '</tbody></table></div>' + (drug.crrt.note ? '<p class="clinical-help">' + escapeHtml(drug.crrt.note) + '</p>' : ''));
+    }
+    return parts.join('');
+  }
+
+  function renderRenalTdm(drug) {
+    if (!drug || !drug.tdm) return '';
+    var tdmRows = [
+      ['Chỉ số đích', drug.tdm.chi_so],
+      ['Mục tiêu', drug.tdm.muc_tieu],
+      ['Thời điểm lấy mẫu', drug.tdm.thoi_diem],
+      ['Khuyến nghị', drug.tdm.khuyen_nghi]
+    ].map(function (pair) {
+      return '<tr><th>' + escapeHtml(pair[0]) + '</th><td>' + escapeHtml(pair[1] || '—') + '</td></tr>';
+    }).join('');
+    return '<h3>Giám sát điều trị (TDM)</h3><div class="clinical-table-wrap"><table class="clinical-table"><tbody>' + tdmRows + '</tbody></table></div>';
+  }
+
+  function renderRenalDetail(drug, crcl, dialysis) {
+    if (!drug) return '<p>Chọn một thuốc để xem khuyến cáo chỉnh liều theo chức năng thận.</p>';
+    var meta = [];
+    if (drug.group) meta.push('Nhóm: ' + drug.group);
+    if (drug.priority) meta.push('Mức ưu tiên: ' + drug.priority);
+    if (drug.standardDose) meta.push('Liều chuẩn: ' + drug.standardDose);
+    if (drug.requiresAdjustment) meta.push('Chỉnh liều khi suy thận: ' + drug.requiresAdjustment);
+    if (drug.requiresTdm) meta.push('TDM: ' + drug.requiresTdm);
+    return '<h3>' + escapeHtml(drug.name) + (drug.brand ? ' <small>(' + escapeHtml(drug.brand) + ')</small>' : '') + '</h3><p><strong>' + escapeHtml(meta.join(' · ')) + '</strong></p>'
+      + renderRenalDoseTable(drug, crcl)
+      + renderRenalDialysis(drug, dialysis)
+      + renderRenalTdm(drug)
+      + renderRenalWarning(drug);
+  }
+
   function setupRenalTool() {
     var form = document.getElementById('renal-form');
     var result = document.getElementById('renal-result');
@@ -307,7 +394,7 @@
       var scrField = document.getElementById('renal-scr').closest('.clinical-field');
       scrField.insertAdjacentHTML('afterend', '<div class="clinical-field"><label for="renal-scr-unit">Đơn vị creatinine</label><select id="renal-scr-unit"><option value="mg-dl">mg/dL</option><option value="umol-l">µmol/L</option></select></div><label class="clinical-field clinical-check-field"><span>Đang lọc máu</span><span><input id="renal-dialysis" type="checkbox"> HD/CRRT</span></label>');
     }
-    data.renalAdjustment.forEach(function (drug) { var option = document.createElement('option'); option.value = drug.name; option.textContent = drug.name; drugSelect.appendChild(option); });
+    data.renalAdjustment.forEach(function (drug) { var option = document.createElement('option'); option.value = drug.name; option.textContent = drug.name + (drug.brand ? ' (' + drug.brand + ')' : ''); drugSelect.appendChild(option); });
     renderHistory('renal', history);
     form.addEventListener('submit', function (event) {
       event.preventDefault();
@@ -326,15 +413,43 @@
       var egfrAbsolute = calculateEgfrAbsolute(egfr, height, weight);
       var band = renalBand(crcl);
       var drug = findRenalDrug(fieldValue('renal-drug'), data.renalAdjustment);
-      var advice = drug ? drug.guidance[band] : 'Chọn một thuốc để xem cảnh báo theo nhóm chức năng thận.';
       var dialysis = document.getElementById('renal-dialysis');
-      var dialysisNote = dialysis && dialysis.checked ? '<p class="clinical-help"><strong>HD/CRRT:</strong> cần lịch lọc, loại màng và phác đồ riêng; không dùng CrCl/eGFR để tự chốt liều.</p>' : '';
+      var dialysisChecked = !!(dialysis && dialysis.checked);
       var absoluteText = Number.isFinite(egfrAbsolute) ? '<div class="clinical-metric"><span>eGFR quy đổi theo BSA</span><strong>' + format(egfrAbsolute) + ' mL/phút</strong></div>' : '';
-      setResult(result, '<h3>Kết quả ước tính</h3><div class="clinical-metrics"><div class="clinical-metric"><span>CrCl Cockcroft–Gault</span><strong>' + format(crcl) + ' mL/phút</strong></div><div class="clinical-metric"><span>eGFR CKD-EPI 2021</span><strong>' + format(egfr) + ' mL/phút/1,73 m²</strong></div>' + absoluteText + '<div class="clinical-metric"><span>Nhóm cảnh báo</span><strong>' + escapeHtml(band) + '</strong></div></div><p><strong>' + escapeHtml(drug ? drug.name : 'Thuốc chưa chọn') + ':</strong> ' + escapeHtml(advice) + '</p>' + dialysisNote + '<p class="clinical-help">Creatinine đã được quy đổi về mg/dL để tính. CrCl và eGFR là các ước tính khác nhau; quyết định liều phải theo đúng nhãn thuốc và quy trình bệnh viện.</p>', band === 'normal' ? 'is-success' : 'is-warning');
+      setResult(result, '<h3>Kết quả ước tính</h3><div class="clinical-metrics"><div class="clinical-metric"><span>CrCl Cockcroft–Gault</span><strong>' + format(crcl) + ' mL/phút</strong></div><div class="clinical-metric"><span>eGFR CKD-EPI 2021</span><strong>' + format(egfr) + ' mL/phút/1,73 m²</strong></div>' + absoluteText + '<div class="clinical-metric"><span>Nhóm cảnh báo</span><strong>' + escapeHtml(band) + '</strong></div></div>' + renderRenalDetail(drug, crcl, dialysisChecked) + '<p class="clinical-help">Creatinine đã được quy đổi về mg/dL để tính. CrCl và eGFR là các ước tính khác nhau; bảng liều là hướng dẫn sàng lọc theo CrCl, không thay thế nhãn thuốc, TDM hoặc phác đồ bệnh viện.</p>', band === 'normal' ? 'is-success' : 'is-warning');
       writeHistory('renal', { title: (drug ? drug.name : 'Đánh giá chức năng thận'), summary: 'CrCl ' + format(crcl) + ' mL/phút · eGFR ' + format(egfr) + ' mL/phút/1,73 m²', time: nowText() });
       renderHistory('renal', history);
     });
     document.getElementById('renal-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('renal')); renderHistory('renal', history); });
+  }
+
+  function setupFormularyTool() {
+    var search = document.getElementById('formulary-search');
+    var wrap = document.getElementById('formulary-wrap');
+    var count = document.getElementById('formulary-count');
+    if (!search || !wrap) return;
+    function renderFormulary() {
+      var query = normalize(search.value);
+      var items = data.formulary || [];
+      if (query) {
+        items = items.filter(function (item) {
+          var haystack = normalize(item.name + ' ' + item.active + ' ' + (item.strength || '') + ' ' + (item.route || ''));
+          return haystack.indexOf(query) !== -1;
+        });
+      }
+      if (count) count.textContent = items.length + ' sản phẩm' + (query ? ' (khớp \u201c' + search.value + '\u201d)' : '/ ' + (data.formulary || []).length + ' sản phẩm');
+      if (!items.length) {
+        wrap.innerHTML = '<p class="clinical-history-empty">Không tìm thấy sản phẩm khớp tên trong danh mục nội trú.</p>';
+        return;
+      }
+      var rows = items.slice(0, 200).map(function (item) {
+        var expiry = (item.expiry || []).join('; ');
+        return '<tr><td><strong>' + escapeHtml(item.name) + '</strong><br><span style="color:var(--slate-600);font-size:0.76rem">' + escapeHtml(item.active) + '</span></td><td>' + escapeHtml(item.strength || '—') + '</td><td>' + escapeHtml(item.route || '—') + '</td><td>' + escapeHtml(item.packaging || '—') + '</td><td>' + escapeHtml(expiry) + '</td></tr>';
+      }).join('');
+      wrap.innerHTML = '<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Tên sản phẩm / Hoạt chất</th><th>Hàm lượng</th><th>Đường dùng</th><th>Quy cách</th><th>Hạn dùng</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+    }
+    search.addEventListener('input', renderFormulary);
+    renderFormulary();
   }
 
   function setupPediatricTool() {
@@ -414,7 +529,7 @@
     document.getElementById('pet-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('pet')); renderHistory('pet', history); });
   }
 
-  var api = { normalize: normalize, findInteractions: findInteractions, findAllInteractions: findAllInteractions, calculateCrCl: calculateCrCl, calculateEgfr: calculateEgfr, calculateEgfrAbsolute: calculateEgfrAbsolute, convertCreatinine: convertCreatinine, renalBand: renalBand, calculatePediatric: calculatePediatric, decay: decay, calculatePet: calculatePet };
+  var api = { normalize: normalize, findInteractions: findInteractions, findAllInteractions: findAllInteractions, calculateCrCl: calculateCrCl, calculateEgfr: calculateEgfr, calculateEgfrAbsolute: calculateEgfrAbsolute, convertCreatinine: convertCreatinine, renalBand: renalBand, crclBand: crclBand, calculatePediatric: calculatePediatric, decay: decay, calculatePet: calculatePet };
   window.KHOA_DUOC_CLINICAL_TOOLS = api;
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -423,5 +538,6 @@
     if (tool === 'renal') setupRenalTool();
     if (tool === 'pediatric') setupPediatricTool();
     if (tool === 'pet') setupPetTool();
+    if (document.getElementById('formulary-wrap')) setupFormularyTool();
   });
 }(window, document));
