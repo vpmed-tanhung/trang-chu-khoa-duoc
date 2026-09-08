@@ -253,6 +253,55 @@
     return element ? element.value : '';
   }
 
+  function vpmedInteractions() {
+    return window.VPMED_INTERACTIONS || null;
+  }
+
+  function vpmedDrugProfiles() {
+    return window.VPMED_DRUGS || null;
+  }
+
+  function interactionCanonicalMap() {
+    var map = {};
+    (vpmedDrugProfiles() || []).forEach(function (item) {
+      if (item.brand) map[normalize(item.brand)] = item.active;
+      if (item.active) map[normalize(item.active)] = item.active;
+    });
+    return map;
+  }
+
+  function interactionCanonical(value, map) {
+    return map[normalize(value)] || String(value || '').trim();
+  }
+
+  function flexibleMatchInteraction(input, target, map) {
+    var a = normalize(interactionCanonical(input, map));
+    var b = normalize(interactionCanonical(target, map));
+    if (!a || !b) return false;
+    return a === b || a.indexOf(b) !== -1 || b.indexOf(a) !== -1;
+  }
+
+  function matchInteractionPair(a, b, item, map) {
+    var d1 = item.drug1 || '';
+    var d2 = item.drug2 || '';
+    return (flexibleMatchInteraction(a, d1, map) && flexibleMatchInteraction(b, d2, map)) ||
+      (flexibleMatchInteraction(a, d2, map) && flexibleMatchInteraction(b, d1, map));
+  }
+
+  function renderInteractionCards(matches) {
+    return matches.map(function (item) {
+      var level = item.level || item.severity || '';
+      var levelClass = /có điều kiện/i.test(level) ? 'is-warning' : 'is-error';
+      return '<div class="clinical-result ' + levelClass + '"><h3>' + escapeHtml(level ? level.toUpperCase() : 'TƯƠNG TÁC') + (item.stt ? ' — #' + escapeHtml(item.stt) : '') + '</h3>'
+        + '<p><strong>' + escapeHtml(item.drug1 || item.name || '') + '</strong>' + (item.drug2 ? ' + <strong>' + escapeHtml(item.drug2) + '</strong>' : '') + '</p>'
+        + (item.mechanism ? '<p><strong>Cơ chế:</strong> ' + escapeHtml(item.mechanism) + '</p>' : '')
+        + (item.consequence ? '<p><strong>Hậu quả:</strong> ' + escapeHtml(item.consequence) + '</p>' : '')
+        + (item.management || item.advice ? '<p><strong>Xử trí:</strong> ' + escapeHtml(item.management || item.advice) + '</p>' : '')
+        + (item.source ? '<p class="clinical-help">Nguồn: ' + escapeHtml(item.source) + '</p>' : '')
+        + '</div>';
+    }).join('');
+  }
+
   function setupInteractionTool() {
     var form = document.getElementById('interaction-form');
     var result = document.getElementById('interaction-result');
@@ -260,9 +309,15 @@
     var items = document.getElementById('interaction-list');
     if (!form) return;
     renderHistory('interaction', history);
+    var bigList = vpmedInteractions();
+    var canonMap = interactionCanonicalMap();
     function renderRules(matches) {
       if (!matches.length) {
         setResult(result, '<h3>Chưa phát hiện trong bộ quy tắc đang tích hợp</h3><p>Điều này không đồng nghĩa là không có tương tác. Cơ sở dữ liệu hiện tại là bộ quy tắc có cấu trúc, chưa thay thế Micromedex/Lexicomp hoặc quy trình tra cứu của bệnh viện.</p>', 'is-success');
+        return;
+      }
+      if (bigList) {
+        setResult(result, renderInteractionCards(matches), 'is-warning');
         return;
       }
       setResult(result, matches.map(function (match) {
@@ -278,14 +333,19 @@
         setResult(result, '<h3>Chưa đủ dữ liệu</h3><p>Nhập tên hai thuốc để kiểm tra.</p>', 'is-error');
         return;
       }
-      var matches = findInteractions(first, second, data.interactions).map(function (rule) { return { first: first, second: second, rule: rule }; });
+      var matches;
+      if (bigList) {
+        matches = bigList.filter(function (item) { return matchInteractionPair(first, second, item, canonMap); });
+      } else {
+        matches = findInteractions(first, second, data.interactions).map(function (rule) { return { first: first, second: second, rule: rule }; });
+      }
       renderRules(matches);
       writeHistory('interaction', { title: first + ' + ' + second, summary: matches.length ? matches.length + ' cảnh báo trong bộ quy tắc' : 'Chưa phát hiện trong bộ quy tắc', time: nowText() });
       renderHistory('interaction', history);
     });
     items.addEventListener('input', function () {
       var values = items.value.split(/\n|,|;/).map(function (value) { return value.trim(); }).filter(Boolean);
-      var matches = findAllInteractions(values, data.interactions);
+      var matches = bigList ? findAllVpmedInteractions(values, bigList, canonMap) : findAllInteractions(values, data.interactions);
       if (values.length < 2) {
         setResult(result, '<h3>Chưa đủ dữ liệu</h3><p>Nhập từ hai thuốc trở lên, mỗi thuốc một dòng hoặc ngăn cách bằng dấu phẩy.</p>', 'is-warning');
       } else {
@@ -293,6 +353,47 @@
       }
     });
     document.getElementById('interaction-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('interaction')); renderHistory('interaction', history); });
+    setupInteractionFullSearch(bigList);
+  }
+
+  function findAllVpmedInteractions(values, list, map) {
+    var results = [];
+    for (var i = 0; i < values.length; i += 1) {
+      for (var j = i + 1; j < values.length; j += 1) {
+        (list || []).filter(function (item) { return matchInteractionPair(values[i], values[j], item, map); }).forEach(function (item) {
+          results.push(item);
+        });
+      }
+    }
+    return results;
+  }
+
+  function setupInteractionFullSearch(bigList) {
+    var search = document.getElementById('interaction-full-search');
+    var wrap = document.getElementById('interaction-full-list');
+    var count = document.getElementById('interaction-full-count');
+    if (!search || !wrap) return;
+    if (!bigList) {
+      wrap.innerHTML = '<p class="clinical-history-empty">Chưa tải được danh mục 633 cặp tương tác. Kiểm tra file assets/clinical-tools/vpmed-interactions.js.</p>';
+      return;
+    }
+    function render() {
+      var query = normalize(search.value);
+      var items = bigList;
+      if (query) {
+        items = bigList.filter(function (item) {
+          return normalize([item.stt, item.drug1, item.drug2, item.name, item.level, item.mechanism, item.consequence, item.management, item.source].join(' ')).indexOf(query) !== -1;
+        });
+      }
+      if (count) count.textContent = items.length + '/' + bigList.length + ' cặp tương tác (Bảng 3.1 QĐ 5948/QĐ-BYT)';
+      if (!items.length) {
+        wrap.innerHTML = '<p class="clinical-history-empty">Không tìm thấy cặp tương tác khớp từ khóa. Điều này không khẳng định phối hợp an toàn.</p>';
+        return;
+      }
+      wrap.innerHTML = renderInteractionCards(items.slice(0, 200));
+    }
+    search.addEventListener('input', render);
+    render();
   }
 
   function crclBand(crcl) {
@@ -300,6 +401,23 @@
     if (crcl >= 30) return 1;
     if (crcl >= 15) return 2;
     return 3;
+  }
+
+  function egfrStage(egfr) {
+    if (egfr >= 90) return { stage: 'G1', label: 'Bình thường hoặc cao' };
+    if (egfr >= 60) return { stage: 'G2', label: 'Giảm nhẹ' };
+    if (egfr >= 45) return { stage: 'G3a', label: 'Giảm nhẹ đến trung bình' };
+    if (egfr >= 30) return { stage: 'G3b', label: 'Giảm trung bình đến nặng' };
+    if (egfr >= 15) return { stage: 'G4', label: 'Giảm nặng' };
+    return { stage: 'G5', label: 'Suy thận' };
+  }
+
+  function crclRiskShort(crcl) {
+    if (crcl >= 90) return 'Bảo tồn';
+    if (crcl >= 60) return 'Giảm nhẹ';
+    if (crcl >= 30) return 'Giảm trung bình';
+    if (crcl >= 15) return 'Giảm nặng';
+    return 'Rất nặng';
   }
 
   function renderRenalWarning(drug) {
@@ -416,18 +534,92 @@
       var dialysis = document.getElementById('renal-dialysis');
       var dialysisChecked = !!(dialysis && dialysis.checked);
       var absoluteText = Number.isFinite(egfrAbsolute) ? '<div class="clinical-metric"><span>eGFR quy đổi theo BSA</span><strong>' + format(egfrAbsolute) + ' mL/phút</strong></div>' : '';
-      setResult(result, '<h3>Kết quả ước tính</h3><div class="clinical-metrics"><div class="clinical-metric"><span>CrCl Cockcroft–Gault</span><strong>' + format(crcl) + ' mL/phút</strong></div><div class="clinical-metric"><span>eGFR CKD-EPI 2021</span><strong>' + format(egfr) + ' mL/phút/1,73 m²</strong></div>' + absoluteText + '<div class="clinical-metric"><span>Nhóm cảnh báo</span><strong>' + escapeHtml(band) + '</strong></div></div>' + renderRenalDetail(drug, crcl, dialysisChecked) + '<p class="clinical-help">Creatinine đã được quy đổi về mg/dL để tính. CrCl và eGFR là các ước tính khác nhau; bảng liều là hướng dẫn sàng lọc theo CrCl, không thay thế nhãn thuốc, TDM hoặc phác đồ bệnh viện.</p>', band === 'normal' ? 'is-success' : 'is-warning');
+      var stage = egfrStage(egfr);
+      var riskText = '<div class="clinical-metrics clinical-metrics-secondary"><div class="clinical-metric"><span>Phân loại eGFR (CKD-EPI 2021)</span><strong>' + escapeHtml(stage.stage + ' — ' + stage.label) + '</strong></div><div class="clinical-metric"><span>Mức giảm theo CrCl</span><strong>' + escapeHtml(crclRiskShort(crcl)) + '</strong></div></div>';
+      setResult(result, '<h3>Kết quả ước tính</h3><div class="clinical-metrics"><div class="clinical-metric"><span>CrCl Cockcroft–Gault</span><strong>' + format(crcl) + ' mL/phút</strong></div><div class="clinical-metric"><span>eGFR CKD-EPI 2021</span><strong>' + format(egfr) + ' mL/phút/1,73 m²</strong></div>' + absoluteText + '<div class="clinical-metric"><span>Nhóm cảnh báo</span><strong>' + escapeHtml(band) + '</strong></div></div>' + riskText + renderRenalDetail(drug, crcl, dialysisChecked) + '<p class="clinical-help">Creatinine đã được quy đổi về mg/dL để tính. CrCl và eGFR là các ước tính khác nhau; bảng liều là hướng dẫn sàng lọc theo CrCl, không thay thế nhãn thuốc, TDM hoặc phác đồ bệnh viện.</p>', band === 'normal' ? 'is-success' : 'is-warning');
       writeHistory('renal', { title: (drug ? drug.name : 'Đánh giá chức năng thận'), summary: 'CrCl ' + format(crcl) + ' mL/phút · eGFR ' + format(egfr) + ' mL/phút/1,73 m²', time: nowText() });
       renderHistory('renal', history);
     });
     document.getElementById('renal-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('renal')); renderHistory('renal', history); });
   }
 
+  function findDrugProfile(item) {
+    var profiles = vpmedDrugProfiles();
+    if (!profiles) return null;
+    var name = normalize(item.name || '');
+    var active = normalize(item.active || '');
+    var byBrand = profiles.filter(function (p) { return normalize(p.brand || '') === name; })[0];
+    if (byBrand) return byBrand;
+    var byActive = profiles.filter(function (p) { return normalize(p.active || '') === active; })[0];
+    if (byActive) return byActive;
+    var loose = profiles.filter(function (p) {
+      var b = normalize(p.brand || '');
+      var a = normalize(p.active || '');
+      return (b && name.indexOf(b) !== -1) || (b && b.indexOf(name) !== -1) || (a && active.indexOf(a) !== -1);
+    })[0];
+    return loose || null;
+  }
+
+  function profileRenalBands(renal) {
+    var bands = [];
+    var notes = [];
+    (renal || []).forEach(function (line) {
+      var match = String(line).match(/^(CrCl\s+[^:]+):\s*(.+)$/i);
+      if (match) bands.push({ label: match[1], dose: match[2] });
+      else if (String(line).trim()) notes.push(line);
+    });
+    return { bands: bands, notes: notes };
+  }
+
+  function profileInteractionMatches(profile) {
+    var bigList = vpmedInteractions();
+    if (!bigList || !profile) return [];
+    var raw = normalize(String(profile.active || '').replace(/\*/g, '').replace(/hydrochloride/g, ''));
+    var keys = raw.split(/\s+\+\s+/).map(function (x) { return x.trim(); }).filter(function (x) { return x.length > 3; });
+    var brand = normalize(profile.brand || '');
+    return bigList.filter(function (item) {
+      var z = normalize(item.name || '');
+      return keys.some(function (k) { return z.indexOf(k) !== -1 || k.indexOf(z) !== -1; }) || (brand && z.indexOf(brand) !== -1);
+    }).slice(0, 4);
+  }
+
+  function renderProfileDetail(profile) {
+    if (!profile) return '<p class="clinical-history-empty">Sản phẩm này chưa có hồ sơ chi tiết trong bộ 34 hồ sơ nội trú.</p>';
+    var renal = profileRenalBands(profile.renal);
+    var renalTable = renal.bands.length
+      ? '<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>CrCl</th><th>Liều</th></tr></thead><tbody>' + renal.bands.map(function (b) { return '<tr><td>' + escapeHtml(b.label) + '</td><td>' + escapeHtml(b.dose) + '</td></tr>'; }).join('') + '</tbody></table></div>'
+      : '';
+    var renalNotes = renal.notes.map(function (n) { return '<li>' + escapeHtml(n) + '</li>'; }).join('');
+    var indications = (profile.indications || []).map(function (x) { return '<li>' + escapeHtml(x) + '</li>'; }).join('');
+    var interactions = profileInteractionMatches(profile).map(function (x) { return '<li><strong>' + escapeHtml(x.name) + '</strong> (' + escapeHtml(x.level || '') + '): ' + escapeHtml(x.management || x.consequence || '') + '</li>'; }).join('');
+    return '<div class="clinical-result is-warning"><h3>' + escapeHtml(profile.brand) + ' <small>' + escapeHtml(profile.active || '') + ' · ' + escapeHtml(profile.strength || '') + ' · ' + escapeHtml(profile.route || '') + '</small></h3>'
+      + '<p><strong>Nhóm:</strong> ' + escapeHtml(profile.group || '—') + '</p>'
+      + '<p><strong>Cơ chế:</strong> ' + escapeHtml(profile.mechanism || '—') + '</p>'
+      + (indications ? '<p><strong>Chỉ định:</strong></p><ul class="clinical-list">' + indications + '</ul>' : '')
+      + '<p><strong>PK/PD:</strong> ' + escapeHtml(profile.pkpd || '—') + '</p>'
+      + '<p><strong>Liều chuẩn:</strong> ' + escapeHtml(profile.standard || '—') + '</p>'
+      + (renalTable ? '<p><strong>Hiệu chỉnh theo CrCl:</strong></p>' + renalTable : '')
+      + (renalNotes ? '<ul class="clinical-list">' + renalNotes + '</ul>' : '')
+      + '<p><strong>HD:</strong> ' + escapeHtml(profile.hd || '—') + '</p>'
+      + '<p><strong>CRRT:</strong> ' + escapeHtml(profile.crrt || '—') + '</p>'
+      + '<p><strong>Pha truyền:</strong> ' + escapeHtml(profile.infusion || '—') + '</p>'
+      + '<p><strong>Chống chỉ định/cảnh báo:</strong> ' + escapeHtml(profile.contra || '—') + '</p>'
+      + '<p><strong>ADR quan trọng:</strong> ' + escapeHtml(profile.adr || '—') + '</p>'
+      + '<p><strong>TDM/theo dõi:</strong> ' + escapeHtml(profile.tdm || '—') + '</p>'
+      + (profile.notes ? '<p class="clinical-help">' + escapeHtml(profile.notes) + '</p>' : '')
+      + (interactions ? '<p><strong>Tương tác cần rà soát (tối đa 4):</strong></p><ul class="clinical-list">' + interactions + '</ul>' : '')
+      + '</div>';
+  }
+
+  var formularyDetailIndex = -1;
+
   function setupFormularyTool() {
     var search = document.getElementById('formulary-search');
     var wrap = document.getElementById('formulary-wrap');
     var count = document.getElementById('formulary-count');
     if (!search || !wrap) return;
+    var hasProfiles = !!vpmedDrugProfiles();
+    var currentItems = [];
     function renderFormulary() {
       var query = normalize(search.value);
       var items = data.formulary || [];
@@ -437,19 +629,174 @@
           return haystack.indexOf(query) !== -1;
         });
       }
-      if (count) count.textContent = items.length + ' sản phẩm' + (query ? ' (khớp \u201c' + search.value + '\u201d)' : '/ ' + (data.formulary || []).length + ' sản phẩm');
+      currentItems = items;
+      if (count) count.textContent = items.length + ' sản phẩm' + (query ? ' (khớp \u201c' + search.value + '\u201d)' : '/ ' + (data.formulary || []).length + ' sản phẩm') + (hasProfiles ? ' · bấm tên để xem hồ sơ chi tiết' : '');
       if (!items.length) {
         wrap.innerHTML = '<p class="clinical-history-empty">Không tìm thấy sản phẩm khớp tên trong danh mục nội trú.</p>';
         return;
       }
-      var rows = items.slice(0, 200).map(function (item) {
+      var rows = items.slice(0, 200).map(function (item, i) {
         var expiry = (item.expiry || []).join('; ');
-        return '<tr><td><strong>' + escapeHtml(item.name) + '</strong><br><span style="color:var(--slate-600);font-size:0.76rem">' + escapeHtml(item.active) + '</span></td><td>' + escapeHtml(item.strength || '—') + '</td><td>' + escapeHtml(item.route || '—') + '</td><td>' + escapeHtml(item.packaging || '—') + '</td><td>' + escapeHtml(expiry) + '</td></tr>';
+        var nameCell = hasProfiles
+          ? '<button type="button" data-formulary-detail="' + i + '" style="background:none;border:0;padding:0;cursor:pointer;text-align:left"><strong style="text-decoration:underline">' + escapeHtml(item.name) + '</strong></button>'
+          : '<strong>' + escapeHtml(item.name) + '</strong>';
+        var detail = (formularyDetailIndex === i) ? '<tr><td colspan="5">' + renderProfileDetail(findDrugProfile(item)) + '</td></tr>' : '';
+        return '<tr><td>' + nameCell + '<br><span style="color:var(--slate-600);font-size:0.76rem">' + escapeHtml(item.active) + '</span></td><td>' + escapeHtml(item.strength || '—') + '</td><td>' + escapeHtml(item.route || '—') + '</td><td>' + escapeHtml(item.packaging || '—') + '</td><td>' + escapeHtml(expiry) + '</td></tr>' + detail;
       }).join('');
       wrap.innerHTML = '<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Tên sản phẩm / Hoạt chất</th><th>Hàm lượng</th><th>Đường dùng</th><th>Quy cách</th><th>Hạn dùng</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      Array.prototype.forEach.call(wrap.querySelectorAll('[data-formulary-detail]'), function (btn) {
+        btn.addEventListener('click', function () {
+          var idx = Number(btn.getAttribute('data-formulary-detail'));
+          formularyDetailIndex = (formularyDetailIndex === idx) ? -1 : idx;
+          renderFormulary();
+        });
+      });
     }
-    search.addEventListener('input', renderFormulary);
+    search.addEventListener('input', function () { formularyDetailIndex = -1; renderFormulary(); });
     renderFormulary();
+  }
+
+  function vpmedPediatric() {
+    return window.VPMED_STOCK_PEDIATRIC || null;
+  }
+
+  function vpmedInjectables() {
+    return window.VPMED_INJECTABLES_SLIM || null;
+  }
+
+  var pediatricConditionalRuleIds = ['high-dose', 'meningitis', 'appendicitis', 'synergy', 'serious', 'febrile-neutropenia-young', 'febrile-neutropenia-older', 'cystic-fibrosis', 'ntm', 'aom-sinusitis', 'pharyngitis-tonsillitis', 'severe'];
+
+  function pediatricRuleKind(rule) {
+    if (pediatricConditionalRuleIds.indexOf(rule.id) !== -1 || pediatricConditionalRuleIds.indexOf(rule.regimen) !== -1) return 'conditional';
+    if (rule.id === 'enteral' || rule.id === 'iv') return 'route';
+    return 'baseline';
+  }
+
+  function pediatricRuleMatchesAge(rule, ageMonths) {
+    return (rule.minAgeMonths == null || ageMonths >= rule.minAgeMonths) && (rule.maxAgeMonths == null || ageMonths <= rule.maxAgeMonths);
+  }
+
+  function pediatricNeonatalMatches(rule, pma, pna) {
+    return (rule.minPmaWeeks == null || pma >= rule.minPmaWeeks) &&
+      (rule.maxPmaWeeks == null || pma <= rule.maxPmaWeeks) &&
+      (rule.minPnaDays == null || pna >= rule.minPnaDays) &&
+      (rule.maxPnaDays == null || pna <= rule.maxPnaDays);
+  }
+
+  function pediatricEligibleRules(drug, context) {
+    var rules = context.mode === 'neonate'
+      ? (drug.neonatalRules || []).filter(function (rule) { return pediatricNeonatalMatches(rule, context.pma, context.days); })
+      : (drug.childRules || []).filter(function (rule) { return pediatricRuleMatchesAge(rule, context.months); });
+    var priority = { baseline: 0, route: 1, conditional: 2 };
+    return rules.map(function (rule, index) { return { rule: rule, index: index, kind: pediatricRuleKind(rule) }; })
+      .sort(function (a, b) { return priority[a.kind] - priority[b.kind] || a.index - b.index; });
+  }
+
+  function pediatricRuleLabel(drug, rule, mode) {
+    if (rule.label) return rule.label;
+    if (mode === 'neonate' && rule.regimen) {
+      var regimen = (drug.neonatalRegimens || []).filter(function (item) { return item.id === rule.regimen; })[0];
+      if (regimen) return regimen.label;
+    }
+    return mode === 'neonate' ? 'Liều Sơ sinh theo PMA và tuổi sau sinh' : 'Liều theo tuổi';
+  }
+
+  function pediatricClinicalProfile(store, drug, rule, mode) {
+    var group = (store.clinicalProfiles && store.clinicalProfiles[drug.id]) || {};
+    var base = group.default || {
+      indication: 'Nhiễm khuẩn do tác nhân nhạy cảm khi kháng sinh này phù hợp với chẩn đoán và quy trình của đơn vị.',
+      criteria: 'Xác nhận bệnh cảnh, dị ứng, chức năng gan–thận, bệnh phẩm và kháng sinh đồ trước khi áp dụng.',
+      sources: []
+    };
+    var key = rule.id || rule.regimen || '';
+    var specific = (group.rules && group.rules[key]) || {};
+    var ids = (specific.sources || base.sources || []).slice();
+    return {
+      indication: specific.indication || base.indication,
+      criteria: specific.criteria || base.criteria,
+      sources: ids.map(function (id) { return store.clinicalSources && store.clinicalSources[id]; }).filter(Boolean)
+    };
+  }
+
+  function pediatricSourceText(source) {
+    var parts = [source.title || 'Nguồn đối chiếu'];
+    if (source.type) parts.push(source.type);
+    if (source.scope) parts.push(source.scope);
+    if (source.organization) parts.push(source.organization);
+    return parts.join(' — ');
+  }
+
+  function pediatricVerifiedSources(drug) {
+    var injectables = vpmedInjectables();
+    if (!injectables) return [];
+    var codes = {};
+    (drug.stockCodes || []).forEach(function (code) { codes[code] = true; });
+    var out = [];
+    var seen = {};
+    injectables.filter(function (item) { return codes[item.code] && item.status === 'verified_exact'; }).forEach(function (item) {
+      (item.sources || []).forEach(function (source) {
+        var scope = String(source.scope || '');
+        if (/khác SĐK/i.test(scope)) return;
+        if (!/(hoàn nguyên|pha loãng|dung môi|ổn định|cách dùng|thời gian truyền)/i.test(scope)) return;
+        var key = source.title || '';
+        if (!key || seen[key]) return;
+        seen[key] = true;
+        out.push(source);
+      });
+    });
+    return out;
+  }
+
+  function calculatePediatricVpmed(store, input) {
+    var drug = (store.drugs || []).filter(function (item) { return item.id === input.drug; })[0];
+    var weight = Number(input.weight);
+    if (!drug) return { error: 'Không tìm thấy kháng sinh đã chọn trong bảng liều Nhi mở rộng.' };
+    if (!isFinite(weight) || weight < 0.2 || weight > 200) return { error: 'Cân nặng phải trong khoảng 0,2–200 kg.' };
+    var months = input.months;
+    var days = input.days;
+    var pma = input.pma;
+    if (!isFinite(months) || months < 0) return { error: 'Hãy nhập tuổi từ 0 trở lên.' };
+    if (months > 216) return { error: 'Công cụ chỉ áp dụng đến 18 tuổi.' };
+    var mode = null;
+    if (isFinite(pma) && pma >= 20 && pma <= 44) mode = 'neonate';
+    else if (months < 1) mode = 'neonate';
+    else mode = 'child';
+    if (mode === 'neonate' && !(isFinite(pma) && pma >= 20 && pma <= 44)) {
+      return { error: 'Trẻ dưới 1 tháng tuổi cần nhập tuổi thai lúc sinh và tuổi sau sinh để tính PMA (20–44 tuần) và tra bảng liều Sơ sinh.', mode: mode };
+    }
+    var context = { mode: mode, months: months, days: days, pma: pma };
+    var matches = pediatricEligibleRules(drug, context);
+    if (!matches.length) return { error: 'Không có quy tắc liều phù hợp với tuổi/PMA đã nhập trong nguồn tính liều.', mode: mode, drug: drug };
+    var loading = (mode === 'neonate' && drug.neonatalLoadingDoseMgKg) ? weight * drug.neonatalLoadingDoseMgKg : null;
+    return { drug: drug, mode: mode, context: context, matches: matches, loading: loading, weight: weight };
+  }
+
+  function renderPediatricVpmed(store, calc) {
+    var kindLabels = { baseline: 'Liều nền theo tuổi', route: 'Theo đường dùng', conditional: 'Lựa chọn đặc biệt' };
+    var cards = calc.matches.map(function (entry) {
+      var rule = entry.rule;
+      var rawDose = calc.weight * rule.doseMgKg;
+      var finalDose = rule.maxMg ? Math.min(rawDose, rule.maxMg) : rawDose;
+      var capped = !!(rule.maxMg && rawDose > rule.maxMg);
+      var clinical = pediatricClinicalProfile(store, calc.drug, rule, calc.mode);
+      var sources = (clinical.sources || []).map(function (s) { return '<li>' + escapeHtml(pediatricSourceText(s)) + '</li>'; }).join('');
+      var note = [rule.note, entry.kind === 'conditional' ? 'Chỉ áp dụng khi bệnh cảnh đã được xác định và phù hợp với hướng dẫn điều trị của đơn vị.' : ''].filter(Boolean).join(' ');
+      return '<div class="clinical-result is-success"><h3>' + escapeHtml(pediatricRuleLabel(calc.drug, rule, calc.mode)) + ' <small>(' + escapeHtml(kindLabels[entry.kind]) + ')</small></h3>'
+        + '<div class="clinical-metrics"><div class="clinical-metric"><span>Liều mỗi lần</span><strong>' + format(finalDose, 1) + ' mg</strong></div>'
+        + '<div class="clinical-metric"><span>Khoảng cách</span><strong>Mỗi ' + escapeHtml(rule.intervalHours) + ' giờ</strong></div>'
+        + '<div class="clinical-metric"><span>Cơ sở</span><strong>' + format(rule.doseMgKg, 1) + ' mg/kg/lần</strong></div></div>'
+        + '<p><strong>Đường dùng:</strong> ' + escapeHtml(rule.route || 'Theo nguồn/nhãn') + (rule.maxMg ? ' · <strong>Tối đa:</strong> ' + format(rule.maxMg, 0) + ' mg/lần' : '') + '</p>'
+        + (capped ? '<p class="clinical-help"><strong>Đã giới hạn</strong> từ ' + format(rawDose, 1) + ' mg xuống liều tối đa của nguồn.</p>' : '')
+        + (note ? '<p>' + escapeHtml(note) + '</p>' : '')
+        + '<p><strong>Bệnh cảnh áp dụng:</strong> ' + escapeHtml(clinical.indication) + '</p>'
+        + '<p><strong>Chỉ chuyển sang mức này khi:</strong> ' + escapeHtml(clinical.criteria) + '</p>'
+        + (sources ? '<p><strong>Nguồn đối chiếu (tra cứu thủ công theo tên tài liệu):</strong></p><ul class="clinical-list">' + sources + '</ul>' : '')
+        + '</div>';
+    }).join('');
+    var loading = calc.loading != null ? '<p><strong>Liều nạp Sơ sinh:</strong> ' + format(calc.loading, 1) + ' mg.</p>' : '';
+    var verified = pediatricVerifiedSources(calc.drug).map(function (s) { return '<li>' + escapeHtml(pediatricSourceText(s)) + '</li>'; }).join('');
+    return '<h3>' + escapeHtml(calc.drug.name) + ' — ' + escapeHtml(calc.mode === 'neonate' ? 'Bảng Sơ sinh' : 'Bảng Nhi khoa') + '</h3>' + loading + cards
+      + (verified ? '<p><strong>Nguồn pha/bảo quản đúng chế phẩm (tra cứu thủ công theo tên tài liệu):</strong></p><ul class="clinical-list">' + verified + '</ul>' : '');
   }
 
   function setupPediatricTool() {
@@ -459,31 +806,69 @@
     var drugSelect = document.getElementById('pediatric-drug');
     var pkpdSelect = document.getElementById('pediatric-pkpd-target');
     if (!form) return;
+    var store = vpmedPediatric();
+    function isLegacySelection() {
+      return String(drugSelect.value || '').indexOf('legacy:') === 0;
+    }
+    function legacyId() {
+      return String(drugSelect.value || '').replace(/^legacy:/, '');
+    }
     var pediatricGrid = form.querySelector('.clinical-form-grid');
     if (pediatricGrid && !document.getElementById('pediatric-mic')) {
-      pediatricGrid.insertAdjacentHTML('beforeend', '<div class="clinical-field"><label for="pediatric-mic">MIC (mg/L = µg/mL, tùy chọn)</label><input id="pediatric-mic" type="number" min="0.001" step="0.001" placeholder="Nhập kết quả kháng sinh đồ"><small>MIC là nồng độ ức chế tối thiểu; không tự suy ra liều nếu thiếu mô hình PK/TDM.</small></div><div class="clinical-field"><label for="pediatric-pkpd-target">Đích PK/PD theo MIC</label><select id="pediatric-pkpd-target"><option value="">— Chọn sau khi chọn thuốc —</option></select><small>Áp dụng cho nhóm beta-lactam đang có trong danh mục.</small></div>');
+      pediatricGrid.insertAdjacentHTML('beforeend', '<div class="clinical-field" data-mic-block><label for="pediatric-mic">MIC (mg/L = µg/mL, tùy chọn)</label><input id="pediatric-mic" type="number" min="0.001" step="0.001" placeholder="Nhập kết quả kháng sinh đồ"><small>MIC là nồng độ ức chế tối thiểu; không tự suy ra liều nếu thiếu mô hình PK/TDM.</small></div><div class="clinical-field" data-mic-block><label for="pediatric-pkpd-target">Đích PK/PD theo MIC</label><select id="pediatric-pkpd-target"><option value="">— Chọn sau khi chọn thuốc —</option></select><small>Áp dụng cho nhóm beta-lactam đang có trong danh mục.</small></div>');
       pkpdSelect = document.getElementById('pediatric-pkpd-target');
     }
-    data.pediatric.forEach(function (drug) { var option = document.createElement('option'); option.value = drug.id; option.textContent = drug.name + ' — ' + drug.basis; drugSelect.appendChild(option); });
+    function toggleMicBlocks() {
+      var show = !store || isLegacySelection();
+      Array.prototype.forEach.call(form.querySelectorAll('[data-mic-block]'), function (el) { el.style.display = show ? '' : 'none'; });
+    }
+    if (store) {
+      (store.drugs || []).forEach(function (drug) {
+        var option = document.createElement('option');
+        option.value = drug.id;
+        option.textContent = drug.name + ' (' + (drug.stock || []).length + ' thuốc kho)';
+        drugSelect.appendChild(option);
+      });
+    }
+    data.pediatric.forEach(function (drug) { var option = document.createElement('option'); option.value = store ? 'legacy:' + drug.id : drug.id; option.textContent = drug.name + ' — ' + drug.basis + (store ? ' (bảng cơ bản)' : ''); drugSelect.appendChild(option); });
     function renderPkpdTargets() {
       if (!pkpdSelect) return;
       pkpdSelect.innerHTML = '<option value="">— Chọn đích PK/PD —</option>';
-      var drug = data.pediatric.find(function (item) { return item.id === drugSelect.value; });
+      var drug = isLegacySelection() || !store
+        ? data.pediatric.filter(function (item) { return item.id === (isLegacySelection() ? legacyId() : drugSelect.value); })[0]
+        : null;
       var targets = drug ? ((data.pediatricPkpd && data.pediatricPkpd[drug.pkpd]) || []) : [];
       targets.forEach(function (target) { var option = document.createElement('option'); option.value = target.id; option.textContent = target.label; pkpdSelect.appendChild(option); });
       pkpdSelect.disabled = !targets.length;
     }
-    if (drugSelect) drugSelect.addEventListener('change', renderPkpdTargets);
+    if (drugSelect) drugSelect.addEventListener('change', function () { toggleMicBlocks(); renderPkpdTargets(); });
+    toggleMicBlocks();
     renderPkpdTargets();
     renderHistory('pediatric', history);
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      var calculation = calculatePediatric({ ageYears: fieldValue('pediatric-age-years'), ageMonths: fieldValue('pediatric-age-months'), pnaDays: fieldValue('pediatric-pna'), gaWeeks: fieldValue('pediatric-ga'), weight: fieldValue('pediatric-weight'), drug: fieldValue('pediatric-drug'), mic: fieldValue('pediatric-mic'), pkpdTarget: fieldValue('pediatric-pkpd-target') }, data.pediatric);
+      if (store && !isLegacySelection()) {
+        var ageYears = number(fieldValue('pediatric-age-years')) || 0;
+        var ageMonths = number(fieldValue('pediatric-age-months')) || 0;
+        var pnaDays = number(fieldValue('pediatric-pna'));
+        var gaWeeks = number(fieldValue('pediatric-ga'));
+        var months = ageYears * 12 + ageMonths;
+        var days = Number.isFinite(pnaDays) ? pnaDays : months * 30.4375;
+        var pma = (Number.isFinite(gaWeeks) && Number.isFinite(pnaDays)) ? gaWeeks + pnaDays / 7 : NaN;
+        var calculation = calculatePediatricVpmed(store, { drug: fieldValue('pediatric-drug'), weight: fieldValue('pediatric-weight'), months: months, days: days, pma: pma });
+        if (calculation.error) { setResult(result, '<h3>Không thể tính tự động</h3><p>' + escapeHtml(calculation.error) + '</p>', 'is-error'); return; }
+        setResult(result, '<h3>Kết quả liều Nhi theo bảng tuổi/PMA</h3>' + renderPediatricVpmed(store, calculation) + '<p class="clinical-help">Liều tính theo cân nặng thực tế; đối chiếu chỉ định, dị ứng, chức năng gan–thận và kháng sinh đồ trước khi áp dụng.</p>', 'is-success');
+        var firstRule = calculation.matches[0].rule;
+        writeHistory('pediatric', { title: calculation.drug.name, summary: format(calculation.weight * firstRule.doseMgKg, 1) + ' mg/lần · mỗi ' + firstRule.intervalHours + ' giờ', time: nowText() });
+        renderHistory('pediatric', history);
+        return;
+      }
+      var calculation = calculatePediatric({ ageYears: fieldValue('pediatric-age-years'), ageMonths: fieldValue('pediatric-age-months'), pnaDays: fieldValue('pediatric-pna'), gaWeeks: fieldValue('pediatric-ga'), weight: fieldValue('pediatric-weight'), drug: isLegacySelection() ? legacyId() : fieldValue('pediatric-drug'), mic: fieldValue('pediatric-mic'), pkpdTarget: fieldValue('pediatric-pkpd-target') }, data.pediatric);
       if (calculation.error) { setResult(result, '<h3>Không thể tính tự động</h3><p>' + escapeHtml(calculation.error) + '</p>', 'is-error'); return; }
       var drug = calculation.drug;
       var pmaText = Number.isFinite(calculation.pma) ? format(calculation.pma, 1) + ' tuần' : 'chưa đủ dữ liệu';
       var micBlock = calculation.micAssessment ? '<div class="clinical-metrics clinical-metrics-secondary"><div class="clinical-metric"><span>MIC</span><strong>' + format(calculation.micAssessment.mic, 3) + ' mg/L</strong></div><div class="clinical-metric"><span>Ngưỡng cần đạt theo mục tiêu</span><strong>' + format(calculation.micAssessment.threshold, 3) + ' mg/L</strong></div></div><p class="clinical-help"><strong>PK/PD:</strong> ' + escapeHtml(calculation.micAssessment.target.label) + '. Đây là ngưỡng phơi nhiễm cần kiểm tra, không phải nồng độ huyết thanh đo được và không tự động thay thế quyết định liều.</p>' : '<p class="clinical-help">Có thể nhập MIC từ kháng sinh đồ để mở phần kiểm tra mục tiêu PK/PD.</p>';
-      setResult(result, '<h3>Kết quả tham khảo có kiểm soát</h3><div class="clinical-metrics"><div class="clinical-metric"><span>Liều mỗi lần</span><strong>' + format(calculation.doseLow) + '–' + format(calculation.doseHigh) + ' mg</strong></div><div class="clinical-metric"><span>Tổng/ngày</span><strong>' + format(calculation.dailyLow) + '–' + format(calculation.dailyHigh) + ' mg</strong></div><div class="clinical-metric"><span>Tần suất</span><strong>' + drug.frequency + ' lần/ngày</strong></div></div>' + micBlock + '<p><strong>Cơ sở:</strong> ' + escapeHtml(drug.basis) + ' · <strong>PMA:</strong> ' + escapeHtml(pmaText) + '</p><p class="clinical-help">' + escapeHtml(drug.note) + '</p>', 'is-success');
+      setResult(result, '<h3>Kết quả tham khảo có kiểm soát</h3><div class="clinical-metrics"><div class="clinical-metric"><span>Liều mỗi lần</span><strong>' + format(calculation.doseLow) + '–' + format(calculation.doseHigh) + ' mg</strong></div><div class="clinical-metric"><span>Tổng/ngày</span><strong>' + format(calculation.dailyLow) + '–' + format(calculation.dailyHigh) + ' mg/ngày</strong></div><div class="clinical-metric"><span>Tần suất</span><strong>' + drug.frequency + ' lần/ngày</strong></div></div>' + micBlock + '<p><strong>Cơ sở:</strong> ' + escapeHtml(drug.basis) + ' · <strong>PMA:</strong> ' + escapeHtml(pmaText) + '</p><p class="clinical-help">' + escapeHtml(drug.note) + '</p>', 'is-success');
       writeHistory('pediatric', { title: drug.name, summary: format(calculation.doseLow) + '–' + format(calculation.doseHigh) + ' mg/lần · ' + format(calculation.dailyLow) + '–' + format(calculation.dailyHigh) + ' mg/ngày', time: nowText() });
       renderHistory('pediatric', history);
     });
@@ -529,7 +914,7 @@
     document.getElementById('pet-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('pet')); renderHistory('pet', history); });
   }
 
-  var api = { normalize: normalize, findInteractions: findInteractions, findAllInteractions: findAllInteractions, calculateCrCl: calculateCrCl, calculateEgfr: calculateEgfr, calculateEgfrAbsolute: calculateEgfrAbsolute, convertCreatinine: convertCreatinine, renalBand: renalBand, crclBand: crclBand, calculatePediatric: calculatePediatric, decay: decay, calculatePet: calculatePet };
+  var api = { normalize: normalize, findInteractions: findInteractions, findAllInteractions: findAllInteractions, calculateCrCl: calculateCrCl, calculateEgfr: calculateEgfr, calculateEgfrAbsolute: calculateEgfrAbsolute, convertCreatinine: convertCreatinine, renalBand: renalBand, crclBand: crclBand, egfrStage: egfrStage, crclRiskShort: crclRiskShort, matchInteractionPair: matchInteractionPair, findAllVpmedInteractions: findAllVpmedInteractions, calculatePediatric: calculatePediatric, calculatePediatricVpmed: calculatePediatricVpmed, decay: decay, calculatePet: calculatePet };
   window.KHOA_DUOC_CLINICAL_TOOLS = api;
 
   document.addEventListener('DOMContentLoaded', function () {

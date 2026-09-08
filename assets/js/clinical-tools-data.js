@@ -4,7 +4,8 @@
   window.KHOA_DUOC_CLINICAL_DATA = {
     source: {
       name: 'Hệ thống Hỗ trợ Dược lâm sàng | VPMED Tân Hưng',
-      url: 'https://hotrolamsang.io.vn/',
+      url: 'index.html#cong-cu',
+      provenance: 'Du lieu chuyen ve chay cuc bo tu He thong Ho tro Duoc lam sang VPMED (cung don vi); khong phu thuoc domain ngoai.',
       checkedAt: '2026-09-08',
       interactionPairCount: 633,
       renalSource: 'Cơ sở dữ liệu Kháng sinh – Chỉnh liều Thận (Excel nội bộ, cập nhật 23/07/2026) + Sanford Guide 2025 / Renal Drug Handbook 5th Ed.',
