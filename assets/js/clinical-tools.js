@@ -313,6 +313,10 @@
     var canonMap = interactionCanonicalMap();
     function renderRules(matches) {
       if (!matches.length) {
+        if (bigList) {
+          setResult(result, '<h3>Không thuộc 369 cặp Chống chỉ định (QĐ 5948)</h3><p>Công cụ này lọc chặt chẽ, chỉ giữ các cặp ở mức “Chống chỉ định”. Không thuộc danh mục này không đồng nghĩa là an toàn — vẫn cần kiểm tra tờ HDSD, chức năng gan thận và nguồn tương tác chuyên dụng.</p>', 'is-success');
+          return;
+        }
         setResult(result, '<h3>Chưa phát hiện trong bộ quy tắc đang tích hợp</h3><p>Điều này không đồng nghĩa là không có tương tác. Cơ sở dữ liệu hiện tại là bộ quy tắc có cấu trúc, chưa thay thế Micromedex/Lexicomp hoặc quy trình tra cứu của bệnh viện.</p>', 'is-success');
         return;
       }
@@ -385,7 +389,7 @@
           return normalize([item.stt, item.drug1, item.drug2, item.name, item.level, item.mechanism, item.consequence, item.management, item.source].join(' ')).indexOf(query) !== -1;
         });
       }
-      if (count) count.textContent = items.length + '/' + bigList.length + ' cặp tương tác (Bảng 3.1 QĐ 5948/QĐ-BYT)';
+      if (count) count.textContent = items.length + '/' + bigList.length + ' cặp CHỐNG CHỈ ĐỊNH (Bảng 3.1 QĐ 5948/QĐ-BYT — đã lọc chặt, ẩn các cặp có điều kiện)';
       if (!items.length) {
         wrap.innerHTML = '<p class="clinical-history-empty">Không tìm thấy cặp tương tác khớp từ khóa. Điều này không khẳng định phối hợp an toàn.</p>';
         return;
@@ -611,6 +615,29 @@
       + '</div>';
   }
 
+  function parseExpiryDate(text) {
+    var m = String(text || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+    if (!m) return null;
+    var time = new Date(Number(m[3]), Number(m[2]) - 1, Number(m[1])).getTime();
+    return isFinite(time) ? time : null;
+  }
+
+  function formularyStockStatus(expiryArray, todayMs) {
+    var today = todayMs != null ? todayMs : new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()).getTime();
+    var lots = (expiryArray || []).map(function (text) {
+      var time = parseExpiryDate(text);
+      if (time == null) return { expiry: text, daysLeft: null, status: 'unknown' };
+      var daysLeft = Math.floor((time - today) / 86400000);
+      var status = daysLeft < 0 ? 'expired' : daysLeft < 180 ? 'soon' : 'ok';
+      return { expiry: text, daysLeft: daysLeft, status: status };
+    });
+    var overall = 'ok';
+    if (lots.some(function (l) { return l.status === 'expired'; })) overall = 'expired';
+    else if (lots.some(function (l) { return l.status === 'soon'; })) overall = 'soon';
+    else if (!lots.length || lots.every(function (l) { return l.status === 'unknown'; })) overall = 'unknown';
+    return { lots: lots, lotCount: lots.length, overall: overall };
+  }
+
   var formularyDetailIndex = -1;
 
   function setupFormularyTool() {
@@ -636,14 +663,25 @@
         return;
       }
       var rows = items.slice(0, 200).map(function (item, i) {
-        var expiry = (item.expiry || []).join('; ');
+        var stock = formularyStockStatus(item.expiry || []);
+        var expiryText = stock.lots.map(function (lot) {
+          if (lot.status === 'expired') return lot.expiry + ' (HẾT HẠN)';
+          if (lot.status === 'soon') return lot.expiry + ' (còn ' + lot.daysLeft + ' ngày)';
+          if (lot.status === 'ok') return lot.expiry + ' (còn ' + lot.daysLeft + ' ngày)';
+          return lot.expiry;
+        }).join('; ') || '—';
+        var stockBadge = stock.overall === 'expired'
+          ? '<br><strong style="color:#a12723">⛔ Có lô hết hạn</strong>'
+          : stock.overall === 'soon'
+            ? '<br><strong style="color:#8a5a00">⚠ Sắp hết hạn (&lt;180 ngày)</strong>'
+            : '';
         var nameCell = hasProfiles
           ? '<button type="button" data-formulary-detail="' + i + '" style="background:none;border:0;padding:0;cursor:pointer;text-align:left"><strong style="text-decoration:underline">' + escapeHtml(item.name) + '</strong></button>'
           : '<strong>' + escapeHtml(item.name) + '</strong>';
         var detail = (formularyDetailIndex === i) ? '<tr><td colspan="5">' + renderProfileDetail(findDrugProfile(item)) + '</td></tr>' : '';
-        return '<tr><td>' + nameCell + '<br><span style="color:var(--slate-600);font-size:0.76rem">' + escapeHtml(item.active) + '</span></td><td>' + escapeHtml(item.strength || '—') + '</td><td>' + escapeHtml(item.route || '—') + '</td><td>' + escapeHtml(item.packaging || '—') + '</td><td>' + escapeHtml(expiry) + '</td></tr>' + detail;
+        return '<tr><td>' + nameCell + '<br><span style="color:var(--slate-600);font-size:0.76rem">' + escapeHtml(item.active) + '</span></td><td>' + escapeHtml(item.strength || '—') + '</td><td>' + escapeHtml(item.route || '—') + '</td><td>' + escapeHtml(item.packaging || '—') + '</td><td>' + escapeHtml(expiryText) + stockBadge + '<br><span style="color:var(--slate-600);font-size:0.76rem">' + stock.lotCount + ' lô</span></td></tr>' + detail;
       }).join('');
-      wrap.innerHTML = '<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Tên sản phẩm / Hoạt chất</th><th>Hàm lượng</th><th>Đường dùng</th><th>Quy cách</th><th>Hạn dùng</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      wrap.innerHTML = '<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Tên sản phẩm / Hoạt chất</th><th>Hàm lượng</th><th>Đường dùng</th><th>Quy cách</th><th>Hạn dùng / Tồn kho</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="clinical-help">Trạng thái HSD tính tại thời điểm mở trang (sắp hết hạn &lt;180 ngày). Dữ liệu hiện có số lô + HSD từng lô; chưa có số lượng tồn tuyệt đối và hạn mức min/max nên chưa hiển thị các mức này.</p>';
       Array.prototype.forEach.call(wrap.querySelectorAll('[data-formulary-detail]'), function (btn) {
         btn.addEventListener('click', function () {
           var idx = Number(btn.getAttribute('data-formulary-detail'));
@@ -656,12 +694,121 @@
     renderFormulary();
   }
 
-  function vpmedPediatric() {
-    return window.VPMED_STOCK_PEDIATRIC || null;
+  function vpmedNelson() {
+    return window.VPMED_NELSON || null;
   }
 
-  function vpmedInjectables() {
-    return window.VPMED_INJECTABLES_SLIM || null;
+  function nelsonPatientGroup(ageDays, months) {
+    if (ageDays <= 60) return 'neonate';
+    if (months < 12) return 'infant';
+    return 'child';
+  }
+
+  function nelsonRowsMatch(rows, ageDays, months, weightKg) {
+    var group = nelsonPatientGroup(ageDays, months);
+    var matched = [];
+    var skippedLab = 0;
+    (rows || []).forEach(function (row) {
+      if (row.scrRequired || row.gaRequired) { skippedLab += 1; return; }
+      var rg = row.ageGroup || 'child';
+      if (rg === 'neonate' && group !== 'neonate') return;
+      if (rg === 'infant' && group !== 'infant') return;
+      if (rg === 'child' && group === 'neonate') return;
+      if (row.ageDays && (ageDays < row.ageDays[0] || ageDays > row.ageDays[1])) return;
+      if (row.weightMax != null && weightKg > row.weightMax) return;
+      if (row.weightMin != null && weightKg < row.weightMin) return;
+      matched.push(row);
+    });
+    return { matched: matched, skippedLab: skippedLab };
+  }
+
+  function nelsonParseDose(doseStr) {
+    var m = String(doseStr || '').match(/([\d.]+)\s*(?:–\s*([\d.]+))?\s*mg(?:\s+([^\/]+))?\/kg/i);
+    if (!m) return null;
+    var lo = parseFloat(m[1]);
+    var hi = m[2] ? parseFloat(m[2]) : lo;
+    if (!isFinite(lo)) return null;
+    return { lo: lo, hi: hi, comp: m[3] ? m[3].trim() : null };
+  }
+
+  function nelsonParseIntervals(intervalStr) {
+    return (String(intervalStr || '').match(/([\d.]+)/g) || []).map(Number).filter(isFinite);
+  }
+
+  function nelsonCalcRow(row, weightKg) {
+    var parsed = nelsonParseDose(row.dose);
+    if (!parsed) return null;
+    var out = { dailyLo: parsed.lo * weightKg, dailyHi: parsed.hi * weightKg, comp: parsed.comp };
+    var hours = nelsonParseIntervals(row.interval);
+    var perDay = hours.map(function (h) { return h > 0 ? 24 / h : NaN; }).filter(isFinite);
+    if (perDay.length) {
+      var maxN = Math.max.apply(null, perDay);
+      var minN = Math.min.apply(null, perDay);
+      out.dosesPerDay = perDay;
+      out.perDoseLo = out.dailyLo / maxN;
+      out.perDoseHi = out.dailyHi / minN;
+    }
+    return out;
+  }
+
+  function nelsonMicThresholds(drug, rows) {
+    var out = [];
+    var texts = (rows || []).map(function (r) { return r.notes || ''; });
+    if (drug.generalNotes) texts.push(drug.generalNotes);
+    texts.join('\n').replace(/MIC\s*[≤<]\s*([\d.]+)/g, function (m, v) { out.push(parseFloat(v)); return m; });
+    return out.filter(isFinite);
+  }
+
+  function nelsonPkpdTarget(drugClass) {
+    var c = String(drugClass || '');
+    if (/beta.lactam|penicillin|cephalosporin|carbapenem|monobactam/i.test(c)) return 'Beta-lactam: mục tiêu tham khảo 50–100% fT > MIC (nhiễm khuẩn nặng: 100% fT > 4×MIC).';
+    if (/glycopeptide|vancomycin/i.test(c)) return 'Vancomycin: mục tiêu tham khảo AUC/MIC 400–600 (cần TDM).';
+    if (/aminoglycoside|gentamicin|amikacin|tobramycin/i.test(c)) return 'Aminoglycoside: mục tiêu tham khảo Cmax/MIC 8–10 khi dùng liều 1 lần/ngày (cần TDM).';
+    return 'Đối chiếu mục tiêu PK/PD theo nhóm thuốc, breakpoint và HDSD của đúng chế phẩm.';
+  }
+
+  function nelsonMicAssessment(thresholds, mic) {
+    if (!isFinite(mic) || mic <= 0) return null;
+    if (!thresholds.length) return { verdict: 'unknown', text: 'Đã nhập MIC ' + mic + ' mg/L. Phác đồ này không ghi ngưỡng MIC cụ thể — đối chiếu breakpoint và mục tiêu PK/PD trước khi chốt liều.' };
+    var minT = Math.min.apply(null, thresholds);
+    if (mic <= minT) return { verdict: 'ok', text: 'MIC ' + mic + ' mg/L ≤ ngưỡng ' + minT + ' mg/L của phác đồ — phù hợp để áp dụng.' };
+    return { verdict: 'high', text: 'MIC ' + mic + ' mg/L vượt ngưỡng ' + minT + ' mg/L của phác đồ — cần hội chẩn, cân nhắc đổi thuốc hoặc tăng cường liều theo phác đồ đơn vị.' };
+  }
+
+  function renderNelsonResult(drug, matchRes, weightKg, mic) {
+    var rows = matchRes.matched.map(function (row) {
+      var calc = nelsonCalcRow(row, weightKg);
+      var doseCell;
+      if (!calc) {
+        doseCell = escapeHtml(row.dose || '—') + '<br><span class="clinical-help">Không quy đổi tự động được — đối chiếu bảng gốc.</span>';
+      } else {
+        var unit = calc.comp ? ' mg ' + escapeHtml(calc.comp) : ' mg';
+        var daily = (calc.dailyLo === calc.dailyHi ? format(calc.dailyLo, 1) : format(calc.dailyLo, 1) + '–' + format(calc.dailyHi, 1)) + unit + '/ngày';
+        var perDose = '';
+        if (calc.perDoseLo != null) {
+          perDose = '<br><strong>Mỗi lần:</strong> ' + (calc.perDoseLo === calc.perDoseHi ? format(calc.perDoseLo, 1) : format(calc.perDoseLo, 1) + '–' + format(calc.perDoseHi, 1)) + unit + ' (' + escapeHtml(row.interval || '') + ')';
+        }
+        doseCell = '<strong>Tổng/ngày:</strong> ' + daily + perDose;
+      }
+      return '<tr><td><strong>' + escapeHtml(row.label || '') + '</strong>' + (row.notes ? '<br><span class="clinical-help">' + escapeHtml(row.notes.replace(/<[^>]+>/g, '')) + '</span>' : '') + '</td><td>' + escapeHtml(row.route || '—') + '</td><td>' + escapeHtml(row.dose || '—') + '</td><td>' + doseCell + '</td></tr>';
+    }).join('');
+    var micBlock = '';
+    if (mic != null) {
+      var verdict = nelsonMicAssessment(nelsonMicThresholds(drug, matchRes.matched), mic);
+      if (verdict) {
+        micBlock = '<div class="clinical-result ' + (verdict.verdict === 'high' ? 'is-error' : verdict.verdict === 'ok' ? 'is-success' : 'is-warning') + '"><h3>Đánh giá theo MIC (' + escapeHtml(mic) + ' mg/L)</h3><p>' + escapeHtml(verdict.text) + '</p><p class="clinical-help">' + escapeHtml(nelsonPkpdTarget(drug.drugClass)) + '</p></div>';
+      }
+    } else {
+      micBlock = '<p class="clinical-help">Nhập MIC từ kháng sinh đồ để đánh giá sự phù hợp của phác đồ. ' + escapeHtml(nelsonPkpdTarget(drug.drugClass)) + '</p>';
+    }
+    return '<h3>' + escapeHtml(drug.name) + ' <small>(Nelson 2026 — ' + escapeHtml(drug.source === 'ch2' ? 'Sơ sinh' : 'Nhi khoa') + ')</small></h3>'
+      + '<div class="clinical-table-wrap"><table class="clinical-table"><thead><tr><th>Phác đồ</th><th>Đường dùng</th><th>Liều mg/kg/ngày (bảng gốc)</th><th>Liều quy đổi theo cân nặng</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
+      + micBlock
+      + (matchRes.skippedLab ? '<p class="clinical-help">Đã bỏ qua ' + matchRes.skippedLab + ' hàng liều phân tầng theo creatinin/tuổi thai — các hàng này cần bác sĩ/dược sĩ chọn thủ công theo xét nghiệm.</p>' : '')
+      + (drug.maxDose ? '<p><strong>Liều tối đa:</strong> ' + escapeHtml(drug.maxDose) + '</p>' : '')
+      + (drug.generalNotes ? '<p><strong>Ghi chú:</strong> ' + escapeHtml(drug.generalNotes.replace(/<[^>]+>/g, '')) + '</p>' : '')
+      + (drug.indications ? '<p><strong>Chỉ định:</strong> ' + escapeHtml(drug.indications) + '</p>' : '')
+      + (drug.citation ? '<p class="clinical-help">Nguồn bảng liều: ' + escapeHtml(drug.citation) + '</p>' : '');
   }
 
   var pediatricConditionalRuleIds = ['high-dose', 'meningitis', 'appendicitis', 'synergy', 'serious', 'febrile-neutropenia-young', 'febrile-neutropenia-older', 'cystic-fibrosis', 'ntm', 'aom-sinusitis', 'pharyngitis-tonsillitis', 'severe'];
@@ -807,63 +954,124 @@
     var pkpdSelect = document.getElementById('pediatric-pkpd-target');
     if (!form) return;
     var store = vpmedPediatric();
+    var nelson = vpmedNelson();
+    function currentSource() {
+      var el = document.getElementById('pediatric-source');
+      return el ? el.value : (store ? 'vpmed' : 'legacy');
+    }
     function isLegacySelection() {
-      return String(drugSelect.value || '').indexOf('legacy:') === 0;
+      return currentSource() === 'legacy';
     }
     function legacyId() {
       return String(drugSelect.value || '').replace(/^legacy:/, '');
     }
+    function nelsonId() {
+      return String(drugSelect.value || '').replace(/^nls:/, '');
+    }
     var pediatricGrid = form.querySelector('.clinical-form-grid');
+    if (pediatricGrid && !document.getElementById('pediatric-source')) {
+      pediatricGrid.insertAdjacentHTML('afterbegin', '<div class="clinical-field full"><label for="pediatric-source">Nguồn bảng liều</label><select id="pediatric-source"></select></div>');
+    }
     if (pediatricGrid && !document.getElementById('pediatric-mic')) {
-      pediatricGrid.insertAdjacentHTML('beforeend', '<div class="clinical-field" data-mic-block><label for="pediatric-mic">MIC (mg/L = µg/mL, tùy chọn)</label><input id="pediatric-mic" type="number" min="0.001" step="0.001" placeholder="Nhập kết quả kháng sinh đồ"><small>MIC là nồng độ ức chế tối thiểu; không tự suy ra liều nếu thiếu mô hình PK/TDM.</small></div><div class="clinical-field" data-mic-block><label for="pediatric-pkpd-target">Đích PK/PD theo MIC</label><select id="pediatric-pkpd-target"><option value="">— Chọn sau khi chọn thuốc —</option></select><small>Áp dụng cho nhóm beta-lactam đang có trong danh mục.</small></div>');
+      pediatricGrid.insertAdjacentHTML('beforeend', '<div class="clinical-field" data-mic-block><label for="pediatric-mic">MIC (mg/L = µg/mL, tùy chọn)</label><input id="pediatric-mic" type="number" min="0.001" step="0.001" placeholder="Nhập kết quả kháng sinh đồ"><small>MIC là nồng độ ức chế tối thiểu; dùng để đánh giá sự phù hợp phác đồ theo ngưỡng PK/PD.</small></div><div class="clinical-field" data-mic-block data-pkpd-block><label for="pediatric-pkpd-target">Đích PK/PD theo MIC</label><select id="pediatric-pkpd-target"><option value="">— Chọn sau khi chọn thuốc —</option></select><small>Áp dụng cho nhóm beta-lactam đang có trong danh mục.</small></div>');
       pkpdSelect = document.getElementById('pediatric-pkpd-target');
     }
+    function refreshSourceOptions() {
+      var sel = document.getElementById('pediatric-source');
+      if (!sel) return;
+      var prev = sel.value;
+      var opts = [];
+      if (store) opts.push({ value: 'vpmed', text: 'Bảng kho nội trú (16 thuốc)' });
+      if (nelson) opts.push({ value: 'nelson', text: 'Nelson 2026 (100 phác đồ)' });
+      opts.push({ value: 'legacy', text: 'Bảng cơ bản (3 thuốc)' });
+      sel.innerHTML = opts.map(function (o) { return '<option value="' + o.value + '">' + escapeHtml(o.text) + '</option>'; }).join('');
+      sel.value = opts.some(function (o) { return o.value === prev; }) ? prev : opts[0].value;
+    }
+    function refreshDrugOptions() {
+      var src = currentSource();
+      var prev = drugSelect.value;
+      var list = [];
+      if (src === 'nelson' && nelson) {
+        list = nelson.map(function (d) { return { value: 'nls:' + d.id, text: d.name + (d.source === 'ch2' ? ' (Sơ sinh)' : ' (Nhi)') }; });
+      } else if (src === 'vpmed' && store) {
+        list = (store.drugs || []).map(function (d) { return { value: d.id, text: d.name + ' (' + (d.stock || []).length + ' thuốc kho)' }; });
+      } else {
+        list = data.pediatric.map(function (d) { return { value: 'legacy:' + d.id, text: d.name + ' — ' + d.basis }; });
+      }
+      drugSelect.innerHTML = '<option value="">— Chọn thuốc —</option>' + list.map(function (o) { return '<option value="' + escapeHtml(o.value) + '">' + escapeHtml(o.text) + '</option>'; }).join('');
+      var stillThere = list.some(function (o) { return o.value === prev; });
+      if (stillThere) drugSelect.value = prev;
+      toggleMicBlocks();
+      renderPkpdTargets();
+    }
     function toggleMicBlocks() {
-      var show = !store || isLegacySelection();
-      Array.prototype.forEach.call(form.querySelectorAll('[data-mic-block]'), function (el) { el.style.display = show ? '' : 'none'; });
+      var showPkpd = isLegacySelection();
+      Array.prototype.forEach.call(form.querySelectorAll('[data-pkpd-block]'), function (el) { el.style.display = showPkpd ? '' : 'none'; });
     }
-    if (store) {
-      (store.drugs || []).forEach(function (drug) {
-        var option = document.createElement('option');
-        option.value = drug.id;
-        option.textContent = drug.name + ' (' + (drug.stock || []).length + ' thuốc kho)';
-        drugSelect.appendChild(option);
-      });
-    }
-    data.pediatric.forEach(function (drug) { var option = document.createElement('option'); option.value = store ? 'legacy:' + drug.id : drug.id; option.textContent = drug.name + ' — ' + drug.basis + (store ? ' (bảng cơ bản)' : ''); drugSelect.appendChild(option); });
     function renderPkpdTargets() {
       if (!pkpdSelect) return;
       pkpdSelect.innerHTML = '<option value="">— Chọn đích PK/PD —</option>';
-      var drug = isLegacySelection() || !store
-        ? data.pediatric.filter(function (item) { return item.id === (isLegacySelection() ? legacyId() : drugSelect.value); })[0]
+      var drug = isLegacySelection()
+        ? data.pediatric.filter(function (item) { return item.id === legacyId(); })[0]
         : null;
       var targets = drug ? ((data.pediatricPkpd && data.pediatricPkpd[drug.pkpd]) || []) : [];
       targets.forEach(function (target) { var option = document.createElement('option'); option.value = target.id; option.textContent = target.label; pkpdSelect.appendChild(option); });
       pkpdSelect.disabled = !targets.length;
     }
+    refreshSourceOptions();
+    refreshDrugOptions();
+    var sourceSel = document.getElementById('pediatric-source');
+    if (sourceSel) sourceSel.addEventListener('change', refreshDrugOptions);
     if (drugSelect) drugSelect.addEventListener('change', function () { toggleMicBlocks(); renderPkpdTargets(); });
-    toggleMicBlocks();
-    renderPkpdTargets();
     renderHistory('pediatric', history);
+    function patientContext() {
+      var ageYears = number(fieldValue('pediatric-age-years')) || 0;
+      var ageMonths = number(fieldValue('pediatric-age-months')) || 0;
+      var pnaDays = number(fieldValue('pediatric-pna'));
+      var gaWeeks = number(fieldValue('pediatric-ga'));
+      var months = ageYears * 12 + ageMonths;
+      var days = Number.isFinite(pnaDays) ? pnaDays : months * 30.4375;
+      var pma = (Number.isFinite(gaWeeks) && Number.isFinite(pnaDays)) ? gaWeeks + pnaDays / 7 : NaN;
+      return { months: months, days: days, pma: pma, weight: number(fieldValue('pediatric-weight')), mic: number(fieldValue('pediatric-mic')) };
+    }
     form.addEventListener('submit', function (event) {
       event.preventDefault();
-      if (store && !isLegacySelection()) {
-        var ageYears = number(fieldValue('pediatric-age-years')) || 0;
-        var ageMonths = number(fieldValue('pediatric-age-months')) || 0;
-        var pnaDays = number(fieldValue('pediatric-pna'));
-        var gaWeeks = number(fieldValue('pediatric-ga'));
-        var months = ageYears * 12 + ageMonths;
-        var days = Number.isFinite(pnaDays) ? pnaDays : months * 30.4375;
-        var pma = (Number.isFinite(gaWeeks) && Number.isFinite(pnaDays)) ? gaWeeks + pnaDays / 7 : NaN;
-        var calculation = calculatePediatricVpmed(store, { drug: fieldValue('pediatric-drug'), weight: fieldValue('pediatric-weight'), months: months, days: days, pma: pma });
+      var ctx = patientContext();
+      var src = currentSource();
+      if (src === 'nelson' && nelson) {
+        var drug = nelson.filter(function (d) { return d.id === nelsonId(); })[0];
+        if (!drug) { setResult(result, '<h3>Không thể tính tự động</h3><p>Chưa chọn phác đồ Nelson.</p>', 'is-error'); return; }
+        if (!isFinite(ctx.weight) || ctx.weight < 0.2 || ctx.weight > 200) { setResult(result, '<h3>Không thể tính tự động</h3><p>Cân nặng phải trong khoảng 0,2–200 kg.</p>', 'is-error'); return; }
+        if (!isFinite(ctx.months) || ctx.months < 0 || ctx.months > 216) { setResult(result, '<h3>Không thể tính tự động</h3><p>Tuổi phải trong khoảng 0–216 tháng (đến 18 tuổi).</p>', 'is-error'); return; }
+        var matchRes = nelsonRowsMatch(drug.dosingRows, ctx.days, ctx.months, ctx.weight);
+        if (!matchRes.matched.length) { setResult(result, '<h3>Không thể tính tự động</h3><p>Không có hàng liều Nelson phù hợp với tuổi/cân nặng đã nhập.</p>', 'is-error'); return; }
+        var mic = Number.isFinite(ctx.mic) && ctx.mic > 0 ? ctx.mic : null;
+        setResult(result, '<h3>Kết quả liều Nhi (Nelson 2026) — phân biệt mg/kg/ngày và mg/kg/lần</h3><p><strong>Bệnh nhân:</strong> ' + format(ctx.months, 1) + ' tháng tuổi · ' + format(ctx.weight, 2) + ' kg</p>' + renderNelsonResult(drug, matchRes, ctx.weight, mic) + '<p class="clinical-help">Liều tính theo cân nặng thực tế; đối chiếu chỉ định, dị ứng, chức năng gan–thận và kháng sinh đồ trước khi áp dụng.</p>', 'is-success');
+        var firstCalc = nelsonCalcRow(matchRes.matched[0], ctx.weight);
+        writeHistory('pediatric', { title: drug.name + ' (Nelson)', summary: firstCalc ? format(firstCalc.dailyLo, 1) + ' mg/ngày' : matchRes.matched[0].label, time: nowText() });
+        renderHistory('pediatric', history);
+        return;
+      }
+      if (src === 'vpmed' && store && !isLegacySelection()) {
+        var calculation = calculatePediatricVpmed(store, { drug: fieldValue('pediatric-drug'), weight: ctx.weight, months: ctx.months, days: ctx.days, pma: ctx.pma });
         if (calculation.error) { setResult(result, '<h3>Không thể tính tự động</h3><p>' + escapeHtml(calculation.error) + '</p>', 'is-error'); return; }
-        setResult(result, '<h3>Kết quả liều Nhi theo bảng tuổi/PMA</h3>' + renderPediatricVpmed(store, calculation) + '<p class="clinical-help">Liều tính theo cân nặng thực tế; đối chiếu chỉ định, dị ứng, chức năng gan–thận và kháng sinh đồ trước khi áp dụng.</p>', 'is-success');
+        var mic = Number.isFinite(ctx.mic) && ctx.mic > 0 ? ctx.mic : null;
+        var micNote = '';
+        if (mic != null) {
+          var thresholds = [];
+          calculation.matches.forEach(function (entry) {
+            (entry.rule.note || '').replace(/MIC\s*[≤<]\s*([\d.]+)/g, function (m, v) { thresholds.push(parseFloat(v)); return m; });
+          });
+          var verdict = nelsonMicAssessment(thresholds, mic);
+          if (verdict) micNote = '<div class="clinical-result ' + (verdict.verdict === 'high' ? 'is-error' : verdict.verdict === 'ok' ? 'is-success' : 'is-warning') + '"><h3>Đánh giá theo MIC (' + escapeHtml(mic) + ' mg/L)</h3><p>' + escapeHtml(verdict.text) + '</p><p class="clinical-help">' + escapeHtml(nelsonPkpdTarget(calculation.drug.id)) + '</p></div>';
+        }
+        setResult(result, '<h3>Kết quả liều Nhi theo bảng tuổi/PMA</h3>' + renderPediatricVpmed(store, calculation) + micNote + '<p class="clinical-help">Liều tính theo cân nặng thực tế; đối chiếu chỉ định, dị ứng, chức năng gan–thận và kháng sinh đồ trước khi áp dụng.</p>', 'is-success');
         var firstRule = calculation.matches[0].rule;
         writeHistory('pediatric', { title: calculation.drug.name, summary: format(calculation.weight * firstRule.doseMgKg, 1) + ' mg/lần · mỗi ' + firstRule.intervalHours + ' giờ', time: nowText() });
         renderHistory('pediatric', history);
         return;
       }
-      var calculation = calculatePediatric({ ageYears: fieldValue('pediatric-age-years'), ageMonths: fieldValue('pediatric-age-months'), pnaDays: fieldValue('pediatric-pna'), gaWeeks: fieldValue('pediatric-ga'), weight: fieldValue('pediatric-weight'), drug: isLegacySelection() ? legacyId() : fieldValue('pediatric-drug'), mic: fieldValue('pediatric-mic'), pkpdTarget: fieldValue('pediatric-pkpd-target') }, data.pediatric);
+      var calculation = calculatePediatric({ ageYears: fieldValue('pediatric-age-years'), ageMonths: fieldValue('pediatric-age-months'), pnaDays: fieldValue('pediatric-pna'), gaWeeks: fieldValue('pediatric-ga'), weight: fieldValue('pediatric-weight'), drug: legacyId(), mic: fieldValue('pediatric-mic'), pkpdTarget: fieldValue('pediatric-pkpd-target') }, data.pediatric);
       if (calculation.error) { setResult(result, '<h3>Không thể tính tự động</h3><p>' + escapeHtml(calculation.error) + '</p>', 'is-error'); return; }
       var drug = calculation.drug;
       var pmaText = Number.isFinite(calculation.pma) ? format(calculation.pma, 1) + ' tuần' : 'chưa đủ dữ liệu';
@@ -914,7 +1122,7 @@
     document.getElementById('pet-clear-history').addEventListener('click', function () { window.localStorage.removeItem(historyKey('pet')); renderHistory('pet', history); });
   }
 
-  var api = { normalize: normalize, findInteractions: findInteractions, findAllInteractions: findAllInteractions, calculateCrCl: calculateCrCl, calculateEgfr: calculateEgfr, calculateEgfrAbsolute: calculateEgfrAbsolute, convertCreatinine: convertCreatinine, renalBand: renalBand, crclBand: crclBand, egfrStage: egfrStage, crclRiskShort: crclRiskShort, matchInteractionPair: matchInteractionPair, findAllVpmedInteractions: findAllVpmedInteractions, calculatePediatric: calculatePediatric, calculatePediatricVpmed: calculatePediatricVpmed, decay: decay, calculatePet: calculatePet };
+  var api = { normalize: normalize, findInteractions: findInteractions, findAllInteractions: findAllInteractions, calculateCrCl: calculateCrCl, calculateEgfr: calculateEgfr, calculateEgfrAbsolute: calculateEgfrAbsolute, convertCreatinine: convertCreatinine, renalBand: renalBand, crclBand: crclBand, egfrStage: egfrStage, crclRiskShort: crclRiskShort, matchInteractionPair: matchInteractionPair, findAllVpmedInteractions: findAllVpmedInteractions, calculatePediatric: calculatePediatric, calculatePediatricVpmed: calculatePediatricVpmed, nelsonRowsMatch: nelsonRowsMatch, nelsonCalcRow: nelsonCalcRow, nelsonMicThresholds: nelsonMicThresholds, nelsonMicAssessment: nelsonMicAssessment, nelsonPkpdTarget: nelsonPkpdTarget, formularyStockStatus: formularyStockStatus, decay: decay, calculatePet: calculatePet };
   window.KHOA_DUOC_CLINICAL_TOOLS = api;
 
   document.addEventListener('DOMContentLoaded', function () {
