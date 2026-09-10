@@ -7,8 +7,7 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Khoa Dược &#8211; Bệnh viện VPMED TÂN HƯNG</title>
 <meta name="description" content="Khoa Dược Bệnh viện  VPMED Tân Hưng: chức năng, nhiệm vụ, cơ cấu tổ chức và bản tin dược lâm sàng.">
-<link rel="stylesheet" href="assets/css/style.css?v=1.2.4">
-<link rel="stylesheet" href="assets/css/clinical-tools.css?v=1.2.4">
+<link rel="stylesheet" href="assets/css/style.css?v=1.1.8">
 </head>
 <body>
 
@@ -31,7 +30,6 @@
         <li><a href="#gioi-thieu" class="active">Giới thiệu</a></li>
         <li><a href="#chuc-nang">Chức năng &#8211; nhiệm vụ</a></li>
         <li><a href="#to-chuc">Cơ cấu tổ chức</a></li>
-        <li><a href="#cong-cu">Công cụ lâm sàng</a></li>
         <li><a href="#ban-tin">Bản tin Dược lâm sàng</a></li>
         <li><a href="#lien-he">Liên hệ</a></li>
       </ul>
@@ -83,33 +81,6 @@
         </div>
       </dl>
     </aside>
-  </div>
-</section>
-
-<section class="section clinical-tools-section" id="cong-cu">
-  <div class="container">
-    <div class="section-head">
-      <h2>Công cụ lâm sàng</h2>
-      <p>Các công cụ hỗ trợ tra cứu nhanh cho nhân viên y tế. Kết quả cần được đối chiếu với hồ sơ người bệnh và quy trình chuyên môn của bệnh viện.</p>
-    </div>
-    <div class="clinical-tools-grid">
-      <a class="clinical-tool-card" href="cong-cu-tuong-tac-thuoc.html">
-        <div class="clinical-tool-card-top"><span class="clinical-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m8.5 4.5 11 11-4 4-11-11z"/><path d="m5 8 3-3M12 15l-3 3M4 20h7"/></svg></span><span class="clinical-tool-badge">Sẵn sàng</span></div>
-        <h3>Kiểm tra tương tác thuốc</h3><p>Kiểm tra giữa hai thuốc hoặc quét toàn bộ danh mục thuốc.</p><div class="clinical-tool-status"><span>Tra cứu công cụ</span><span aria-hidden="true">→</span></div>
-      </a>
-      <a class="clinical-tool-card" href="cong-cu-lieu-khang-sinh.html">
-        <div class="clinical-tool-card-top"><span class="clinical-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span><span class="clinical-tool-badge">Sẵn sàng</span></div>
-        <h3>Tính liều kháng sinh &amp; CrCl/eGFR</h3><p>Ước tính chức năng thận, cảnh báo chỉnh liều và lưu lịch sử.</p><div class="clinical-tool-status"><span>Mở công cụ</span><span aria-hidden="true">→</span></div>
-      </a>
-      <a class="clinical-tool-card" href="cong-cu-lieu-nhi.html">
-        <div class="clinical-tool-card-top"><span class="clinical-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-3.4 3-5 7-5s6.2 1.6 7 5M4 4h2M18 4h2"/></svg></span><span class="clinical-tool-badge">Sẵn sàng</span></div>
-        <h3>Tính liều kháng sinh Nhi</h3><p>Tính theo tuổi, PMA, cân nặng; phân biệt mg/kg/ngày và mg/kg/lần.</p><div class="clinical-tool-status"><span>Mở công cụ</span><span aria-hidden="true">→</span></div>
-      </a>
-      <a class="clinical-tool-card" href="cong-cu-pet-ct.html">
-        <div class="clinical-tool-card-top"><span class="clinical-tool-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v5M20 12h-5M12 20v-5M4 12h5"/></svg></span><span class="clinical-tool-badge">Sẵn sàng</span></div>
-        <h3>Tính liều PET/CT</h3><p>Tính hoạt độ, bù phân rã và thể tích rút theo mốc thời gian.</p><div class="clinical-tool-status"><span>Mở công cụ</span><span aria-hidden="true">→</span></div>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -182,7 +153,9 @@
         <h2>Bản tin Dược</h2>
       </div>
       <div class="post-staff-actions" aria-label="Quản trị bản tin">
+        <button class="document-login-button" id="open-post-login" type="button">Đăng nhập admin</button>
         <button class="document-add-button" id="open-post-upload" type="button" hidden><span aria-hidden="true">+</span> Tải PDF bản tin</button>
+        <button class="document-logout-button" id="post-logout" type="button" hidden>Đăng xuất</button>
       </div>
     </div>
     <div class="bulletin-layout">
@@ -226,6 +199,18 @@
   </div>
 </section>
 </main>
+
+<dialog class="document-login-dialog" id="post-login-dialog" aria-labelledby="post-login-title">
+  <form id="post-login-form">
+    <div class="document-upload-header"><div><div class="kicker">Quản trị bản tin</div><h2 id="post-login-title">Đăng nhập admin</h2></div><button class="document-dialog-close" id="close-post-login" type="button" aria-label="Đóng">×</button></div>
+    <div class="document-login-fields">
+      <label class="document-form-field"><span>Email admin</span><input id="post-login-email" type="email" autocomplete="username" required></label>
+      <label class="document-form-field"><span>Mật khẩu</span><input id="post-login-password" type="password" autocomplete="current-password" required></label>
+      <p class="document-upload-status" id="post-login-status" role="status" aria-live="polite"></p>
+    </div>
+    <div class="document-upload-actions"><button class="document-upload-cancel" id="cancel-post-login" type="button">Hủy</button><button class="document-upload-submit" type="submit">Đăng nhập</button></div>
+  </form>
+</dialog>
 
 <dialog class="document-upload-dialog" id="post-upload-dialog" aria-labelledby="post-upload-title">
   <form id="post-upload-form">
@@ -277,7 +262,7 @@
 
 <script src="assets/js/instructions-data.js?v=1.1.8"></script>
 <script src="assets/js/drug-documents-data.js?v=1.1.8"></script>
-<script src="assets/js/server-config.js?v=1.1.8"></script><script src="assets/js/global-auth.js?v=1.2.1"></script>
+<script src="assets/js/server-config.js?v=1.1.8"></script>
 <script src="assets/js/device-compat.js?v=1.1.8"></script>
 <script src="assets/js/title-editor.js?v=1.1.8"></script>
 <script src="assets/js/posts.js?v=1.1.8"></script>

@@ -6,49 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var toggle = document.querySelector('.nav-toggle');
   var navigation = document.querySelector('.main-nav');
-  function addDropdown(triggerSelector, links) {
-    var trigger = navigation ? navigation.querySelector(triggerSelector) : null;
-    if (!trigger || trigger.parentElement.querySelector('.nav-dropdown')) return;
-    var parent = trigger.parentElement;
-    var dropdown = document.createElement('ul');
-    dropdown.className = 'nav-dropdown';
-    links.forEach(function (item) {
-      var existing = navigation.querySelector('a[href="' + item.href + '"]');
-      var child = existing && existing.parentElement.parentElement === navigation.querySelector('ul')
-        ? existing.parentElement
-        : document.createElement('li');
-      var link = existing || document.createElement('a');
-      if (!existing) {
-        link.href = item.href;
-        link.textContent = item.label;
-        child.appendChild(link);
-      }
-      dropdown.appendChild(child);
-    });
-    parent.classList.add('has-dropdown');
-    trigger.setAttribute('aria-haspopup', 'true');
-    var caret = document.createElement('span');
-    caret.className = 'nav-caret';
-    caret.setAttribute('aria-hidden', 'true');
-    caret.textContent = '▾';
-    trigger.appendChild(caret);
-    parent.appendChild(dropdown);
-  }
-
-  addDropdown('a[href="#gioi-thieu"]', [
-    { href: '#chuc-nang', label: 'Chức năng – nhiệm vụ' },
-    { href: '#to-chuc', label: 'Cơ cấu tổ chức' }
-  ]);
-  addDropdown('a[href="#cong-cu"]', [
-    { href: 'cong-cu-tuong-tac-thuoc.html', label: 'Kiểm tra tương tác thuốc' },
-    { href: 'cong-cu-lieu-khang-sinh.html', label: 'Liều kháng sinh & CrCl/eGFR' },
-    { href: 'cong-cu-lieu-nhi.html', label: 'Liều kháng sinh Nhi & MIC' },
-    { href: 'cong-cu-pet-ct.html', label: 'Tính liều PET/CT' }
-  ]);
-  addDropdown('a[href="#ban-tin"]', [
-    { href: 'thong-tin-thuoc.html', label: 'Thông tin thuốc' },
-    { href: 'huong-dan-su-dung.html', label: 'Hướng dẫn sử dụng' }
-  ]);
   var navigationLinks = document.querySelectorAll('.main-nav a');
   var header = document.querySelector('.site-header');
   var sectionLinks = Array.prototype.slice.call(document.querySelectorAll('.main-nav a[href^="#"]'));

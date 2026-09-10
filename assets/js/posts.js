@@ -79,9 +79,6 @@
   }
 
   function accessToken() {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.getAccessToken === 'function') {
-      return window.KHOA_DUOC_AUTH.getAccessToken();
-    }
     var current = readSession();
     if (!current) return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
     if (current.expires_at > Math.floor(Date.now() / 1000) + 60) return Promise.resolve(current.access_token);
@@ -95,12 +92,6 @@
   }
 
   function validateStaff() {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.validate === 'function') {
-      return window.KHOA_DUOC_AUTH.validate().then(function (allowed) {
-        authenticated = allowed === true;
-        return authenticated;
-      });
-    }
     if (!configured() || !readSession()) { clearSession(); return Promise.resolve(false); }
     return accessToken().then(function (token) {
       return request('/auth/v1/user', { method: 'GET' }, token).then(function () {
@@ -114,12 +105,6 @@
   }
 
   function signIn(email, password) {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.signIn === 'function') {
-      return window.KHOA_DUOC_AUTH.signIn(email, password).then(function () {
-        authenticated = true;
-        return true;
-      });
-    }
     return request('/auth/v1/token?grant_type=password', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email, password: password })
     }).then(function (payload) { writeSession(normalizeSession(payload)); return validateStaff(); }).then(function (ok) {
@@ -129,12 +114,6 @@
   }
 
   function signOut() {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.signOut === 'function') {
-      return window.KHOA_DUOC_AUTH.signOut().then(function () {
-        authenticated = false;
-        session = null;
-      });
-    }
     var current = readSession();
     var logout = current && configured() ? request('/auth/v1/logout?scope=local', { method: 'POST' }, current.access_token).catch(function () {}) : Promise.resolve();
     return logout.finally(clearSession);
@@ -391,13 +370,6 @@
     var previousPage = document.getElementById('post-page-prev');
     var nextPage = document.getElementById('post-page-next');
     renderAccess();
-    window.addEventListener('khoa-duoc-auth-changed', function () {
-      authenticated = window.KHOA_DUOC_STAFF_AUTHENTICATED === true;
-      if (!authenticated) session = null;
-      renderAccess();
-      renderPosts(posts);
-      refresh();
-    });
     validateStaff().then(function () { renderAccess(); renderPosts(posts); return refresh(); });
     if (loginButton) loginButton.addEventListener('click', function () { openDialog('post-login-dialog'); if (!configured()) setStatus('post-login-status', 'Máy chủ Supabase chưa được cấu hình.', 'error'); });
     ['close-post-login', 'cancel-post-login'].forEach(function (id) { var node = document.getElementById(id); if (node) node.addEventListener('click', function () { closeDialog('post-login-dialog'); }); });

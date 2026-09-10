@@ -959,9 +959,6 @@
   }
 
   function getStaffAccessToken() {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.getAccessToken === 'function') {
-      return window.KHOA_DUOC_AUTH.getAccessToken();
-    }
     var session = readStaffSession();
     if (!session) {
       return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
@@ -977,12 +974,6 @@
   }
 
   function validateStaffSession() {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.validate === 'function') {
-      return window.KHOA_DUOC_AUTH.validate().then(function (allowed) {
-        staffAuthenticated = allowed === true;
-        return staffAuthenticated;
-      });
-    }
     if (!hasServerConfig() || !readStaffSession()) {
       clearStaffSession();
       return Promise.resolve(false);
@@ -1011,12 +1002,6 @@
   }
 
   function signInStaff(email, password) {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.signIn === 'function') {
-      return window.KHOA_DUOC_AUTH.signIn(email, password).then(function () {
-        staffAuthenticated = true;
-        return true;
-      });
-    }
     return serverRequest('/auth/v1/token?grant_type=password', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -1033,12 +1018,6 @@
   }
 
   function signOutStaff() {
-    if (window.KHOA_DUOC_AUTH && typeof window.KHOA_DUOC_AUTH.signOut === 'function') {
-      return window.KHOA_DUOC_AUTH.signOut().then(function () {
-        staffAuthenticated = false;
-        authSession = null;
-      });
-    }
     var session = readStaffSession();
     var request = session && hasServerConfig()
       ? serverRequest('/auth/v1/logout?scope=local', { method: 'POST' }, session.access_token).catch(function () {})
@@ -1129,19 +1108,6 @@
 
     staffAuthenticated = false;
     renderStaffAccess();
-
-    window.addEventListener('khoa-duoc-auth-changed', function () {
-      staffAuthenticated = window.KHOA_DUOC_STAFF_AUTHENTICATED === true;
-      if (!staffAuthenticated) {
-        authSession = null;
-      }
-      renderStaffAccess();
-      refreshDocuments();
-      if (!staffAuthenticated) {
-        var uploadDialog = document.getElementById('document-upload-dialog');
-        if (uploadDialog && uploadDialog.open) closeUploadDialog(uploadDialog);
-      }
-    });
 
     if (!loginButton || !logoutButton || !dialog || !form) {
       return;
