@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
         link.removeAttribute('aria-current');
       }
     });
+    document.querySelectorAll('.nav-dropdown-item').forEach(function (item) {
+      var trigger = item.querySelector('.nav-dropdown-trigger');
+      if (trigger) trigger.classList.toggle('active', Boolean(item.querySelector('a.active')));
+    });
   }
 
   function updateActiveLinkFromScroll() {

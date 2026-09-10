@@ -959,6 +959,7 @@
   }
 
   function getStaffAccessToken() {
+    if (window.KHOA_DUOC_AUTH) return window.KHOA_DUOC_AUTH.getAccessToken();
     var session = readStaffSession();
     if (!session) {
       return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
@@ -1108,6 +1109,15 @@
 
     staffAuthenticated = false;
     renderStaffAccess();
+
+    if (window.KHOA_DUOC_AUTH) {
+      window.KHOA_DUOC_AUTH.subscribe(function (authState) {
+        staffAuthenticated = authState.authenticated === true;
+        renderStaffAccess();
+        refreshDocuments();
+      });
+      return;
+    }
 
     if (!loginButton || !logoutButton || !dialog || !form) {
       return;

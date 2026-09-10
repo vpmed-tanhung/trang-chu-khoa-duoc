@@ -1,0 +1,18 @@
+.nav-dropdown-item{position:relative;display:flex;align-items:center}
+.nav-dropdown-trigger{position:relative;appearance:none;border:0;background:transparent;color:inherit;font:inherit;font-weight:700;cursor:pointer;padding:12px 0;white-space:nowrap}
+.nav-dropdown-trigger span{display:inline-block;margin-left:4px;transition:transform .2s ease}
+.nav-dropdown-item.is-open .nav-dropdown-trigger span{transform:rotate(180deg)}
+.nav-dropdown-trigger.active{color:#2057a6}
+.nav-dropdown-menu{position:absolute;z-index:130;top:calc(100% + 10px);left:0;width:min(310px,90vw);padding:8px;background:#fff;border:1px solid #cbd5e1;box-shadow:0 18px 45px rgba(15,54,95,.18)}
+.clinical-nav-menu{right:0;left:auto}
+.nav-dropdown-menu[hidden]{display:none}
+.main-nav .nav-dropdown-menu a{display:block;padding:10px 12px;color:#0f365f;border-bottom:1px solid #e2e8f0;text-decoration:none}
+.main-nav .nav-dropdown-menu a::after{display:none}
+.main-nav .nav-dropdown-menu a:hover,.main-nav .nav-dropdown-menu a:focus-visible{background:#eff6ff;color:#075f9f}
+.main-nav .clinical-nav-menu .clinical-nav-all{border-bottom:0;font-weight:800;color:#0d9488}
+.clinical-tools-section{padding:0;background:#edf4f9;scroll-margin-top:88px}
+.clinical-workspace{position:relative;isolation:isolate;max-width:100%;overflow:clip;color:#102d45}
+.clinical-system-footer{padding:8px 20px 22px;text-align:center;color:#667d90;font-size:12px}
+@media(max-width:1040px){.nav-dropdown-item{display:block}.nav-dropdown-trigger{width:100%;padding:14px 0;text-align:left;border-bottom:1px solid #deebf0}.nav-dropdown-menu,.clinical-nav-menu{position:static;width:100%;border:0;border-top:0;box-shadow:none;padding:0 0 8px 14px}.main-nav .nav-dropdown-menu a{padding:10px 18px}}
+@media(max-width:620px){.clinical-tools-section{scroll-margin-top:70px}}
+@media(prefers-reduced-motion:reduce){.nav-dropdown-trigger span{transition:none}}

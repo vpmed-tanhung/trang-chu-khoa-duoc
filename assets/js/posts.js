@@ -15,6 +15,12 @@
   var totalPages = 1;
   var hasNextPage = false;
   var previewUrl = '';
+  var publicCategories = ['Cảnh báo an toàn', 'Tương tác thuốc', 'Thông báo nội bộ'];
+  var selectedCategory = '';
+  try {
+    var requestedCategory = new URLSearchParams(window.location.search).get('category') || '';
+    selectedCategory = publicCategories.indexOf(requestedCategory) !== -1 ? requestedCategory : '';
+  } catch (error) {}
   var channel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('khoa-duoc-posts') : null;
   var contentChannel = typeof BroadcastChannel === 'function' ? new BroadcastChannel('khoa-duoc-thong-tin-thuoc') : null;
 
@@ -79,6 +85,7 @@
   }
 
   function accessToken() {
+    if (window.KHOA_DUOC_AUTH) return window.KHOA_DUOC_AUTH.getAccessToken();
     var current = readSession();
     if (!current) return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
     if (current.expires_at > Math.floor(Date.now() / 1000) + 60) return Promise.resolve(current.access_token);
@@ -92,16 +99,24 @@
   }
 
   function validateStaff() {
-    if (!configured() || !readSession()) { clearSession(); return Promise.resolve(false); }
+    if (!configured() || !readSession()) {
+      authenticated = false;
+      if (!window.KHOA_DUOC_AUTH) clearSession();
+      return Promise.resolve(false);
+    }
     return accessToken().then(function (token) {
       return request('/auth/v1/user', { method: 'GET' }, token).then(function () {
         return request('/rest/v1/rpc/is_pharmacy_admin', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' }, token);
       });
     }).then(function (allowed) {
       authenticated = allowed === true;
-      if (!authenticated) clearSession();
+      if (!authenticated && !window.KHOA_DUOC_AUTH) clearSession();
       return authenticated;
-    }).catch(function () { clearSession(); return false; });
+    }).catch(function () {
+      authenticated = false;
+      if (!window.KHOA_DUOC_AUTH) clearSession();
+      return false;
+    });
   }
 
   function signIn(email, password) {
@@ -177,7 +192,8 @@
     if (!configured()) return Promise.resolve({ rows: [], total: 0, hasNext: false });
     var requestedPage = Math.max(1, Number(page) || 1);
     var offset = (requestedPage - 1) * 5;
-    return request('/rest/v1/posts?select=id,title,category,excerpt,publish_date,week_number,author,file_name,storage_path,created_at&order=created_at.desc&limit=5&offset=' + offset, {
+    var categoryFilter = selectedCategory ? '&category=eq.' + encodeURIComponent(selectedCategory) : '';
+    return request('/rest/v1/posts?select=id,title,category,excerpt,publish_date,week_number,author,file_name,storage_path,created_at&order=created_at.desc&limit=5&offset=' + offset + categoryFilter, {
       method: 'GET',
       returnMeta: true,
       headers: { Accept: 'application/json', Prefer: 'count=exact' }
@@ -242,7 +258,7 @@
     if (!ledger) return;
     ledger.textContent = '';
     if (!items.length) {
-      var empty = document.createElement('p'); empty.className = 'document-empty'; empty.textContent = 'Chưa có bản tin trên Supabase.'; ledger.appendChild(empty); renderPagination(); return;
+      var empty = document.createElement('p'); empty.className = 'document-empty'; empty.textContent = selectedCategory ? 'Chưa có bài trong chuyên mục này.' : 'Chưa có bản tin trên Supabase.'; ledger.appendChild(empty); renderPagination(); return;
     }
     items.slice(0, 5).forEach(function (item) {
       var row = document.createElement('article'); row.className = 'ledger-row';
@@ -358,6 +374,8 @@
   }
 
   function init() {
+    var sectionTitle = document.getElementById('bulletin-section-title');
+    if (sectionTitle && selectedCategory) sectionTitle.textContent = selectedCategory;
     var loginButton = document.getElementById('open-post-login');
     var uploadButton = document.getElementById('open-post-upload');
     var logoutButton = document.getElementById('post-logout');
@@ -371,6 +389,17 @@
     var nextPage = document.getElementById('post-page-next');
     renderAccess();
     validateStaff().then(function () { renderAccess(); renderPosts(posts); return refresh(); });
+    if (window.KHOA_DUOC_AUTH) {
+      window.KHOA_DUOC_AUTH.subscribe(function (authState) {
+        if (!authState.authenticated) {
+          authenticated = false;
+          renderAccess();
+          renderPosts(posts);
+          return;
+        }
+        validateStaff().then(function () { renderAccess(); renderPosts(posts); });
+      });
+    }
     if (loginButton) loginButton.addEventListener('click', function () { openDialog('post-login-dialog'); if (!configured()) setStatus('post-login-status', 'Máy chủ Supabase chưa được cấu hình.', 'error'); });
     ['close-post-login', 'cancel-post-login'].forEach(function (id) { var node = document.getElementById(id); if (node) node.addEventListener('click', function () { closeDialog('post-login-dialog'); }); });
     if (loginForm) loginForm.addEventListener('submit', function (event) {

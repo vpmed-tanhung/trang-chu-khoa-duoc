@@ -1,0 +1,10 @@
+{
+  "version": "2026.09.10.81",
+  "displayVersion": "5.9.0",
+  "updatedAt": "2026-09-10T20:35:34+07:00",
+  "note": "Bổ sung tính liều kháng sinh Nhi khoa theo PK/PD, MIC, trần liều người lớn và cảnh báo lứa tuổi.",
+  "buildId": "v5.9.0-pediatric-pkpd-mic-20260910-81",
+  "clinicalDataVersion": "sha256-c078f4dda1e6e7c6346e58be",
+  "previousVersion": "2026.09.10.80",
+  "previousDisplayVersion": "5.8.9"
+}

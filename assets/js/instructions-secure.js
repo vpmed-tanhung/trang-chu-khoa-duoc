@@ -56,6 +56,7 @@
     return { access_token: payload.access_token, refresh_token: payload.refresh_token, expires_at: expiresAt || 0 };
   }
   function accessToken() {
+    if (window.KHOA_DUOC_AUTH) return window.KHOA_DUOC_AUTH.getAccessToken();
     var current = readSession();
     if (!current) return Promise.reject(new Error('Phiên đăng nhập không tồn tại.'));
     if (current.expires_at > Math.floor(Date.now() / 1000) + 60) return Promise.resolve(current.access_token);
@@ -219,6 +220,12 @@
     var empty = document.getElementById('instruction-pdf-preview-empty');
     var uploadSubmit = document.getElementById('submit-instruction-upload');
     var cancelUpload = document.getElementById('cancel-instruction-upload');
+    if (window.KHOA_DUOC_AUTH) {
+      window.KHOA_DUOC_AUTH.subscribe(function (authState) {
+        authenticated = authState.authenticated === true;
+        renderAccess();
+      });
+    }
     renderAccess();
     if (loginDialog && loginForm) validate().then(function () {
       renderAccess();

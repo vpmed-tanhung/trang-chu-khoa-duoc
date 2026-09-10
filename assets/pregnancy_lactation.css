@@ -1,0 +1,23 @@
+#clinical-workspace .pregnancy-feature{border-color:#bfd9ee!important;background:linear-gradient(180deg,#fff,#f7fbff)!important}
+#clinical-workspace .pl-alert{border-left:6px solid #075f9f;background:#f3f9fd;line-height:1.65}#clinical-workspace .pl-warning{border-left:6px solid #b7791f;background:#fff9ec;line-height:1.65;margin-top:12px}
+#clinical-workspace .pl-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0}#clinical-workspace .pl-summary article{background:#fff;border:1px solid #dce6ee;border-radius:16px;padding:18px}#clinical-workspace .pl-summary strong{display:block;font-size:28px;color:#075f9f}#clinical-workspace .pl-summary span{color:#64748b;font-weight:700}
+#clinical-workspace .pl-filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:12px;margin-bottom:14px}#clinical-workspace .pl-filters label{font-weight:800;color:#23384a}#clinical-workspace .pl-filters input,#clinical-workspace .pl-filters select{width:100%;margin-top:6px;border:1px solid #cbd9e3;border-radius:10px;padding:11px;background:#fff;font:inherit}
+#clinical-workspace .pl-toolbar{display:flex;justify-content:space-between;margin:8px 0 12px;color:#64748b;font-weight:800}#clinical-workspace .pl-table-wrap{overflow:auto;border:1px solid #dce6ee;border-radius:14px}#clinical-workspace .pl-table{width:100%;min-width:1250px;border-collapse:collapse;background:#fff}#clinical-workspace .pl-table th{background:#edf7fd;color:#075f9f;text-align:left;padding:13px;border-bottom:1px solid #cbddea}#clinical-workspace .pl-table td{vertical-align:top;padding:13px;border-bottom:1px solid #e8eef3;color:#405466;line-height:1.55}#clinical-workspace .pl-table td:nth-child(1){min-width:220px}#clinical-workspace .pl-table td:nth-child(2){min-width:210px}#clinical-workspace .pl-table td:nth-child(3),#clinical-workspace .pl-table td:nth-child(4){min-width:285px}#clinical-workspace .pl-table td:nth-child(5){min-width:260px}
+#clinical-workspace .pl-drug b,#clinical-workspace .pl-drug small,#clinical-workspace .pl-drug em{display:block}#clinical-workspace .pl-drug b{color:#173247;font-size:15px}#clinical-workspace .pl-drug small{margin-top:4px;color:#52697c}#clinical-workspace .pl-drug em{margin-top:7px;font-style:normal;color:#7a8b99;font-size:12px}#clinical-workspace .pl-class-row{display:flex;gap:7px;flex-wrap:wrap}#clinical-workspace .pl-class{border-radius:999px;background:#e8f5ff;color:#075f9f;padding:6px 9px;font-size:11px}#clinical-workspace .pl-class.legacy{background:#fff1d6;color:#8a5200}#clinical-workspace .pl-class.none{background:#eef2f6;color:#667085}#clinical-workspace .pl-current-note{display:block;margin-top:8px;color:#667085}#clinical-workspace .pl-risk{display:inline-flex;border-radius:999px;padding:6px 9px;font-size:11px;font-weight:900}#clinical-workspace .pl-risk.avoid{background:#fee4e2;color:#b42318}#clinical-workspace .pl-risk.ok{background:#dcfae6;color:#067647}#clinical-workspace .pl-risk.unknown{background:#eef2f6;color:#52606d}#clinical-workspace .pl-risk.caution{background:#fff1d6;color:#9a5b00}#clinical-workspace .pl-table p{margin:8px 0 0}#clinical-workspace .pl-live-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}#clinical-workspace .pl-live-links a{font-size:11px;font-weight:900;text-decoration:none;color:#075f9f;background:#edf7fd;border-radius:999px;padding:6px 8px}
+#clinical-workspace .pl-source-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}#clinical-workspace .pl-source-card{border:1px solid #dce6ee;border-radius:13px;padding:14px;background:#fff}#clinical-workspace .pl-source-card h3{margin:0 0 6px;color:#075f9f}#clinical-workspace .pl-source-card p{color:#52697c;line-height:1.5}#clinical-workspace .pl-source-card a{font-weight:900;color:#075f9f;text-decoration:none}
+@media(max-width:1050px){.pl-filters{grid-template-columns:1fr 1fr}.pl-source-grid{grid-template-columns:1fr}}@media(max-width:700px){.pl-summary,.pl-filters{grid-template-columns:1fr}}
+
+#clinical-workspace .pllr-primary{
+  background:#dcfae6!important;
+  color:#067647!important;
+  border:1px solid #86efac;
+}
+#clinical-workspace .class-chip.legacy{
+  opacity:.78;
+}
+#clinical-workspace .current-standard{
+  background:#f5fbff;
+  border-left:4px solid #075f9f;
+  padding:8px 10px;
+  border-radius:8px;
+}

@@ -1,0 +1,19 @@
+.clinical-nav-menu a::after,
+.main-nav .clinical-nav-menu a::after,
+.clinical-nav-menu a.is-public-feature::after {
+  content: none !important;
+  display: none !important;
+  float: none !important;
+}
+
+#clinical-workspace [data-clinical-heading-kicker],
+#clinical-workspace .feature-card[data-access="public"] em,
+#clinical-workspace .feature-card[data-open="dose"] em,
+#clinical-workspace .feature-card[data-open="interactions"] em,
+#clinical-workspace .feature-card[data-open="pediatric-dose"] em,
+#clinical-workspace .feature-card[data-open="antibiotics"] em,
+#clinical-workspace .feature-card[data-open="cap-cuu-phan-ve"] em,
+#clinical-workspace .feature-card[data-open="pharmacovigilance"] em,
+#clinical-workspace .feature-card[data-open="sources"] em {
+  display: none !important;
+}
