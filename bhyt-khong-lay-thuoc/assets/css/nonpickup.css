@@ -49,6 +49,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
 .button-primary { color: #fff; background: var(--blue); border-color: var(--blue); }
 .button-secondary { color: #fff; background: var(--teal); border-color: var(--teal); }
 .button-outline { color: var(--navy); background: #fff; border-color: #9fb1c0; }
+.button-danger { color: #b3261e; background: #fff; border-color: #b3261e; }
+.button-danger:hover { color: #fff; background: #b3261e; }
 .button-header { color: #fff; background: transparent; border-color: rgba(255,255,255,.56); }
 .button:disabled { opacity: .45; cursor: not-allowed; }
 .icon-button { width: 42px; height: 42px; border: 0; color: var(--muted); background: transparent; font-size: 1.8rem; line-height: 1; }

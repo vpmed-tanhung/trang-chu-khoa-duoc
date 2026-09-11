@@ -5,7 +5,8 @@
   const TABLES = {
     cases: config.casesTable || config.tableName || "bhyt_nonpickup_cases",
     items: config.itemsTable || "bhyt_nonpickup_items",
-    inventoryView: config.inventoryView || "bhyt_monthly_inventory_reconciliation"
+    inventoryView: config.inventoryView || "bhyt_monthly_inventory_reconciliation",
+    inventory: config.inventoryTable || "bhyt_monthly_inventory"
   };
   const PAGE_SIZE = 50;
   const GROUPS = ["Quên/không lấy", "Mua ngoài", "Không biết/chưa rõ", "Không liên lạc được", "Không đi khám/nghỉ", "Khác"];
@@ -657,6 +658,35 @@
     } catch (error) { showToast(error.message || "Không xuất được báo cáo.", true); }
   }
 
+  async function resetPeriodData() {
+    if (!(await requireSession())) return;
+    const period = selectedPeriod();
+    const periodLabel = els.periodMode.value === "month"
+      ? `tháng ${els.reportMonth.value}`
+      : `ngày ${formatDate(els.workDate.value)}`;
+    const hasOrders = state.orderCount > 0 || state.orders.length > 0;
+    const hasInventory = state.inventory.length > 0;
+    if (!hasOrders && !hasInventory) { showToast("Không có dữ liệu để reset trong kỳ đang xem.", true); return; }
+
+    const confirmMessage = `Thao tác này sẽ XÓA VĨNH VIỄN toàn bộ đơn không nhận và dữ liệu đối soát tồn kho của ${periodLabel}.\n\nHãy chắc chắn bạn đã xuất báo cáo trước khi tiếp tục. Bạn có muốn tiếp tục không?`;
+    if (!confirm(confirmMessage)) return;
+    const typed = prompt('Để xác nhận, vui lòng nhập "XOA" (không dấu, viết hoa) vào ô bên dưới:');
+    if (normalize(typed || "") !== "xoa") { showToast("Đã hủy thao tác reset.", true); return; }
+
+    try {
+      const [ordersResult, inventoryResult] = await Promise.all([
+        state.client.from(TABLES.cases).delete().gte("dispense_date", period.start).lt("dispense_date", period.end),
+        state.client.from(TABLES.inventory).delete().eq("inventory_month", period.month)
+      ]);
+      const error = ordersResult.error || inventoryResult.error;
+      if (error) { showToast(error.message || "Không reset được dữ liệu.", true); return; }
+      state.page = 1;
+      els.searchInput.value = "";
+      showToast(`Đã reset toàn bộ dữ liệu của ${periodLabel}. Sẵn sàng nhập dữ liệu mới.`);
+      await loadData();
+    } catch (error) { showToast(error.message || "Không reset được dữ liệu.", true); }
+  }
+
   function handlePeriodChange() {
     const monthly = els.periodMode.value === "month";
     els.dayFilterWrap.classList.toggle("hidden", monthly);
@@ -677,6 +707,7 @@
     $("openInventoryBtn").addEventListener("click", () => { els.inventoryMonth.value = selectedPeriod().month.slice(0, 7); els.inventoryFileInput.value = ""; els.inventoryMappingSection.classList.add("hidden"); els.inventoryDialog.showModal(); });
     $("openManualBtn").addEventListener("click", () => { resetCaseForm(); els.caseDialog.showModal(); });
     $("exportBtn").addEventListener("click", exportReport);
+    $("resetPeriodBtn").addEventListener("click", resetPeriodData);
     els.fileInput.addEventListener("change", event => event.target.files[0] && readWorkbook(event.target.files[0], "cases"));
     els.inventoryFileInput.addEventListener("change", event => event.target.files[0] && readWorkbook(event.target.files[0], "inventory"));
     els.dropzone.addEventListener("dragover", event => { event.preventDefault(); els.dropzone.classList.add("dragging"); });
