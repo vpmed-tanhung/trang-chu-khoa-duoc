@@ -324,7 +324,7 @@
       var email = state.user && state.user.email ? state.user.email : '';
       slot.innerHTML = state.authenticated
         ? '<span class="auth-user"><span class="auth-state-dot"></span><span><small>Đã đăng nhập</small><b>' + escapeHtml(email || 'Khoa Dược') + '</b></span></span><button type="button" class="auth-logout">Đăng xuất</button>'
-        : '<span class="auth-guest"><span class="auth-state-dot"></span>Khách/Bác sĩ</span><button type="button" class="auth-login">Đăng nhập</button>';
+        : '<button type="button" class="auth-login">Đăng nhập</button>';
       var login = slot.querySelector('.auth-login');
       var logout = slot.querySelector('.auth-logout');
       if (login) login.addEventListener('click', function () { openLogin(); });

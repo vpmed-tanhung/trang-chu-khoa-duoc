@@ -29,15 +29,17 @@
         if (item !== exceptItem) setOpen(item, false);
       });
     }
-    dropdowns.forEach(function (item) {
-      var trigger = item.querySelector('.nav-dropdown-trigger');
-      if (!trigger) return;
-      trigger.addEventListener('click', function () {
-        var shouldOpen = trigger.getAttribute('aria-expanded') !== 'true';
-        closeAll(item);
-        setOpen(item, shouldOpen);
+    if (document.documentElement.dataset.headerDropdowns !== 'ready') {
+      dropdowns.forEach(function (item) {
+        var trigger = item.querySelector('.nav-dropdown-trigger');
+        if (!trigger) return;
+        trigger.addEventListener('click', function () {
+          var shouldOpen = trigger.getAttribute('aria-expanded') !== 'true';
+          closeAll(item);
+          setOpen(item, shouldOpen);
+        });
       });
-    });
+    }
     document.addEventListener('click', function (event) {
       if (!event.target.closest || !event.target.closest('.nav-dropdown-item')) closeAll();
       var clinicalTrigger = event.target.closest && event.target.closest('[data-open],[data-go]');
