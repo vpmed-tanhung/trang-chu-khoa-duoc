@@ -68,7 +68,7 @@ body {
   min-height: 38px;
   padding: 8px 13px;
   border: 1px solid var(--medical-blue);
-  border-radius: 11px;
+  border-radius: 12px;
   background: var(--medical-blue);
   color: #fff;
   font: inherit;
@@ -90,6 +90,7 @@ body {
   border-radius: 18px !important;
   box-shadow: var(--medical-shadow) !important;
 }
+.info-panel { overflow: hidden; }
 /* Sidebar Chuyên mục / Bài viết mới / Lưu trữ phải giữ thiết kế phẳng như trang chủ,
    không kế thừa bo góc + đổ bóng của khối card ở trên. */
 .sidebar-block {
@@ -102,7 +103,7 @@ body {
 button,
 input,
 select,
-textarea { border-radius: 11px; }
+textarea { border-radius: 12px; }
 .btn.solid,
 .btn-primary { background: var(--medical-blue); border-color: var(--medical-blue); }
 .kicker,
@@ -136,7 +137,7 @@ textarea { border-radius: 11px; }
 .clinical-nav-menu [data-open][hidden] { display: none !important; }
 #clinical-workspace .hero-panel {
   border: 1px solid #cfe3ee;
-  border-radius: 22px !important;
+  border-radius: 20px !important;
   padding: clamp(26px, 4vw, 42px) !important;
   background: linear-gradient(125deg, #0b3559 0%, #076b83 100%);
   color: #fff;
@@ -155,7 +156,7 @@ textarea { border-radius: 11px; }
 #clinical-workspace #view-home > .section-card {
   margin-top: 0 !important;
   padding: clamp(18px, 3vw, 28px) !important;
-  border-radius: 22px !important;
+  border-radius: 20px !important;
 }
 #clinical-workspace #view-home .section-heading { align-items: center; }
 #clinical-workspace #view-home .section-heading h2 {
@@ -190,13 +191,13 @@ textarea { border-radius: 11px; }
   border-color: #9ac5dc !important;
   box-shadow: 0 14px 30px rgba(18, 55, 82, .11) !important;
 }
-.nav-dropdown-menu { border-radius: 15px !important; overflow: hidden; }
+.nav-dropdown-menu { border-radius: 16px !important; overflow: hidden; }
 
 .global-auth-dialog {
   width: min(450px, calc(100vw - 30px));
   padding: 0;
   border: 0;
-  border-radius: 22px;
+  border-radius: 20px;
   color: var(--medical-text);
   box-shadow: 0 28px 80px rgba(4, 29, 49, .28);
 }
@@ -234,7 +235,7 @@ body[data-requires-staff="true"].staff-access-granted main { display: block; }
   margin: auto;
   padding: clamp(24px, 5vw, 42px);
   border: 1px solid var(--medical-border);
-  border-radius: 22px;
+  border-radius: 20px;
   background: #fff;
   box-shadow: var(--medical-shadow);
 }

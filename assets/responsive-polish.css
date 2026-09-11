@@ -282,7 +282,7 @@
 
   #clinical-workspace .hero-panel {
     padding: 22px 17px;
-    border-radius: 17px;
+    border-radius: 16px;
   }
 
   #clinical-workspace .hero-panel h1 {
@@ -298,7 +298,7 @@
   #clinical-workspace .section-card,
   #clinical-workspace .section-card.compact {
     padding: 14px;
-    border-radius: 15px;
+    border-radius: 16px;
     margin-top: 14px;
   }
 

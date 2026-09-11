@@ -713,6 +713,7 @@ textarea {
   display: inline-block;
   padding: 5px 9px;
   border: 1px solid var(--slate-300);
+  border-radius: 999px;
   background: #effaf8;
   color: var(--slate-700);
   font-size: 0.78rem;
@@ -886,6 +887,7 @@ textarea {
   padding: 0;
   overflow: auto;
   border: 1px solid var(--slate-300);
+  border-radius: 20px;
   background: var(--white);
   color: var(--slate-900);
 }
@@ -898,6 +900,7 @@ textarea {
   padding: 0;
   overflow: hidden;
   border: 1px solid var(--slate-300);
+  border-radius: 20px;
   background: var(--white);
   color: var(--slate-900);
 }

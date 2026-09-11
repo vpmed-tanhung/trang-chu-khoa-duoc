@@ -11,15 +11,21 @@ const posts = fs.readFileSync('assets/js/posts.js', 'utf8');
 const publicSql = fs.readFileSync('supabase/05_MO_CONG_KHAI_CHUYEN_MUC.sql', 'utf8');
 
 assert(config.includes('clinicalReviewWebAppUrl'), 'Endpoint AI phải có một nguồn cấu hình chung');
-assert(rx.includes("action:'review_bhyt'"), 'BHYT phải gọi action review_bhyt');
-assert(inpatient.includes("action: 'review_inpatient'"), 'Nội trú phải gọi action review_inpatient');
+assert(rx.includes("action:'analyzeBhytPrescriptionText'"), 'BHYT phải gọi action analyzeBhytPrescriptionText');
+assert(inpatient.includes("action: 'analyzeInpatientOrder'"), 'Nội trú phải gọi action analyzeInpatientOrder');
 assert(gs.includes("action === 'review_bhyt'") && gs.includes("action === 'review_inpatient'"), 'Apps Script phải định tuyến hai action');
 assert(gs.includes('function doGet(e)') && gs.includes("action || 'health'"), 'Apps Script phải có health check');
 assert(gs.includes('NGUY CƠ XUẤT TOÁN: thuốc BHYT không có mã ICD-10 tương ứng'), 'Backend phải có chốt an toàn thiếu ICD');
 assert(gs.includes('BHYT-BHYT') && gs.includes('BHYT-Dịch vụ'), 'Prompt BHYT phải rà soát tương tác cùng nguồn và chéo');
-assert(rx.includes("hit.first.payment==='BHYT'||hit.second.payment==='BHYT'"), 'Frontend phải giới hạn rà soát đơn vào các cặp có thuốc BHYT');
+// Việc giới hạn rà soát vào các cặp BHYT-BHYT/BHYT-Dịch vụ nay được thực hiện
+// trong prompt AI phía backend (gửi thẳng OCR text, không lọc cặp thuốc ở
+// client như trước), nên kiểm tra chỉ dẫn phân loại/rà soát nằm trong prompt.
+assert(gs.includes('tách từng đơn/nhóm thuốc thành BHYT, Dịch vụ hoặc Chưa xác định'), 'Prompt BHYT phải yêu cầu phân loại nguồn chi trả trước khi rà soát');
 assert(gs.includes('highPriorityIssues') && gs.includes('patientRecord') && gs.includes('monitoringPlan'), 'Schema nội trú phải có ưu tiên, 5 phần bệnh án và theo dõi');
-assert(inpatient.includes('io-review-table') && inpatient.includes('Tương tác thuốc và tương kỵ'), 'Frontend phải dựng các bảng lâm sàng');
+// Giao diện đã chuyển từ bảng (io-review-table, nay là CSS mồ côi không còn
+// được JS dùng) sang thẻ dạng clinical-stack/clinical-item; tiêu đề mục tương
+// tác cũng đổi thành "Tương tác thuốc trong y lệnh".
+assert(inpatient.includes('clinical-stack') && inpatient.includes('Tương tác thuốc trong y lệnh'), 'Frontend phải dựng các thẻ lâm sàng cho thuốc và tương tác');
 assert(posts.includes('selectedCategory') && posts.includes('&category=eq.'), 'Danh sách bài phải hỗ trợ chuyên mục công khai');
 for (const table of ['drug_documents', 'drug_instructions', 'posts']) {
   assert(publicSql.includes(`grant select on table public.${table} to anon, authenticated`), `${table} phải cho khách đọc`);
