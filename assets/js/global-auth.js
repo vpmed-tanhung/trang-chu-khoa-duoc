@@ -28,6 +28,48 @@
     return /^https:\/\//i.test(baseUrl) && apiKey.length >= 20;
   }
 
+  function getSupabaseAuthStorageKey() {
+    if (!baseUrl) return '';
+    try {
+      var hostname = new URL(baseUrl).hostname;
+      var projectRef = String(hostname.split('.')[0] || '').trim();
+      return projectRef ? 'sb-' + projectRef + '-auth-token' : '';
+    } catch (error) {
+      return '';
+    }
+  }
+
+  function syncSupabaseAuthStorage(session) {
+    var storageKey = getSupabaseAuthStorageKey();
+    if (!storageKey) return;
+
+    try {
+      if (session && session.access_token && session.refresh_token) {
+        var expiresAt = Number(session.expires_at) || 0;
+        var expiresIn = Number(session.expires_in) || 0;
+        if (!expiresIn && expiresAt) {
+          expiresIn = Math.max(0, expiresAt - Math.floor(Date.now() / 1000));
+        }
+
+        var supabaseSession = {
+          access_token: session.access_token,
+          refresh_token: session.refresh_token,
+          token_type: session.token_type || 'bearer',
+          expires_in: expiresIn,
+          expires_at: expiresAt,
+          user: session.user || null
+        };
+
+        // Supabase JS v2 mặc định đọc session theo khóa sb-<project-ref>-auth-token.
+        // Đồng bộ session đăng nhập chung để các module iframe cùng origin dùng lại
+        // đúng phiên đã đăng nhập, không yêu cầu đăng nhập lần thứ hai.
+        localStorage.setItem(storageKey, JSON.stringify(supabaseSession));
+      } else {
+        localStorage.removeItem(storageKey);
+      }
+    } catch (error) {}
+  }
+
   function request(path, options, token) {
     if (!configured()) return Promise.reject(new Error('Máy chủ xác thực chưa được cấu hình.'));
     var opts = options || {};
@@ -72,17 +114,26 @@
         sessionStorage.removeItem(sessionKey);
       }
     } catch (error) {}
+
+    syncSupabaseAuthStorage(session || null);
   }
 
   function normalizeSession(payload, previous) {
+    var expiresIn = Number(payload && payload.expires_in) || Number(previous && previous.expires_in) || 0;
     var expiresAt = Number(payload && payload.expires_at);
-    if (!expiresAt && payload && payload.expires_in) {
-      expiresAt = Math.floor(Date.now() / 1000) + Number(payload.expires_in);
+    if (!expiresAt && expiresIn) {
+      expiresAt = Math.floor(Date.now() / 1000) + expiresIn;
     }
+    if (!expiresIn && expiresAt) {
+      expiresIn = Math.max(0, expiresAt - Math.floor(Date.now() / 1000));
+    }
+
     return {
-      access_token: payload && payload.access_token,
+      access_token: (payload && payload.access_token) || (previous && previous.access_token),
       refresh_token: (payload && payload.refresh_token) || (previous && previous.refresh_token),
-      expires_at: expiresAt || 0,
+      token_type: (payload && payload.token_type) || (previous && previous.token_type) || 'bearer',
+      expires_in: expiresIn,
+      expires_at: expiresAt || Number(previous && previous.expires_at) || 0,
       verified_at: Number(previous && previous.verified_at) || 0,
       user: (payload && payload.user) || (previous && previous.user) || null
     };

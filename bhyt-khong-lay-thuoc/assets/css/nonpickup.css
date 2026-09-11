@@ -181,3 +181,111 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .toolbar-buttons { grid-template-columns: 1fr; }
   .kpi-card strong { font-size: 1.25rem; }
 }
+/* ===== EXCEL IMPORT - COMPACT ===== */
+
+#importDialog {
+  width: min(420px, calc(100vw - 20px)) !important;
+  max-width: 420px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  margin: auto !important;
+}
+
+#importDialog .dialog-header,
+#importDialog .dialog-head {
+  padding: 10px 14px 9px !important;
+}
+
+#importDialog .dialog-header h2,
+#importDialog .dialog-head h2 {
+  margin: 2px 0 0 !important;
+  font-size: 18px !important;
+  line-height: 1.2 !important;
+}
+
+#importDialog .dialog-header small,
+#importDialog .dialog-head small {
+  font-size: 10px !important;
+  letter-spacing: 1.5px !important;
+}
+
+#importDialog .dialog-body {
+  padding: 10px 14px 14px !important;
+}
+
+#importDialog .drop-zone,
+#importDialog .dropzone,
+#importDialog .file-drop-zone {
+  min-height: 105px !important;
+  height: auto !important;
+  padding: 14px 16px !important;
+  margin: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  gap: 4px !important;
+  text-align: center !important;
+}
+
+#importDialog .drop-zone b,
+#importDialog .dropzone b,
+#importDialog .file-drop-zone b,
+#importDialog .drop-zone strong,
+#importDialog .dropzone strong,
+#importDialog .file-drop-zone strong {
+  margin: 0 !important;
+  font-size: 15px !important;
+  line-height: 1.25 !important;
+}
+
+#importDialog .drop-zone p,
+#importDialog .dropzone p,
+#importDialog .file-drop-zone p {
+  margin: 6px 0 0 !important;
+  max-width: 330px !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  white-space: normal !important;
+  text-align: center !important;
+}
+
+#importDialog button[aria-label="Đóng"],
+#importDialog .dialog-close {
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 20px !important;
+}
+
+@media (max-width: 600px) {
+  #importDialog {
+    width: calc(100vw - 24px) !important;
+    max-width: 420px !important;
+    min-width: 0 !important;
+  }
+
+  #importDialog .dialog-header,
+  #importDialog .dialog-head {
+    padding: 9px 11px 8px !important;
+  }
+
+  #importDialog .dialog-body {
+    padding: 9px 11px 11px !important;
+  }
+
+  #importDialog .drop-zone,
+  #importDialog .dropzone,
+  #importDialog .file-drop-zone {
+    min-height: 95px !important;
+    padding: 12px !important;
+  }
+
+  #importDialog .drop-zone p,
+  #importDialog .dropzone p,
+  #importDialog .file-drop-zone p {
+    max-width: 290px !important;
+    font-size: 11px !important;
+  }
+}

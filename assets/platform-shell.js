@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD_VERSION = '2026.09.11.82';
+  const BUILD_VERSION = '2026.09.11.83';
   const IS_INSTALLED_APP = (() => {
     try {
       return new URL(location.href).searchParams.get('vpmed_app') === 'installed' ||
@@ -68,6 +68,11 @@
       styles: [],
       scripts: [],
       frame: 'cap-cuu-phan-ve.html?v=20260829-no-clip-v2'
+    },
+    'bhyt-nonpickup': {
+      styles: [],
+      scripts: [],
+      frame: 'bhyt-khong-lay-thuoc/index.html?v=20260911-bhyt-nonpickup-v1'
     },
     dose: DOSE_CLINICAL,
     'antibiotic-consultation': {

@@ -223,6 +223,16 @@
         <button class="feature-card" data-open="antibiotics"><span class="feature-icon">💊</span><b>Quản lý kháng sinh</b><small>Tra cứu liều, pha truyền, ADR và TDM của kháng sinh trong kho.</small></button>
         <!-- Các công cụ nội bộ được router guard mở khóa sau một lần đăng nhập Khoa Dược. -->
         <button type="button" class="feature-card emergency-feature" data-open="cap-cuu-phan-ve" aria-label="Mở module Cấp cứu phản vệ"><span class="feature-icon" aria-hidden="true">🚨</span><b>Cấp cứu phản vệ</b><small>Phân độ, tính liều Adrenalin, hỗ trợ xử trí và ghi nhận diễn biến cấp cứu.</small></button>
+        <button
+  type="button"
+  class="feature-card bhyt-nonpickup-feature"
+  data-open="bhyt-nonpickup"
+>
+  <span class="feature-icon">📦</span>
+  <b>BHYT không lấy thuốc & đối soát tồn kho</b>
+  <small>Quản lý đơn bệnh nhân không nhận thuốc, tồn kho tháng và đối soát chênh lệch.</small>
+  <em>Nội bộ Khoa Dược</em>
+</button>
         <button class="feature-card" data-open="inpatient-order" hidden><span class="feature-icon">🏥</span><b>Phân tích y lệnh nội trú</b><small>Tính liều, cách dùng, tốc độ truyền, tương tác thuốc và cảnh báo suy thận từ ảnh y lệnh.</small><em>Nội bộ Khoa Dược</em></button>
         <button class="feature-card prescription-feature" data-open="prescription-check" hidden><span class="feature-icon">📋</span><b>Rà soát đơn thuốc BHYT</b><small>Kiểm tra tương tác toàn đơn và phân biệt thiếu mã bệnh với mã bệnh chưa thật sự phù hợp.</small><em>Nội bộ Khoa Dược</em></button>
         <button type="button" class="feature-card consultation-feature" data-open="antibiotic-consultation" hidden><span class="feature-icon">👥</span><b>Kháng sinh cần hội chẩn khi dùng</b><small>Tra cứu danh mục ưu tiên quản lý của Bộ Y tế và đối chiếu thuốc hiện có tại bệnh viện.</small><em>Nội bộ Khoa Dược</em></button>
@@ -238,6 +248,26 @@
     </section>
 
   </section>
+<section class="view clinical-tool-view" id="view-bhyt-nonpickup">
+  <div class="back-home-wrap">
+    <button
+      type="button"
+      class="back-home-btn"
+      data-go="home"
+      aria-label="Quay lại Trang chủ"
+    >
+      <span aria-hidden="true">←</span> Quay lại Trang chủ
+    </button>
+  </div>
+
+ <iframe
+  id="frame-bhyt-nonpickup"
+  class="clinical-tool-frame bhyt-nonpickup-frame"
+  data-feature-frame="bhyt-nonpickup"
+  title="BHYT không lấy thuốc và đối soát tồn kho"
+  scrolling="no"
+></iframe>
+</section>
 
   <section class="view clinical-tool-view" id="view-cap-cuu-phan-ve">
     <div class="back-home-wrap">
