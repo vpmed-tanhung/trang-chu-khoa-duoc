@@ -13,7 +13,7 @@
   'use strict';
 
   // Apps Script Web App đã triển khai cho Phân tích y lệnh nội trú.
-  const WEB_APP_URL = String(window.KHOA_DUOC_SERVER?.clinicalReviewWebAppUrl || 'https://script.google.com/macros/s/AKfycbyeLZslT5IKRwePrRY3m-k2zlcFLJwsSjDh6etvbihNwQY9UqjgM3BPgN5hRJX9GAX7hg/exec');
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbyeLZslT5IKRwePrRY3m-k2zlcFLJwsSjDh6etvbihNwQY9UqjgM3BPgN5hRJX9GAX7hg/exec';
 
   const MAX_IMAGE_DIMENSION = 1600;
   const JPEG_QUALITY = 0.82;
@@ -31,37 +31,6 @@
   const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[char]));
-
-  async function postClinicalReview(payload, timeoutMs = 120000) {
-    const controller = typeof AbortController === 'function' ? new AbortController() : null;
-    const timer = controller ? window.setTimeout(() => controller.abort(), timeoutMs) : null;
-    try {
-      const response = await fetch(WEB_APP_URL, {
-        method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload), signal: controller?.signal
-      });
-      const raw = await response.text();
-      let data;
-      try { data = JSON.parse(raw); }
-      catch (error) { throw new Error('Dịch vụ AI trả dữ liệu không phải JSON. Hãy triển khai lại Apps Script mới nhất.'); }
-      if (!response.ok || !data.ok) {
-        const aiError = normalizeAiError(data);
-        const failure = new Error(aiError.message);
-        failure.code = aiError.code;
-        throw failure;
-      }
-      return data;
-    } catch (error) {
-      if (error?.name === 'AbortError') {
-        const timeout = new Error('Dịch vụ AI phản hồi quá thời gian 120 giây. Ảnh vẫn được giữ để thử lại.');
-        timeout.code = 'AI_TIMEOUT';
-        throw timeout;
-      }
-      throw error;
-    } finally {
-      if (timer) window.clearTimeout(timer);
-    }
-  }
 
 
   function positiveNumber(value) {
@@ -859,10 +828,23 @@
       const renalAssessment = refreshRenalAssessment();
       const images = await Promise.all(state.files.map(entry => fileToCompressedBase64(entry.file)));
       setBusy(true);
-      const data = await postClinicalReview({
-        action: 'review_inpatient', images, drugCatalog,
-        note: buildRenalNote(renalAssessment)
+      const res = await fetch(WEB_APP_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          action: 'analyzeInpatientOrder',
+          images,
+          drugCatalog,
+          note: buildRenalNote(renalAssessment)
+        })
       });
+      const data = await res.json();
+      if (!data.ok) {
+        const aiError = normalizeAiError(data);
+        const error = new Error(aiError.message);
+        error.code = aiError.code;
+        throw error;
+      }
       const verifiedResult = reconcileServerResult(data.result, drugCatalog);
       state.result = verifiedResult;
       renderResult(verifiedResult);
@@ -1011,29 +993,7 @@
     const interactions = result.interactions || [];
     const unclear = result.unclear || [];
 
-    const highPriority = Array.isArray(result.highPriorityIssues) ? result.highPriorityIssues : [];
-    const indicationReview = Array.isArray(result.indicationReview) ? result.indicationReview : [];
-    const recommendations = Array.isArray(result.recommendations) ? result.recommendations : [];
-    const monitoringPlan = Array.isArray(result.monitoringPlan) ? result.monitoringPlan : [];
-    const record = result.patientRecord || {};
-    const general = record.generalInformation || {};
-    const listText = value => Array.isArray(value) && value.length ? value.join('; ') : 'Chưa có dữ liệu';
-    const table = (headers, rows, className = '') => rows.length ? `<div class="io-table-wrap"><table class="io-review-table ${className}"><thead><tr>${headers.map(value => `<th>${esc(value)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(value => `<td>${esc(value || '—')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>` : '<p class="io-no-interaction">Chưa có dữ liệu đủ tin cậy.</p>';
-
     let html = '';
-
-    if (highPriority.length) {
-      html += `<section class="io-high-priority"><h3>Can thiệp ưu tiên cấp bách (${highPriority.length})</h3>${highPriority.map(item => `<article class="alert"><b>${esc(item.severity || 'Cao')}: ${esc(item.issue || '')}</b><p>${esc(item.recommendation || '')}</p>${item.monitoring ? `<small>Theo dõi: ${esc(item.monitoring)}</small>` : ''}</article>`).join('')}</section>`;
-    }
-
-    html += `<h3>Thông tin bệnh án (5 phần)</h3>`;
-    html += table(['Phần tiếp nhận', 'Dữ liệu đọc được'], [
-      ['Thông tin chung', [general.age, general.sex, general.weight, general.height].filter(Boolean).join(' · ') || 'Chưa có dữ liệu'],
-      ['Chẩn đoán', listText(record.diagnoses)],
-      ['Cận lâm sàng', Array.isArray(record.laboratoryResults) ? record.laboratoryResults.map(item => `${item.test || ''} ${item.value || ''}${item.time ? ` (${item.time})` : ''}`).join('; ') : 'Chưa có dữ liệu'],
-      ['Danh sách y lệnh', listText(record.medicationOrders)],
-      ['Diễn biến lâm sàng', listText(record.clinicalCourse)]
-    ]);
 
     html += renderVerifiedRenalSummary(state.renalAssessment);
 
@@ -1047,29 +1007,15 @@
         </div>`;
     }
 
-    html += `<h3>Đánh giá chỉ định và chống chỉ định</h3>`;
-    html += table(['Thuốc', 'Chỉ định', 'Đánh giá', 'Chi tiết'], indicationReview.map(item => [item.drug, item.indication, item.status, item.detail]));
-
-    html += `<h3>Hiệu chỉnh liều</h3>`;
-    html += table(['Thuốc', 'Liều y lệnh', 'Đánh giá liều', 'Thận', 'Gan'], drugs.map(drug => [
-      drugDisplayName(drug), drug.orderedDose, drug.doseAssessment?.detail || drug.doseAssessment?.status,
-      drug.renalAdjustment?.suggestedRegimen || drug.renalAdjustment?.warning,
-      drug.hepaticAdjustment?.recommendation || drug.hepaticAdjustment?.assessment
-    ]));
-
     html += `<h3>Thuốc trong y lệnh (${drugs.length})</h3>`;
     html += drugs.length
       ? `<div class="clinical-stack">${drugs.map(renderDrugCard).join('')}</div>`
       : '<div class="empty-state"><b>Không đọc được thuốc nào</b><p>Kiểm tra lại ảnh hoặc xem mục "cần xác minh" bên dưới.</p></div>';
 
-    html += `<h3>Tương tác thuốc và tương kỵ (${interactions.length})</h3>`;
-    html += table(['Cặp thuốc', 'Mức độ', 'Cơ chế', 'Tương kỵ Y-site', 'Xử trí'], interactions.map(item => [(item.drugs || []).join(' + '), item.severity, item.mechanism, item.ySiteCompatibility, item.recommendation]));
-
-    html += `<h3>Can thiệp Dược lâm sàng</h3>`;
-    html += table(['Ưu tiên', 'Thuốc', 'Can thiệp', 'Chi tiết'], recommendations.map(item => [item.priority, item.drug, item.action, item.detail]));
-
-    html += `<h3>Kế hoạch theo dõi</h3>`;
-    html += table(['Thông số', 'Lý do', 'Tần suất', 'Mục tiêu/ngưỡng xử trí'], monitoringPlan.map(item => [item.parameter, item.reason, item.frequency, item.targetOrTrigger]));
+    html += `<h3>Tương tác thuốc trong y lệnh (${interactions.length})</h3>`;
+    html += interactions.length
+      ? `<div class="clinical-stack">${interactions.map(renderInteraction).join('')}</div>`
+      : '<p class="io-no-interaction">Không phát hiện tương tác đáng chú ý giữa các thuốc trong y lệnh này.</p>';
 
     if (unclear.length) {
       html += `<h3>Cần dược sĩ xác minh thủ công</h3><ul class="clinical-list">${unclear.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;

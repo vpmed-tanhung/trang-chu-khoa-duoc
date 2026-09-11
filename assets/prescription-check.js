@@ -23,7 +23,7 @@
     .trim();
   const resultModel=window.VPMED_PRESCRIPTION_RESULT;
   if(!resultModel)throw new Error('Thiếu prescription-result-model.js');
-  const BHYT_AI_WEB_APP_URL=String(window.KHOA_DUOC_SERVER?.clinicalReviewWebAppUrl||'https://script.google.com/macros/s/AKfycbyeLZslT5IKRwePrRY3m-k2zlcFLJwsSjDh6etvbihNwQY9UqjgM3BPgN5hRJX9GAX7hg/exec');
+  const BHYT_AI_WEB_APP_URL='https://script.google.com/macros/s/AKfycbyeLZslT5IKRwePrRY3m-k2zlcFLJwsSjDh6etvbihNwQY9UqjgM3BPgN5hRJX9GAX7hg/exec';
   const unique=items=>[...new Set((items||[]).filter(Boolean))];
   const state={
     drugs:[],files:[],lastCheck:null,aiReview:null,aiReviewError:'',nextId:1,nextFileId:1,
@@ -32,25 +32,6 @@
   let dataPromise=null;
   let activeOcrWorker=null;
   let ocrRunToken=0;
-
-  async function postClinicalReview(payload,timeoutMs=60000){
-    const controller=typeof AbortController==='function'?new AbortController():null;
-    const timer=controller?window.setTimeout(()=>controller.abort(),timeoutMs):null;
-    try{
-      const response=await fetch(BHYT_AI_WEB_APP_URL,{
-        method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
-        body:JSON.stringify(payload),signal:controller?.signal
-      });
-      const raw=await response.text();
-      let data;
-      try{data=JSON.parse(raw)}catch(error){throw new Error('Dịch vụ AI trả dữ liệu không phải JSON. Hãy triển khai lại Apps Script mới nhất.');}
-      if(!response.ok||!data.ok)throw new Error(data.message||`AI lỗi HTTP ${response.status}`);
-      return data;
-    }catch(error){
-      if(error?.name==='AbortError')throw new Error('Dịch vụ AI phản hồi quá thời gian 60 giây. Vui lòng thử lại.');
-      throw error;
-    }finally{if(timer)window.clearTimeout(timer);}
-  }
 
   function cancelActiveOcr(){
     ocrRunToken+=1;
@@ -86,7 +67,13 @@
     if(!text||!BHYT_AI_WEB_APP_URL)return;
     setOcrProgress(97,'Đang gửi văn bản OCR đã lọc định danh để AI rà soát…');
     try{
-      const data=await postClinicalReview({action:'review_bhyt',ocrText:text});
+      const response=await fetch(BHYT_AI_WEB_APP_URL,{
+        method:'POST',
+        headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body:JSON.stringify({action:'analyzeBhytPrescriptionText',ocrText:text})
+      });
+      const data=await response.json();
+      if(!response.ok||!data.ok)throw new Error(data.message||`AI lỗi HTTP ${response.status}`);
       if(!ocrRunIsCurrent(runToken))return;
       state.aiReview=data.result;
     }catch(error){
@@ -100,17 +87,7 @@
     const review=state.aiReview;
     if(!review)return '';
     const issues=Array.isArray(review.issues)?review.issues:[];
-    const classifications=review.classification||{};
-    const aiInteractions=Array.isArray(review.interactions)?review.interactions:[];
-    const icdChecks=Array.isArray(review.icdChecks)?review.icdChecks:[];
-    const classificationHtml=['bhytDrugs','serviceDrugs','unclassifiedDrugs'].map((key,index)=>{
-      const values=Array.isArray(classifications[key])?classifications[key]:[];
-      const labels=['BHYT','Dịch vụ','Chưa xác định'];
-      return values.length?`<p><b>${labels[index]}:</b> ${esc(values.join(', '))}</p>`:'';
-    }).join('');
-    const interactionHtml=aiInteractions.map(item=>`<p>• <b>Tương tác ${esc(item.scope||'cần xác minh')} — ${esc((item.drugs||[]).join(' + '))}:</b> ${esc(item.severity||'')} · ${esc(item.mechanism||'')}<br>• <b>Đề nghị:</b> ${esc(item.recommendation||'Đối chiếu nguồn chính thức.')}</p>`).join('');
-    const icdHtml=icdChecks.map(item=>`<p>• <b>ICD-BHYT — ${esc(item.drug||'Thuốc BHYT')}:</b> ${esc(item.status||'chưa đủ dữ liệu')}${item.risk?` · ${esc(item.risk)}`:''}<br>• <b>Đề nghị:</b> ${esc(item.recommendation||'Đối chiếu đơn gốc và hồ sơ bệnh án.')}</p>`).join('');
-    return `<article class="rx-alert rx-alert-info"><div class="rx-alert-header"><span class="rx-alert-icon">AI</span><div><small>Phân tích bổ sung từ văn bản OCR đã lọc định danh</small><h3>${esc(review.summary||'Kết quả rà soát AI')}</h3></div></div>${classificationHtml}${interactionHtml}${icdHtml}${issues.map(item=>`<p>• <b>${esc(item.category||'Cần lưu ý')}:</b> ${esc(item.finding||'')} ${item.recommendation?`<br>• <b>Đề nghị:</b> ${esc(item.recommendation)}`:''}</p>`).join('')}<p><b>Độ tin cậy:</b> ${esc(review.confidence||'chưa xác định')}</p><p>${esc(review.disclaimer||'Kết quả AI chỉ hỗ trợ rà soát; nhân viên y tế phải xác minh trên đơn gốc và nguồn chính thức.')}</p></article>`;
+    return `<article class="rx-alert rx-alert-info"><div class="rx-alert-header"><span class="rx-alert-icon">AI</span><div><small>Phân tích bổ sung từ văn bản OCR đã lọc định danh</small><h3>${esc(review.summary||'Kết quả rà soát AI')}</h3></div></div>${issues.map(item=>`<p>• <b>${esc(item.category||'Cần lưu ý')}:</b> ${esc(item.finding||'')} ${item.recommendation?`<br>• <b>Đề nghị:</b> ${esc(item.recommendation)}`:''}</p>`).join('')}<p><b>Độ tin cậy:</b> ${esc(review.confidence||'chưa xác định')}</p><p>${esc(review.disclaimer||'Kết quả AI chỉ hỗ trợ rà soát; nhân viên y tế phải xác minh trên đơn gốc và nguồn chính thức.')}</p></article>`;
   }
 
   function normalizePayment(value){
@@ -763,10 +740,6 @@
     });
   }
 
-  function findPrescriptionInteractions(){
-    return findInteractions().filter(hit=>hit.first.payment==='BHYT'||hit.second.payment==='BHYT');
-  }
-
   const ICD_RELATED_STOP_WORDS=new Set(['benh','dieu','tri','trieu','chung','khong','xac','dinh','tang','giam','cap','man','tinh','tieu','duong','kem','bien']);
   function hasRelatedDiagnosis(observedTexts,targetTexts){
     const words=values=>new Set((values||[]).flatMap(value=>norm(value).split(/\s+/)).filter(word=>word.length>=3&&!ICD_RELATED_STOP_WORDS.has(word)));
@@ -1093,7 +1066,7 @@
     if(isInpatientOrder()){checkInpatientOrder();return}
     if(!state.drugs.length){alert('Vui lòng thêm ít nhất một thuốc vào đơn.');return}
     const codes=diagnosisCodes();
-    const interactions=findPrescriptionInteractions();
+    const interactions=findInteractions();
     const {missing,unmapped,matched}=icdReview(codes);
     const unknown=state.drugs.filter(drug=>!drug.resolved);
     const unclassifiedFiles=state.files.filter(entry=>entry.payment==='Chưa xác định');
@@ -1118,7 +1091,7 @@
     const aiBlock=aiReviewHtml();
     if(aiBlock)blocks.push(aiBlock);
     interactions.forEach(hit=>blocks.push(interactionHtml(hit)));
-    if(missingPrimary)blocks.push(`<article class="rx-alert rx-alert-danger"><div class="rx-alert-header"><span class="rx-alert-icon">!</span><div><small>NGUY CƠ XUẤT TOÁN BHYT</small><h3>${noDiagnosis?'Có thuốc BHYT nhưng không có mã bệnh ICD-10 tương ứng':'Có thuốc BHYT nhưng chưa xác định được mã bệnh chính tương ứng'}</h3></div></div><p>Không được coi đơn là hợp lệ khi chưa xác minh mã ICD-10 tương ứng với từng thuốc BHYT. Kiểm tra lại ảnh gốc và hồ sơ bệnh án; không tự thêm mã nếu hồ sơ không có chẩn đoán.</p></article>`);
+    if(missingPrimary)blocks.push(`<article class="rx-alert rx-alert-warning"><div class="rx-alert-header"><span class="rx-alert-icon">!</span><div><small>OCR chẩn đoán chưa hoàn tất</small><h3>${noDiagnosis?'Chưa nhận diện được mã bệnh trên các đơn':'Đã thấy mã bệnh kèm theo nhưng chưa xác định được mã bệnh chính'}</h3></div></div><p>Hệ thống đã tự tìm vùng chẩn đoán nhưng chưa xác định chắc MA_BENH_CHINH. Hãy kiểm tra chất lượng ảnh hoặc dùng mục “Chỉnh lại nếu OCR đọc sai”; không tự thêm mã khi hồ sơ không có chẩn đoán tương ứng.</p></article>`);
     if(diagnosisConflict)blocks.push(`<article class="rx-alert rx-alert-warning"><div class="rx-alert-header"><span class="rx-alert-icon">!</span><div><small>Nhiều ứng viên mã bệnh chính</small><h3>${esc(state.diagnosis.conflicts.map(icdLabel).join(' · '))}</h3></div></div><p>Các đơn trong cùng lượt có mã bệnh chính OCR khác nhau. Cần xác nhận đúng mã chính trước khi gửi dữ liệu giám định.</p></article>`);
     missing.forEach(item=>blocks.push(missingIcdHtml(item)));
     const familyMatchBlock=icdIssueCount===0?familyMatchesHtml(matched):'';
@@ -1450,11 +1423,5 @@
   renderDiagnosisChips();
   renderFileQueue();
   renderRows();
- const preloadPrescriptionData=()=>{
-  if(['#clinical-prescription-check','#prescription-check'].includes(location.hash)){
-    ensureData().catch(()=>{});
-  }
-};
-window.addEventListener('hashchange',preloadPrescriptionData);
-preloadPrescriptionData();
+  if(location.hash==='#prescription-check')ensureData().catch(()=>{});
 })();

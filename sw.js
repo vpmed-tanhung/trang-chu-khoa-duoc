@@ -1,7 +1,7 @@
 'use strict';
 
-const APP_VERSION = '2026.09.10.81';
-const CLINICAL_DATA_VERSION = 'sha256-c078f4dda1e6e7c6346e58be';
+const APP_VERSION = '2026.09.11.82';
+const CLINICAL_DATA_VERSION = 'sha256-c0f1ff4a6f228325d3d137a2';
 const APP_SHELL_CACHE = `vpmed-shell-${APP_VERSION}`;
 const RUNTIME_CACHE = `vpmed-runtime-${APP_VERSION}`;
 const CLINICAL_WEB_CACHE_PREFIX = 'vpmed-clinical-web-';
@@ -47,6 +47,7 @@ const APP_SHELL = [
   './assets/css/clinical-integration.css?v=20260910-nav-v3',
   './assets/css/medical-ui-v2.css?v=20260910-ui-v6',
   './assets/css/access-label-cleanup-v2.css',
+  './assets/mobile-only-fix.css?v=20260911-mobile-complete-v1',
   './assets/js/instructions-data.js?v=1.1.8',
   './assets/js/drug-documents-data.js?v=1.1.8',
   './assets/js/server-config.js?v=20260910-clinical-review-v1',

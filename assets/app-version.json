@@ -1,10 +1,10 @@
 {
-  "version": "2026.09.10.81",
-  "displayVersion": "5.9.0",
-  "updatedAt": "2026-09-10T20:35:34+07:00",
-  "note": "Bổ sung tính liều kháng sinh Nhi khoa theo PK/PD, MIC, trần liều người lớn và cảnh báo lứa tuổi.",
-  "buildId": "v5.9.0-pediatric-pkpd-mic-20260910-81",
-  "clinicalDataVersion": "sha256-c078f4dda1e6e7c6346e58be",
-  "previousVersion": "2026.09.10.80",
-  "previousDisplayVersion": "5.8.9"
+  "version": "2026.09.11.82",
+  "displayVersion": "5.9.1",
+  "updatedAt": "2026-09-11T08:45:00+07:00",
+  "note": "Hoàn thiện bố cục điện thoại cho toàn bộ công cụ, đặc biệt rà soát đơn BHYT, y lệnh nội trú và tính liều kháng sinh.",
+  "buildId": "v5.9.1-mobile-complete-20260911-82",
+  "clinicalDataVersion": "sha256-c0f1ff4a6f228325d3d137a2",
+  "previousVersion": "2026.09.10.81",
+  "previousDisplayVersion": "5.9.0"
 }
