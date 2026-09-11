@@ -20,6 +20,9 @@
 <link rel="stylesheet" href="assets/css/medical-ui-v2.css?v=20260910-ui-v6">
 <link rel="stylesheet" href="assets/css/access-label-cleanup-v2.css">
 <link rel="stylesheet" href="assets/mobile-only-fix.css?v=20260911-mobile-complete-v1">
+<link rel="stylesheet" href="assets/css/header-nav.css?v=20260911-header-v1">
+<link rel="stylesheet" href="assets/css/home-sections-refresh.css?v=20260911-home-v1">
+<link rel="stylesheet" href="assets/css/rounded-ui.css?v=20260911">
 </head>
 <body>
 
@@ -46,6 +49,8 @@
             <a href="#chuc-nang">Chức năng &#8211; nhiệm vụ</a>
             <a href="#to-chuc">Cơ cấu tổ chức</a>
             <a href="#ban-tin">Bản tin Dược lâm sàng</a>
+            <a href="thong-tin-thuoc.html">Thông tin thuốc</a>
+            <a href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a>
           </div>
         </li>
         <li class="nav-dropdown-item clinical-nav-item">
@@ -64,8 +69,6 @@
             <a class="clinical-nav-all" href="#clinical-home" data-open="home">Tất cả công cụ</a>
           </div>
         </li>
-        <li><a href="thong-tin-thuoc.html">Thông tin thuốc</a></li>
-        <li><a href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a></li>
         <li><a href="#lien-he">Liên hệ</a></li>
       </ul>
     </nav>
@@ -216,8 +219,15 @@
     <div class="app-shell" id="clinical-app-shell">
 
   <section class="view active" id="view-home">
-    <section class="section-card">
-      <div class="section-heading"><div><h2>Chọn công cụ cần sử dụng</h2></div><span class="clinical-tool-count" data-clinical-tool-count>7 công cụ</span></div>
+    <section class="section-card home-clinical-card">
+      <div class="section-heading home-clinical-heading">
+        <div>
+          <span class="home-section-eyebrow">Hỗ trợ chuyên môn</span>
+          <h2>Chọn công cụ cần sử dụng</h2>
+          <p>Truy cập nhanh các tiện ích tra cứu và hỗ trợ quyết định dược lâm sàng.</p>
+        </div>
+        <span class="clinical-tool-count" data-clinical-tool-count>7 công cụ</span>
+      </div>
       <div class="feature-grid">
         <button class="feature-card" data-open="dose"><span class="feature-icon">🧮</span><b>Tính liều kháng sinh cho bệnh nhân suy thận</b><small>Tính CrCl/eGFR, gợi ý hiệu chỉnh liều và lưu lịch sử tra cứu.</small></button>
         <button class="feature-card" data-open="interactions"><span class="feature-icon">⚠️</span><b>Kiểm tra tương tác thuốc</b><small>Chỉ cảnh báo cặp hoạt chất chống chỉ định theo QĐ 5948/QĐ-BYT.</small></button>
@@ -1216,23 +1226,33 @@ Bảng này dùng cho đơn vị quen tính liều theo mCi/kg. Có thể đối
   </div>
 </section>
 
-<section class="section" id="danh-muc-tai-lieu">
+<section class="section document-hub-section" id="danh-muc-tai-lieu">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head document-hub-heading">
       <div>
+        <span class="home-section-eyebrow">Thư viện chuyên môn</span>
         <h2>Thông tin thuốc &amp; Hướng dẫn sử dụng</h2>
+        <p>Kho tài liệu được phân nhóm rõ ràng, giúp nhân viên y tế tìm đúng nội dung nhanh hơn.</p>
       </div>
     </div>
-    <div class="source-grid">
-      <article class="source-card">
-        <div>💊</div>
-        <h3><a id="document-category-link" class="source-title-link" href="thong-tin-thuoc.html">Thông tin thuốc</a></h3>
-        <p>Thư mục tài liệu, tờ hướng dẫn sử dụng thuốc (HDSD) đã số hóa, tra cứu độc lập với bản tin.</p>
+    <div class="source-grid document-hub-grid">
+      <article class="source-card document-hub-card document-hub-card--drug">
+        <div class="document-hub-icon" aria-hidden="true">💊</div>
+        <div class="document-hub-copy">
+          <span class="document-hub-label">Tra cứu tài liệu</span>
+          <h3><a id="document-category-link" class="source-title-link" href="thong-tin-thuoc.html">Thông tin thuốc</a></h3>
+          <p>Thư mục tài liệu, tờ hướng dẫn sử dụng thuốc (HDSD) đã số hóa, tra cứu độc lập với bản tin.</p>
+        </div>
+        <span class="document-hub-arrow" aria-hidden="true">→</span>
       </article>
-      <article class="source-card">
-        <div>📖</div>
-        <h3><a id="instruction-category-link" class="source-title-link" href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a></h3>
-        <p>Hướng dẫn quy trình, thao tác sử dụng dành cho nhân viên y tế, tra cứu độc lập với bản tin.</p>
+      <article class="source-card document-hub-card document-hub-card--guide">
+        <div class="document-hub-icon" aria-hidden="true">📖</div>
+        <div class="document-hub-copy">
+          <span class="document-hub-label">Quy trình thao tác</span>
+          <h3><a id="instruction-category-link" class="source-title-link" href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a></h3>
+          <p>Hướng dẫn quy trình, thao tác sử dụng dành cho nhân viên y tế, tra cứu độc lập với bản tin.</p>
+        </div>
+        <span class="document-hub-arrow" aria-hidden="true">→</span>
       </article>
     </div>
   </div>
@@ -1339,15 +1359,15 @@ Bảng này dùng cho đơn vị quen tính liều theo mCi/kg. Có thể đối
 <script src="assets/js/instructions-data.js?v=1.1.8"></script>
 <script src="assets/js/drug-documents-data.js?v=1.1.8"></script>
 <script src="assets/js/server-config.js?v=20260910-clinical-review-v1"></script>
-<script src="assets/js/global-auth.js?v=20260910-access-v5"></script>
+<script src="assets/js/global-auth.js?v=20260911-header-v1"></script>
 <script src="assets/js/device-compat.js?v=1.1.8"></script>
 <script src="assets/js/title-editor.js?v=1.1.8"></script>
 <script src="assets/js/posts.js?v=20260910-public-categories-v1"></script>
 <script src="assets/js/vendor/pdf-lib.min.js?v=1.1.8"></script>
 <script src="assets/js/drug-documents.js?v=1.1.8"></script>
 <script src="assets/js/instructions.js?v=1.1.8"></script>
-<script src="assets/js/main.js?v=20260910-nav-v2"></script>
-<script src="assets/js/clinical-integration.js?v=20260910-nav-v3"></script>
+<script src="assets/js/main.js?v=20260911-header-v1"></script>
+<script src="assets/js/clinical-integration.js?v=20260911-header-v1"></script>
 <script defer src="assets/platform-shell.js?v=20260910-ui-v5"></script>
 <script defer src="assets/update-notifier.js?v=20260822-installed-data-channel-v1"></script>
 </body>

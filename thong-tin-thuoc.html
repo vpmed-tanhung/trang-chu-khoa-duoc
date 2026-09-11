@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="assets/css/style.css?v=1.1.8">
 <link rel="stylesheet" href="assets/css/medical-ui-v2.css?v=20260910-ui-v6">
 <link rel="stylesheet" href="assets/css/access-label-cleanup-v2.css">
+<link rel="stylesheet" href="assets/css/header-nav.css?v=20260911-header-v1">
+<link rel="stylesheet" href="assets/css/rounded-ui.css?v=20260911">
 </head>
 <body class="document-page">
 
@@ -29,10 +31,17 @@
     </button>
     <nav class="main-nav" id="main-nav" aria-label="Điều hướng chính">
       <ul>
-        <li><a href="index.html#gioi-thieu">Giới thiệu</a></li>
-        <li><a href="index.html#chuc-nang">Chức năng &#8211; nhiệm vụ</a></li>
-        <li><a href="index.html#to-chuc">Cơ cấu tổ chức</a></li>
-        <li><a href="index.html#ban-tin" class="active">Bản tin Dược lâm sàng</a></li>
+        <li class="nav-dropdown-item intro-nav-item">
+          <button class="nav-dropdown-trigger intro-nav-trigger active" id="intro-nav-trigger" type="button" aria-expanded="false" aria-controls="intro-nav-menu">Giới thiệu <span aria-hidden="true">▾</span></button>
+          <div class="nav-dropdown-menu intro-nav-menu" id="intro-nav-menu" hidden>
+            <a href="index.html#gioi-thieu">Giới thiệu chung</a>
+            <a href="index.html#chuc-nang">Chức năng &#8211; nhiệm vụ</a>
+            <a href="index.html#to-chuc">Cơ cấu tổ chức</a>
+            <a href="index.html#ban-tin">Bản tin Dược lâm sàng</a>
+            <a href="thong-tin-thuoc.html" class="active" aria-current="page">Thông tin thuốc</a>
+            <a href="huong-dan-su-dung.html">Hướng dẫn sử dụng</a>
+          </div>
+        </li>
         <li><a href="index.html#lien-he">Liên hệ</a></li>
       </ul>
     </nav>
@@ -43,7 +52,7 @@
 <main id="noi-dung-chinh">
   <section class="document-hero">
     <div class="container">
-      <a class="back-link" href="index.html#ban-tin" aria-label="Quay lại Bản tin Dược lâm sàng">&#8592; Bản tin Dược lâm sàng</a>
+      <a class="back-link" href="index.html" aria-label="Quay về Trang chủ">&#8592; Trang chủ</a>
       <div class="document-hero-grid">
         <div>
           <div class="kicker">Chuyên mục</div>
@@ -155,11 +164,11 @@
 <script src="assets/js/drug-documents-data.js?v=1.1.8"></script>
 <script src="assets/js/instructions-data.js?v=1.1.8"></script>
 <script src="assets/js/server-config.js?v=20260910-clinical-review-v1"></script>
-<script src="assets/js/global-auth.js?v=20260910-access-v5"></script>
+<script src="assets/js/global-auth.js?v=20260911-header-v1"></script>
 <script src="assets/js/device-compat.js?v=1.1.8"></script>
 <script src="assets/js/title-editor.js?v=1.1.8"></script>
 <script src="assets/js/vendor/pdf-lib.min.js?v=1.1.8"></script>
 <script src="assets/js/drug-documents.js?v=1.1.8"></script>
-<script src="assets/js/main.js?v=1.1.8"></script>
+<script src="assets/js/main.js?v=20260911-header-v1"></script>
 </body>
 </html>

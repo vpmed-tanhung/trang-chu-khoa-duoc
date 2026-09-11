@@ -1,0 +1,68 @@
+/* Shared rounded UI layer loaded after page-specific styles. */
+:root {
+  --ui-radius-control: 10px;
+  --ui-radius-media: 12px;
+  --ui-radius-surface: 14px;
+  --ui-radius-dialog: 16px;
+}
+
+html:root :where(
+  button, [role="button"], .btn,
+  [class^="btn-"], [class*=" btn-"],
+  [class$="-button"], [class*="-button "]
+) {
+  border-radius: var(--ui-radius-control) !important;
+}
+
+html:root :where(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  select, textarea, [role="searchbox"]
+) {
+  border-radius: var(--ui-radius-control) !important;
+}
+
+html:root :where(
+  .card, [class^="card-"], [class*=" card-"],
+  [class$="-card"], [class*="-card "],
+  .panel, [class^="panel-"], [class*=" panel-"],
+  [class$="-panel"], [class*="-panel "],
+  .container, [class$="-container"], [class*="-container "]
+) {
+  border-radius: var(--ui-radius-surface) !important;
+}
+
+html:root :where(table) {
+  border-radius: var(--ui-radius-media) !important;
+  overflow: hidden;
+}
+
+html:root :where(
+  img, .thumbnail,
+  [class^="thumbnail-"], [class*=" thumbnail-"],
+  [class$="-thumbnail"], [class*="-thumbnail "],
+  [class^="thumb-"], [class*=" thumb-"],
+  [class$="-thumb"], [class*="-thumb "]
+) {
+  border-radius: var(--ui-radius-media) !important;
+}
+
+html:root :where(
+  dialog, [role="dialog"], .modal,
+  [class^="modal-"], [class*=" modal-"],
+  [class$="-modal"], [class*="-modal "],
+  [class^="dialog-"], [class*=" dialog-"],
+  [class$="-dialog"], [class*="-dialog "]
+) {
+  border-radius: var(--ui-radius-dialog) !important;
+  overflow: clip;
+}
+
+@supports not (overflow: clip) {
+  html:root :where(dialog, [role="dialog"], .modal,
+    [class^="modal-"], [class*=" modal-"],
+    [class$="-modal"], [class*="-modal "],
+    [class^="dialog-"], [class*=" dialog-"],
+    [class$="-dialog"], [class*="-dialog "]) {
+    overflow: hidden;
+  }
+}

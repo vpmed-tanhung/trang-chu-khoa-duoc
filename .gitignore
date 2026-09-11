@@ -1,0 +1,56 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and local workspace settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node dependencies
+node_modules/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Caches and test output
+.cache/
+.parcel-cache/
+.vite/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+coverage/
+.nyc_output/
+
+# Generated build output
+dist/
+build/
+out/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+
+# Archives and local export packages
+*.zip
+*.7z
+*.rar
+*.tar
+*.tar.gz
+*.tgz
