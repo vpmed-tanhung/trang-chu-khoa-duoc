@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f365f">
+  <title>Đối soát bệnh nhân không lấy thuốc BHYT</title>
+  <link rel="stylesheet" href="assets/css/nonpickup.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+  <script src="config.js" defer></script>
+  <script src="assets/js/nonpickup.js" defer></script>
+</head>
+<body>
+  <header class="app-header">
+    <div><p class="eyebrow">QUẢN LÝ CẤP PHÁT THUỐC BHYT</p><h1>Đơn không nhận &amp; đối soát tồn kho</h1></div>
+    <div class="header-actions"><span id="connectionBadge" class="badge badge-warn">Chưa kết nối</span><button id="refreshBtn" class="button button-header" type="button">Làm mới</button></div>
+  </header>
+
+  <main class="app-shell">
+    <section class="toolbar" aria-label="Bộ lọc và thao tác">
+      <label><span>Kiểu tổng hợp</span><select id="periodMode"><option value="day">Theo ngày</option><option value="month">Theo tháng</option></select></label>
+      <label id="dayFilterWrap"><span>Ngày cấp phát</span><input id="workDate" type="date"></label>
+      <label id="monthFilterWrap" class="hidden"><span>Tháng / năm</span><input id="reportMonth" type="month"></label>
+      <div class="toolbar-buttons">
+        <button id="openManualBtn" class="button button-secondary" type="button">Thêm đơn</button>
+        <button id="openImportBtn" class="button button-primary" type="button">Nhập đơn từ Excel</button>
+        <button id="openInventoryBtn" class="button button-secondary" type="button">Nhập tồn kho</button>
+        <button id="exportBtn" class="button button-outline" type="button">Xuất báo cáo</button>
+      </div>
+    </section>
+
+    <section class="kpi-grid" aria-label="Số liệu tổng hợp">
+      <article class="kpi-card"><span>BN không lấy thuốc</span><strong id="patientTotal">0</strong><small id="periodCaption">Trong ngày</small></article>
+      <article class="kpi-card"><span>Tổng thuốc treo</span><strong id="suspendedTotal">0</strong><small>Đơn vị theo dữ liệu thuốc</small></article>
+      <article class="kpi-card"><span>Giá trị thuốc</span><strong id="medicineValue">0 ₫</strong><small id="patientShare">BN chi trả: 0 ₫</small></article>
+      <article class="kpi-card"><span>Tiền BHYT dự kiến</span><strong id="insuranceValue">0 ₫</strong><small>Trong các đơn không nhận</small></article>
+      <article id="inventoryAlertCard" class="kpi-card kpi-alert"><span>Cảnh báo lệch kho</span><strong id="inventoryAlertTotal">0</strong><small id="inventoryVariance">Chênh lệch chưa giải thích: 0</small></article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading">
+        <div><h2>Danh sách đơn bệnh nhân không nhận</h2><p id="orderCaption">Chưa có dữ liệu</p></div>
+        <label class="search-wrap"><span class="sr-only">Tìm kiếm</span><input id="searchInput" type="search" placeholder="Tìm tên, SĐT, mã đơn hoặc mã lượt khám"></label>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table order-table"><thead><tr><th>Ngày</th><th>STT</th><th>Bệnh nhân / đơn</th><th>Thuốc</th><th>Số lượng</th><th>Giá trị</th><th>BHYT trả</th><th>Lý do</th><th></th></tr></thead><tbody id="orderTableBody"></tbody></table>
+        <div id="orderEmpty" class="empty-state"><strong>Chưa có đơn không nhận</strong><span>Thêm thủ công hoặc nhập danh sách từ Excel.</span></div>
+      </div>
+      <div id="orderPager" class="pager hidden"><button id="previousPageBtn" class="button button-outline" type="button">Trang trước</button><span id="pageInfo"></span><button id="nextPageBtn" class="button button-outline" type="button">Trang sau</button></div>
+    </section>
+
+    <section class="panel inventory-panel">
+      <div class="panel-heading"><div><h2>Đối soát tồn kho theo tháng</h2><p id="inventoryCaption">Đối chiếu sổ sách, tồn thực tế và thuốc treo</p></div><div class="legend"><span class="status status-ok">Khớp</span><span class="status status-warning">Cần kiểm tra</span></div></div>
+      <div class="table-wrap">
+        <table class="data-table inventory-table"><thead><tr><th>Mã thuốc / tên thuốc</th><th>Tồn đầu</th><th>Nhập</th><th>Xuất thực tế</th><th>Tồn cuối sổ</th><th>Tồn thực tế</th><th>Thuốc treo</th><th>Lệch thô</th><th>Lệch sau đối soát</th><th>Kết quả</th></tr></thead><tbody id="inventoryTableBody"></tbody></table>
+        <div id="inventoryEmpty" class="empty-state compact-empty"><strong>Chưa có dữ liệu tồn kho tháng</strong><span>Nhập file tồn kho để thực hiện đối soát.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="importDialog" class="dialog">
+    <div class="dialog-card">
+      <div class="dialog-heading"><div><p class="eyebrow">NHẬP ĐƠN KHÔNG NHẬN</p><h2>Đọc dữ liệu từ Excel</h2></div><button class="icon-button" type="button" data-close="importDialog" aria-label="Đóng">×</button></div>
+      <div id="uploadStep" class="dialog-section"><label class="dropzone" id="dropzone"><input id="fileInput" type="file" accept=".xlsx,.xls,.csv" hidden><strong>Chọn hoặc kéo file Excel vào đây</strong><span>Mỗi dòng thuốc phải chứa tên thuốc; các dòng cùng bệnh nhân sẽ được gom thành một đơn.</span></label></div>
+      <div id="mappingStep" class="dialog-section hidden"><div class="section-title"><h3>Ghép cột dữ liệu</h3><span id="sheetInfo"></span></div><div id="caseMappingGrid" class="mapping-grid"></div><div class="dialog-footer"><button id="analyzeBtn" class="button button-primary" type="button">Phân tích và rà soát</button></div></div>
+      <div id="reviewStep" class="dialog-section hidden">
+        <div class="section-title"><div><h3>Kiểm tra trước khi lưu</h3><span id="reviewSummary"></span></div><div class="review-filter"><button class="chip active" data-review-filter="included" type="button">Không lấy</button><button class="chip" data-review-filter="review" type="button">Cần rà soát</button><button class="chip" data-review-filter="excluded" type="button">Đã lấy</button></div></div>
+        <div class="review-table-wrap"><table class="data-table"><thead><tr><th>Chọn</th><th>STT</th><th>Bệnh nhân</th><th>Ngày</th><th>Số thuốc</th><th>Số lượng</th><th>Giá trị</th><th>Ghi chú</th><th>Kết quả</th></tr></thead><tbody id="reviewTableBody"></tbody></table></div>
+        <div class="dialog-footer review-footer"><div id="reviewPager" class="review-pager"><button id="reviewPreviousBtn" class="button button-outline" type="button">Trước</button><span id="reviewPageInfo"></span><button id="reviewNextBtn" class="button button-outline" type="button">Sau</button></div><button id="backToMappingBtn" class="button button-outline" type="button">Quay lại</button><button id="saveSelectedBtn" class="button button-primary" type="button">Lưu các đơn đã chọn</button></div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="inventoryDialog" class="dialog">
+    <div class="dialog-card">
+      <div class="dialog-heading"><div><p class="eyebrow">TỒN KHO THÁNG</p><h2>Nhập dữ liệu tồn kho</h2></div><button class="icon-button" type="button" data-close="inventoryDialog" aria-label="Đóng">×</button></div>
+      <div class="dialog-section">
+        <div class="inventory-upload-row"><label><span>Tháng dữ liệu</span><input id="inventoryMonth" type="month"></label><label class="file-button button button-primary">Chọn file Excel<input id="inventoryFileInput" type="file" accept=".xlsx,.xls,.csv" hidden></label></div>
+        <p class="field-note">Tồn thực tế có thể để trống. Chọn đúng cờ “Xuất sổ đã gồm đơn không nhận” để chênh lệch sau đối soát có ý nghĩa.</p>
+        <div id="inventoryMappingSection" class="hidden"><div class="section-title"><h3>Ghép cột tồn kho</h3><span id="inventorySheetInfo"></span></div><div id="inventoryMappingGrid" class="mapping-grid"></div><div class="dialog-footer"><button id="saveInventoryBtn" class="button button-primary" type="button">Kiểm tra và lưu tồn kho</button></div></div>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="caseDialog" class="dialog small-dialog">
+    <form id="caseForm" class="dialog-card">
+      <div class="dialog-heading"><h2 id="caseDialogTitle">Thêm đơn không nhận</h2><button class="icon-button" type="button" data-close="caseDialog" aria-label="Đóng">×</button></div>
+      <div class="form-grid">
+        <input id="caseOriginalKey" type="hidden">
+        <label><span>Ngày cấp phát</span><input id="caseDate" type="date" required></label><label><span>STT</span><input id="caseSerial"></label>
+        <label><span>Họ và tên</span><input id="caseName" required></label><label><span>SĐT</span><input id="casePhone" inputmode="tel"></label>
+        <label><span>Mã lượt khám</span><input id="caseVisitCode"></label><label><span>Số đơn thuốc</span><input id="casePrescription"></label>
+        <label><span>Mã thẻ BHYT</span><input id="caseInsuranceCode"></label><label><span>Chẩn đoán</span><input id="caseDiagnosis"></label>
+        <label class="span-2"><span>Lý do / ghi chú</span><textarea id="caseReason" rows="2" required></textarea></label><label><span>Nhóm lý do</span><select id="caseReasonGroup"></select></label>
+      </div>
+      <div class="item-editor-heading"><h3>Chi tiết thuốc</h3><button id="addItemBtn" class="button button-outline" type="button">+ Thêm thuốc</button></div>
+      <div class="item-editor-table"><table class="data-table"><thead><tr><th>Mã thuốc</th><th>Tên thuốc</th><th>ĐVT</th><th>Số lượng</th><th>Đơn giá</th><th>BHYT trả</th><th>BN trả</th><th></th></tr></thead><tbody id="itemEditorBody"></tbody></table></div>
+      <div class="case-total-line"><span id="caseItemTotal">0 thuốc · 0 đơn vị · 0 ₫</span></div>
+      <div class="dialog-footer"><button class="button button-outline" type="button" data-close="caseDialog">Hủy</button><button class="button button-primary" type="submit">Lưu đơn</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
