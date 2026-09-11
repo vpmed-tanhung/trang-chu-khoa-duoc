@@ -1,0 +1,735 @@
+/*
+  VPMED MOBILE-ONLY FIX — 13/07/2026
+  Tất cả quy tắc trong tệp này chỉ chạy khi màn hình rộng tối đa 767px.
+  Không có quy tắc dành cho máy tính.
+*/
+
+@media screen and (max-width: 767px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
+  }
+
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  .site-header > .container {
+    width: calc(100% - 20px) !important;
+    min-height: 64px;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .site-header .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: none;
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  .site-header .brand-logo {
+    width: 76px !important;
+    flex: 0 0 76px !important;
+  }
+
+  .site-header .brand-text {
+    min-width: 0 !important;
+    overflow: hidden;
+  }
+
+  .site-header .brand-text .dept {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .site-header .global-auth-slot {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .site-header .nav-toggle {
+    flex: 0 0 44px;
+    width: 44px;
+    min-height: 44px;
+  }
+
+  .site-header .main-nav {
+    width: 100% !important;
+  }
+
+  .clinical-tools-section {
+    overflow-x: clip;
+  }
+
+  #clinical-workspace,
+  #clinical-workspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  #clinical-workspace *,
+  #clinical-workspace *::before,
+  #clinical-workspace *::after {
+    min-width: 0;
+  }
+
+  #clinical-workspace img,
+  #clinical-workspace svg,
+  #clinical-workspace video,
+  #clinical-workspace canvas,
+  #clinical-workspace iframe {
+    max-width: 100%;
+    height: auto;
+  }
+
+  #clinical-workspace .topbar,
+  #clinical-workspace .topbar-inner,
+  #clinical-workspace .app-shell,
+  #clinical-workspace .view,
+  #clinical-workspace .view.active,
+  #clinical-workspace .view.active > * {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #clinical-workspace .topbar-inner {
+    min-height: 64px;
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  #clinical-workspace .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: calc(100% - 52px);
+    gap: 8px;
+    overflow: hidden;
+  }
+
+  #clinical-workspace .brand-logo {
+    width: 54px;
+    height: 36px;
+    flex: 0 0 auto;
+  }
+
+  #clinical-workspace .brand > div {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  #clinical-workspace .brand strong,
+  #clinical-workspace .brand span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #clinical-workspace .brand strong {
+    font-size: 12.5px;
+  }
+
+  #clinical-workspace .brand span {
+    font-size: 10.5px;
+  }
+
+  #clinical-workspace .menu-btn {
+    display: block;
+    flex: 0 0 44px;
+    width: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+
+  #clinical-workspace .main-nav {
+    position: absolute;
+    top: 64px;
+    left: 9px;
+    right: 9px;
+    width: auto;
+    min-width: 0;
+    max-height: calc(100vh - 76px);
+    overflow-y: auto;
+    border-radius: 14px;
+  }
+
+  #clinical-workspace .main-nav button,
+  #clinical-workspace .main-nav a,
+  #clinical-workspace .main-nav .nav-evaluation,
+  #clinical-workspace .main-nav .facebook-text-link {
+    width: 100%;
+    min-height: 44px;
+    justify-content: flex-start;
+    white-space: normal;
+  }
+
+  #clinical-workspace .app-shell {
+    margin: 0;
+    padding: 12px 9px 30px;
+  }
+
+  #clinical-workspace .view.active {
+    display: block;
+    min-width: 0;
+  }
+
+  #clinical-workspace .view.active > *,
+  #clinical-workspace .section-card,
+  #clinical-workspace .section-card.compact,
+  #clinical-workspace .form-card,
+  #clinical-workspace .result-card,
+  #clinical-workspace .profile,
+  #clinical-workspace .disease-profile,
+  #clinical-workspace .icd-profile,
+  #clinical-workspace .petct-inline,
+  #clinical-workspace .petct-inline > main.wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Các module nạp CSS sau khi người dùng mở công cụ. Dùng selector đầy đủ
+     và !important để bố cục điện thoại luôn thắng phần lưới máy tính. */
+  #clinical-workspace .rx-workspace,
+  #clinical-workspace #view-prescription-check .rx-workspace,
+  #clinical-workspace #view-inpatient-order .rx-workspace,
+  #clinical-workspace .dose-layout,
+  #clinical-workspace .stock-pediatric-layout,
+  #clinical-workspace .pediatric-pkpd-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    gap: 14px !important;
+  }
+
+  #clinical-workspace .rx-main-column,
+  #clinical-workspace .rx-result-column,
+  #clinical-workspace .dose-main,
+  #clinical-workspace .stock-pediatric-form,
+  #clinical-workspace .stock-pediatric-result,
+  #clinical-workspace .pediatric-pkpd-form,
+  #clinical-workspace .pediatric-pkpd-result {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+  }
+
+  #clinical-workspace .rx-encounter-grid,
+  #clinical-workspace .rx-import-grid,
+  #clinical-workspace .rx-diagnosis-auto-grid,
+  #clinical-workspace .io-renal-grid,
+  #clinical-workspace .io-renal-metrics,
+  #clinical-workspace .stock-field-grid,
+  #clinical-workspace .stock-ped-grid,
+  #clinical-workspace .stock-ped-patient-row,
+  #clinical-workspace .stock-detail-grid,
+  #clinical-workspace .pediatric-field-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #clinical-workspace .rx-diagnosis-field,
+  #clinical-workspace .pediatric-wide {
+    grid-column: auto !important;
+  }
+
+  #clinical-workspace .rx-card,
+  #clinical-workspace .rx-result-card,
+  #clinical-workspace .stock-tool-card,
+  #clinical-workspace .pediatric-pkpd-form {
+    overflow: hidden;
+  }
+
+  #clinical-workspace .rx-result-body,
+  #clinical-workspace #view-inpatient-order .rx-result-body {
+    min-height: 220px !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  #clinical-workspace .rx-import-grid,
+  #clinical-workspace .rx-encounter-grid {
+    padding: 13px !important;
+  }
+
+  #clinical-workspace .rx-or {
+    min-height: 28px;
+  }
+
+  #clinical-workspace .rx-or::before {
+    top: 50% !important;
+    right: 12px !important;
+    bottom: auto !important;
+    left: 12px !important;
+    width: auto !important;
+    height: 1px !important;
+  }
+
+  #clinical-workspace .rx-heading {
+    align-items: flex-start;
+    gap: 9px;
+    padding: 13px !important;
+  }
+
+  #clinical-workspace .rx-heading > div {
+    min-width: 0;
+  }
+
+  #clinical-workspace .rx-heading > button {
+    flex: 0 0 auto;
+  }
+
+  #clinical-workspace .rx-file-item {
+    grid-template-columns: 34px minmax(0, 1fr) 32px !important;
+  }
+
+  #clinical-workspace .rx-file-item select {
+    grid-row: 2;
+    grid-column: 2 / 3;
+  }
+
+  #clinical-workspace .rx-file-remove {
+    grid-row: 1 / 3;
+    grid-column: 3;
+  }
+
+  #clinical-workspace .rx-drug-table-wrap,
+  #clinical-workspace .io-table-wrap,
+  #clinical-workspace .stock-pediatric-history .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #clinical-workspace .rx-drug-table,
+  #clinical-workspace .io-review-table {
+    min-width: 680px;
+  }
+
+  #clinical-workspace .rx-prescription-actions,
+  #clinical-workspace .rx-new-prescription-action {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
+  #clinical-workspace .rx-prescription-actions > *,
+  #clinical-workspace .rx-new-prescription-action > * {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #clinical-workspace .rx-rule-version {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #clinical-workspace .rx-rule-item,
+  #clinical-workspace .rx-rule-item.rx-rule-wide {
+    grid-column: auto !important;
+    grid-template-columns: minmax(48px, auto) minmax(0, 1fr) !important;
+  }
+
+  #clinical-workspace .rx-result-actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #clinical-workspace .rx-result-actions button {
+    width: 100%;
+  }
+
+  #clinical-workspace .io-scr-input-group,
+  #clinical-workspace .pediatric-age-input,
+  #clinical-workspace .stock-age-control {
+    grid-template-columns: minmax(0, 1fr) minmax(88px, 104px) !important;
+  }
+
+  #clinical-workspace .io-renal-heading,
+  #clinical-workspace .pediatric-status,
+  #clinical-workspace .stock-result-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #clinical-workspace .rx-scope-note {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  #clinical-workspace .hero-grid,
+  #clinical-workspace .hero-grid-single,
+  #clinical-workspace .feature-grid,
+  #clinical-workspace .source-grid,
+  #clinical-workspace .dose-layout,
+  #clinical-workspace .form-row,
+  #clinical-workspace .result-grid,
+  #clinical-workspace .profile-grid,
+  #clinical-workspace .filter-grid,
+  #clinical-workspace .directory,
+  #clinical-workspace .disease-filters,
+  #clinical-workspace .disease-layout,
+  #clinical-workspace .disease-grid,
+  #clinical-workspace .pair,
+  #clinical-workspace .int-list,
+  #clinical-workspace .liver-summary,
+  #clinical-workspace .liver-filters,
+  #clinical-workspace .liver-detail,
+  #clinical-workspace .pl-summary,
+  #clinical-workspace .pl-filters,
+  #clinical-workspace .pl-source-grid,
+  #clinical-workspace .icd-filter-grid,
+  #clinical-workspace .icd-layout,
+  #clinical-workspace .icd-clinical-grid,
+  #clinical-workspace .icd-code-grid,
+  #clinical-workspace .infusion-readable,
+  #clinical-workspace #view-petct-dose .petct-inline .grid,
+  #clinical-workspace #view-petct-dose .petct-inline .grid2,
+  #clinical-workspace #view-petct-dose .petct-inline .grid3,
+  #clinical-workspace #view-petct-dose .petct-inline .resultBox,
+  #clinical-workspace #view-petct-dose .petct-condition-grid,
+  #clinical-workspace .petct-workspace,
+  #clinical-workspace .petct-refs-bottom-body {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #clinical-workspace #view-home,
+  #clinical-workspace #view-home > .hero-grid,
+  #clinical-workspace #view-home > .section-card,
+  #clinical-workspace #view-home .feature-grid,
+  #clinical-workspace #view-home .feature-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  #clinical-workspace #view-home .feature-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px;
+  }
+
+  #clinical-workspace #view-home .feature-card {
+    min-height: 0;
+    padding: 14px;
+  }
+
+  #clinical-workspace #view-home .feature-card:hover {
+    transform: none;
+  }
+
+  #clinical-workspace .hero-panel {
+    padding: 20px 16px;
+    border-radius: 16px;
+  }
+
+  #clinical-workspace .hero-panel h1 {
+    margin: 9px 0 12px;
+    font-size: clamp(27px, 8vw, 32px);
+    line-height: 1.12;
+  }
+
+  #clinical-workspace .hero-panel p,
+  #clinical-workspace #heroFeatureList li {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  #clinical-workspace #heroFeatureList {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 7px;
+    padding-left: 18px;
+  }
+
+  #clinical-workspace .section-card,
+  #clinical-workspace .section-card.compact {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  #clinical-workspace .page-title,
+  #clinical-workspace .section-heading,
+  #clinical-workspace .stats-title,
+  #clinical-workspace .main-head,
+  #clinical-workspace .icd-suggest-head,
+  #clinical-workspace .icd-suggest-title {
+    display: block;
+  }
+
+  #clinical-workspace .page-title h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  #clinical-workspace .section-heading h2 {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  #clinical-workspace .page-title p,
+  #clinical-workspace .view.active p,
+  #clinical-workspace .view.active li,
+  #clinical-workspace .view.active label,
+  #clinical-workspace .view.active small,
+  #clinical-workspace .view.active b,
+  #clinical-workspace .view.active strong,
+  #clinical-workspace .view.active a,
+  #clinical-workspace .view.active td,
+  #clinical-workspace .view.active th {
+    overflow-wrap: anywhere;
+  }
+
+  #clinical-workspace input,
+  #clinical-workspace select,
+  #clinical-workspace textarea,
+  #clinical-workspace button {
+    max-width: 100%;
+  }
+
+  #clinical-workspace input,
+  #clinical-workspace select,
+  #clinical-workspace textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  #clinical-workspace .btn,
+  #clinical-workspace .back-home-btn {
+    min-height: 44px;
+  }
+
+  #clinical-workspace .back-home-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  #clinical-workspace .form-card,
+  #clinical-workspace .petct-side-refs,
+  #clinical-workspace .icd-med-column,
+  #clinical-workspace .icd-clinical-warning-sidebar {
+    position: static !important;
+    top: auto !important;
+    bottom: auto !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+
+  #clinical-workspace .form-card,
+  #clinical-workspace .result-card,
+  #clinical-workspace .profile,
+  #clinical-workspace .disease-profile,
+  #clinical-workspace .icd-profile {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  #clinical-workspace .empty-state {
+    min-height: 230px;
+    padding: 18px;
+  }
+
+  #clinical-workspace .heading-actions,
+  #clinical-workspace .hero-actions,
+  #clinical-workspace #view-petct-dose .actions {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  #clinical-workspace .heading-actions .btn,
+  #clinical-workspace .hero-actions .btn,
+  #clinical-workspace #view-petct-dose .actions button,
+  #clinical-workspace .pair > button,
+  #clinical-workspace .pair > .btn {
+    width: 100%;
+  }
+
+  #clinical-workspace .pair .swap {
+    display: none;
+  }
+
+  #clinical-workspace .mini-stats {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  #clinical-workspace .mini-stats article {
+    min-width: 0;
+  }
+
+  #clinical-workspace .drug-list,
+  #clinical-workspace .disease-list,
+  #clinical-workspace .icd-med-list {
+    width: 100%;
+    max-width: 100%;
+    height: min(300px, 40vh);
+    min-height: 220px;
+    overflow: auto;
+  }
+
+  #clinical-workspace .profile,
+  #clinical-workspace .disease-profile,
+  #clinical-workspace .icd-profile {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  #clinical-workspace .profile h2,
+  #clinical-workspace .disease-profile h2,
+  #clinical-workspace .icd-profile h2,
+  #clinical-workspace .icd-profile-head h2 {
+    font-size: 23px;
+    line-height: 1.2;
+  }
+
+  #clinical-workspace .meta,
+  #clinical-workspace .icd-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  #clinical-workspace .pill,
+  #clinical-workspace .icd-meta span {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  #clinical-workspace .tabs,
+  #clinical-workspace .side .category-list {
+    display: flex;
+    flex-wrap: nowrap !important;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  #clinical-workspace .tab,
+  #clinical-workspace .side .category-list button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  #clinical-workspace .liver-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  #clinical-workspace .liver-toolbar .btn {
+    width: 100%;
+  }
+
+  #clinical-workspace .liver-item summary {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #clinical-workspace .liver-badge {
+    margin-left: 0;
+  }
+
+  #clinical-workspace .pl-table-wrap,
+  #clinical-workspace .table-wrap,
+  #clinical-workspace #view-petct-dose .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto !important;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  #clinical-workspace .pl-table {
+    min-width: 1050px;
+  }
+
+  #clinical-workspace .table-wrap table {
+    min-width: 700px;
+  }
+
+  #clinical-workspace #view-petct-dose .petct-inline,
+  #clinical-workspace #view-petct-dose .petct-inline > main.wrap,
+  #clinical-workspace #view-petct-dose main.wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #clinical-workspace #view-petct-dose .petct-inline .card {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  #clinical-workspace #view-petct-dose .resultBox {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #clinical-workspace #view-petct-dose .petct-refs-bottom > summary,
+  #clinical-workspace #view-petct-dose .petct-single-details > summary {
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  #clinical-workspace .icd-code-card > div {
+    flex-wrap: wrap;
+  }
+
+  #clinical-workspace .icd-compact-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #clinical-workspace .icd-compact-row small {
+    grid-column: auto;
+  }
+
+  #clinical-workspace .icd-term-code {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  #clinical-workspace .source-card,
+  #clinical-workspace .pl-source-card {
+    min-height: 0;
+  }
+
+  #clinical-workspace footer {
+    padding: 18px 10px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  #clinical-workspace .brand span {
+    display: none;
+  }
+
+  #clinical-workspace .brand-logo {
+    width: 50px;
+  }
+}

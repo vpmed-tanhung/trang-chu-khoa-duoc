@@ -1,0 +1,571 @@
+/*
+  VPMED responsive polish 12/07/2026
+  Chỉ điều chỉnh lớp giao diện. Không thay đổi dữ liệu hoặc logic nghiệp vụ.
+*/
+
+#clinical-workspace {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+#clinical-workspace {
+  overflow-x: hidden;
+}
+
+#clinical-workspace img,
+#clinical-workspace svg {
+  max-width: 100%;
+}
+
+#clinical-workspace button,
+#clinical-workspace input,
+#clinical-workspace select,
+#clinical-workspace textarea {
+  min-width: 0;
+}
+
+/* Khung nội dung cân đối trên màn hình máy tính */
+#clinical-workspace .app-shell {
+  width: 100%;
+}
+
+#clinical-workspace .section-card,
+#clinical-workspace .profile,
+#clinical-workspace .result-card,
+#clinical-workspace .form-card {
+  min-width: 0;
+}
+
+#clinical-workspace .profile p,
+#clinical-workspace .info-box p,
+#clinical-workspace .info-box li,
+#clinical-workspace .source-note,
+#clinical-workspace .alert {
+  overflow-wrap: anywhere;
+}
+
+/* Danh mục thuốc: giữ hai cột trên máy tính và máy tính bảng ngang. */
+@media (min-width: 1200px) {
+  #clinical-workspace .app-shell {
+    max-width: 1440px;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  #clinical-workspace .directory {
+    grid-template-columns: minmax(270px, 300px) minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  #clinical-workspace .drug-list {
+    height: min(720px, calc(100vh - 190px));
+    min-height: 580px;
+  }
+
+  #clinical-workspace .profile {
+    padding: 22px;
+  }
+}
+
+@media (min-width: 861px) and (max-width: 1199px) {
+  #clinical-workspace .app-shell {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  /* Ghi đè quy tắc cũ làm danh mục bị xếp dọc quá sớm ở màn hình 900–1100 px. */
+  #clinical-workspace .directory {
+    grid-template-columns: 240px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  #clinical-workspace .drug-list {
+    height: min(680px, calc(100vh - 180px));
+    min-height: 520px;
+  }
+
+  #clinical-workspace .profile {
+    min-height: 520px;
+    padding: 18px;
+  }
+
+  #clinical-workspace .profile h2 {
+    font-size: clamp(25px, 3vw, 30px);
+    line-height: 1.2;
+  }
+
+  #clinical-workspace .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 1px 1px 7px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #clinical-workspace .tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+/* Mục pha truyền: trình bày theo từng hàng thay vì nhiều khung lồng nhau. */
+#clinical-workspace #t2 > .info-box {
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+#clinical-workspace #t2 > .info-box > h3 {
+  margin: 0;
+  padding: 16px 18px;
+  border-bottom: 1px solid #dbe8f1;
+  background: #f4f9fc;
+  font-size: 16px;
+}
+
+#clinical-workspace #t2 .infusion-grid {
+  display: block;
+  margin: 0;
+}
+
+#clinical-workspace #t2 .infusion-grid section,
+#clinical-workspace #t2 .infusion-grid section:nth-child(5) {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  margin: 0;
+  padding: 14px 18px;
+  border: 0;
+  border-bottom: 1px solid #e3edf4;
+  border-radius: 0;
+  background: #fff;
+}
+
+#clinical-workspace #t2 .infusion-grid section:nth-child(even) {
+  background: #fbfdff;
+}
+
+#clinical-workspace #t2 .infusion-grid h4 {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+#clinical-workspace #t2 .infusion-grid p {
+  margin: 0;
+  line-height: 1.65;
+}
+
+#clinical-workspace #t2 > .info-box > .source-note {
+  margin: 14px 18px 18px;
+}
+
+/* Nút và trường nhập đủ lớn để bấm, nhưng không phóng đại giao diện máy tính. */
+#clinical-workspace .btn,
+#clinical-workspace .tab,
+#clinical-workspace .menu-btn,
+#clinical-workspace .main-nav button,
+#clinical-workspace .main-nav a {
+  touch-action: manipulation;
+}
+
+#clinical-workspace .table-wrap {
+  max-width: 100%;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Màn hình điện thoại và máy tính bảng dọc */
+@media (max-width: 860px) {
+  #clinical-workspace .directory {
+    grid-template-columns: 1fr;
+  }
+
+  #clinical-workspace .drug-list {
+    height: min(300px, 38vh);
+    min-height: 220px;
+  }
+
+  #clinical-workspace .profile {
+    min-height: 0;
+  }
+
+  #clinical-workspace .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin: 14px 0;
+    padding: 1px 1px 7px;
+    scrollbar-width: thin;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  #clinical-workspace .tab {
+    flex: 0 0 auto;
+    min-height: 42px;
+    white-space: nowrap;
+    scroll-snap-align: start;
+  }
+
+  #clinical-workspace .main-nav {
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+  }
+
+  #clinical-workspace .main-nav button,
+  #clinical-workspace .main-nav a {
+    width: 100%;
+    min-height: 44px;
+    justify-content: flex-start;
+  }
+
+  #clinical-workspace #t2 .infusion-grid section,
+  #clinical-workspace #t2 .infusion-grid section:nth-child(5) {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    padding: 12px 14px;
+  }
+
+  #clinical-workspace #t2 > .info-box > h3 {
+    padding: 14px;
+  }
+
+  #clinical-workspace #t2 > .info-box > .source-note {
+    margin: 12px 14px 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  #clinical-workspace .topbar-inner {
+    min-height: 68px;
+    gap: 10px;
+  }
+
+  #clinical-workspace .brand {
+    gap: 8px;
+  }
+
+  #clinical-workspace .brand-logo {
+    width: 58px;
+    height: 38px;
+  }
+
+  #clinical-workspace .brand strong {
+    font-size: 12.5px;
+    line-height: 1.25;
+  }
+
+  #clinical-workspace .brand span {
+    font-size: 10.5px;
+    line-height: 1.25;
+  }
+
+  #clinical-workspace .menu-btn {
+    min-width: 44px;
+    min-height: 44px;
+    padding: 8px;
+  }
+
+  #clinical-workspace .main-nav {
+    top: 68px;
+  }
+
+  #clinical-workspace .app-shell {
+    padding: 12px 9px 30px;
+  }
+
+  #clinical-workspace .hero-panel {
+    padding: 22px 17px;
+    border-radius: 16px;
+  }
+
+  #clinical-workspace .hero-panel h1 {
+    font-size: clamp(27px, 8vw, 32px);
+    line-height: 1.12;
+  }
+
+  #clinical-workspace .hero-panel p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  #clinical-workspace .section-card,
+  #clinical-workspace .section-card.compact {
+    padding: 14px;
+    border-radius: 16px;
+    margin-top: 14px;
+  }
+
+  #clinical-workspace .page-title {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  #clinical-workspace .page-title h1 {
+    font-size: 24px;
+    line-height: 1.2;
+  }
+
+  #clinical-workspace .page-title p {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  #clinical-workspace .section-heading h2 {
+    font-size: 21px;
+    line-height: 1.25;
+  }
+
+  #clinical-workspace .feature-card {
+    min-height: 0;
+    padding: 14px;
+  }
+
+  #clinical-workspace .feature-card:hover {
+    transform: none;
+  }
+
+  #clinical-workspace input,
+  #clinical-workspace select,
+  #clinical-workspace textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  #clinical-workspace .btn {
+    min-height: 44px;
+  }
+
+  #clinical-workspace .form-card,
+  #clinical-workspace .result-card,
+  #clinical-workspace .profile {
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  #clinical-workspace .form-row {
+    gap: 8px;
+  }
+
+  #clinical-workspace .profile h2 {
+    font-size: 24px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  #clinical-workspace .profile > p {
+    margin: 8px 0;
+    line-height: 1.5;
+  }
+
+  #clinical-workspace .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin: 12px 0;
+  }
+
+  #clinical-workspace .pill {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+    border-radius: 10px;
+    padding: 8px 10px;
+    line-height: 1.4;
+  }
+
+  #clinical-workspace .pill:last-child {
+    flex-basis: 100%;
+  }
+
+  #clinical-workspace .tabs {
+    margin-left: -2px;
+    margin-right: -2px;
+    gap: 6px;
+  }
+
+  #clinical-workspace .tab {
+    padding: 9px 11px;
+    font-size: 13px;
+  }
+
+  #clinical-workspace .info-box {
+    padding: 12px;
+    border-radius: 12px;
+    line-height: 1.55;
+  }
+
+  #clinical-workspace .info-box h3 {
+    font-size: 14px;
+  }
+
+  #clinical-workspace .source-note,
+  #clinical-workspace .alert {
+    padding: 10px 11px;
+    font-size: 12px;
+  }
+
+  #clinical-workspace .filter-grid {
+    gap: 8px;
+  }
+
+  #clinical-workspace .drug-list {
+    height: min(270px, 36vh);
+    padding: 6px;
+  }
+
+  #clinical-workspace .drug-item {
+    padding: 10px;
+    margin-bottom: 6px;
+  }
+
+  #clinical-workspace .drug-item b {
+    font-size: 14px;
+  }
+
+  #clinical-workspace .result-card h2 {
+    font-size: 27px;
+  }
+
+  #clinical-workspace .heading-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  #clinical-workspace .heading-actions .btn {
+    width: 100%;
+  }
+
+  #clinical-workspace .table-wrap table {
+    min-width: 700px;
+  }
+
+  #clinical-workspace .table-wrap th,
+  #clinical-workspace .table-wrap td {
+    padding: 9px;
+  }
+}
+
+@media (max-width: 390px) {
+  #clinical-workspace .brand span {
+    display: none;
+  }
+
+  #clinical-workspace .brand-logo {
+    width: 54px;
+  }
+
+  #clinical-workspace .pill {
+    flex-basis: 100%;
+  }
+
+  #clinical-workspace .hero-actions,
+  #clinical-workspace .heading-actions {
+    grid-template-columns: 1fr;
+  }
+
+  #clinical-workspace .hero-actions {
+    display: grid;
+  }
+
+  #clinical-workspace .hero-actions .btn {
+    width: 100%;
+  }
+}
+
+/* ========================================================================== 
+   VPMED mobile full-width repair 13/07/2026
+   Mục tiêu: khắc phục trang chủ bị chia thành nhiều cột trên điện thoại,
+   làm khối "Ứng dụng chính" chỉ nằm ở cột trái và để trống phần lớn màn hình.
+   Chỉ tác động khi chiều rộng màn hình <= 860px; giao diện máy tính giữ nguyên.
+   ========================================================================== */
+@media (max-width: 860px) {
+  /* Giữ toàn bộ khung trang trong đúng chiều rộng màn hình. */
+  #clinical-workspace,
+  #clinical-workspace,
+  #clinical-workspace .app-shell,
+  #clinical-workspace #view-home.view.active {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Trang chủ phải là luồng dọc; không được kế thừa lưới nhiều cột. */
+  #clinical-workspace #view-home.view.active {
+    display: block !important;
+    grid-template-columns: none !important;
+    grid-auto-columns: auto !important;
+    grid-auto-flow: row !important;
+    column-count: 1 !important;
+  }
+
+  /* Hero và khối Ứng dụng chính luôn chiếm trọn chiều ngang. */
+  #clinical-workspace #view-home > .hero-grid,
+  #clinical-workspace #view-home > .hero-panel,
+  #clinical-workspace #view-home > .section-card {
+    display: block;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    grid-column: 1 / -1 !important;
+    grid-row: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Máy tính bảng dọc: hai thẻ mỗi hàng, không tràn khung. */
+  #clinical-workspace #view-home .feature-grid {
+    display: grid !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: row !important;
+    align-items: stretch;
+  }
+
+  #clinical-workspace #view-home .feature-grid > *,
+  #clinical-workspace #view-home .feature-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Nội dung dài không được kéo rộng trang. */
+  #clinical-workspace #view-home .feature-card b,
+  #clinical-workspace #view-home .feature-card small,
+  #clinical-workspace #view-home .hero-panel,
+  #clinical-workspace #view-home .section-card {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+}
+
+/* Điện thoại: một thẻ mỗi hàng, dùng hết chiều ngang màn hình. */
+@media (max-width: 720px) {
+  #clinical-workspace #view-home .feature-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* Điện thoại nhỏ: giảm nhẹ khoảng trống nhưng không làm thay đổi bố cục máy tính. */
+@media (max-width: 430px) {
+  #clinical-workspace #view-home > .section-card {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  #clinical-workspace #view-home .feature-grid {
+    gap: 10px !important;
+  }
+
+  #clinical-workspace #view-home .feature-card {
+    padding: 13px !important;
+  }
+}
