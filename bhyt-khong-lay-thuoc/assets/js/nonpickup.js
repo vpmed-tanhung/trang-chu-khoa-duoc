@@ -692,10 +692,101 @@
     document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => $(button.dataset.close).close()));
   }
 
+  function setupInventoryScroll() {
+    const table = els.inventoryTableBody?.closest("table");
+    if (!table) return;
+
+    let scrollBox = table.parentElement;
+
+    if (!scrollBox?.classList.contains("inventory-scroll-box")) {
+      scrollBox = document.createElement("div");
+      scrollBox.className = "inventory-scroll-box";
+      table.parentNode.insertBefore(scrollBox, table);
+      scrollBox.appendChild(table);
+    }
+
+    if (!document.getElementById("inventory-scroll-style")) {
+      const style = document.createElement("style");
+      style.id = "inventory-scroll-style";
+      style.textContent = `
+        .inventory-scroll-box {
+          width: 100%;
+          max-height: 520px;
+          overflow-y: auto !important;
+          overflow-x: auto !important;
+          position: relative;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: thin;
+          scrollbar-color: #08aeba #e6f3f5;
+        }
+
+        .inventory-scroll-box table {
+          width: 100%;
+          margin: 0;
+          border-collapse: separate;
+          border-spacing: 0;
+        }
+
+        .inventory-scroll-box thead th {
+          position: sticky;
+          top: 0;
+          z-index: 20;
+          background: #edf4f7 !important;
+          box-shadow: 0 1px 0 #ccdbe2;
+        }
+
+        .inventory-scroll-box::-webkit-scrollbar {
+          width: 7px;
+          height: 7px;
+        }
+
+        .inventory-scroll-box::-webkit-scrollbar-track {
+          background: #e6f3f5;
+        }
+
+        .inventory-scroll-box::-webkit-scrollbar-thumb {
+          background: #08aeba;
+          border-radius: 8px;
+        }
+
+        .inventory-scroll-box::-webkit-scrollbar-thumb:hover {
+          background: #078f9a;
+        }
+
+        .inventory-scroll-box::-webkit-scrollbar-corner {
+          background: #e6f3f5;
+        }
+
+        @media (max-width: 600px) {
+          .inventory-scroll-box {
+            max-height: 430px;
+          }
+
+          .inventory-scroll-box::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+          }
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }
+
   function init() {
-    els.workDate.value = todayIso(); els.reportMonth.value = monthIso(); els.inventoryMonth.value = monthIso();
-    $("caseReasonGroup").innerHTML = GROUPS.map(group => `<option>${escapeHtml(group)}</option>`).join("");
-    bindEvents(); connectSupabase(); loadData();
+    els.workDate.value = todayIso();
+    els.reportMonth.value = monthIso();
+    els.inventoryMonth.value = monthIso();
+
+    $("caseReasonGroup").innerHTML = GROUPS
+      .map(group => `<option>${escapeHtml(group)}</option>`)
+      .join("");
+
+    setupInventoryScroll();
+
+    bindEvents();
+    connectSupabase();
+    loadData();
   }
 
   window.BHYTNonPickup = Object.freeze({ calculateTotals, classify, numberOrNull });
