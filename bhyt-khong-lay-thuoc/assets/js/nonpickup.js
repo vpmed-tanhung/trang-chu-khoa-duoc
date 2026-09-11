@@ -306,8 +306,13 @@
     for (const item of state.inventory) {
       const alert = isInventoryAlert(item);
       const row = document.createElement("tr");
+      row.dataset.inventorySearch = [
+        item.drug_code,
+        item.drug_name,
+        item.unit
+      ].filter(Boolean).join(" ");
       const drug = document.createElement("div"); drug.className = "drug-cell";
-      drug.innerHTML = `<strong>${escapeHtml(item.drug_code)}</strong><small>${escapeHtml(item.drug_name)} · ${escapeHtml(item.unit)}</small>`;
+      drug.innerHTML = `<strong>${escapeHtml(item.drug_name || "—")}</strong><small>Mã: ${escapeHtml(item.drug_code || "—")} · ${escapeHtml(item.unit || "")}</small>`;
       appendCell(row, "Thuốc", drug);
       appendCell(row, "Tồn đầu", formatNumber(item.opening_quantity), "numeric");
       appendCell(row, "Nhập", formatNumber(item.received_quantity), "numeric");
@@ -325,6 +330,11 @@
     els.inventoryEmpty.classList.toggle("hidden", state.inventory.length > 0);
     const month = selectedPeriod().month;
     els.inventoryCaption.textContent = `Tháng ${month.slice(5, 7)}/${month.slice(0, 4)} · ${state.inventory.length} mã thuốc`;
+
+    const count = document.getElementById("inventorySearchCount");
+    if (count) count.textContent = `${state.inventory.length} mã thuốc`;
+
+    filterInventoryTable();
   }
 
   async function readWorkbook(file, type) {
@@ -692,9 +702,60 @@
     document.querySelectorAll("[data-close]").forEach(button => button.addEventListener("click", () => $(button.dataset.close).close()));
   }
 
+  function filterInventoryTable() {
+    const input = document.getElementById("inventorySearchInput");
+    const query = normalize(input?.value || "");
+    let visible = 0;
+
+    Array.from(els.inventoryTableBody?.rows || []).forEach(row => {
+      const haystack = normalize(row.dataset.inventorySearch || row.textContent || "");
+      const show = !query || haystack.includes(query);
+      row.hidden = !show;
+      if (show) visible += 1;
+    });
+
+    const count = document.getElementById("inventorySearchCount");
+    if (count) {
+      count.textContent = query
+        ? `${visible}/${state.inventory.length} mã thuốc`
+        : `${state.inventory.length} mã thuốc`;
+    }
+  }
+
+  function setupInventorySearch() {
+    if (document.getElementById("inventorySearchInput")) return;
+
+    const table = els.inventoryTableBody?.closest("table");
+    if (!table) return;
+
+    const scrollBox = table.closest(".inventory-scroll-box") || table.parentElement;
+    const toolbar = document.createElement("div");
+    toolbar.className = "inventory-search-toolbar";
+
+    const input = document.createElement("input");
+    input.id = "inventorySearchInput";
+    input.type = "search";
+    input.autocomplete = "off";
+    input.spellcheck = false;
+    input.placeholder = "Tìm tên thuốc hoặc mã thuốc";
+
+    const count = document.createElement("span");
+    count.id = "inventorySearchCount";
+    count.className = "inventory-search-count";
+    count.textContent = `${state.inventory.length} mã thuốc`;
+
+    toolbar.append(input, count);
+    scrollBox.parentNode.insertBefore(toolbar, scrollBox);
+
+    input.addEventListener("input", filterInventoryTable);
+  }
+
   function setupInventoryScroll() {
     const table = els.inventoryTableBody?.closest("table");
     if (!table) return;
+
+    const firstHeader = table.querySelector("thead th:first-child");
+    if (firstHeader) firstHeader.textContent = "Tên thuốc / mã thuốc";
 
     let scrollBox = table.parentElement;
 
@@ -709,6 +770,41 @@
       const style = document.createElement("style");
       style.id = "inventory-scroll-style";
       style.textContent = `
+        .inventory-search-toolbar {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 10px;
+          padding: 12px 0;
+        }
+
+        .inventory-search-toolbar input {
+          width: min(360px, 100%);
+          height: 42px;
+          box-sizing: border-box;
+          border: 1px solid #bccbd5;
+          border-radius: 0;
+          background: #fff;
+          color: #0f365f;
+          padding: 0 12px;
+          font: inherit;
+          font-size: 14px;
+          outline: none;
+        }
+
+        .inventory-search-toolbar input:focus {
+          border-color: #0284c7;
+          box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.12);
+        }
+
+        .inventory-search-count {
+          min-width: 92px;
+          color: #5f7280;
+          font-size: 12px;
+          text-align: right;
+          white-space: nowrap;
+        }
+
         .inventory-scroll-box {
           width: 100%;
           max-height: 520px;
@@ -719,6 +815,21 @@
           -webkit-overflow-scrolling: touch;
           scrollbar-width: thin;
           scrollbar-color: #08aeba #e6f3f5;
+        }
+
+        .inventory-scroll-box .drug-cell strong {
+          display: block;
+          font-size: 14px;
+          line-height: 1.35;
+          color: #0f365f;
+        }
+
+        .inventory-scroll-box .drug-cell small {
+          display: block;
+          margin-top: 3px;
+          font-size: 12px;
+          line-height: 1.35;
+          color: #607487;
         }
 
         .inventory-scroll-box table {
@@ -759,6 +870,20 @@
         }
 
         @media (max-width: 600px) {
+          .inventory-search-toolbar {
+            align-items: stretch;
+            gap: 6px;
+          }
+
+          .inventory-search-toolbar input {
+            width: 100%;
+            min-width: 0;
+          }
+
+          .inventory-search-count {
+            display: none;
+          }
+
           .inventory-scroll-box {
             max-height: 430px;
           }
@@ -783,6 +908,7 @@
       .join("");
 
     setupInventoryScroll();
+    setupInventorySearch();
 
     bindEvents();
     connectSupabase();
