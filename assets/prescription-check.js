@@ -1457,3 +1457,4 @@
 };
 window.addEventListener('hashchange',preloadPrescriptionData);
 preloadPrescriptionData();
+})();
