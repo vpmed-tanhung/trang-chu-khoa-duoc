@@ -1450,5 +1450,11 @@
   renderDiagnosisChips();
   renderFileQueue();
   renderRows();
-  if(location.hash==='#prescription-check')ensureData().catch(()=>{});
+ const preloadPrescriptionData=()=>{
+  if(['#clinical-prescription-check','#prescription-check'].includes(location.hash)){
+    ensureData().catch(()=>{});
+  }
+};
+window.addEventListener('hashchange',preloadPrescriptionData);
+preloadPrescriptionData();
 })();
