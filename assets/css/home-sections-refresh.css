@@ -92,6 +92,13 @@
   position: relative;
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr) 34px;
+  /* Xóa hẳn grid-template-areas/rows còn sót lại từ navy-theme.css.
+     Nếu không reset, "grid-area: badge" của navy-theme.css vẫn giữ
+     nguyên hàng (row) cũ cho badge trong khi cột (column) bị file này
+     ghi đè, khiến badge và tiêu đề bị đặt trùng vào cùng 1 ô lưới
+     (row 1 / column 2) và đè chữ lên nhau. */
+  grid-template-areas: none;
+  grid-template-rows: none;
   grid-auto-rows: min-content;
   column-gap: 14px;
   row-gap: 5px;
@@ -122,7 +129,7 @@
 #clinical-workspace #view-home .feature-card::after {
   display: grid;
   grid-column: 3;
-  grid-row: 1 / span 4;
+  grid-row: 1 / span 3;
   place-items: center;
   align-self: center;
   width: 32px;
@@ -160,7 +167,7 @@
 #clinical-workspace #view-home .feature-icon {
   display: grid;
   grid-column: 1;
-  grid-row: 1 / span 4;
+  grid-row: 1 / span 3;
   place-items: center;
   align-self: center;
   width: 52px;
@@ -178,7 +185,12 @@
   grid-column: 2;
 }
 
+/* Gán rõ ràng từng hàng (grid-row) cho tiêu đề / mô tả / badge thay vì
+   để trình duyệt tự suy ra — đây chính là phần bị thiếu khiến badge
+   "rơi" vào hàng của tiêu đề. Badge giờ nằm hẳn một hàng riêng, phía
+   dưới mô tả, không còn đè lên chữ. */
 #clinical-workspace #view-home .feature-card b {
+  grid-row: 1;
   align-self: end;
   color: var(--home-navy);
   font-size: 15px;
@@ -186,12 +198,14 @@
 }
 
 #clinical-workspace #view-home .feature-card small {
+  grid-row: 2;
   color: #5c7487;
   font-size: 12.5px;
   line-height: 1.5;
 }
 
 #clinical-workspace #view-home .feature-card em {
+  grid-row: 3;
   margin-top: 2px;
   justify-self: start;
 }
