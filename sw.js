@@ -1,7 +1,7 @@
 'use strict';
 
-const APP_VERSION = '2026.09.11.82';
-const CLINICAL_DATA_VERSION = 'sha256-13ae216b20d5b026b96fd43f';
+const APP_VERSION = '2026.09.12.84';
+const CLINICAL_DATA_VERSION = 'sha256-f7a964aacb13f5a4f36dbc53';
 const APP_SHELL_CACHE = `vpmed-shell-${APP_VERSION}`;
 const RUNTIME_CACHE = `vpmed-runtime-${APP_VERSION}`;
 const CLINICAL_WEB_CACHE_PREFIX = 'vpmed-clinical-web-';
@@ -24,7 +24,7 @@ const APP_SHELL = [
   './assets/responsive-polish.css?v=20260712-balanced',
   './assets/platform-shell.css?v=20260822-pwa-v1',
   './assets/navy-theme.css?v=20260828-original-colors-pulse-v2',
-  './assets/platform-shell.js?v=20260910-ui-v5',
+  './assets/platform-shell.js?v=20260912-cache-refresh-v1',
   './assets/disclaimer-gate.js?v=20260822-disclaimer-gate-v1',
   './assets/update-notifier.js?v=20260822-installed-data-channel-v1',
   './assets/logo-vpmed.png',
@@ -48,7 +48,7 @@ const APP_SHELL = [
   './assets/css/medical-ui-v2.css?v=20260910-ui-v6',
   './assets/css/access-label-cleanup-v2.css',
   './assets/css/header-nav.css?v=20260911-header-v1',
-  './assets/css/home-sections-refresh.css?v=20260911-home-v1',
+  './assets/css/home-sections-refresh.css?v=20260912-layout-v2',
   './assets/css/rounded-ui.css?v=20260911',
   './assets/mobile-only-fix.css?v=20260911-mobile-complete-v1',
   './assets/js/instructions-data.js?v=1.1.8',
@@ -180,12 +180,14 @@ const OFFLINE_PAGE = `<!doctype html>
 <a href="./index.html" style="color:#075f9f;font-weight:800">Về trang chủ ngoại tuyến</a></main></body></html>`;
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    Promise.all([
+  event.waitUntil((async () => {
+    await Promise.all([
       caches.open(APP_SHELL_CACHE).then((cache) => cache.addAll(APP_SHELL)),
       caches.open(CLINICAL_OFFLINE_CACHE).then((cache) => cache.addAll(CLINICAL_OFFLINE_ASSETS))
-    ])
-  );
+    ]);
+    /* Kích hoạt ngay build mới sau khi đã lưu đủ tài nguyên. */
+    await self.skipWaiting();
+  })());
 });
 
 self.addEventListener('activate', (event) => {
@@ -232,7 +234,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   if (isAppShellRequest(request, url)) {
-    event.respondWith(cacheFirst(request, APP_SHELL_CACHE));
+    event.respondWith(networkFirstAppShell(request));
     return;
   }
   if (CLINICAL_PATH_PATTERN.test(url.pathname)) {
@@ -277,6 +279,22 @@ async function cacheFirst(request, cacheName) {
     if (response.ok) await cache.put(request, response.clone());
     return response;
   } catch (error) {
+    const fallback = await cache.match(request, {ignoreSearch: true});
+    if (fallback) return fallback;
+    throw error;
+  }
+}
+
+async function networkFirstAppShell(request) {
+  const cache = await caches.open(APP_SHELL_CACHE);
+  try {
+    const response = await fetch(new Request(request, {cache: 'no-store'}));
+    if (!response.ok) throw new Error(`App Shell HTTP ${response.status}`);
+    await cache.put(request, response.clone());
+    return response;
+  } catch (error) {
+    const exact = await cache.match(request);
+    if (exact) return exact;
     const fallback = await cache.match(request, {ignoreSearch: true});
     if (fallback) return fallback;
     throw error;
@@ -501,22 +519,12 @@ function withCacheMetadata(response, version) {
 
 async function networkFirstNavigation(request) {
   const url = new URL(request.url);
-  const updateRequested = Boolean(url.searchParams.get('vpmed_update'));
   const shell = await caches.open(APP_SHELL_CACHE);
   const runtime = await caches.open(RUNTIME_CACHE);
 
-  /* Không tải HTML mới trong nền. Khi chưa có dấu vpmed_update do chính nút
-     “Cập nhật” tạo ra, tiếp tục phục vụ HTML của build đang được sử dụng. */
-  if (!updateRequested) {
-    const cachedShellPage = await shell.match(request, {ignoreSearch: true});
-    if (cachedShellPage) return cachedShellPage;
-    const cachedRuntimePage = await runtime.match(request, {ignoreSearch: true});
-    if (cachedRuntimePage) return cachedRuntimePage;
-  }
-
   try {
     const response = await fetch(new Request(request, {
-      cache: updateRequested ? 'reload' : 'default'
+      cache: 'no-store'
     }));
     if (response.ok) await runtime.put(request, response.clone());
     return response;

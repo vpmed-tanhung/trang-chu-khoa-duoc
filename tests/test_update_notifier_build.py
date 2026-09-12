@@ -28,9 +28,21 @@ def test_platform_shell_uses_current_build():
     assert match, 'platform-shell.js thiếu BUILD_VERSION'
     assert match.group(1) == version, 'platform-shell.js đang dùng build cũ'
     index = (ROOT / 'index.html').read_text(encoding='utf-8')
-    assert 'assets/platform-shell.js?v=20260910-ui-v5' in index
+    assert 'assets/platform-shell.js?v=20260912-cache-refresh-v1' in index
     worker = (ROOT / 'sw.js').read_text(encoding='utf-8')
-    assert './assets/platform-shell.js?v=20260910-ui-v5' in worker
+    assert './assets/platform-shell.js?v=20260912-cache-refresh-v1' in worker
+
+
+def test_home_layout_and_app_shell_always_request_the_current_files():
+    index = (ROOT / 'index.html').read_text(encoding='utf-8')
+    worker = (ROOT / 'sw.js').read_text(encoding='utf-8')
+    shell = (ROOT / 'assets' / 'platform-shell.js').read_text(encoding='utf-8')
+    assert 'assets/css/home-sections-refresh.css?v=20260912-layout-v2' in index
+    assert './assets/css/home-sections-refresh.css?v=20260912-layout-v2' in worker
+    assert 'event.respondWith(networkFirstAppShell(request))' in worker
+    assert "cache: 'no-store'" in worker
+    assert 'await self.skipWaiting()' in worker
+    assert "updateViaCache: 'none'" in shell
 
 
 def test_notifier_verifies_loaded_build_before_success():

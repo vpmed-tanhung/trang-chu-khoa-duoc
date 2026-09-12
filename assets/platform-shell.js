@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD_VERSION = '2026.09.11.83';
+  const BUILD_VERSION = '2026.09.12.84';
   const IS_INSTALLED_APP = (() => {
     try {
       return new URL(location.href).searchParams.get('vpmed_app') === 'installed' ||
@@ -153,7 +153,7 @@
       styles: [],
       scripts: [
         'assets/pharmacovigilance_alerts_data.js?v=20260711',
-        'assets/pharmacovigilance_auto_data.js?v=20260912105735',
+        'assets/pharmacovigilance_auto_data.js?v=20260910074028',
         'assets/pharmacovigilance_bulletin_76_data.js?v=20260804',
         'assets/pharmacovigilance_auto_editor.js?v=20260823-concise-summary-v2',
         'assets/pharmacovigilance_integration.js?v=20260823-concise-summary-v2'
@@ -670,8 +670,12 @@
     if (!('serviceWorker' in navigator)) return;
     if (location.protocol !== 'https:' && location.hostname !== 'localhost') return;
     try {
-      const registration = await navigator.serviceWorker.register('sw.js', {scope: './'});
+      const registration = await navigator.serviceWorker.register('sw.js', {
+        scope: './',
+        updateViaCache: 'none'
+      });
       serviceWorkerRegistration = registration;
+      registration.update().catch(() => {});
       navigator.serviceWorker.controller?.postMessage({type: 'REGISTER_CLIENT_MODE', clientMode: CLIENT_MODE});
       navigator.serviceWorker.ready.then(() => {
         navigator.serviceWorker.controller?.postMessage({type: 'REGISTER_CLIENT_MODE', clientMode: CLIENT_MODE});

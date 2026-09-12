@@ -1,10 +1,10 @@
 {
-  "version": "2026.09.11.82",
-  "displayVersion": "5.9.1",
-  "updatedAt": "2026-09-11T08:45:00+07:00",
-  "note": "Hoàn thiện bố cục điện thoại cho toàn bộ công cụ, đặc biệt rà soát đơn BHYT, y lệnh nội trú và tính liều kháng sinh.",
-  "buildId": "v5.9.1-mobile-complete-20260911-82",
-  "clinicalDataVersion": "sha256-13ae216b20d5b026b96fd43f",
-  "previousVersion": "2026.09.10.81",
-  "previousDisplayVersion": "5.9.0"
+  "version": "2026.09.12.84",
+  "displayVersion": "5.9.2",
+  "updatedAt": "2026-09-12T13:54:50+07:00",
+  "note": "Sửa bố cục nhãn Nội bộ Khoa Dược và buộc website tải tài nguyên mới sau khi triển khai Git.",
+  "buildId": "v5.9.2-layout-cache-refresh-20260912-84",
+  "clinicalDataVersion": "sha256-f7a964aacb13f5a4f36dbc53",
+  "previousVersion": "2026.09.11.82",
+  "previousDisplayVersion": "5.9.1"
 }

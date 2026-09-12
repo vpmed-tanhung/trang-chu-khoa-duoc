@@ -1,3 +1,5 @@
+5b320643a04b1c0448cb4143ac9b4dd4da4f9ea644da9a145ce47b7eb290027e  ./.github/workflows/cap-nhat-canh-bao-duoc.yml
+c20d8c3025314adc49ad4706da821dcdafd780a34ed2704dc54b933eb8f5b2c7  ./.github/workflows/du-phong-cap-nhat-canh-bao-duoc.yml
 f2221ef10c6c7d3bf38b094046404f91c72e930108ec309648a64555849237fe  ./.gitignore
 91abc7d017bd79b01177510231008693835b289a3b3cff700ce1cf05ed7565b5  ./BAO_CAO_LOC_DU_LIEU_DUOC_LAM_SANG_20260814.md
 68ac93c6e5a2c8e15c06e874d3e52ee34b70793d241e857ddf158f70a7ca1fb0  ./CAP_NHAT_PHAN_CAP_TAI_KHOAN_20260817.md
@@ -6,7 +8,7 @@ f2221ef10c6c7d3bf38b094046404f91c72e930108ec309648a64555849237fe  ./.gitignore
 9354e519cf15c30af183d4becf59d62e29586c765a8cee318dc135305b711d73  ./HUONG_DAN_DANG_NHAP_VA_NHAT_KY.md
 a7bbc6e00eace81ad989500dffdaade8dff4c2c7542521b8461e3d87388e2b9f  ./HUONG_DAN_TICH_HOP_CAP_CUU_PHAN_VE.md
 120a4c722d13c49390c574a5785e7a99313657e1ef2ac3372612165486d4185b  ./HUONG_DAN_XOA_TAI_KHOAN_ADMIN.md
-e9338eac6f3bcedf823a0214f0f1a31e039f9b23902aa42e3a9c734e9ebb5b0a  ./README.md
+e07ba4b1f1c2e6b955a1cb0b49b1fdbfd0a768e65093b96a7f1a7000f280bbb9  ./README.md
 d78fff3f68b71e201f83bf455979fc043c2a915816487b9b511de2dee39dd930  ./README.txt
 ebb013a19716fc9fc2040736e8fabde5b21de3a564198f48653e8e4530072478  ./THIET_LAP_BAO_MAT.txt
 30e73c386a9f3231f5637571715fda37f2961d6a45282e7f583e76298a44ce46  ./TINH_NANG_RA_SOAT_DON.md
@@ -15,7 +17,7 @@ a97c50abfa8b70e8465adb8251599d7effb97dbe57889a7eea88bebe29da19d3  ./TINH_NANG_Y_
 3defd052e58f89277c3c9f2ad119445c5023f01dd656197912903687d996ce30  ./assets/antibiotic-result-layout.css
 1572c5cfbe898091bbba0c974f9dbfc170e01b78fe77aa80622c2d3d98798816  ./assets/antibiotic_38_complete.js
 286fe63c18133fa78e3fce3e155bd12ce6e500ebcf2c019fda338e12cd05d6b1  ./assets/antibiotic_consultation.js
-d256f412074864f2b8a8a078f1f831d64793155d84a240813c19f323f470a0e9  ./assets/app-version.json
+0e1c007dadce9772081a817d3f604078f9297c1148013e87b8a532b9c480ae5f  ./assets/app-version.json
 1e1344d13eaf31f3f4d2a4e268a36584d707f1f683f88ad785bbd781a7d5a1eb  ./assets/clinical-tools/vpmed-drug-profiles.js
 44271d3245022ae0d50edde9e48bb03c31b5906017f4ccb28fd241159a4b6625  ./assets/clinical-tools/vpmed-injectables.js
 b5476c9f955a7c7502bbd9ba3623177b2f23bd3df26e037a130b873b400586df  ./assets/clinical-tools/vpmed-interactions.js
@@ -37,7 +39,7 @@ c233913493269f0200e7780767133adae8b465d967440cdd7d6935b8643305df  ./assets/contr
 023a807ecb04ab21ee3e6b7a96c5cdd19fe5aa535f731b917af19fd4eb01d4a2  ./assets/css/clinical-pages.css
 a6f5c5ebf1a2634b122c7e4fc418399226d033cf0644bcf3306ffad12ad60a84  ./assets/css/clinical-tools.css
 451a48f4a9c76b08e5ba8a24316218719172e1b4c2771822654e956dda33b6b4  ./assets/css/header-nav.css
-62fa1961c97b8ef21d241e1a1665567cdf9b8a839253758d8e5592608fac285d  ./assets/css/home-sections-refresh.css
+1df1f59f8a6e3c9d2939931f0de65832786bd0111221b2457fd39d47e46e91c1  ./assets/css/home-sections-refresh.css
 2a8ca709a30ab9dd5276a00c259dad2b2ff90e43cf2b77a0695c6efa3a2e6c54  ./assets/css/medical-ui-v2.css
 06cb1272f6fc0c5975d4d932b5daadf4c88a4879e059006a47e792e1d0d0f3c4  ./assets/css/rounded-ui.css
 ae86f4d825e0166184c266a267d79c4fe0092db950b2131e93847f976920491b  ./assets/css/style.css
@@ -82,7 +84,6 @@ c1e61d2e65dcc0fb1408adf605d9c30ecdbe3b1a3c811609d45f8db49d809579  ./assets/docum
 5b194040f742feb12c17ead1e402549c6cf7474a75f61d19dfbcf4356c8b4b6b  ./assets/documents/huong-dan-su-dung/Bredomax 300 - VD-23652-15.pdf
 c8029cb9333f68d65d21fcdc8ed62faff55e7b9c09af4c50d76539e7b1aa3e7d  ./assets/documents/huong-dan-su-dung/Bucarvin - VD-17042-12.pdf
 a2b9913dc013a7e678fd6b5db1e51c9554380e6d737f339548d30bc88cb69732  ./assets/documents/huong-dan-su-dung/Bài thạch Trường Phúc - VD-32590-19.pdf
-a2b9913dc013a7e678fd6b5db1e51c9554380e6d737f339548d30bc88cb69732  ./assets/documents/huong-dan-su-dung/B├ái thß║ích Tr╞░ß╗¥ng Ph├║c - VD-32590-19.pdf
 81e8995b4a69d19a2d6d50f23a98019f2ea93f6c5ce1ad948e9a529188920810  ./assets/documents/huong-dan-su-dung/Camzitol - VN-22015-19.pdf
 f7377cc049fde47793580028680cba695a4b072a0e503f45245ef119410536e8  ./assets/documents/huong-dan-su-dung/Cebest - VD-28341-17.pdf
 98f94b5ed17821be7e882cea980101729b4331fa89053ee8da941723e7752dbf  ./assets/documents/huong-dan-su-dung/Cefoxitin 1g - VD-26841-17.pdf
@@ -140,10 +141,8 @@ ebfeec32a8652f0546853aa53bb46dc9e48ae4511d3f264eeab924c4b8805d54  ./assets/docum
 ec1d4e314b26580d40ebc119af689993370babcc15c0566bea54b82ffddb8a97  ./assets/documents/huong-dan-su-dung/Kali clorid 10_ - VD-25324-16.pdf
 42539b3d6fa471d11756ae2482375ad291857ee55df475b320757a170dffacbc  ./assets/documents/huong-dan-su-dung/Ketamine 500mg_10ml - 400112017124.pdf
 c8e6d2b4d1676997d3767be4f60cef15a5692586f06673f4826c5acc7f4b6220  ./assets/documents/huong-dan-su-dung/Klacid - VN-16101-13.pdf
-94f2b8097e25eb7e5552ed2ad421de53e43ee60b5a978199ccb039a35f092d1b  ./assets/documents/huong-dan-su-dung/Kß║╜m Oxyd 10_ - VD-19083-13.pdf
 94f2b8097e25eb7e5552ed2ad421de53e43ee60b5a978199ccb039a35f092d1b  ./assets/documents/huong-dan-su-dung/Kẽm Oxyd 10_ - VD-19083-13.pdf
 9b4dcc58b55f18f6f698889cf949534d1d7e975f5a2cf629490a39fb006ee1b9  ./assets/documents/huong-dan-su-dung/Lacbiosyn® - QLSP-851-15.pdf
-9b4dcc58b55f18f6f698889cf949534d1d7e975f5a2cf629490a39fb006ee1b9  ./assets/documents/huong-dan-su-dung/Lacbiosyn┬« - QLSP-851-15.pdf
 93d75c444075f385c4ad10ab913b6d046d9c359352994fb969736df253007da7  ./assets/documents/huong-dan-su-dung/Laci-eye - VD-27827-17.pdf
 047bc3ad71fe428c08d0df75c252cf17fef91304c7603704b5bd86346b34079e  ./assets/documents/huong-dan-su-dung/Lactated Ringer_s - 893110118323.pdf
 7f17c4f03379d10531d4a3e94a3a21a38f7b315a0c2fc715c474bd0a78189034  ./assets/documents/huong-dan-su-dung/LevoDHG 500 - VD-21558-14.pdf
@@ -187,7 +186,6 @@ deedd4dab21530858e24c8f4f96b5aa087fbddc541a89ac62e3c342be24b1bdb  ./assets/docum
 b5a3189f98768143bd4eae00d10234f11b6bc77984b986507487bbac39a4a6a0  ./assets/documents/huong-dan-su-dung/Nifedipin T20 retard - VD-24568-16.pdf
 c9aca2f4e5d65e936820b3abd32bf3b3bafc9595e4452c0bcc2df10e60a5a28c  ./assets/documents/huong-dan-su-dung/Nikoramyl 5 - VD-30393-18.pdf
 a89c020847c1b1e4a478797ae6bce7ccdd215cdba32b9716ac940d7e313c26eb  ./assets/documents/huong-dan-su-dung/Nước cất tiêm - VD-18797-13.pdf
-a89c020847c1b1e4a478797ae6bce7ccdd215cdba32b9716ac940d7e313c26eb  ./assets/documents/huong-dan-su-dung/N╞░ß╗¢c cß║Ñt ti├¬m - VD-18797-13.pdf
 bec6c714318c2a33a0c0b0a73fe39201b7ad4eb04bc4aea690a5e0f901fada30  ./assets/documents/huong-dan-su-dung/Ostenil - 14545NK-BYT-TB-CT.pdf
 080c479bdc16bc84cbd39e9fc11e440981196e2f79de0e51283a0675850b73f0  ./assets/documents/huong-dan-su-dung/Ostenil - 15685NK-BYT-TB-CT.pdf
 0252ba9439af15b0b5712648a682f3b1fc9db87a3a0320b12c97849c5f87fa9c  ./assets/documents/huong-dan-su-dung/Osvimec 300 - VD-22240-15.pdf
@@ -209,7 +207,6 @@ a6434daf57bc3727176888ac59b37f454f2bc9f48d64d5eabec0bb6831d33723  ./assets/docum
 fe819c27699c138b976ca7cd9b41d88f03f16c83c9223656696211f6e8f8c701  ./assets/documents/huong-dan-su-dung/Rileptid - VN-16749-13.pdf
 5a02cebdaab0893607be3600a23f01aae5b55bc3e8966b093936b8d881d4cb4b  ./assets/documents/huong-dan-su-dung/Rocuronium 50mg - VD-35273-21.pdf
 68917784f41ec8bae855bf864c732399399e35496dea95bc3aaef932958b2135  ./assets/documents/huong-dan-su-dung/Rx Aminoplasmal® B. Braun 10_ E - VN-18160-14.pdf
-68917784f41ec8bae855bf864c732399399e35496dea95bc3aaef932958b2135  ./assets/documents/huong-dan-su-dung/Rx Aminoplasmal┬« B. Braun 10_ E - VN-18160-14.pdf
 ac6f4c92067b5b9e9a2f115e1a6a89e191d6a20619e67b2d65e76a458190b007  ./assets/documents/huong-dan-su-dung/SaVi Losartan 100 - VD-27048-17.pdf
 ade411b8ab2dc0999f93af9fb38362814fce4a4e4bb74e192da68c3cf4ecfff0  ./assets/documents/huong-dan-su-dung/Sadapron 100 - VN-20971-18.pdf
 10bd7a5bdf3c4566a3172a333b255488c7b21e7186e5f93380b28a8565e18fc6  ./assets/documents/huong-dan-su-dung/Savi Prolol Plus HCT 2.5_6.25 - VD-20813-14.pdf
@@ -226,8 +223,6 @@ d79777a09c94b291433499c138bd8ddd85b0eef40450c66220f1e56d900871f6  ./assets/docum
 4af50a9c09cf3d75613cf86329fa1746e1a1f98c1590ccb37ca2a729c809287e  ./assets/documents/huong-dan-su-dung/Tenamyd-Cefotaxime 1000 - VD-19443-13.pdf
 80a9c3e6578af43de9d578a906ab245db81dd23605c98d0496a1e4347f6b3712  ./assets/documents/huong-dan-su-dung/Terpin - Codein HD - VD-32105-19.pdf
 d0103be9ad27014b149ecb4cdcd991e8a22fea31753e8b658457d5bd59b7f94f  ./assets/documents/huong-dan-su-dung/Theresol - VD-20942-14.pdf
-e197d3ad627db47db75e45d98b0bb6139ea91b5b8d520e644fbbad02e4207566  ./assets/documents/huong-dan-su-dung/Thuß╗æc tr─⌐ Tomoko - VD-25841-16.pdf
-a91c21d7df48fcec007f7913cd3d2cc913317a92f0aed8f0d3b1a680ab6f2de7  ./assets/documents/huong-dan-su-dung/Thuß╗æcREAMBERIN 1,5%.pdf
 e197d3ad627db47db75e45d98b0bb6139ea91b5b8d520e644fbbad02e4207566  ./assets/documents/huong-dan-su-dung/Thuốc trĩ Tomoko - VD-25841-16.pdf
 a91c21d7df48fcec007f7913cd3d2cc913317a92f0aed8f0d3b1a680ab6f2de7  ./assets/documents/huong-dan-su-dung/ThuốcREAMBERIN 1,5%.pdf
 f05237f8e1e2a376670d4722ae4b39840f7b7859682c42e3e895ab0276288981  ./assets/documents/huong-dan-su-dung/Thyperopa forte - VD-26833-17.pdf
@@ -261,10 +256,6 @@ c5b6cfee12b2598b4d696bf0a67ac04cb7c89a8d26a882cdcb169c41d9fe601e  ./assets/docum
 4838f504530ad0c8dc1b588355e529115ed7656a091f55d6792053220fe76ab5  ./assets/documents/huong-dan-su-dung/metronidazol.pdf
 8230445cb709e0d8611307a557a1fe24bbdb42322e9916034be7284e27042ddf  ./assets/documents/huong-dan-su-dung/verospiron25mg.pdf
 1b5cb63be2ce6f6cbd027673a7e8466c6d24dfe17751b39a3551843b0df5ceee  ./assets/documents/huong-dan-su-dung/Đại tràng hoàn PH - VD-25946-16.pdf
-1b5cb63be2ce6f6cbd027673a7e8466c6d24dfe17751b39a3551843b0df5ceee  ./assets/documents/huong-dan-su-dung/─Éß║íi tr├áng ho├án PH - VD-25946-16.pdf
-68403d9bcf5babf22d6e78630bd0a02152638cebade2377eeb079034928a9686  ./assets/documents/thong-tin-thuoc-kem-hdsd/Thuß╗æc REAMBERIN 1,5% - k├¿m HDSD.pdf
-5ea3e071ce2bf2b8ecbd750a03004046636ab8cf1479fef68c7e7c258a032417  ./assets/documents/thong-tin-thuoc-kem-hdsd/Thuß╗æc hß║í glucose m├íu Metformin 500 - k├¿m HDSD.pdf
-a2045d803a06c0108a800c668714e36265767fd86fb8741a80e19bfdd0644e4b  ./assets/documents/thong-tin-thuoc-kem-hdsd/Thuß╗æc xß╗ït m┼⌐i BENITA - k├¿m HDSD.pdf
 68403d9bcf5babf22d6e78630bd0a02152638cebade2377eeb079034928a9686  ./assets/documents/thong-tin-thuoc-kem-hdsd/Thuốc REAMBERIN 1,5% - kèm HDSD.pdf
 5ea3e071ce2bf2b8ecbd750a03004046636ab8cf1479fef68c7e7c258a032417  ./assets/documents/thong-tin-thuoc-kem-hdsd/Thuốc hạ glucose máu Metformin 500 - kèm HDSD.pdf
 a2045d803a06c0108a800c668714e36265767fd86fb8741a80e19bfdd0644e4b  ./assets/documents/thong-tin-thuoc-kem-hdsd/Thuốc xịt mũi BENITA - kèm HDSD.pdf
@@ -286,34 +277,6 @@ f237cc76fbab52182337ca2658a0f3c4bcdb5b15a726e60a930cf7238c8fec4d  ./assets/docum
 8dc4919ce6ce3db677a7e1c4c57fb9e3c585b2607ed8344b72cb252c7a8144c7  ./assets/documents/thong-tin-thuoc/Osaphine.pdf
 9aa414440001baea44be32b08a2c6d8fffc792e1cabb6b391e154a81a371548f  ./assets/documents/thong-tin-thuoc/RIXATHON.pdf
 8c63e744e6224953687d634d9dfa46027ad8ee231b5eb61b9af478fdf308f046  ./assets/documents/thong-tin-thuoc/TRIPLIXAM.pdf
-66dfd31082d5f862efefe67d8709e4adbc3a08f84c65b38e0b228d60b790bb6b  ./assets/documents/thong-tin-thuoc/Thuß╗æc AM - BROXOL.pdf
-344a63090d431cc01bd34057c35e37f0a0133917365e14f7f7d76777e95b8e5c  ./assets/documents/thong-tin-thuoc/Thuß╗æc Baci-subti.pdf
-252b0d4c4f0c03a26c6edc81ec46c452d8ef350c8500b0b2a02b8348ddae6b14  ./assets/documents/thong-tin-thuoc/Thuß╗æc Hadunalin (adrenalin).pdf
-b83987de4cd25a957ea796e3689e2d9739c58c2c08fe9988382b3bb449bc6e0f  ./assets/documents/thong-tin-thuoc/Thuß╗æc ONDANSETRON KABI.pdf
-02ac2cdbf0bac58d8fc9d3002b9c10f83179ea5613a63e95b701c0abd0d96cf2  ./assets/documents/thong-tin-thuoc/Thuß╗æc PENZIMA.pdf
-09c4873deb5fdf0d0f5a3a0f0b3b218d7f4e92caf08fa8a507e4107946e704ae  ./assets/documents/thong-tin-thuoc/Thuß╗æc REAMBERIN 1,5%.pdf
-c0940a326262caf5f2e1d6ef18d24d2529f170cb87080d6ee9b5b1cb42afa9d6  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng loß║ín nhß╗ïp tim BFS-ADENOSIN.pdf
-8a1bcc9f0d8cfc03e8cc056d08c2a757ec2e9d6acb92ceeb87b87cb9ce54ca0d  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng n├┤n Metovomit.pdf
-1320e873292aff586ea9edeaccf8ff52d024782e027a15c77823857c351e6faa  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ BOCARTIN.pdf
-093db1f66efbd9c255119b19c352eaa59ff4b8b9c7f7f2ebbb0a49940a0d14c5  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ Bestdocel.pdf
-14556945a98480ef96d797870d8b2322fd6ca28f266c863e0ab56bf3d241ff7f  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ CAPECITABINE 500mg.pdf
-a8b7843e68b5719a088c22c9ea632734e786991183d0a77bc7b8843c3d18109f  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ Canpaxel.pdf
-3a01661cd379bf3220697dcea5540e520ef53cb9e10b8655e918d4adecc000a8  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ Epirubicin Bidiphar.pdf
-f4ccd6200df39b07f3938fece110327e1031272649b3a848dc88abd755281d55  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ KPEC 500.pdf
-41048cfc6d960ffc7193d580b77a4519a956c17f98fa6298616a54148e301324  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ Lyoxatin.pdf
-e615e676cad3dce1e87aa142fb99f7a95f91a1eb70082005d8d2a7e2fcbe9b7f  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ OXALIPLATIN.pdf
-0dd06a50068a84d6fd1302b4f8c6a4d640f06eb34b9766a3e6fb079fc0e15dd5  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░ Paclitaxel Ebewe.pdf
-6510b518988741d69a6f471c338e3252e8ac8312f827b4531d029abe14b995ff  ./assets/documents/thong-tin-thuoc/Thuß╗æc chß╗æng ung th╞░, ß╗⌐c chß║┐ miß╗àn dß╗ïch Endoxan 500mg.pdf
-f488d2b5514c2a9f38a3933340b2232814c91200c3735abe63fc94078110cb82  ./assets/documents/thong-tin-thuoc/Thuß╗æc gi├ún c╞í tr╞ín HADUDROTA.pdf
-fe95994a289598f05fbb923efce738978df3431e4f7862bd5377ac3475938f7c  ./assets/documents/thong-tin-thuoc/Thuß╗æc hß╗ùn dß╗ïch nhß╗Å mß║»t Videtrol.pdf
-36c21c2fa0467c31c9f925193da80d624ac9db9db69087bea06309501cff1853  ./assets/documents/thong-tin-thuoc/Thuß╗æc kh├íng sinh Cefoperazon 1000 mg.pdf
-51f9b201db9e1b82819b28a03069d246a44bdb4e06a8789915af783fa1bd9306  ./assets/documents/thong-tin-thuoc/Thuß╗æc kh├íng sinh Ciproven 10 mgml.pdf
-33d5ca4fb814de53a7d0a4ff142a7a031f9e38aef914cec7b3d0469845cddd39  ./assets/documents/thong-tin-thuoc/Thuß╗æc kh├íng sinh OCEBI-SO.pdf
-2929b1523fb53d62827f62b0683e01c333447466495c478bf3e8658d0be2496b  ./assets/documents/thong-tin-thuoc/Thuß╗æc mß╗í tra mß║»t Acyclovir 3%.pdf
-ff35ccb2dbbf0e92ea921454c680102357bb5a27ac740c41bce9acd758adbf01  ./assets/documents/thong-tin-thuoc/Thuß╗æc xß╗ït m┼⌐i BENITA.pdf
-e5a33bdd59b0d7643abc488e5ec8a4b7db013534cb12bfbd568260de851e6a98  ./assets/documents/thong-tin-thuoc/Thuß╗æc ─æiß╗üu trß╗ï hß║í lipid pms-Rosuvastatin 10mg.pdf
-0d8e7662246cbdb7dc058a420bc2434fd015574f7a2c8524800ab3d1c228e484  ./assets/documents/thong-tin-thuoc/Thuß╗æc ─æiß╗üu trß╗ï t─âng huyß║┐t ├íp CANDESARTAN PLUS.pdf
-51464df6489f61217654ee016864618cfde8c89b0d814ebcded932c6e809ca7a  ./assets/documents/thong-tin-thuoc/Thuß╗æc ─æiß╗üu trß╗ï ─É├íi Th├ío ─É╞░ß╗¥ng HASANBEST.pdf
 66dfd31082d5f862efefe67d8709e4adbc3a08f84c65b38e0b228d60b790bb6b  ./assets/documents/thong-tin-thuoc/Thuốc AM - BROXOL.pdf
 344a63090d431cc01bd34057c35e37f0a0133917365e14f7f7d76777e95b8e5c  ./assets/documents/thong-tin-thuoc/Thuốc Baci-subti.pdf
 252b0d4c4f0c03a26c6edc81ec46c452d8ef350c8500b0b2a02b8348ddae6b14  ./assets/documents/thong-tin-thuoc/Thuốc Hadunalin (adrenalin).pdf
@@ -345,7 +308,6 @@ e5a33bdd59b0d7643abc488e5ec8a4b7db013534cb12bfbd568260de851e6a98  ./assets/docum
 cc4d6462cf534dff9c97c3303ba63f153e2f6dce27cd9c453928fa5df5c34e99  ./assets/documents/thong-tin-thuoc/VIN-ENEMA.pdf
 e16ad6f89d31ac75ae1437f59e515fbd6798191b5473d8911c75c9554ea109d8  ./assets/documents/thong-tin-thuoc/VINZIX 40mg.pdf
 eb1bc62d6c440cfc949fd26ea807804d375d98e760b0845f3f61ccfb3e73bd6b  ./assets/documents/thong-tin-thuoc/Zoledronic acid.pdf
-3e324711d5befa68b4db1715a9ed18a62548fb6e94ce584413e52b7bf832d3ff  ./assets/documents/thong-tin-thuoc/thuß╗æc bß╗ò phß║┐ trß╗ï ho.pdf
 3e324711d5befa68b4db1715a9ed18a62548fb6e94ce584413e52b7bf832d3ff  ./assets/documents/thong-tin-thuoc/thuốc bổ phế trị ho.pdf
 267a758c31bb0a5291106b0b72bb3c4cb326e162c5a74bb4ad6519bf80f33065  ./assets/dose_24h_summary.js
 5268dabefeb2e351d72306a72fc9b2ad46147b7fb6fcd2cd06473471c399c348  ./assets/drug_profiles_305_vpmed_20260710.js
@@ -410,7 +372,7 @@ ff608f3c7b744f3eb60322f9d26d92a9b4697190bb834169e4a97ac6a189e720  ./assets/pharm
 846574fdb76142c6257367a71f8bc5ba6dd943d9768d0ea5d395d35063a40dda  ./assets/pharmacovigilance_bulletin_76_data.js
 2eca4047940b56a041038aac6bdf4f4093a8f6886c8dd51cb79f784364b6ae33  ./assets/pharmacovigilance_integration.js
 470607ef2b1c78fe79e5ccc633413a0715f6dfd7abd1d565a0f6abcbf4ac0ec9  ./assets/platform-shell.css
-a8a48c80785a821ef8dd395b05a07ffd641a1918d9f3c6b5b513e1bd0b9fcc65  ./assets/platform-shell.js
+5bb2dc48ac5966e0130f6a73ec2d5e3269ccecab1069534999df78657bcb3940  ./assets/platform-shell.js
 3376181ffdb33594fac0b2dcb515cae125cbb4df83617e71ff82fef99c3ad54b  ./assets/pregnancy_lactation.css
 cff80c0b6cdcbc9e826ffb92502b0e16ba52d4f6089793c69699529ada91f4ae  ./assets/pregnancy_lactation.js
 a1735175da10e52257c86ace68dea800455a2ea82e011b2a6218d30ef8716c87  ./assets/prescription-check.css
@@ -442,7 +404,7 @@ cf7a4bc58c0baeb30d32aae04447317ce99a21829ebc1830b1c1bf234483921a  ./bhyt-khong-l
 349e9d6327aa0ad83738a92df7ea87ed3b8684707455abf0543a1061e04ff1b6  ./bhyt-khong-lay-thuoc/supabase/001_bhyt_nonpickup_cases.sql
 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./cai_dat_vao_web.py
 4e2c5b57dadc5977b26b43bf2108c2184923da6aff3be81befd13138dc47b9a0  ./cap-cuu-phan-ve.html
-7e25d885f433835dee1d91080e7beef04897f1bcfd0ce231c51387f5947416af  ./cap-nhat-du-lieu.html
+7117fd0ea5d1d876963b77441034d5e80298efded6da3c0c576158bbc9443619  ./cap-nhat-du-lieu.html
 c16d35303ae5d7a7028c5265c38a77db254715561a3bf55add5e04ec0f5f2d12  ./clinical-update-module.js
 8f911399d52544848465d1b4fe1838ee76d70984b4171e9c01309950cb494b9d  ./clinical-update-secure-client.js
 cfa09c70cb702b40e9484beb6442db472613bcf1905ac3bb42bc33a442e5d837  ./cong-cu-lieu-khang-sinh.html
@@ -480,6 +442,7 @@ cf65c93ad91f5e5aee9dafc851114667f12ae4cd27a95f9f3707e4a445432e0a  ./docs/changel
 de99e0b5a8a250e5f5ce5562350d4565270d5fda533a2ba9e89e853796eb5aea  ./docs/changelog/README_DANH_GIA_UNG_DUNG_V2_11_08_2026.txt
 9fbfaf1a25b4ea37b43a0e21dc51824ada1bf46a4ea211dd19dac0b8bf282dc4  ./docs/changelog/README_DOC_GAN.txt
 8ba3be2e471ea135027c42195bad0257fc5e985897338f4afde8d8d157f8f483  ./docs/changelog/README_FIX.txt
+516076a50f726d732859e4c3289a842e2cb9bd1741e70b6f5e14981054aae375  ./docs/changelog/README_HARDENING_WORKFLOW_CANH_BAO_DUOC_12_09_2026.md
 b08f2ee2d1f8aa0e617c679d2ed36a3d7907ecab63c58f8410e0b76f891c6481  ./docs/changelog/README_KHOI_PHUC_GIAO_DIEN_GOC_LOADING_12_07_2026.txt
 a4454cf88b06a490b67f14b689ad5a43775c1e9d2950586fa24b45967681cec7  ./docs/changelog/README_PHAN_BIET_THIEU_MA_BENH_19_08_2026.txt
 bc7890059982619cb85b261b422364a6120f2ea3e75787b94d31c58a5107edd0  ./docs/changelog/README_RUT_GON_CANH_GIAC_DUOC_VA_HARDENING_RLS_23_26_08_2026.md
@@ -514,18 +477,20 @@ c53528b3da67e49477e5401a465718d2aa5f76a931e2d052475aecb17c9ebfa7  ./docs/reports
 9ee299eb0ba77dd348f4793822ef596453210d253f7516235d6ffe4dc20b1758  ./evaluation-embed.js
 96159c6a13a90b68052d6f0ab0c2e5d60c7c8181f79e90707a475e0d32a4ddb3  ./fix-loader-scroll-lock.patch
 6992cdd10bdb0372eedcfc680267cfa138c92caa8a3a03a119008ea2a1cdc16a  ./huong-dan-su-dung.html
-0ce91f9f4c39734ebb3054e4cdd3b20f663a31bb84dd84cd36053b2d82ee5e09  ./index.html
+54985ff9031a2279350a98cc78f924d6e39b8d767ecd9fe28f70d658875373ef  ./index.html
 2ff221243470798a37d12bce96805e5d6182250674d026574be2a3ae457d3361  ./interactions.html
 215353892f5b8d9844d2b8d2029d6db3b81edef000fa01769f30070a3db6ecd7  ./manifest.json
 2a8ca709a30ab9dd5276a00c259dad2b2ff90e43cf2b77a0695c6efa3a2e6c54  ./medical-ui-v2.css
 a818e1ce8742a2cfbb33b50b71dfed411317db81a2f631dc2d7b57698f97ef7b  ./mobile-only-fix.css
-7f0405114d0574d534dad77f0c76001551c8ff03d97a7d0af47aa4206ff9b93a  ./petct-dose-tool.html
-a1ce63f4d42dc5db254dc1447fdaa2c1ac8e6ca6e1e3bee6819780d3014edd09  ./phieu-danh-gia.html
+1997682b21ccfd079f1bfdd1723be6f428408294af430225bea470da44faf47d  ./petct-dose-tool.html
+b4180fd9b4edf9dc879555fdf92273b53695fe4a6195f12346bae1d84b402928  ./phieu-danh-gia.html
 470607ef2b1c78fe79e5ccc633413a0715f6dfd7abd1d565a0f6abcbf4ac0ec9  ./platform-shell.css
 2c6411f8c0c08a93e750d182741cb07909fba699aa98695c3f774fe238c91ec3  ./requirements-dev.txt
 1c022593ccffbe80cc3a6b95c3826825e91ade9d934d1b11132861060ad12b53  ./responsive-polish.css
 c43180c7787119d873d94047d262b62a0805d0a3aaaac8eabd1c876b4e1b86e2  ./scripts/bump_app_version.py
+031a702f3fc55af627447459a38bca8e948d22e8f0df609ff3e31f41ae69627f  ./scripts/close_pharmacovigilance_failure_issue.sh
 7062d1ef8fbdaff4c2494edfdeb76ce275630d0c41c042e3f47aadf807742f40  ./scripts/expand_pediatric_antibiotics_20260822.mjs
+08562c7843bb8672031f899f30d916faee5670306b2a5b19994e0a31dcdf0714  ./scripts/report_pharmacovigilance_failure.sh
 1632d39f17023ef9786dfe09bb4f4fa5fb84014e70f92e41d8827e0ca9082b5b  ./scripts/update_clinical_data_version.py
 37243ef52f8395b12e0bb9875989c5f4ac327ceab5f1f16ed795d0d0cf65fae5  ./scripts/update_pharmacovigilance.py
 3955b916375bbb6bebb70ac1476e9b6eefef801f3a160995714802d479a21798  ./scripts/update_sha256sums.py
@@ -567,7 +532,7 @@ f2c76e8d7c61758a9df7ea69584e2dad38b50fc4c905dd5207f7b496f83e7582  ./supabase/sua
 169f7d4c3ec5636b70ace843451a4dd7eb75fd54f0e9db95303663771f859da1  ./supabase/sua_quyen_xoa_admin.sql
 b6775473e6c5799a241d839d69595947baaa826c0cd7584d7b7c23c7a2fa8cf5  ./supabase/them_quyen_admin_xoa_tai_khoan.sql
 3c102cafc778527b83798f339204dd0465d2f5b87462a748b0cccd4029a3660a  ./supabase/toi_uu_rls.sql
-04c7f6d0f8fec893a58f02c506270617e2b976ebce009ea06abef46142ae1f12  ./sw.js
+070e912ee344f524cf011078c5ff6e6e08c2b723654081d7e32abdcba68b13db  ./sw.js
 ebf926cb23dd942cd6a8e2af6a92cb8bbb476e60e8f84a14cd6c26f68eb5754d  ./tests/test-clinical-tools-port.js
 341044352b8c0c34596f746cea9fbb9996e9c036bdcf0cb43839858b7e9bf438  ./tests/test-clinical-tools.js
 2a03ecd5fee0251e63946fd3fc52849a874a28cdd7f6de688f5b94ed7b43cfe7  ./tests/test-device-compat.js
@@ -596,6 +561,7 @@ bd0e18a9aa482bc551d7163867936c31aee2063b43c210553287f676166efa61  ./tests/test_i
 656146ccb95366b2da453ef53af21cf49a376adb0c6c3029d185e9bee15390c5  ./tests/test_petct_batch_calculator.js
 dab783018ce930a3948181c587fd57d30db4112aa24140f500155db607c7e834  ./tests/test_pharmacovigilance_bulletin_76.py
 2d8d62b28e6cf2ed83424966b828377a869b7facbb2405497ad70de8b9b01a5c  ./tests/test_pharmacovigilance_concise_summary.js
+b86a7f46f9bb527d92f210e20e77363e39550ac6676848c2224908aec4c73ea2  ./tests/test_pharmacovigilance_failure_alerting.py
 f0c3faf905280e1590fe63bf5438d89e1ce6afa6016096cd01c48c7cf1e3b50b  ./tests/test_pharmacovigilance_workflow_schedule.py
 3d6527974fdfbded1b2294a9b3ca483738d214d4e8f526ab8ab3aa12fc090e2a  ./tests/test_prescription_action_layout.js
 f98e775ac496d73cbfedd6cc33d9924e6508f87b0f6e80e14347b16b4ef566c8  ./tests/test_prescription_clear_data.js
@@ -608,13 +574,13 @@ a9df61e32275e93d0829e60e9dcc7ccc86a0f1a21b38154cd3d127122aefecd3  ./tests/test_p
 2fa3386ddf0c489d3d1fa716061819a59efa833fb60075a99a54f77ad4eeca66  ./tests/test_rx_interaction_regulatory.js
 8727110882f1b7a6fc0e40e72e00c0d85e2651f14fe381d2d9384edfb7dc5aa3  ./tests/test_rx_official_sources.js
 1016c7292f119c222beec522506001d1f1286ca58b6ce26c7602db558ff66f51  ./tests/test_service_worker_data_version.js
-20c78a869ed3e2085eeca51550e3ff9a72b982fbc03237ff2e44b88a673822a0  ./tests/test_service_worker_manual_update_gate.js
+49f15867e8dac3091e658a379de09fe424edc301736eda6ca2179fc208bae594  ./tests/test_service_worker_manual_update_gate.js
 f00a5a301afcb12a7cd99edea60a87c7c1e2a6bc350b5faa69335091acafdac2  ./tests/test_stock_pediatric_expansion.js
 4912f68ff91cd1e762241154916f41d9210c3fc9e9022d7432ecc6226426859a  ./tests/test_stock_pediatric_smart_age.js
 04b863b9f3f22b52aa8fa961a541989b9f0527576b30b76d447e6b064acafff0  ./tests/test_supabase_security.py
 7ea7745e26df164da7942ba9c2cc4eff3632979fc1ec31993d3f0bb5f47943ac  ./tests/test_ui_cleanup.js
 b3a4e344c7c94cb7f544305027ebeb4549217addb8d62156b6598445cb6314a0  ./tests/test_unified_clinical_review.js
-a5ab64e000165ba1521523bb088329bf877c3072bd0c18d35e6b6b2002118560  ./tests/test_update_notifier_build.py
+49048b5e91a1e9f1769b56403f0b4ec960d96089613f1693424437dff023b337  ./tests/test_update_notifier_build.py
 d54f364dcce69d1b2a602cdc7b78f48a691bb509d778ea1eff4c487a61e5ddc1  ./tests/test_update_notifier_installed_data_only.js
 10af52cf89172aaed2090e98e7ba5c4e92da68b05272e96e79e0186c03fbce37  ./tests/test_update_notifier_manual.js
 6c25cfa1c07a265b87639b1d9f787b04686a1b214a669d3c163c4221b87d2586  ./tests/test_update_pharmacovigilance.py

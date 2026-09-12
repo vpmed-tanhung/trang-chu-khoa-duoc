@@ -65,16 +65,16 @@ vm.runInContext(fs.readFileSync(path.join(root, 'sw.js'), 'utf8'), sandbox);
   const normal = await sandbox.networkFirstNavigation(
     new Request('https://example.test/index.html')
   );
-  assert.strictEqual(await normal.text(), 'OLD_BUILD');
-  assert.strictEqual(networkRequests, 0, 'Chưa bấm Cập nhật thì không được tải HTML build mới');
+  assert.strictEqual(await normal.text(), 'NEW_BUILD');
+  assert.strictEqual(networkRequests, 1, 'Khi có mạng phải luôn tải HTML build mới');
 
   const accepted = await sandbox.networkFirstNavigation(
     new Request('https://example.test/index.html?vpmed_update=2026.08.29.66')
   );
   assert.strictEqual(await accepted.text(), 'NEW_BUILD');
-  assert.strictEqual(networkRequests, 1, 'Dấu do nút Cập nhật tạo ra mới được phép tải HTML build mới');
+  assert.strictEqual(networkRequests, 2, 'URL cập nhật cũng phải tải trực tiếp build mới');
 
-  console.log('Service worker manual update gate tests: OK');
+  console.log('Service worker fresh-build tests: OK');
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;

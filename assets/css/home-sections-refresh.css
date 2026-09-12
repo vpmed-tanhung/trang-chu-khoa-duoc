@@ -127,6 +127,7 @@
 }
 
 #clinical-workspace #view-home .feature-card::after {
+  grid-area: auto;
   display: grid;
   grid-column: 3;
   grid-row: 1 / span 3;
@@ -165,6 +166,7 @@
 }
 
 #clinical-workspace #view-home .feature-icon {
+  grid-area: auto;
   display: grid;
   grid-column: 1;
   grid-row: 1 / span 3;
@@ -182,6 +184,7 @@
 #clinical-workspace #view-home .feature-card b,
 #clinical-workspace #view-home .feature-card small,
 #clinical-workspace #view-home .feature-card em {
+  grid-area: auto;
   grid-column: 2;
 }
 
