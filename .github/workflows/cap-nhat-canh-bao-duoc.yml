@@ -1,0 +1,79 @@
+name: Cập nhật cảnh báo dược tự động
+
+on:
+  schedule:
+    # Giờ UTC — tương ứng 06:07, 06:37 và 07:17 giờ Việt Nam (UTC+7).
+    # Không đặt ở phút 00 vì GitHub có thể trì hoãn lịch chạy đúng phút 00
+    # trong giờ cao điểm; ba lượt lệch phút giúp tăng khả năng chạy đúng ngày.
+    - cron: "7 23 * * *"
+    - cron: "37 23 * * *"
+    - cron: "17 0 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: cap-nhat-canh-bao-duoc
+  # Không hủy lượt đang chạy: nếu GitHub trì hoãn một trong ba lượt ở trên
+  # và nó khởi động trùng lúc lượt khác đang xử lý dở, ta muốn lượt đang
+  # chạy được hoàn tất thay vì bị hủy giữa chừng.
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  # Cần để tự tạo/bình luận/đóng Issue theo dõi lỗi (xem 2 bước cuối của job).
+  issues: write
+
+jobs:
+  cap-nhat:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cài đặt Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cài thư viện phụ thuộc
+        run: pip install -r requirements-dev.txt
+
+      - name: Chạy script cập nhật cảnh báo dược
+        run: python scripts/update_pharmacovigilance.py
+
+      - name: Kiểm tra có thay đổi dữ liệu không
+        id: kiem-tra-thay-doi
+        run: |
+          if git diff --quiet -- assets/pharmacovigilance_auto.json assets/pharmacovigilance_auto_data.js assets/platform-shell.js; then
+            echo "co-thay-doi=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "co-thay-doi=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit và đẩy dữ liệu mới
+        if: steps.kiem-tra-thay-doi.outputs.co-thay-doi == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/pharmacovigilance_auto.json assets/pharmacovigilance_auto_data.js assets/platform-shell.js
+          git commit -m "chore: tự động cập nhật cảnh báo dược $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      # Hai bước dưới đây giúp chạy không giám sát nhiều tháng vẫn an toàn:
+      # nếu lỗi, tự mở/ghi tiếp 1 Issue duy nhất (không spam nhiều issue mỗi
+      # ngày); khi có lượt kế tiếp chạy trót lọt, tự đóng issue đó lại. Chỉ
+      # cần mở tab Issues khi quay lại thay vì lục log từng lượt chạy.
+      - name: Đóng Issue lỗi cũ nếu lượt này chạy thành công
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/close_pharmacovigilance_failure_issue.sh
+
+      - name: Ghi/cập nhật Issue cảnh báo khi lượt này lỗi
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/report_pharmacovigilance_failure.sh

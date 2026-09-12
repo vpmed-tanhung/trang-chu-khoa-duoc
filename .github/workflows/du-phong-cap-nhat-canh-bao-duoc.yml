@@ -1,0 +1,71 @@
+name: Dự phòng cập nhật cảnh báo dược (chạy tay)
+
+# Chỉ kích hoạt thủ công. Dùng khi cả ba lượt tự động trong ngày đều bị
+# GitHub trì hoãn/bỏ lỡ hoặc gặp lỗi mạng, cần chạy lại ngay mà không phải
+# chờ tới hôm sau.
+on:
+  workflow_dispatch: {}
+
+concurrency:
+  # Dùng CHUNG nhóm với workflow chính (cap-nhat-canh-bao-duoc.yml) để 2
+  # workflow không bao giờ chạy song song và cùng ghi/đẩy dữ liệu một lúc —
+  # ví dụ khi bấm chạy tay dự phòng đúng lúc lịch tự động đang xử lý dở.
+  group: cap-nhat-canh-bao-duoc
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  # Cần để tự tạo/bình luận/đóng Issue theo dõi lỗi (xem 2 bước cuối của job).
+  issues: write
+
+jobs:
+  cap-nhat-du-phong:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Cài đặt Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cài thư viện phụ thuộc
+        run: pip install -r requirements-dev.txt
+
+      - name: Chạy script cập nhật (bỏ qua nếu hôm nay đã có dữ liệu mới)
+        run: python scripts/update_pharmacovigilance.py --skip-if-fresh
+
+      - name: Kiểm tra có thay đổi dữ liệu không
+        id: kiem-tra-thay-doi
+        run: |
+          if git diff --quiet -- assets/pharmacovigilance_auto.json assets/pharmacovigilance_auto_data.js assets/platform-shell.js; then
+            echo "co-thay-doi=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "co-thay-doi=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit và đẩy dữ liệu mới
+        if: steps.kiem-tra-thay-doi.outputs.co-thay-doi == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/pharmacovigilance_auto.json assets/pharmacovigilance_auto_data.js assets/platform-shell.js
+          git commit -m "chore: cập nhật dự phòng cảnh báo dược $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Đóng Issue lỗi cũ nếu lượt này chạy thành công
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/close_pharmacovigilance_failure_issue.sh
+
+      - name: Ghi/cập nhật Issue cảnh báo khi lượt này lỗi
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/report_pharmacovigilance_failure.sh
