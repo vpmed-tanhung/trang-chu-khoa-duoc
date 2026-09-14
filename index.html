@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' data: blob: https://*.supabase.co https://script.google.com https://script.googleusercontent.com https://*.googleusercontent.com https://cdn.jsdelivr.net https://tessdata.projectnaptha.com; img-src 'self' data: blob:; object-src 'self' blob:; frame-src 'self' blob:; worker-src 'self' blob: https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; base-uri 'self'; form-action 'self'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<meta name="vpmed-build-version" content="2026.09.12.84">
+<meta name="vpmed-build-version" content="2026.09.14.87">
 <title>Khoa Dược &#8211; Bệnh viện VPMED TÂN HƯNG</title>
 <meta name="description" content="Khoa Dược Bệnh viện  VPMED Tân Hưng: chức năng, nhiệm vụ, cơ cấu tổ chức và bản tin dược lâm sàng.">
 <link rel="stylesheet" href="assets/css/style.css?v=1.1.8">
 <link rel="manifest" href="manifest.json?v=20260910-direct-v2">
 <link rel="apple-touch-icon" href="assets/icon-192.png">
-<link rel="stylesheet" href="assets/style.css?v=20260910-direct-v2">
+<link rel="stylesheet" href="assets/style.css?v=20260914-qc-supabase-v1">
 <link rel="stylesheet" href="assets/disclaimer-gate.css?v=20260910-direct-v2">
 <link rel="stylesheet" href="assets/responsive-polish.css?v=20260911-mobile-v3">
 <link rel="stylesheet" href="assets/platform-shell.css?v=20260910-direct-v2">
@@ -585,6 +585,112 @@
     </div>
     <div class="petct-inline">
 <main class="wrap">
+<section class="card petct-qc-card" id="petctQcModule" aria-labelledby="petctQcTitle">
+  <div class="petct-qc-heading">
+    <div>
+      <span class="petct-qc-eyebrow">Phần 1 · Kiểm tra chất lượng</span>
+      <h2 id="petctQcTitle">Công cụ QC – Kiểm tra chất lượng dược chất</h2>
+      <p class="help">Ghi nhận số đo, tính hệ số gắn tức thì, lưu trên thiết bị và đồng bộ lịch sử với Supabase.</p>
+    </div>
+    <label class="petct-qc-mode-field" for="qcMode">
+      <span>Chế độ kiểm tra</span>
+      <select id="qcMode">
+        <option value="aceton-nacl" selected>Aceton/NaCl</option>
+        <option value="mibi-seppak">MIBI Sep-Pak</option>
+      </select>
+    </label>
+  </div>
+
+  <form id="petctQcForm" novalidate>
+    <div class="grid3 petct-qc-meta-grid">
+      <div><label for="qcDrugName">Tên dược chất</label><input id="qcDrugName" type="text" autocomplete="off" required></div>
+      <div><label for="qcDate">Ngày thực hiện</label><input id="qcDate" type="date" required></div>
+      <div><label for="qcLotNumber">Số lô</label><input id="qcLotNumber" type="text" autocomplete="off"></div>
+      <div><label for="qcManufacturer">Hãng sản xuất</label><input id="qcManufacturer" type="text" autocomplete="off"></div>
+      <div><label for="qcBoundActivity">Hoạt độ gắn (mCi)</label><input id="qcBoundActivity" type="number" step="any" min="0" inputmode="decimal"></div>
+      <div><label for="qcPh">Giá trị pH</label><input id="qcPh" type="number" step="any" inputmode="decimal"></div>
+      <div><label for="qcCompounder">Người pha chế</label><input id="qcCompounder" type="text" autocomplete="off"></div>
+      <div><label for="qcOperator">Người QC</label><input id="qcOperator" type="text" autocomplete="off"></div>
+    </div>
+
+    <div id="qcAcetonNaclFields" class="petct-qc-method-grid">
+      <fieldset>
+        <legend>DM Aceton – F (Free)</legend>
+        <div class="petct-qc-two-fields">
+          <div><label for="qcAcetonTop">TOP (µCi)</label><input id="qcAcetonTop" type="number" step="any" min="0" inputmode="decimal"></div>
+          <div><label for="qcAcetonBot">BOT (µCi)</label><input id="qcAcetonBot" type="number" step="any" min="0" inputmode="decimal"></div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>DM NaCl 0,9% – H (Hydrolyzed)</legend>
+        <div class="petct-qc-two-fields">
+          <div><label for="qcNaclTop">Top (µCi)</label><input id="qcNaclTop" type="number" step="any" min="0" inputmode="decimal"></div>
+          <div><label for="qcNaclBot">BOT (µCi)</label><input id="qcNaclBot" type="number" step="any" min="0" inputmode="decimal"></div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div id="qcMibiFields" class="petct-qc-method-grid" hidden>
+      <fieldset>
+        <legend>DM Ethanol 96% – MIBI</legend>
+        <div class="petct-qc-two-fields">
+          <div><label for="qcSepPak">Sep-Pak (µCi)</label><input id="qcSepPak" type="number" step="any" min="0" inputmode="decimal"></div>
+          <div><label for="qcEthanol">Ethanol (µCi)</label><input id="qcEthanol" type="number" step="any" min="0" inputmode="decimal"></div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="petct-qc-result-grid" aria-live="polite">
+      <div><span>F (Free)</span><strong id="qcFreePercent">--</strong><small>%</small></div>
+      <div><span>H (Hydrolyzed)</span><strong id="qcHydrolyzedPercent">--</strong><small>%</small></div>
+      <div class="petct-qc-bound-result"><span>HS gắn (Bound)</span><strong id="qcBoundPercent">--</strong><small>%</small></div>
+    </div>
+    <div id="qcCalculationStatus" class="petct-qc-status" role="status">Nhập đủ số đo để tính kết quả.</div>
+
+    <div class="grid3 petct-qc-device-grid">
+      <div><label for="qcMo99">Mo-99 – kênh đo Biodex (µCi)</label><input id="qcMo99" type="number" step="any" min="0" inputmode="decimal"></div>
+      <div>
+        <label for="qcAluminum">Nhôm tạp chất – so màu giấy thử</label>
+        <select id="qcAluminum">
+          <option value="">Chưa ghi nhận</option>
+          <option value="pass">Đạt – màu mẫu thử nhạt hơn màu mẫu chuẩn</option>
+          <option value="fail">Không đạt – màu mẫu thử không nhạt hơn màu mẫu chuẩn</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="actions petct-qc-actions">
+      <button class="btn" id="qcSaveButton" type="submit">Lưu kết quả QC</button>
+      <button class="btn2" id="qcResetButton" type="button">Xóa dữ liệu nhập</button>
+      <button class="btn2" id="qcExportButton" type="button">Xuất CSV</button>
+      <button class="btn2 btn2-muted" id="qcClearSavedButton" type="button">Xóa toàn bộ dữ liệu</button>
+    </div>
+    <p id="qcFormMessage" class="petct-qc-form-message" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="petct-qc-saved-heading">
+    <div><h3>Lịch sử QC trên thiết bị và Supabase</h3><p class="help">Luôn lưu cục bộ trước; bản ghi chờ sẽ tự đồng bộ khi kết nối khả dụng.</p></div>
+    <div class="petct-qc-sync-controls">
+      <span id="qcSavedCount">0 dòng</span>
+      <button class="btn2" id="qcSyncButton" type="button">Làm mới / Đồng bộ</button>
+    </div>
+  </div>
+  <div id="qcCloudStatus" class="petct-qc-cloud-status" role="status" aria-live="polite">Đang kiểm tra cấu hình Supabase…</div>
+  <div class="table-wrap petct-qc-table-wrap">
+    <table class="petct-qc-table">
+      <thead>
+        <tr>
+          <th rowspan="2">Tên dược chất</th><th rowspan="2">Ngày thực hiện</th><th rowspan="2">Số lô sx</th><th rowspan="2">Hãng sx</th><th rowspan="2">HĐ gắn<br><span>(mCi)</span></th>
+          <th colspan="2">DM Aceton (F*)</th><th colspan="2">DM NaCl 0,9% (H*)</th><th colspan="2">DM Ethanol 96% (MIBI)</th>
+          <th rowspan="2">HS gắn %<br><span>(B*)</span></th><th rowspan="2">pH</th><th rowspan="2">Mo-99<br><span>(µCi)</span></th><th rowspan="2">Nhôm tạp chất</th><th rowspan="2">Người pha chế</th><th rowspan="2">Người QC</th><th rowspan="2">Lưu trữ</th>
+        </tr>
+        <tr><th>TOP (µCi)</th><th>BOT (µCi)</th><th>Top (µCi)</th><th>BOT (µCi)</th><th>Sep-Pak (µCi)</th><th>Ethanol (µCi)</th></tr>
+      </thead>
+      <tbody id="qcSavedBody"><tr class="petct-qc-empty"><td colspan="18">Chưa có kết quả QC được lưu.</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
 <section class="card">
 <h2>Kế hoạch hoạt độ nhiều ca</h2>
 <p class="help">Nhập tổng hoạt độ nhận tại viện, cân nặng, đường huyết và giờ tiêm của từng ca. Các cột kết quả được tính tự động.</p>
@@ -634,431 +740,7 @@
   </div>
 </details>
 </section>
-
-<div class="grid">
-<section class="card">
-<h2>Tính cho một bệnh nhân</h2>
-
-<div class="grid3 petct-condition-grid">
-  <div>
-    <label>Tình trạng / chỉ định chính</label>
-    <select id="singleCondition">
-      <option value="oncology" selected>Ung thư</option>
-      <option value="diabetes">Đái tháo đường</option>
-      <option value="hypertension">Bệnh tăng huyết áp</option>
-      <option value="cardiac">Bệnh tim mạch</option>
-      <option value="neuro">Bệnh thần kinh</option>
-      <option value="other">Khác / theo chỉ định riêng</option>
-    </select>
-  </div>
-  <div>
-    <label>Đường huyết trước tiêm (mmol/L)</label>
-    <input id="singleGlucose" type="number" step="0.1" placeholder="Nhập nếu có">
-  </div>
-  <div>
-    <label>Huyết áp trước chụp (mmHg)</label>
-    <input id="singleBloodPressure" type="text" inputmode="numeric" placeholder="VD: 130/80">
-  </div>
-  <div>
-    <label>Ghi chú tình trạng</label>
-    <input id="singleClinicalNote" type="text" placeholder="Ghi chú lâm sàng">
-  </div>
-</div>
-
-<div class="grid3">
-  <div>
-    <label>Đồng vị / dược chất</label>
-    <select id="tracerSelect">
-      <option value="F18">F-18 FDG</option>
-      <option value="GA68">Ga-68 DOTATATE</option>
-      <option value="C11">C-11 Choline</option>
-      <option value="N13">N-13 Ammonia</option>
-      <option value="CUSTOM">Khác / tự nhập</option>
-    </select>
-  </div>
-  <div>
-    <label>Khoảng liều tham khảo</label>
-    <input id="doseRangeText" type="text" value="3,5–5,0 MBq/kg" readonly>
-  </div>
-  <div>
-    <label>Ứng dụng chính</label>
-    <input id="clinicalUseText" type="text" value="Ung thư, tim mạch, thần kinh" readonly>
-  </div>
-</div>
-<div class="grid3">
-  <div>
-    <label>Cân nặng bệnh nhân (kg)</label>
-    <input id="weight" type="number" step="0.1" placeholder="Nhập cân nặng">
-  </div>
-  <div>
-    <label>Hệ số liều theo SOP</label>
-    <input id="k" type="number" step="0.001" placeholder="Ví dụ: 0.10; 0.12; 0.14; 0.15">
-  </div>
-  <div>
-    <label>Đơn vị hệ số</label>
-    <select id="kUnit">
-      <option value="mCiKg" selected>mCi/kg</option>
-      <option value="MBqKg">MBq/kg</option>
-    </select>
-  </div>
-</div>
-<div class="grid3">
-  <div>
-    <label>Chu kỳ bán rã 18F-FDG (phút)</label>
-    <input id="half" type="number" step="0.1" value="109.8">
-  </div>
-  <div>
-    <label>Ngưỡng kiểm tra thấp (mCi)</label>
-    <input id="minCheck" type="number" step="0.1" value="5">
-  </div>
-  <div>
-    <label>Ngưỡng kiểm tra cao (mCi)</label>
-    <input id="maxCheck" type="number" step="0.1" value="20">
-  </div>
-</div>
-<div class="actions">
-  <button class="btn2" onclick="useMci(0.10)">0,10 mCi/kg</button>
-  <button class="btn2" onclick="useMci(0.12)">0,12 mCi/kg</button>
-  <button class="btn2" onclick="useMci(0.14)">0,14 mCi/kg</button>
-  <button class="btn2" onclick="useMci(0.15)">0,15 mCi/kg</button>
-  <button class="btn2" onclick="useFourMBq()">4,0 MBq/kg</button>
-  <button class="btn2" onclick="useTracerMidDose()">Liều trung bình của đồng vị đang chọn</button>
-</div>
-<p class="help">
-  Nếu quen tính theo mCi/kg, dùng các nút 0,10–0,15 mCi/kg. 
-  Nếu chọn đồng vị khác FDG, có thể bấm “Liều trung bình của đồng vị đang chọn” để tự điền hệ số MBq/kg tham khảo.
-</p>
-</section>
-
-<section class="card">
-<h2>2.1) Thời gian từ lúc đo/rút đến lúc tiêm</h2>
-<div class="grid3">
-  <div>
-    <label>Ngày đo/rút thuốc</label>
-    <input id="drawDate" type="date">
-  </div>
-  <div>
-    <label>Giờ đo/rút thuốc</label>
-    <input id="drawTime"  type="text" inputmode="numeric" placeholder="HH:mm">
-  </div>
-  <div>
-    <label>Ngày tiêm</label>
-    <input id="injectDate" type="date">
-  </div>
-</div>
-<div class="grid3">
-  <div>
-    <label>Giờ dự kiến tiêm</label>
-    <input id="injectTime"  type="text" inputmode="numeric" placeholder="HH:mm">
-  </div>
-  <div>
-    <label>Hoặc nhập trực tiếp số phút chờ</label>
-    <input id="deltaManual" type="number" step="1" placeholder="Ví dụ: 30">
-  </div>
-  <div>
-    <label>Chế độ tính</label>
-    <select id="mode">
-      <option value="targetToDraw">Tính lượng cần rút để đủ liều lúc tiêm</option>
-      <option value="drawToInject">Tính lượng còn lại lúc tiêm từ lượng đã rút</option>
-    </select>
-  </div>
-</div>
-<div>
-  <label>Hoạt độ đã rút tại thời điểm đo/rút (mCi)</label>
-  <input id="drawnMci" type="number" step="0.01" placeholder="Chỉ nhập khi muốn tính lượng còn lại lúc tiêm">
-</div>
-</section>
-
-<section class="card">
-<h2>2.2) Nồng độ hoạt độ và thể tích cần rút</h2>
-<div class="grid3">
-  <div>
-    <label>Tổng hoạt độ tại thời điểm đo (mCi)</label>
-    <input id="stockA" type="number" step="0.01" placeholder="Tổng mCi trong lọ/bơm">
-  </div>
-  <div>
-    <label>Tổng thể tích tại thời điểm đo (mL)</label>
-    <input id="stockV" type="number" step="0.01" placeholder="Tổng mL">
-  </div>
-  <div>
-    <label>Nồng độ nhập trực tiếp (mCi/mL)</label>
-    <input id="concDirect" type="number" step="0.01" placeholder="Có thể bỏ trống">
-  </div>
-</div>
-<p class="help">Nếu biết sẵn nồng độ mCi/mL tại đúng thời điểm đo thì nhập trực tiếp. Nếu không, nhập tổng hoạt độ và tổng thể tích.</p>
-</section>
-
-<section class="card">
-<h2>2.3) Tính liều thực tiêm sau tiêm</h2>
-<div class="grid3">
-  <div>
-    <label>Hoạt độ bơm trước tiêm (mCi)</label>
-    <input id="preA" type="number" step="0.01" placeholder="Đo trên dose calibrator">
-  </div>
-  <div>
-    <label>Hoạt độ còn dư sau tiêm (mCi)</label>
-    <input id="resA" type="number" step="0.01" placeholder="Đo phần còn lại sau tiêm">
-  </div>
-  <div>
-    <label>Số phút từ đo trước tiêm đến đo còn dư</label>
-    <input id="resDelta" type="number" step="1" value="0">
-  </div>
-</div>
-</section>
-</div>
-
-<section class="card">
-<h2>Kết quả tính đơn bệnh nhân</h2>
-<div id="alerts"></div>
-<div class="resultBox">
-  <div class="kpi"><b>Liều cần có lúc tiêm</b><span id="target">--</span><div id="targetMbq" class="small"></div></div>
-  <div class="kpi"><b>Thời gian chờ</b><span id="dt">--</span><div id="decay" class="small"></div></div>
-  <div class="kpi"><b>Lượng cần rút ban đầu</b><span id="drawNeed">--</span><div id="drawNeedMbq" class="small"></div></div>
-  <div class="kpi"><b>Thể tích cần rút</b><span id="volNeed">--</span><div id="concShow" class="small"></div></div>
-</div>
-<div class="resultBox" style="margin-top:10px">
-  <div class="kpi"><b>Nếu đã rút: còn lại lúc tiêm</b><span id="remain">--</span><div id="remainMbq" class="small"></div></div>
-  <div class="kpi"><b>Liều thực tiêm</b><span id="actual">--</span><div id="actualMbq" class="small"></div></div>
-  <div class="kpi"><b>Chênh lệch so với mục tiêu</b><span id="diff">--</span><div class="small">Tính khi đã nhập liều thực tiêm</div></div>
-  <div class="kpi"><b>Gợi ý kiểm tra</b><span id="action">--</span><div class="small">Đối chiếu SOP trước khi dùng</div></div>
-</div>
-<div class="actions">
-  <button class="btn" onclick="calc()">Tính lại</button>
-  <button class="btn2" onclick="clearPatient()">Xóa dữ liệu ca</button>
-  <button class="btn2" onclick="window.print()">In / lưu PDF</button>
-</div>
-</section>
-
-<section class="card">
-<h2>Bảng diễn giải tính đơn bệnh nhân</h2>
-<table>
-<thead><tr><th>Bước</th><th>Cách tính</th><th>Kết quả</th></tr></thead>
-<tbody id="table"></tbody>
-</table>
-</section>
-
-
-
-
-<section class="card">
-<h2>Ghi chú ca bệnh</h2>
-<textarea id="note" placeholder="Ghi chỉ định, đường huyết, thời gian nhịn ăn, người thao tác, số lô FDG..."></textarea>
-<p class="small">Công cụ chỉ hỗ trợ tính toán. Liều cuối cùng phải theo SOP đơn vị, bác sĩ Y học hạt nhân, quy định an toàn bức xạ và nguyên tắc ALARA.</p>
-</section>
-
 </main>
-
-<details class="petct-refs-bottom">
-  <summary>Tài liệu tham khảo, bảng tra nhanh và nguyên tắc tính</summary>
-  <div class="petct-refs-bottom-body">
-<section class="refBox">
-<h2>Bảng tra cứu tiêu chuẩn liều lượng y học hạt nhân</h2>
-<p class="muted">
-Bảng này dùng để chọn nhanh đồng vị, chu kỳ bán rã và khoảng liều tham khảo. Liều cuối cùng vẫn phải theo SOP của đơn vị, chỉ định lâm sàng, protocol máy và bác sĩ Y học hạt nhân.
-</p>
-<table class="darkTable">
-<thead>
-<tr>
-<th>Đồng vị</th>
-<th>Tên thuốc thường dùng</th>
-<th>Chu kỳ bán rã</th>
-<th>Liều khuyến cáo thường dùng</th>
-<th>Ứng dụng lâm sàng chính</th>
-<th>Chọn nhanh</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><b>F-18</b></td>
-<td>F-18 FDG</td>
-<td>109,8 phút</td>
-<td>3,5–5,0 MBq/kg</td>
-<td>Khảo sát chuyển hóa đường trong ung thư, tim mạch, thần kinh.</td>
-<td><button class="btn2" onclick="chooseTracer('F18')">Chọn F-18 FDG</button></td>
-</tr>
-<tr>
-<td><b>Ga-68</b></td>
-<td>Ga-68 DOTATATE</td>
-<td>68,3 phút</td>
-<td>2,0–2,5 MBq/kg</td>
-<td>Chẩn đoán u thần kinh nội tiết đặc hiệu.</td>
-<td><button class="btn2" onclick="chooseTracer('GA68')">Chọn Ga-68</button></td>
-</tr>
-<tr>
-<td><b>C-11</b></td>
-<td>C-11 Choline</td>
-<td>20,4 phút</td>
-<td>4,0–7,0 MBq/kg</td>
-<td>Khảo sát tái phát sớm ung thư tuyến tiền liệt.</td>
-<td><button class="btn2" onclick="chooseTracer('C11')">Chọn C-11</button></td>
-</tr>
-<tr>
-<td><b>N-13</b></td>
-<td>N-13 Ammonia</td>
-<td>10,0 phút</td>
-<td>10,0–15,0 MBq/kg</td>
-<td>Đánh giá tưới máu cơ tim chuyên sâu.</td>
-<td><button class="btn2" onclick="chooseTracer('N13')">Chọn N-13</button></td>
-</tr>
-</tbody>
-</table>
-<p class="muted"><i>Lưu ý: Bảng này là bảng tra nhanh tham khảo. Với đồng vị có chu kỳ bán rã ngắn như C-11 và N-13, thời gian chờ vài phút cũng ảnh hưởng đáng kể đến liều thực tế.</i></p>
-</section>
-
-<section class="refBox">
-<h2>1. Tính liều 18F-FDG theo cân nặng</h2>
-
-<p>
-Trong PET/CT, “liều” của 18F-FDG được hiểu là <b>hoạt độ phóng xạ</b>.
-Không tính theo mg như thuốc thông thường.
-</p>
-
-<div class="callout">
-<b>Đơn vị cần nhớ:</b><br>
-1 mCi = 37 MBq
-</div>
-
-<h3>Công thức chính</h3>
-<p>
-Chọn hệ số liều theo quy trình của khoa, sau đó nhân với cân nặng bệnh nhân.
-</p>
-
-<div class="refFormula">Liều cần tiêm = Cân nặng × Hệ số liều</div>
-
-<div class="callout">
-<b>Nếu nhập hệ số theo MBq/kg:</b><br>
-Liều cần tiêm (MBq) = Cân nặng (kg) × Hệ số liều (MBq/kg)
-</div>
-
-<div class="callout">
-<b>Nếu nhập hệ số theo mCi/kg:</b><br>
-Liều cần tiêm (mCi) = Cân nặng (kg) × Hệ số liều (mCi/kg)
-</div>
-
-<p>
-Với <b>18F-FDG ở người lớn</b>, hệ số thường do từng đơn vị PET/CT quy định trong SOP.
-Khoảng hay dùng để tham khảo là <b>3,5–5,2 MBq/kg</b>,
-tương đương khoảng <b>0,10–0,14 mCi/kg</b>.
-</p>
-
-<p>
-Trong công cụ này có các nút chọn nhanh theo <b>mCi/kg</b> vì đây là cách nhiều nhân viên thao tác quen dùng trong thực hành.
-Nút <b>4,0 MBq/kg</b> vẫn giữ lại để đối chiếu khi SOP dùng hệ MBq.
-</p>
-
-<div class="callout">
-<b>Ví dụ:</b><br>
-Bệnh nhân nặng 60 kg, chọn hệ số 4,0 MBq/kg.<br>
-Liều cần tiêm = 60 × 4,0 = 240 MBq.<br>
-Đổi sang mCi: 240 / 37 ≈ 6,5 mCi.
-</div>
-</section>
-
-<section class="refBox">
-<h2>2. Công thức dược động học: hiệu chỉnh liều theo thời gian phân rã</h2>
-<p>18F-FDG giảm hoạt độ liên tục sau khi được sản xuất hoặc sau khi được rút ra bơm tiêm. Vì vậy cần tính liều <b>tại đúng thời điểm tiêm</b>, không chỉ tính tại thời điểm chuẩn bị.</p>
-
-<div class="refFormula">A<sub>t</sub> = A<sub>0</sub> × e<sup>-λt</sup></div>
-
-<p>Trong đó:</p>
-<ul>
-<li><b>A<sub>t</sub></b>: hoạt độ còn lại tại thời điểm tiêm.</li>
-<li><b>A<sub>0</sub></b>: hoạt độ ban đầu lúc chuẩn bị hoặc lúc đo.</li>
-<li><b>t</b>: thời gian từ lúc chuẩn bị/đo đến lúc tiêm, tính bằng phút hoặc giờ.</li>
-<li><b>λ</b>: hằng số phân rã, tính bằng công thức: <b>λ = 0,693 / T<sub>1/2</sub></b>.</li>
-<li><b>T<sub>1/2</sub></b>: chu kỳ bán rã của 18F, thường dùng <b>109,8 phút</b> xấp xỉ 110 phút.</li>
-</ul>
-
-<div class="callout">
-<b>Ứng dụng thực hành nhanh:</b><br>
-Cứ sau khoảng <b>110 phút</b>, hoạt độ 18F-FDG giảm còn <b>một nửa</b>. Nếu bệnh nhân phải chờ lâu trước tiêm, cần rút lượng ban đầu cao hơn để đến lúc tiêm vẫn đủ liều MBq/mCi cần dùng.
-</div>
-</section>
-
-<section class="refBox">
-<h2>3. Bảng tra cứu nhanh liều 18F-FDG cho người lớn</h2>
-
-<p class="muted">
-Có 2 cách tra nhanh: theo <b>MBq/kg</b> hoặc theo <b>mCi/kg</b>.
-Hai cách này tương đương nhau, chỉ khác đơn vị nhập. Khi thực hành vẫn phải tính lại theo thời điểm đo, thời điểm tiêm và nồng độ hoạt độ thực tế.
-</p>
-
-<h3>Bảng A. Tra nhanh theo hệ số 4,0 MBq/kg</h3>
-<p class="muted">
-Thể tích ước tính giả định nồng độ hoạt độ là <b>200 MBq/mL</b>.
-</p>
-<table class="darkTable">
-<thead>
-<tr>
-<th>Cân nặng</th>
-<th>Liều theo 4,0 MBq/kg</th>
-<th>Quy đổi sang mCi</th>
-<th>Thể tích ước tính</th>
-</tr>
-</thead>
-<tbody id="quickTableMBq"></tbody>
-</table>
-
-<h3 style="margin-top:18px">Bảng B. Tra nhanh theo hệ số mCi/kg</h3>
-<p class="muted">
-Bảng này dùng cho đơn vị quen tính liều theo mCi/kg. Có thể đối chiếu nhanh giữa các hệ số thường dùng.
-</p>
-<table class="darkTable">
-<thead>
-<tr>
-<th>Cân nặng</th>
-<th>0,10 mCi/kg</th>
-<th>0,12 mCi/kg</th>
-<th>0,14 mCi/kg</th>
-<th>0,15 mCi/kg</th>
-<th>Quy đổi MBq ở 0,15 mCi/kg</th>
-</tr>
-</thead>
-<tbody id="quickTableMci"></tbody>
-</table>
-
-<p class="muted">
-<i>Ghi chú: Bảng chỉ để đối chiếu nhanh. Thể tích mL cuối cùng phải tính bằng nồng độ hoạt độ thực tế tại thời điểm đo/rút và phải bù phân rã nếu có thời gian chờ trước tiêm.</i>
-</p>
-</section>
-
-<section class="card formulaPanel">
-<h2>Nguyên tắc tính — bản dùng trong công cụ</h2>
-
-<div class="step">
-  <b>Bước 1. Tính liều cần có đúng lúc tiêm</b>
-  <div class="eq">Liều cần tiêm = Cân nặng bệnh nhân × Hệ số liều theo quy trình</div>
-  <div class="plain">Kết quả là hoạt độ phóng xạ cần đạt tại thời điểm tiêm, đơn vị là mCi hoặc MBq.</div>
-</div>
-
-<div class="step">
-  <b>Bước 2. Bù phần thuốc bị giảm do phân rã</b>
-  <div class="eq">Hệ số còn lại = e^[-0,693 × Thời gian chờ / 109,8]</div>
-  <div class="eq">Lượng cần rút = Liều cần tiêm / Hệ số còn lại</div>
-  <div class="plain">Rút thuốc càng sớm trước giờ tiêm thì lượng cần rút ban đầu càng phải cao hơn.</div>
-</div>
-
-<div class="step">
-  <b>Bước 3. Quy đổi từ mCi sang mL</b>
-  <div class="eq">Nồng độ hoạt độ = Tổng hoạt độ / Tổng thể tích</div>
-  <div class="eq">Thể tích cần rút = Lượng cần rút / Nồng độ hoạt độ</div>
-  <div class="plain">mCi/MBq là liều phóng xạ; mL chỉ là thể tích dung dịch. Không được dùng mL thay cho liều. Thể tích mL cuối cùng phải tính sau khi đã bù phân rã, trừ khi nồng độ hoạt độ đã được quy đổi sẵn về đúng thời điểm tiêm.</div>
-</div>
-
-<div class="step">
-  <b>Bước 4. Sau tiêm, tính liều thực tiêm</b>
-  <div class="eq">Liều thực tiêm = Hoạt độ bơm trước tiêm - Hoạt độ còn dư sau tiêm</div>
-  <div class="plain">Liều ghi nhận cuối cùng nên là liều thực tiêm, sau khi đã trừ phần còn dư trong bơm/dây truyền.</div>
-</div>
-
-<div class="tip">
-  Tóm tắt thao tác chuẩn: <b>Tính liều mục tiêu mCi/MBq → xác định nồng độ hoạt độ tại thời điểm đo/rút → bù phân rã theo thời gian chờ → tính thể tích mL cần rút cuối cùng → đo lại sau tiêm để biết liều thực tiêm.</b><br>
-<span style="font-weight:400">Lưu ý: Có thể tính thể tích sơ bộ trước, nhưng thể tích cuối cùng vẫn phải được hiệu chỉnh theo phân rã.</span>
-</div>
-</section>
-  </div>
-</details>
-
 <!-- Mã PET/CT được nạp theo nhu cầu bởi platform-shell.js. -->
 </div>
   </section>
@@ -1368,7 +1050,8 @@ Bảng này dùng cho đơn vị quen tính liều theo mCi/kg. Có thể đối
 <script src="assets/js/instructions.js?v=1.1.8"></script>
 <script src="assets/js/main.js?v=20260911-header-v1"></script>
 <script src="assets/js/clinical-integration.js?v=20260911-header-v1"></script>
-<script defer src="assets/platform-shell.js?v=20260912-cache-refresh-v1"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="assets/platform-shell.js?v=20260914-qc-supabase-delete-v2"></script>
 <script defer src="assets/update-notifier.js?v=20260822-installed-data-channel-v1"></script>
 </body>
 </html>

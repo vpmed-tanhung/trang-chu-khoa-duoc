@@ -113,39 +113,19 @@
 #clinical-workspace #view-petct-dose .petct-inline textarea{min-height:72px}
 #clinical-workspace #view-petct-dose .petct-inline input:focus,#clinical-workspace #view-petct-dose .petct-inline select:focus,#clinical-workspace #view-petct-dose .petct-inline textarea:focus{outline:2px solid rgba(11,92,173,.17);border-color:var(--blue)}
 #clinical-workspace #view-petct-dose .petct-inline .help{font-size:12px;color:var(--muted);margin-top:4px}
-#clinical-workspace #view-petct-dose .petct-inline .formulaPanel{background:#ffffff;color:#0f172a;border:1px solid #d7e0ea;border-radius:14px;padding:14px}
-#clinical-workspace #view-petct-dose .petct-inline .formulaPanel h2,#clinical-workspace #view-petct-dose .petct-inline .formulaPanel h3{color:#0b5cad}
-#clinical-workspace #view-petct-dose .petct-inline .step{border:1px solid #cbd5e1;border-radius:12px;padding:12px;margin:10px 0;background:#f8fafc}
-#clinical-workspace #view-petct-dose .petct-inline .step b{color:#0b5cad;font-size:15px}
-#clinical-workspace #view-petct-dose .petct-inline .eq{font-family:Arial,Helvetica,sans-serif;background:#eaf3ff;border:1px solid #bfdbfe;border-radius:10px;padding:10px;margin:8px 0;color:#0f172a;overflow:auto;font-weight:800}
-#clinical-workspace #view-petct-dose .petct-inline .plain{font-size:13px;color:#334155}
-#clinical-workspace #view-petct-dose .petct-inline .resultBox{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-#clinical-workspace #view-petct-dose .petct-inline .kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc}
-#clinical-workspace #view-petct-dose .petct-inline .kpi b{display:block;color:#334155;font-size:13px;margin-bottom:6px}
-#clinical-workspace #view-petct-dose .petct-inline .kpi span{font-size:21px;font-weight:800;color:var(--blue)}
 #clinical-workspace #view-petct-dose .petct-inline .warn{border-left:5px solid var(--amber);background:#fff7ed;padding:10px;border-radius:10px;margin:8px 0}
 #clinical-workspace #view-petct-dose .petct-inline .err{border-left:5px solid var(--red);background:#fef2f2;padding:10px;border-radius:10px;margin:8px 0}
 #clinical-workspace #view-petct-dose .petct-inline .ok{border-left:5px solid var(--ok);background:#f0fdf4;padding:10px;border-radius:10px;margin:8px 0}
 #clinical-workspace #view-petct-dose .petct-inline table{width:100%;border-collapse:collapse;font-size:14px}
 #clinical-workspace #view-petct-dose .petct-inline th,#clinical-workspace #view-petct-dose .petct-inline td{border-bottom:1px solid var(--line);padding:8px;text-align:left;vertical-align:top}
 #clinical-workspace #view-petct-dose .petct-inline th{background:#f8fafc}
-#clinical-workspace #view-petct-dose .petct-inline .darkTable th{background:#182231;color:#e5e7eb;border-bottom:1px solid var(--darkLine)}
-#clinical-workspace #view-petct-dose .petct-inline .darkTable td{color:#e5e7eb;border-bottom:1px solid var(--darkLine)}
 #clinical-workspace #view-petct-dose .petct-inline button{border:0;border-radius:10px;padding:10px 12px;font-weight:800;cursor:pointer}
 #clinical-workspace #view-petct-dose .petct-inline .btn{background:var(--blue);color:#fff}
 #clinical-workspace #view-petct-dose .petct-inline .btn2{background:#e2e8f0;color:#0f172a}
 #clinical-workspace #view-petct-dose .petct-inline .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 #clinical-workspace #view-petct-dose .petct-inline .small{font-size:12px;color:var(--muted)}
-#clinical-workspace #view-petct-dose .petct-inline .tip{background:#e0f2fe;border:1px solid #7dd3fc;border-radius:10px;padding:10px;margin-top:10px;font-size:13px;color:#0f172a;font-weight:700}
-#clinical-workspace #view-petct-dose .petct-inline .refBox{background:#111827;color:#e5e7eb;border-radius:14px;padding:16px;margin-bottom:14px}
-#clinical-workspace #view-petct-dose .petct-inline .refBox h2{color:#fff;font-size:18px}
-#clinical-workspace #view-petct-dose .petct-inline .refBox h3{color:#fff}
-#clinical-workspace #view-petct-dose .petct-inline .refBox p,#clinical-workspace #view-petct-dose .petct-inline .refBox li{color:#e5e7eb}
-#clinical-workspace #view-petct-dose .petct-inline .refBox .muted{color:#cbd5e1}
-#clinical-workspace #view-petct-dose .petct-inline .refFormula{text-align:left;font-family:Arial,Helvetica,sans-serif;font-size:17px;font-weight:800;margin:12px 0;color:#fff;line-height:1.55}
-#clinical-workspace #view-petct-dose .petct-inline .callout{background:#2b303b;border-radius:12px;padding:12px;margin:12px 0;color:#e5e7eb}
 @media(max-width:900px){
-  #view-petct-dose .petct-inline .grid,#view-petct-dose .petct-inline .grid3,#view-petct-dose .petct-inline .resultBox{grid-template-columns:1fr}
+  #view-petct-dose .petct-inline .grid,#view-petct-dose .petct-inline .grid3{grid-template-columns:1fr}
   #view-petct-dose .petct-inline h1{font-size:20px}
   #view-petct-dose .petct-inline table{font-size:13px}
 }
@@ -153,7 +133,6 @@
   #clinical-workspace #view-petct-dose .petct-inline .actions{display:none}
   #clinical-workspace #view-petct-dose .petct-inline .wrap{padding:0}
   #clinical-workspace #view-petct-dose .petct-inline .card{box-shadow:none;break-inside:avoid}
-  #clinical-workspace #view-petct-dose .petct-inline .resultBox{grid-template-columns:repeat(2,1fr)}
 }
 
 
@@ -211,240 +190,265 @@
 
 /* ===== PET/CT compact calculation-first layout ===== */
 #clinical-workspace #view-petct-dose .page-title{margin-bottom:14px}
-#clinical-workspace .petct-workspace{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 360px;
-  gap:16px;
-  align-items:start;
-}
-#clinical-workspace .petct-main-calc{
-  min-width:0;
-}
-#clinical-workspace .petct-side-refs{
-  position:sticky;
-  top:96px;
-  max-height:calc(100vh - 115px);
-  overflow:auto;
-  display:grid;
-  gap:10px;
-}
-#clinical-workspace .petct-reference-panel,
-#clinical-workspace .petct-formula-details{
-  background:#ffffff!important;
-  border:1px solid #d5e3ed!important;
-  border-radius:16px!important;
-  padding:12px!important;
-  box-shadow:0 8px 22px rgba(31,74,108,.08)!important;
-  color:#102d45!important;
-}
-#clinical-workspace .petct-reference-panel>h2{
-  margin:0 0 4px!important;
-  font-size:16px!important;
-  color:#0d4175!important;
-}
-#clinical-workspace .petct-ref-compact{
-  border:1px solid #dbe8f2;
-  border-radius:12px;
-  background:#f8fbfd;
-  margin-top:8px;
-  overflow:hidden;
-}
-#clinical-workspace .petct-ref-compact summary,
-#clinical-workspace .petct-formula-details summary{
-  cursor:pointer;
-  padding:10px 12px;
-  font-weight:900;
-  color:#075d98;
-  list-style:none;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-#clinical-workspace .petct-ref-compact summary::after,
-#clinical-workspace .petct-formula-details summary::after{
-  content:"Mở";
-  font-size:11px;
-  color:#667d90;
-  background:#eaf5fc;
-  border:1px solid #cbe2f1;
-  padding:3px 7px;
-  border-radius:999px;
-  margin-left:8px;
-}
-#clinical-workspace .petct-ref-compact[open] summary::after,
-#clinical-workspace .petct-formula-details[open] summary::after{content:"Đóng"}
-#clinical-workspace .petct-ref-body{
-  padding:0 12px 12px;
-}
-#clinical-workspace .petct-ref-body p,
-#clinical-workspace .petct-ref-body li{
-  font-size:12px!important;
-  line-height:1.55!important;
-}
-#clinical-workspace .petct-ref-body .callout,
-#clinical-workspace .petct-ref-body .step,
-#clinical-workspace .petct-ref-body .tip{
-  padding:9px!important;
-  margin:8px 0!important;
-  border-radius:10px!important;
-  font-size:12px!important;
-}
-#clinical-workspace .petct-ref-body .refFormula,
-#clinical-workspace .petct-ref-body .eq{
-  font-size:12px!important;
-  line-height:1.45!important;
-  padding:8px!important;
-  text-align:left!important;
-}
-#clinical-workspace #view-petct-dose .refBox,
-#clinical-workspace #view-petct-dose .formulaPanel{
-  margin-bottom:10px!important;
-}
-#clinical-workspace #view-petct-dose .darkTable{
-  font-size:11px!important;
-  min-width:520px;
-}
-#clinical-workspace #view-petct-dose .darkTable th,
-#clinical-workspace #view-petct-dose .darkTable td{
-  padding:7px!important;
-}
-#clinical-workspace #view-petct-dose .petct-side-refs table{
-  display:block;
-  overflow:auto;
-  max-height:280px;
-}
-#clinical-workspace #view-petct-dose .petct-side-refs .btn2{
-  padding:6px 8px!important;
-  min-height:auto!important;
-  font-size:11px!important;
-}
 #clinical-workspace #view-petct-dose .card{
   border-radius:16px;
-}
-#clinical-workspace #view-petct-dose .resultBox{
-  grid-template-columns:repeat(4,minmax(0,1fr));
-}
-#clinical-workspace #view-petct-dose .kpi{
-  padding:12px;
 }
 #clinical-workspace #view-petct-dose .table-wrap{
   max-height:none;
 }
-#clinical-workspace #view-petct-dose .tip ol{
-  margin-top:6px!important;
-}
-@media(max-width:1180px){
-  .petct-workspace{grid-template-columns:1fr}
-  .petct-side-refs{position:static;max-height:none;order:2}
-  .petct-main-calc{order:1}
-  .petct-reference-panel{display:block}
-}
-@media(max-width:760px){
-  #view-petct-dose .resultBox{grid-template-columns:1fr}
-  .petct-side-refs{display:block}
-}
 
 
 /* PET/CT focus cleanup: bỏ các cảnh báo trống gây rối mắt */
-#clinical-workspace #view-petct-dose #alerts:empty,
 #clinical-workspace #view-petct-dose #batchAlerts:empty{
   display:none!important;
 }
-#clinical-workspace #view-petct-dose #alerts,
 #clinical-workspace #view-petct-dose #batchAlerts{
   margin-top:0!important;
 }
 
 
-/* ===== PET/CT final: tính toán trước, tài liệu tham khảo thu gọn phía dưới ===== */
-#clinical-workspace #view-petct-dose .petct-inline > main.wrap{
-  max-width:1180px;
-}
-#clinical-workspace #view-petct-dose .petct-inline .refBox,
-#clinical-workspace #view-petct-dose .petct-inline .formulaPanel{
-  margin-bottom:10px;
-}
-#clinical-workspace .petct-refs-bottom,
-#clinical-workspace .petct-single-details{
-  background:#fff;
-  border:1px solid #d5e3ed;
-  border-radius:16px;
-  box-shadow:0 8px 22px rgba(31,74,108,.06);
-  margin:14px 0;
-  overflow:hidden;
-}
-#clinical-workspace .petct-refs-bottom > summary,
-#clinical-workspace .petct-single-details > summary{
-  cursor:pointer;
-  padding:14px 16px;
-  font-weight:900;
-  color:#075d98;
-  background:#f4f9fd;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-#clinical-workspace .petct-refs-bottom > summary::after,
-#clinical-workspace .petct-single-details > summary::after{
-  content:"Mở";
-  font-size:12px;
-  color:#667d90;
-  border:1px solid #cbe2f1;
-  border-radius:999px;
-  padding:4px 10px;
-  background:#fff;
-}
-#clinical-workspace .petct-refs-bottom[open] > summary::after,
-#clinical-workspace .petct-single-details[open] > summary::after{
-  content:"Đóng";
-}
-#clinical-workspace .petct-refs-bottom-body{
-  padding:12px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
-#clinical-workspace .petct-refs-bottom-body .refBox,
-#clinical-workspace .petct-refs-bottom-body .formulaPanel{
-  transform:none!important;
-  background:#111827;
-  border-radius:14px;
-  padding:14px;
-  max-height:520px;
-  overflow:auto;
-}
-#clinical-workspace .petct-refs-bottom-body .refBox h2,
-#clinical-workspace .petct-refs-bottom-body .formulaPanel h2{
-  font-size:16px!important;
-}
-#clinical-workspace .petct-refs-bottom-body p,
-#clinical-workspace .petct-refs-bottom-body li,
-#clinical-workspace .petct-refs-bottom-body td,
-#clinical-workspace .petct-refs-bottom-body th{
-  font-size:12px!important;
-  line-height:1.45!important;
-}
-#clinical-workspace .petct-refs-bottom-body .refFormula{
-  font-size:13px!important;
-  text-align:left!important;
-}
-#clinical-workspace .petct-refs-bottom-body .darkTable{
-  min-width:520px;
-}
-#clinical-workspace .petct-single-details .grid{
-  padding:14px;
-}
-#clinical-workspace .petct-single-details > section.card,
-#clinical-workspace .petct-single-details .card{
-  margin:14px;
-  box-shadow:none;
-}
-#clinical-workspace #view-petct-dose #alerts:empty,
 #clinical-workspace #view-petct-dose #batchAlerts:empty{
   display:none!important;
 }
-@media(max-width:980px){
-  .petct-refs-bottom-body{grid-template-columns:1fr}
+
+/* PET/CT: công cụ QC dược chất phóng xạ */
+#clinical-workspace #view-petct-dose .petct-qc-card{
+  border-top:4px solid #087b8e;
+  padding:18px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-heading{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:22px;
+  margin-bottom:14px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-heading h2{margin:2px 0 5px}
+#clinical-workspace #view-petct-dose .petct-qc-eyebrow{
+  display:block;
+  color:#087b8e;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+#clinical-workspace #view-petct-dose .petct-qc-mode-field{
+  flex:0 0 min(340px,100%);
+  margin:0!important;
+  padding:12px;
+  border:1px solid #cfe0e8;
+  border-radius:12px;
+  background:#f3f9fb;
+}
+#clinical-workspace #view-petct-dose .petct-qc-mode-field > span{
+  display:block;
+  margin-bottom:6px;
+  color:#31586d;
+  font-size:12px;
+  font-weight:900;
+}
+#clinical-workspace #view-petct-dose .petct-qc-meta-grid{
+  padding:14px;
+  border:1px solid #d9e5eb;
+  border-radius:12px;
+  background:#fbfdfe;
+}
+#clinical-workspace #view-petct-dose .petct-qc-method-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+  margin-top:14px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-method-grid[hidden]{display:none!important}
+#clinical-workspace #view-petct-dose .petct-qc-method-grid fieldset{
+  min-width:0;
+  margin:0;
+  padding:12px 14px 14px;
+  border:1px solid #cbdde6;
+  border-radius:12px;
+  background:#f8fbfd;
+}
+#clinical-workspace #view-petct-dose .petct-qc-method-grid legend{
+  padding:0 8px;
+  color:#075d98;
+  font-size:13px;
+  font-weight:900;
+}
+#clinical-workspace #view-petct-dose .petct-qc-two-fields{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:14px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid > div{
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:end;
+  gap:4px 10px;
+  padding:14px 16px;
+  border:1px solid #d5e3ea;
+  border-radius:12px;
+  background:#f7fafc;
+}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid span{
+  grid-column:1/-1;
+  color:#526b7b;
+  font-size:12px;
+  font-weight:900;
+  text-transform:uppercase;
+}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid strong{
+  color:#075d98;
+  font-size:26px;
+  font-variant-numeric:tabular-nums;
+}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid small{color:#6b7f8d;font-weight:800}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid .petct-qc-bound-result{
+  border-color:#b9dfca;
+  background:#f0fbf5;
+}
+#clinical-workspace #view-petct-dose .petct-qc-result-grid .petct-qc-bound-result strong{color:#15633e}
+#clinical-workspace #view-petct-dose .petct-qc-status{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid #d8e3e9;
+  border-radius:10px;
+  background:#f8fafc;
+  color:#526476;
+  font-size:13px;
+  font-weight:700;
+}
+#clinical-workspace #view-petct-dose .petct-qc-status.is-ok{border-color:#b9dfca;background:#f0fbf5;color:#15633e}
+#clinical-workspace #view-petct-dose .petct-qc-status.is-error{border-color:#ecc5c5;background:#fff5f5;color:#9b3232}
+#clinical-workspace #view-petct-dose .petct-qc-device-grid{
+  grid-template-columns:minmax(220px,1fr) minmax(320px,2fr);
+  margin-top:8px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-actions{align-items:center}
+#clinical-workspace #view-petct-dose .petct-qc-form-message{
+  min-height:20px;
+  margin:8px 0 0;
+  color:#536b7b;
+  font-size:13px;
+  font-weight:700;
+}
+#clinical-workspace #view-petct-dose .petct-qc-form-message.is-ok{color:#15633e}
+#clinical-workspace #view-petct-dose .petct-qc-form-message.is-error{color:#9b3232}
+#clinical-workspace #view-petct-dose .petct-qc-saved-heading{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid #dbe6eb;
+}
+#clinical-workspace #view-petct-dose .petct-qc-saved-heading h3{margin:0 0 2px;color:#24465f;font-size:15px}
+#clinical-workspace #view-petct-dose .petct-qc-saved-heading p{margin:0}
+#clinical-workspace #view-petct-dose .petct-qc-sync-controls{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:8px;
+  flex-wrap:wrap;
+}
+#clinical-workspace #view-petct-dose #qcSavedCount{
+  flex:0 0 auto;
+  padding:5px 10px;
+  border-radius:999px;
+  background:#e8f4f8;
+  color:#17667a;
+  font-size:12px;
+  font-weight:900;
+}
+#clinical-workspace #view-petct-dose #qcSyncButton:disabled{
+  cursor:wait;
+  opacity:.62;
+}
+#clinical-workspace #view-petct-dose .petct-qc-cloud-status{
+  margin-top:10px;
+  padding:10px 12px;
+  border:1px solid #d7e3e9;
+  border-radius:10px;
+  background:#f8fafc;
+  color:#526476;
+  font-size:13px;
+  font-weight:800;
+}
+#clinical-workspace #view-petct-dose .petct-qc-cloud-status.is-ok{border-color:#b9dfca;background:#f0fbf5;color:#15633e}
+#clinical-workspace #view-petct-dose .petct-qc-cloud-status.is-pending{border-color:#ead7ad;background:#fff9e8;color:#885c0a}
+#clinical-workspace #view-petct-dose .petct-qc-cloud-status.is-local{border-color:#c7dce7;background:#f3f9fc;color:#315f77}
+#clinical-workspace #view-petct-dose .petct-qc-cloud-status.is-error{border-color:#ecc5c5;background:#fff5f5;color:#9b3232}
+#clinical-workspace #view-petct-dose .petct-qc-table-wrap{
+  margin-top:10px;
+  border:1px solid #d2e0e7;
+}
+#clinical-workspace #view-petct-dose .petct-qc-table{
+  min-width:2300px;
+  border-collapse:separate;
+  border-spacing:0;
+}
+#clinical-workspace #view-petct-dose .petct-qc-table th{
+  white-space:nowrap;
+  color:#24465f;
+  background:#eef6fb;
+  border-right:1px solid #d5e2e9;
+  text-align:center;
+}
+#clinical-workspace #view-petct-dose .petct-qc-table th span{color:#6b7f8f;font-size:11px}
+#clinical-workspace #view-petct-dose .petct-qc-table td{
+  min-width:105px;
+  white-space:nowrap;
+  border-right:1px solid #e0e8ed;
+  font-variant-numeric:tabular-nums;
+}
+#clinical-workspace #view-petct-dose .petct-qc-table td:first-child{min-width:160px}
+#clinical-workspace #view-petct-dose .petct-qc-empty td{text-align:center;color:#6b7f8f}
+#clinical-workspace #view-petct-dose .petct-qc-storage-cell{
+  display:flex;
+  align-items:center;
+  gap:7px;
+}
+#clinical-workspace #view-petct-dose .petct-qc-storage-state{
+  display:inline-flex;
+  align-items:center;
+  min-height:28px;
+  padding:4px 8px;
+  border:1px solid #d5e1e8;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:900;
+}
+#clinical-workspace #view-petct-dose .petct-qc-storage-state.is-synced{border-color:#b9dfca;background:#f0fbf5;color:#15633e}
+#clinical-workspace #view-petct-dose .petct-qc-storage-state.is-pending{border-color:#ead7ad;background:#fff9e8;color:#885c0a}
+#clinical-workspace #view-petct-dose .petct-qc-delete{
+  width:34px;
+  height:34px;
+  padding:0!important;
+  border:1px solid #efcaca!important;
+  background:#fff7f7!important;
+  color:#b64242!important;
+  font-size:20px;
+  line-height:1;
+}
+
+@media(max-width:760px){
+  #clinical-workspace #view-petct-dose .petct-qc-card{padding:14px}
+  #clinical-workspace #view-petct-dose .petct-qc-heading{display:block}
+  #clinical-workspace #view-petct-dose .petct-qc-mode-field{margin-top:12px!important}
+  #clinical-workspace #view-petct-dose .petct-qc-method-grid,
+  #clinical-workspace #view-petct-dose .petct-qc-two-fields,
+  #clinical-workspace #view-petct-dose .petct-qc-result-grid,
+  #clinical-workspace #view-petct-dose .petct-qc-device-grid{grid-template-columns:1fr}
+  #clinical-workspace #view-petct-dose .petct-qc-saved-heading{align-items:flex-start}
+  #clinical-workspace #view-petct-dose .petct-qc-sync-controls{width:100%;justify-content:flex-start}
+  #clinical-workspace #view-petct-dose #qcSyncButton{flex:1 1 180px}
+  #clinical-workspace #view-petct-dose .petct-qc-actions button{width:100%}
 }
 
 /* PET/CT: khu vực làm việc và bảng kế hoạch nhiều ca */
@@ -462,8 +466,6 @@
 }
 
 #clinical-workspace #view-petct-dose .card,
-#clinical-workspace #view-petct-dose .resultBox,
-#clinical-workspace #view-petct-dose .tip,
 #clinical-workspace #view-petct-dose .table-wrap{
   width:100%;
 }
@@ -475,12 +477,6 @@
 
 #clinical-workspace #view-petct-dose .grid2{
   grid-template-columns:repeat(2,minmax(320px,1fr));
-  gap:14px;
-}
-
-#clinical-workspace #view-petct-dose .resultBox{
-  display:grid;
-  grid-template-columns:repeat(4,minmax(220px,1fr));
   gap:14px;
 }
 
@@ -496,12 +492,6 @@
 }
 
 #clinical-workspace #view-petct-dose input[placeholder="HH:mm"]{letter-spacing:.02em}
-#clinical-workspace #view-petct-dose .petct-condition-grid{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px dashed #cfe1ee;
-}
-#clinical-workspace #view-petct-dose .petct-condition-grid label{color:#074d7c}
 
 #clinical-workspace #view-petct-dose .field-unit{
   display:block;
@@ -726,17 +716,11 @@
   #view-petct-dose main.wrap{
     width:calc(100vw - 28px)!important;
   }
-  #view-petct-dose .resultBox{
-    grid-template-columns:repeat(2,minmax(220px,1fr));
-  }
 }
 
 @media(max-width:760px){
   #view-petct-dose .grid3,
   #view-petct-dose .grid2{
-    grid-template-columns:1fr;
-  }
-  #view-petct-dose .resultBox{
     grid-template-columns:1fr;
   }
   #view-petct-dose .batch-auto-summary{grid-template-columns:1fr}

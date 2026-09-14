@@ -1,10 +1,10 @@
 {
-  "version": "2026.09.12.84",
-  "displayVersion": "5.9.2",
-  "updatedAt": "2026-09-12T13:54:50+07:00",
-  "note": "Sửa bố cục nhãn Nội bộ Khoa Dược và buộc website tải tài nguyên mới sau khi triển khai Git.",
-  "buildId": "v5.9.2-layout-cache-refresh-20260912-84",
-  "clinicalDataVersion": "sha256-f7a964aacb13f5a4f36dbc53",
-  "previousVersion": "2026.09.11.82",
-  "previousDisplayVersion": "5.9.1"
+  "version": "2026.09.14.87",
+  "displayVersion": "5.9.5",
+  "updatedAt": "2026-09-14T19:18:24+07:00",
+  "note": "Nút xóa QC xóa đồng thời dữ liệu trên thiết bị và Supabase; chặn xóa cục bộ khi xóa đám mây thất bại.",
+  "buildId": "v5.9.5-petct-qc-cloud-delete-20260914-87",
+  "clinicalDataVersion": "sha256-1e25d8ecb6de7153b0e2ca52",
+  "previousVersion": "2026.09.14.86",
+  "previousDisplayVersion": "5.9.4"
 }

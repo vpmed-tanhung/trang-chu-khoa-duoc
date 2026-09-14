@@ -1,7 +1,7 @@
 'use strict';
 
-const APP_VERSION = '2026.09.12.84';
-const CLINICAL_DATA_VERSION = 'sha256-f7a964aacb13f5a4f36dbc53';
+const APP_VERSION = '2026.09.14.87';
+const CLINICAL_DATA_VERSION = 'sha256-1e25d8ecb6de7153b0e2ca52';
 const APP_SHELL_CACHE = `vpmed-shell-${APP_VERSION}`;
 const RUNTIME_CACHE = `vpmed-runtime-${APP_VERSION}`;
 const CLINICAL_WEB_CACHE_PREFIX = 'vpmed-clinical-web-';
@@ -24,7 +24,7 @@ const APP_SHELL = [
   './assets/responsive-polish.css?v=20260712-balanced',
   './assets/platform-shell.css?v=20260822-pwa-v1',
   './assets/navy-theme.css?v=20260828-original-colors-pulse-v2',
-  './assets/platform-shell.js?v=20260912-cache-refresh-v1',
+  './assets/platform-shell.js?v=20260914-qc-supabase-delete-v2',
   './assets/disclaimer-gate.js?v=20260822-disclaimer-gate-v1',
   './assets/update-notifier.js?v=20260822-installed-data-channel-v1',
   './assets/logo-vpmed.png',
@@ -39,7 +39,7 @@ const APP_SHELL = [
   './assets/css/clinical-integration.css',
   './assets/css/style.css?v=1.1.8',
   './manifest.json?v=20260910-direct-v2',
-  './assets/style.css?v=20260910-direct-v2',
+  './assets/style.css?v=20260914-qc-supabase-v1',
   './assets/disclaimer-gate.css?v=20260910-direct-v2',
   './assets/responsive-polish.css?v=20260910-direct-v2',
   './assets/platform-shell.css?v=20260910-direct-v2',
@@ -116,9 +116,11 @@ const CLINICAL_OFFLINE_ASSETS = [
   './assets/js/global-auth.js',
   './assets/mobile-only-fix.css',
   './assets/navy-theme.css',
+  './assets/petct-qc-calculator.js',
+  './assets/petct-qc-supabase-config.js',
+  './assets/petct-qc.js',
   './assets/petct-tool.js',
   './assets/petct_batch_calculator.js',
-  './assets/petct_step_form.js',
   './assets/pharmacovigilance_alerts.json',
   './assets/pharmacovigilance_alerts_data.js',
   './assets/pharmacovigilance_auto.json',

@@ -401,10 +401,8 @@
   #clinical-workspace #view-petct-dose .petct-inline .grid,
   #clinical-workspace #view-petct-dose .petct-inline .grid2,
   #clinical-workspace #view-petct-dose .petct-inline .grid3,
-  #clinical-workspace #view-petct-dose .petct-inline .resultBox,
-  #clinical-workspace #view-petct-dose .petct-condition-grid,
-  #clinical-workspace .petct-workspace,
-  #clinical-workspace .petct-refs-bottom-body {
+  #clinical-workspace #view-petct-dose .petct-qc-method-grid,
+  #clinical-workspace #view-petct-dose .petct-qc-result-grid {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
@@ -520,7 +518,6 @@
   }
 
   #clinical-workspace .form-card,
-  #clinical-workspace .petct-side-refs,
   #clinical-workspace .icd-med-column,
   #clinical-workspace .icd-clinical-warning-sidebar {
     position: static !important;
@@ -685,16 +682,6 @@
     max-width: 100%;
     padding: 14px;
     border-radius: 14px;
-  }
-
-  #clinical-workspace #view-petct-dose .resultBox {
-    grid-template-columns: minmax(0, 1fr) !important;
-  }
-
-  #clinical-workspace #view-petct-dose .petct-refs-bottom > summary,
-  #clinical-workspace #view-petct-dose .petct-single-details > summary {
-    align-items: flex-start;
-    gap: 8px;
   }
 
   #clinical-workspace .icd-code-card > div {

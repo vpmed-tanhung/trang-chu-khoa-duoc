@@ -28,9 +28,9 @@ def test_platform_shell_uses_current_build():
     assert match, 'platform-shell.js thiếu BUILD_VERSION'
     assert match.group(1) == version, 'platform-shell.js đang dùng build cũ'
     index = (ROOT / 'index.html').read_text(encoding='utf-8')
-    assert 'assets/platform-shell.js?v=20260912-cache-refresh-v1' in index
+    assert 'assets/platform-shell.js?v=20260914-qc-supabase-v1' in index
     worker = (ROOT / 'sw.js').read_text(encoding='utf-8')
-    assert './assets/platform-shell.js?v=20260912-cache-refresh-v1' in worker
+    assert './assets/platform-shell.js?v=20260914-qc-supabase-v1' in worker
 
 
 def test_home_layout_and_app_shell_always_request_the_current_files():
