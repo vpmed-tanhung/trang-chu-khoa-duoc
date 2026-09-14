@@ -29,9 +29,9 @@ Trong Supabase, mở phần thiết lập API của dự án và sao chép:
 
 ## Bước 3: Điền cấu hình vào website
 
-Mở tệp:
+Mở tệp **ngay ngoài thư mục gốc**, nằm cùng cấp với `index.html`:
 
-`assets/petct-qc-supabase-config.js`
+`CAU_HINH_SUPABASE.js`
 
 Thay đúng hai dòng sau:
 
@@ -54,7 +54,7 @@ Giữ nguyên tên hai hằng số và không sửa các phần khác của tệ
 Phải tải lên đồng thời các tệp đã cập nhật, đặc biệt:
 
 - `index.html`
-- `assets/petct-qc-supabase-config.js`
+- `CAU_HINH_SUPABASE.js`
 - `assets/petct-qc.js`
 - `assets/platform-shell.js`
 - `assets/style.css`

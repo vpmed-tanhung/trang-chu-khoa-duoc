@@ -542,7 +542,7 @@
     byId('petctQcForm').reset();
     byId('qcDate').value = todayLocal();
     updateMode();
-    setFormMessage('Đã xóa dữ liệu nhập; lịch sử QC vẫn được giữ nguyên.', '');
+    setFormMessage('Đã xóa dữ liệu nhập.', '');
   }
 
   function csvCell(value) {

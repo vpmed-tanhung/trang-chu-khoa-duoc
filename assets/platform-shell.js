@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD_VERSION = '2026.09.14.87';
+  const BUILD_VERSION = '2026.09.14.90';
   const IS_INSTALLED_APP = (() => {
     try {
       return new URL(location.href).searchParams.get('vpmed_app') === 'installed' ||
@@ -120,7 +120,7 @@
       scripts: [
         'assets/petct_batch_calculator.js?v=20260802-formula-only',
         'assets/petct-qc-calculator.js?v=20260914-qc-v1',
-        'assets/petct-qc-supabase-config.js?v=20260914-supabase-v1',
+        'CAU_HINH_SUPABASE.js?v=20260914-root-v3',
         'assets/petct-qc.js?v=20260914-supabase-delete-v2',
         'assets/petct-tool.js?v=20260914-batch-only-v1'
       ]
