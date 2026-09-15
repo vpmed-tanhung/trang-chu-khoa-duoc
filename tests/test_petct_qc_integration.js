@@ -49,7 +49,7 @@ assert(worker.includes("'./assets/petct-qc.js'"));
 assert(!worker.includes('petct_step_form.js'));
 
 assert(index.includes('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'));
-assert(index.includes('assets/platform-shell.js?v=20260914-qc-config-root-v3'));
+assert(index.includes('assets/platform-shell.js?v=20260915-amr-v1'));
 assert(index.includes('id="qcSyncButton"'));
 assert(index.includes('Làm mới / Đồng bộ'));
 assert(index.includes('id="qcClearSavedButton"'));

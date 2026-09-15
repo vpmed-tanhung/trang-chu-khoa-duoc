@@ -1,7 +1,7 @@
 'use strict';
 
 const APP_VERSION = '2026.09.14.90';
-const CLINICAL_DATA_VERSION = 'sha256-1e25d8ecb6de7153b0e2ca52';
+const CLINICAL_DATA_VERSION = 'sha256-0bdf9491edc4a09ff6c8209a';
 const APP_SHELL_CACHE = `vpmed-shell-${APP_VERSION}`;
 const RUNTIME_CACHE = `vpmed-runtime-${APP_VERSION}`;
 const CLINICAL_WEB_CACHE_PREFIX = 'vpmed-clinical-web-';
@@ -24,7 +24,7 @@ const APP_SHELL = [
   './assets/responsive-polish.css?v=20260712-balanced',
   './assets/platform-shell.css?v=20260822-pwa-v1',
   './assets/navy-theme.css?v=20260828-original-colors-pulse-v2',
-  './assets/platform-shell.js?v=20260914-qc-config-root-v3',
+  './assets/platform-shell.js?v=20260915-amr-v1',
   './assets/disclaimer-gate.js?v=20260822-disclaimer-gate-v1',
   './assets/update-notifier.js?v=20260822-installed-data-channel-v1',
   './assets/logo-vpmed.png',
@@ -71,8 +71,11 @@ const AUTH_PATH_PATTERN = /(?:supabase|auth|token|session|login|logout)/i;
 const CLINICAL_OFFLINE_CACHE = `vpmed-clinical-offline-${CLINICAL_DATA_VERSION}`;
 const CLINICAL_OFFLINE_ASSETS = [
   './assets/antibiotic-result-layout.css',
+  './assets/antibiotic-susceptibility.css',
   './assets/antibiotic_38_complete.js',
   './assets/antibiotic_consultation.js',
+  './assets/js/antibiotic-susceptibility-data.js',
+  './assets/js/antibiotic-susceptibility.js',
   './assets/app-version.json',
   './assets/clinical_details.js',
   './assets/clinical_details_v2.js',

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD_VERSION = '2026.09.14.90';
+  const BUILD_VERSION = '2026.09.15.91';
   const IS_INSTALLED_APP = (() => {
     try {
       return new URL(location.href).searchParams.get('vpmed_app') === 'installed' ||
@@ -37,7 +37,7 @@
       'assets/antibiotic_38_complete.js?v=20260716-38-drugs',
       'assets/renal_database_20260723.js?v=20260723-renal-only-v4',
       'assets/diseases.js',
-      'assets/unified.js?v=20260910-table-fix-v2',
+      'assets/unified.js?v=20260915-amr-v1',
       'assets/vpmed-renal-audit.js?v=20260814-module-history-v5',
       'assets/antibiotic_consultation.js?v=20260814-short-module-copy-v1',
       'assets/dose_24h_summary.js?v=20260822-renal-layout-v4-large-clean',
@@ -53,10 +53,13 @@
   const DOSE_CLINICAL = Object.freeze({
     styles: [
       ...CORE_CLINICAL.styles,
-      'assets/renal-dose-presentation.css?v=20260822-renal-layout-v4-large-clean'
+      'assets/renal-dose-presentation.css?v=20260822-renal-layout-v4-large-clean',
+      'assets/antibiotic-susceptibility.css?v=20260915-amr-v1'
     ],
     scripts: [
       ...CORE_CLINICAL.scripts,
+      'assets/js/antibiotic-susceptibility-data.js?v=20260915-amr-v1',
+      'assets/js/antibiotic-susceptibility.js?v=20260915-amr-v1',
       'assets/renal-dose-presentation.js?v=20260822-renal-layout-v4-large-clean'
     ]
   });
@@ -155,7 +158,7 @@
       styles: [],
       scripts: [
         'assets/pharmacovigilance_alerts_data.js?v=20260711',
-        'assets/pharmacovigilance_auto_data.js?v=20260914120434',
+        'assets/pharmacovigilance_auto_data.js?v=20260915120041',
         'assets/pharmacovigilance_bulletin_76_data.js?v=20260804',
         'assets/pharmacovigilance_auto_editor.js?v=20260823-concise-summary-v2',
         'assets/pharmacovigilance_integration.js?v=20260823-concise-summary-v2'

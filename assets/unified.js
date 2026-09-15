@@ -159,6 +159,11 @@ function copyOrderText(d,displayedDose){
     'Lưu ý: Liều cuối cùng cần đối chiếu chỉ định, vi sinh/MIC, tình trạng thận, lọc máu và TDM khi phù hợp.'
   ].join('\n');
 }
+function antibioticSusceptibilityHtml(d){
+  const amr=window.KHOA_DUOC_AMR;
+  if(!d||!amr||typeof amr.renderSummary!=='function')return '';
+  return amr.renderSummary(d.active||d.brand||'');
+}
 async function copyTextToClipboard(text){
   try{
     if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);return true}
@@ -219,6 +224,7 @@ $('#calc').onclick=()=>{
       </ul>
       <p>Chỉ áp dụng khi creatinin tương đối ổn định. Không dùng một giá trị CrCl tĩnh để chốt liều trong AKI hoặc khi chức năng thận thay đổi nhanh.</p>
     </section>
+    ${antibioticSusceptibilityHtml(d)}
     <section class="result-source-row"><span>Nguồn đối chiếu</span>${directDoseSources(d)}</section>`;
   const copyBtn=$('#output').querySelector('.copy-order-btn');
   if(copyBtn)copyBtn.onclick=async()=>{
