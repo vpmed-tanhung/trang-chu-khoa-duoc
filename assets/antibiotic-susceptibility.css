@@ -1,0 +1,103 @@
+/* Bảng mức nhạy cảm kháng sinh trong kết quả tính liều suy thận. */
+#clinical-workspace #view-dose .amr-summary-card{
+  margin:0;padding:13px 14px 11px;border:1px solid #c8ddea;border-radius:11px;
+  background:#fff;color:#17364d;box-shadow:0 2px 8px rgba(13,65,117,.04)
+}
+#clinical-workspace #view-dose .amr-summary-header{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:5px
+}
+#clinical-workspace #view-dose .amr-summary-header h4{
+  margin:0;color:#0869a7;font-size:13px;font-weight:900;letter-spacing:.035em;text-transform:uppercase
+}
+#clinical-workspace #view-dose .amr-summary-scope{display:block;margin-top:2px;color:#657d8c;font-size:11px}
+#clinical-workspace #view-dose .amr-summary-button{
+  flex:0 0 auto;width:auto;min-height:30px;margin:0;padding:4px 11px;border:1px solid #0878d1;
+  border-radius:999px;background:#fff;color:#0767a6;font-size:12px;font-weight:850;cursor:pointer
+}
+#clinical-workspace #view-dose .amr-summary-button:hover{background:#eef7ff}
+#clinical-workspace #view-dose .amr-summary-list,#clinical-workspace .amr-detail-list{display:grid}
+#clinical-workspace .amr-data-row,#clinical-workspace .amr-detail-head{
+  display:grid;grid-template-columns:minmax(0,1.45fr) minmax(80px,1fr) 54px 72px;
+  gap:10px;align-items:center
+}
+#clinical-workspace #view-dose .amr-data-row{min-height:34px;border-top:1px solid #e6eef3}
+#clinical-workspace #view-dose .amr-data-row.is-compact{grid-template-columns:minmax(0,1.58fr) minmax(72px,1fr) 50px;min-height:31px}
+#clinical-workspace .amr-organism{min-width:0;color:#172d3f;font-family:Georgia,"Times New Roman",serif;font-size:12.5px;line-height:1.3}
+#clinical-workspace .amr-organism em,#clinical-workspace .amr-organism small{display:block}
+#clinical-workspace .amr-organism small{margin-top:2px;color:#657d8c;font-family:Inter,system-ui,sans-serif;font-size:10.5px;font-style:normal}
+#clinical-workspace .amr-progress{width:100%;height:7px;overflow:hidden;border:0;border-radius:999px;appearance:none;background:#e8eef3}
+#clinical-workspace .amr-progress::-webkit-progress-bar{border-radius:999px;background:#e8eef3}
+#clinical-workspace .amr-progress::-webkit-progress-value{border-radius:999px;background:#d9534f}
+#clinical-workspace .amr-progress::-moz-progress-bar{border-radius:999px;background:#d9534f}
+#clinical-workspace .amr-progress.amr-tone-high::-webkit-progress-value{background:#2b9d58}
+#clinical-workspace .amr-progress.amr-tone-high::-moz-progress-bar{background:#2b9d58}
+#clinical-workspace .amr-progress.amr-tone-moderate::-webkit-progress-value{background:#e4a020}
+#clinical-workspace .amr-progress.amr-tone-moderate::-moz-progress-bar{background:#e4a020}
+#clinical-workspace .amr-percent{min-width:0;text-align:right;font-size:12px;font-weight:850;font-variant-numeric:tabular-nums;line-height:1.2}
+#clinical-workspace .amr-percent.amr-tone-high{color:#087c21}
+#clinical-workspace .amr-percent.amr-tone-moderate{color:#b96800}
+#clinical-workspace .amr-percent.amr-tone-low{color:#b42318}
+#clinical-workspace .amr-sample{color:#657d8c;text-align:right;font-size:11px;font-variant-numeric:tabular-nums}
+#clinical-workspace #view-dose .amr-source-note{
+  margin:9px 0 0;padding-top:8px;border-top:1px solid #e6eef3;color:#66809a;
+  font-size:10.5px;font-style:italic;line-height:1.5
+}
+#clinical-workspace #view-dose .amr-empty-message{margin:8px 0 0;color:#536b79;font-size:12.5px;line-height:1.5}
+
+body.amr-modal-open{overflow:hidden}
+#clinical-workspace .amr-modal{position:fixed;inset:0;z-index:3500;display:grid;place-items:center;padding:18px;font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+#clinical-workspace .amr-modal[hidden]{display:none}
+#clinical-workspace .amr-modal-backdrop{position:absolute;inset:0;background:rgba(8,36,63,.66);backdrop-filter:blur(3px)}
+#clinical-workspace .amr-modal-dialog{
+  position:relative;display:flex;width:min(940px,100%);max-height:min(88vh,780px);max-height:min(88dvh,780px);
+  flex-direction:column;overflow:hidden;border:1px solid #c4d7e3;border-radius:14px;background:#fff;box-shadow:0 24px 70px rgba(8,36,63,.34)
+}
+#clinical-workspace .amr-modal-header{
+  display:flex;flex:0 0 auto;align-items:flex-start;justify-content:space-between;gap:18px;
+  padding:17px 20px;background:linear-gradient(90deg,#0d5f92,#0b8ca7);color:#fff
+}
+#clinical-workspace .amr-modal-header h2{margin:0;color:#fff;font-size:18px}
+#clinical-workspace .amr-modal-header p{margin:3px 0 0;color:rgba(255,255,255,.84);font-size:12px}
+#clinical-workspace .amr-modal-close{
+  display:grid;width:34px;height:34px;flex:0 0 auto;place-items:center;margin:0;padding:0;border:1px solid rgba(255,255,255,.5);
+  border-radius:8px;background:rgba(255,255,255,.12);color:#fff;font-size:20px;line-height:1;cursor:pointer
+}
+#clinical-workspace .amr-modal-body{overflow-y:auto;padding:20px;overscroll-behavior:contain}
+#clinical-workspace .amr-lookup-field{display:grid;gap:6px}
+#clinical-workspace .amr-lookup-field label{color:#164b66;font-size:13px;font-weight:850}
+#clinical-workspace .amr-lookup-field select{width:100%;min-height:43px;margin:0;padding:8px 10px;border:1px solid #c4d7e3;border-radius:9px;background:#fff;color:#17364d}
+#clinical-workspace .amr-modal-drug{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:18px}
+#clinical-workspace .amr-modal-drug h3{margin:0;color:#0a659d;font-size:19px}
+#clinical-workspace .amr-data-status{padding:3px 8px;border:1px solid #abdcca;border-radius:999px;background:#effaf3;color:#067647;font-size:11px;font-weight:850}
+#clinical-workspace .amr-data-status.is-unavailable{border-color:#f2c777;background:#fff9ed;color:#8a4b08}
+#clinical-workspace .amr-specimen-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+#clinical-workspace .amr-specimen-button{
+  width:auto;min-height:32px;margin:0;padding:5px 11px;border:1px solid #c4d7e3;border-radius:999px;
+  background:#fff;color:#4d6978;font-size:12px;font-weight:800;cursor:pointer
+}
+#clinical-workspace .amr-specimen-button.is-active{border-color:#0a659d;background:#0a659d;color:#fff}
+#clinical-workspace .amr-detail-content{margin-top:15px}
+#clinical-workspace .amr-detail-head{padding:7px 0;border-bottom:1px solid #c4d7e3;color:#657d8c;font-size:11px;font-weight:850;letter-spacing:.04em;text-transform:uppercase}
+#clinical-workspace .amr-detail-head span:nth-child(3),#clinical-workspace .amr-detail-head span:nth-child(4){text-align:right}
+#clinical-workspace .amr-detail-list .amr-data-row{min-height:38px;border-top:1px solid #e6eef3}
+#clinical-workspace .amr-notes{display:grid;gap:10px;margin-top:17px}
+#clinical-workspace .amr-note-block{padding:11px 13px;border:1px solid #c8ddea;border-radius:9px;background:#f0f8ff}
+#clinical-workspace .amr-note-block h3{margin:0;color:#0a659d;font-size:13px}
+#clinical-workspace .amr-note-block ul{display:grid;gap:4px;margin:7px 0 0;padding-left:18px;color:#4d6978;font-size:12.5px;line-height:1.5}
+#clinical-workspace .amr-warning,#clinical-workspace .amr-source-link,#clinical-workspace .amr-modal .amr-empty-message{margin:0;color:#657d8c;font-size:12px;line-height:1.55}
+#clinical-workspace .amr-modal .amr-empty-message{margin-top:12px;padding:12px;border-left:3px solid #e4a020;border-radius:7px;background:#fff9ed;color:#536b79}
+#clinical-workspace .amr-source-link{font-style:italic}
+#clinical-workspace .amr-source-link a{color:#0a659d;font-weight:800;text-decoration:underline;text-underline-offset:2px}
+
+@media(max-width:680px){
+  #clinical-workspace #view-dose .amr-summary-card{padding:11px 12px}
+  #clinical-workspace #view-dose .amr-data-row.is-compact{grid-template-columns:minmax(0,1.42fr) minmax(64px,.9fr) 48px;gap:8px}
+  #clinical-workspace .amr-modal{padding:0}
+  #clinical-workspace .amr-modal-dialog{width:100%;max-height:100vh;max-height:100dvh;border:0;border-radius:0}
+  #clinical-workspace .amr-modal-body{padding:16px}
+  #clinical-workspace .amr-detail-head{display:none}
+  #clinical-workspace .amr-detail-list .amr-data-row{grid-template-columns:minmax(0,1fr) auto;gap:5px 10px;padding:8px 0}
+  #clinical-workspace .amr-detail-list .amr-organism,#clinical-workspace .amr-detail-list .amr-sample{grid-column:1/-1}
+  #clinical-workspace .amr-detail-list .amr-percent{grid-column:2}
+  #clinical-workspace .amr-detail-list .amr-sample{text-align:left}
+}
