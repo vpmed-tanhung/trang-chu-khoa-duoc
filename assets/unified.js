@@ -112,7 +112,19 @@ $('#q').oninput=()=>{renderDrugList();const f=filtered();if(f.length&&!f.some(x=
 $('#drug').innerHTML=D.map(x=>`<option value="${x.id}">${esc(x.brand)} — ${esc(x.active)}</option>`).join('');const KEY='vpmed_dose_history_v6';try{localStorage.removeItem('vpmed_dose_history_v5');localStorage.removeItem('vpmed_dose_history_v4');localStorage.removeItem('vpmed_dose_history_v3')}catch{}
 function loadHist(){try{return JSON.parse(localStorage.getItem(KEY)||'[]')}catch{return[]}}
 function saveHist(a){localStorage.setItem(KEY,JSON.stringify(a.slice(0,100)))}
-function renderHist(){const h=loadHist(),manageVisible=!$('#historyManageHeading')?.hidden,manageCell=manageVisible?'<td>—</td>':'';$('#hist').innerHTML=h.map(x=>`<tr><td>${esc(x.time)}</td><td>${esc(x.patientCode||'—')}</td><td>${esc(x.department||'—')}</td><td>${esc(x.crcl)} mL/ph</td><td>${esc(x.egfr||'—')}</td><td>${esc(x.drug)}</td><td>${esc(x.advice)}</td>${manageCell}</tr>`).join('')||`<tr><td colspan="${manageVisible?8:7}" style="text-align:center">Chưa có lịch sử</td></tr>`}
+function renderHist(){
+  const h=loadHist(),manageVisible=!$('#historyManageHeading')?.hidden;
+  const manageCell=manageVisible?'<td data-label="Quản lý">—</td>':'';
+  $('#hist').innerHTML=h.map(x=>`<tr>
+    <td data-label="Thời gian">${esc(x.time)}</td>
+    <td data-label="Mã bệnh nhân">${esc(x.patientCode||'—')}</td>
+    <td data-label="Khoa/phòng">${esc(x.department||'—')}</td>
+    <td data-label="CrCl">${esc(x.crcl)} mL/ph</td>
+    <td data-label="eGFR">${esc(x.egfr||'—')}</td>
+    <td data-label="Thuốc">${esc(x.drug)}</td>
+    <td data-label="Gợi ý">${esc(x.advice)}</td>${manageCell}
+  </tr>`).join('')||`<tr><td colspan="${manageVisible?8:7}" style="text-align:center">Chưa có lịch sử</td></tr>`
+}
 renderHist();$('#clear').onclick=()=>{if(confirm('Xóa toàn bộ lịch sử trên thiết bị này?')){saveHist([]);renderHist()}};
 $('#exportHist').onclick=()=>{const h=loadHist();if(!h.length){alert('Chưa có lịch sử để xuất.');return}const rows=[['Thời gian','Mã bệnh nhân','Khoa/phòng sử dụng','CrCl','eGFR','Thuốc','Gợi ý'],...h.map(x=>[x.time,x.patientCode||'',x.department||'',x.crcl,x.egfr||'',x.drug,x.advice])];const csv='\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='lich-su-tra-cuu-khang-sinh.csv';a.click();URL.revokeObjectURL(a.href)};
 $('#drug').addEventListener('change',()=>{const d=D.find(x=>String(x.id)===String($('#drug').value));$('#output').className='empty-state';$('#output').innerHTML=`<div>💊</div><b>Đã chọn ${esc(d?.brand||'kháng sinh')}</b><span>Bấm “Tính CrCl và gợi ý liều” để cập nhật đúng thuốc đang chọn.</span>`});

@@ -10,7 +10,7 @@ const shell = fs.readFileSync(path.join(root, 'assets/platform-shell.js'), 'utf8
 const worker = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
 const batchUi = fs.readFileSync(path.join(root, 'assets/petct-tool.js'), 'utf8');
 const qcUi = fs.readFileSync(path.join(root, 'assets/petct-qc.js'), 'utf8');
-const qcConfig = fs.readFileSync(path.join(root, 'CAU_HINH_SUPABASE.js'), 'utf8');
+const qcConfig = fs.readFileSync(path.join(root, 'assets/petct-qc-supabase-config.js'), 'utf8');
 const qcSql = fs.readFileSync(path.join(root, 'supabase/qc_records.sql'), 'utf8');
 
 const qcPosition = index.indexOf('id="petctQcModule"');
@@ -40,22 +40,24 @@ for (const removedCode of ['function calc(', 'function clearPatient(', 'const tr
 }
 
 assert(shell.includes('assets/petct-qc-calculator.js?v=20260914-qc-v1'));
-assert(shell.includes('CAU_HINH_SUPABASE.js?v=20260914-root-v3'));
-assert(shell.includes('assets/petct-qc.js?v=20260914-supabase-delete-v2'));
+assert(shell.includes('assets/petct-qc-supabase-config.js?v=20260918-qc-live-v2'));
+assert(shell.includes('assets/petct-qc.js?v=20260918-clean-copy-v4'));
 assert(!shell.includes('petct_step_form.js'));
 assert(worker.includes("'./assets/petct-qc-calculator.js'"));
-assert(worker.includes("'./CAU_HINH_SUPABASE.js'"));
+assert(worker.includes("'./assets/petct-qc-supabase-config.js'"));
 assert(worker.includes("'./assets/petct-qc.js'"));
 assert(!worker.includes('petct_step_form.js'));
 
 assert(index.includes('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2'));
-assert(index.includes('assets/platform-shell.js?v=20260915-amr-v1'));
+assert(index.includes('assets/platform-shell.js?v=20260918-qc-copy-clean-v3'));
+assert(!index.includes('Lịch sử QC trên thiết bị và Supabase'));
+assert(!qcUi.includes('Đã đồng bộ Supabase ·'));
 assert(index.includes('id="qcSyncButton"'));
 assert(index.includes('Làm mới / Đồng bộ'));
 assert(index.includes('id="qcClearSavedButton"'));
 assert(index.includes('Xóa toàn bộ dữ liệu'));
-assert(qcConfig.includes("const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';"));
-assert(qcConfig.includes("const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';"));
+assert(qcConfig.includes("const SUPABASE_URL = 'https://jaswtdcgrfbygmdxvumu.supabase.co';"));
+assert(qcConfig.includes("const SUPABASE_ANON_KEY = 'sb_publishable_"));
 assert(qcUi.includes("const supabaseTable = 'qc_records'"));
 assert(qcUi.includes('.insert(toSupabaseRow(record))'));
 assert(qcUi.includes(".delete()\n      .eq('client_record_id', clientRecordId)"));
@@ -98,8 +100,8 @@ for (const header of expectedHeaders) {
 assert(qcUi.includes("const storageKey = 'vpmed-petct-qc-records-v1'"));
 assert(qcUi.includes("'\\uFEFFsep=;\\r\\n'"));
 
-assert(!fs.existsSync(path.join(root, 'assets/petct_step_form.js')));
-assert(!fs.existsSync(path.join(root, 'assets/js/module4-petct-dose.js')));
-assert(!fs.existsSync(path.join(root, 'assets/petct-qc-supabase-config.js')), 'Không được giữ tệp cấu hình cũ dễ gây chỉnh nhầm');
+assert(!shell.includes('assets/petct_step_form.js'));
+assert(!shell.includes('assets/js/module4-petct-dose.js'));
+assert(fs.existsSync(path.join(root, 'assets/petct-qc-supabase-config.js')), 'Thiếu cấu hình Supabase chuyên biệt cho PET/CT QC');
 
 console.log('PET/CT QC integration tests: OK');

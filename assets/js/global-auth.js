@@ -16,6 +16,8 @@
   ]);
   var listeners = new Set();
   var refreshPromise = null;
+  var auditBridgePromise = null;
+  var auditBridgeUserId = '';
   var state = {
     status: 'loading',
     authenticated: false,
@@ -94,6 +96,188 @@
     });
   }
 
+  /*
+   * Cầu nối dữ liệu dùng chung cho các mô-đun tính liều.
+   *
+   * Website hiện xác thực bằng KHOA_DUOC_AUTH, trong khi hai mô-đun lịch sử
+   * cũ vẫn chờ VPMED_AUTH.client có giao diện giống Supabase JS. Cầu nối REST
+   * bên dưới dùng chính access token đang đăng nhập, không tạo phiên thứ hai và
+   * không phụ thuộc thời điểm thư viện Supabase CDN tải xong.
+   */
+  function createAuditDataClient() {
+    function AuditQuery(table) {
+      this.table = table;
+      this.operation = 'select';
+      this.selection = '*';
+      this.payload = null;
+      this.filters = [];
+      this.ordering = null;
+      this.rowLimit = null;
+    }
+
+    AuditQuery.prototype.select = function (columns) {
+      this.selection = columns || '*';
+      return this;
+    };
+
+    AuditQuery.prototype.insert = function (payload) {
+      this.operation = 'insert';
+      this.payload = payload;
+      this.selection = '';
+      return this;
+    };
+
+    AuditQuery.prototype.delete = function () {
+      this.operation = 'delete';
+      this.selection = '';
+      return this;
+    };
+
+    AuditQuery.prototype.eq = function (column, value) {
+      this.filters.push({ column: column, operator: 'eq', value: value });
+      return this;
+    };
+
+    AuditQuery.prototype.in = function (column, values) {
+      this.filters.push({ column: column, operator: 'in', value: Array.isArray(values) ? values : [] });
+      return this;
+    };
+
+    AuditQuery.prototype.order = function (column, options) {
+      this.ordering = column + ((options && options.ascending === false) ? '.desc' : '.asc');
+      return this;
+    };
+
+    AuditQuery.prototype.limit = function (value) {
+      this.rowLimit = Number(value);
+      return this;
+    };
+
+    AuditQuery.prototype.execute = function () {
+      var query = this;
+      var url = new URL(baseUrl + '/rest/v1/' + encodeURIComponent(query.table));
+      if (query.selection) url.searchParams.set('select', query.selection);
+      query.filters.forEach(function (filter) {
+        var filterValue = filter.operator === 'in'
+          ? 'in.(' + filter.value.map(function (value) { return String(value); }).join(',') + ')'
+          : filter.operator + '.' + String(filter.value);
+        url.searchParams.append(filter.column, filterValue);
+      });
+      if (query.ordering) url.searchParams.set('order', query.ordering);
+      if (Number.isFinite(query.rowLimit) && query.rowLimit > 0) url.searchParams.set('limit', String(query.rowLimit));
+
+      return getAccessToken().then(function (token) {
+        var headers = new Headers({
+          apikey: apiKey,
+          Authorization: 'Bearer ' + token,
+          Accept: 'application/json'
+        });
+        var options = { method: 'GET', headers: headers };
+        if (query.operation === 'insert') {
+          options.method = 'POST';
+          headers.set('Content-Type', 'application/json');
+          headers.set('Prefer', query.selection ? 'return=representation' : 'return=minimal');
+          options.body = JSON.stringify(query.payload);
+        } else if (query.operation === 'delete') {
+          options.method = 'DELETE';
+          headers.set('Prefer', query.selection ? 'return=representation' : 'return=minimal');
+        }
+        return fetch(url.href, options);
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          var payload = null;
+          if (text) {
+            try { payload = JSON.parse(text); } catch (error) { payload = text; }
+          }
+          if (!response.ok) {
+            var failure = payload && typeof payload === 'object' ? payload : { message: String(payload || 'Lỗi Supabase') };
+            failure.status = response.status;
+            return { data: null, error: failure };
+          }
+          return { data: payload, error: null };
+        });
+      }).catch(function (error) {
+        return { data: null, error: { message: error && error.message ? error.message : String(error) } };
+      });
+    };
+
+    AuditQuery.prototype.then = function (resolve, reject) {
+      return this.execute().then(resolve, reject);
+    };
+
+    function rpc(name, args) {
+      return getAccessToken().then(function (token) {
+        return fetch(baseUrl + '/rest/v1/rpc/' + encodeURIComponent(name), {
+          method: 'POST',
+          headers: {
+            apikey: apiKey,
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'application/json',
+            Accept: 'application/json'
+          },
+          body: JSON.stringify(args || {})
+        });
+      }).then(function (response) {
+        return response.text().then(function (text) {
+          var payload = null;
+          if (text) {
+            try { payload = JSON.parse(text); } catch (error) { payload = text; }
+          }
+          if (!response.ok) return { data: null, error: payload || { message: 'Không gọi được RPC Supabase.' } };
+          return { data: payload, error: null };
+        });
+      }).catch(function (error) {
+        return { data: null, error: { message: error && error.message ? error.message : String(error) } };
+      });
+    }
+
+    return Object.freeze({
+      from: function (table) { return new AuditQuery(table); },
+      rpc: rpc
+    });
+  }
+
+  function clearAuditBridge() {
+    auditBridgeUserId = '';
+    auditBridgePromise = null;
+    window.VPMED_AUTH = null;
+  }
+
+  function syncClinicalAuditBridge() {
+    var user = state.user;
+    if (!state.authenticated || !user || !user.id || !configured()) {
+      clearAuditBridge();
+      return Promise.resolve(null);
+    }
+    if (auditBridgeUserId === user.id && window.VPMED_AUTH) return Promise.resolve(window.VPMED_AUTH);
+    if (auditBridgePromise) return auditBridgePromise;
+
+    var client = createAuditDataClient();
+    auditBridgePromise = client.rpc('get_my_pharmacy_staff_profile').then(function (result) {
+      if (!state.authenticated || !state.user || state.user.id !== user.id) return null;
+      var profileData = result && !result.error ? result.data : null;
+      var profile = Array.isArray(profileData) ? profileData[0] : profileData;
+      profile = profile && typeof profile === 'object' ? profile : {};
+      var bridge = Object.freeze({
+        client: client,
+        user: user,
+        profile: Object.freeze({
+          role: profile.role === 'admin' ? 'admin' : 'user',
+          full_name: profile.full_name || user.email || 'Nhân viên Khoa Dược',
+          job_title: profile.job_title || 'Nhân viên Khoa Dược',
+          workplace: profile.department || 'Khoa Dược'
+        })
+      });
+      auditBridgeUserId = user.id;
+      window.VPMED_AUTH = bridge;
+      window.dispatchEvent(new CustomEvent('vpmed-auth-ready', { detail: bridge }));
+      return bridge;
+    }).finally(function () {
+      auditBridgePromise = null;
+    });
+    return auditBridgePromise;
+  }
+
   function readSession() {
     if (state.session) return state.session;
     try {
@@ -147,6 +331,7 @@
       try { listener(getState()); } catch (error) { console.error(error); }
     });
     window.dispatchEvent(new CustomEvent('khoa-duoc-auth-changed', { detail: getState() }));
+    syncClinicalAuditBridge();
   }
 
   function clearSession() {

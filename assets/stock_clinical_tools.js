@@ -368,7 +368,7 @@
     function renderHistory(){
       const body=root.querySelector('#stockPedHistoryBody');if(!body)return;
       if(!historyRows.length){body.innerHTML=`<tr><td colspan="${historyColspan()}" style="text-align:center">Chưa có lịch sử tra cứu Nhi khoa dùng chung.</td></tr>`;return;}
-      body.innerHTML=historyRows.map((item)=>`<tr><td>${esc(formatDate(item.created_at))}</td><td><b>${esc(item.patient_code||'—')}</b></td><td><b>${esc(item.department||'Chưa cập nhật')}</b></td><td>${esc(item.renal_band||'—')}</td><td>${esc(item.drug_name||'—')}</td><td>${esc(item.result_summary||'—')}</td>${isAdmin()?`<td><button type="button" class="history-delete-row" data-stock-ped-delete="${esc(item.id)}">Xóa</button></td>`:''}</tr>`).join('');
+      body.innerHTML=historyRows.map((item)=>`<tr><td data-label="Thời gian">${esc(formatDate(item.created_at))}</td><td data-label="Mã bệnh nhân"><b>${esc(item.patient_code||'—')}</b></td><td data-label="Khoa/phòng"><b>${esc(item.department||'Chưa cập nhật')}</b></td><td data-label="Tuổi/PMA · cân nặng">${esc(item.renal_band||'—')}</td><td data-label="Thuốc">${esc(item.drug_name||'—')}</td><td data-label="Gợi ý">${esc(item.result_summary||'—')}</td>${isAdmin()?`<td data-label="Quản lý"><button type="button" class="history-delete-row" data-stock-ped-delete="${esc(item.id)}">Xóa</button></td>`:''}</tr>`).join('');
       if(isAdmin())body.querySelectorAll('[data-stock-ped-delete]').forEach((button)=>button.addEventListener('click',()=>deleteHistoryRow(button.dataset.stockPedDelete,button)));
     }
     async function refreshPediatricHistory(options){
@@ -387,7 +387,7 @@
       setAuditStatus('Đang lưu lượt tra cứu Nhi khoa…');
       let response=await insertPediatricLog(payload,'pediatric_antibiotic_dose');
       if(response.error&&(String(response.error.code)==='23514'||/lookup_type/i.test(String(response.error.message||''))))response=await insertPediatricLog(payload,'antibiotic_renal_dose');
-      if(response.error){setAuditStatus(`Kết quả đã tính nhưng chưa lưu được: ${auditError(response.error)}. Admin chạy supabase/sua_loi_ghi_nhat_ky.sql.`,'error');return;}
+      if(response.error){setAuditStatus(`Kết quả đã tính nhưng chưa lưu được: ${auditError(response.error)}. Admin chạy supabase/06_LUU_LICH_SU_CONG_CU.sql.`,'error');return;}
       await refreshPediatricHistory();
     }
     async function deleteHistoryRow(id,button){

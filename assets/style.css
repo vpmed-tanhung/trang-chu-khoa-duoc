@@ -342,7 +342,7 @@
 #clinical-workspace #view-petct-dose .petct-qc-saved-heading{
   display:flex;
   align-items:flex-end;
-  justify-content:space-between;
+  justify-content:flex-end;
   gap:16px;
   margin-top:18px;
   padding-top:16px;

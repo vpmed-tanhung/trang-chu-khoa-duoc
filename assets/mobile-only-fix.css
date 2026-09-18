@@ -720,3 +720,218 @@
     width: 50px;
   }
 }
+
+/* Bản v4: thao tác thực tế trên điện thoại cho ba mô-đun có lưu dữ liệu. */
+@media screen and (max-width: 767px) {
+  .site-header > .container {
+    width: 100% !important;
+    padding-right: max(10px, env(safe-area-inset-right));
+    padding-left: max(10px, env(safe-area-inset-left));
+  }
+
+  .site-header .brand-logo {
+    width: 58px !important;
+    flex-basis: 58px !important;
+  }
+
+  .site-header .brand-text .hospital,
+  .site-header .auth-user,
+  .site-header .auth-guest {
+    display: none !important;
+  }
+
+  .site-header .brand-text .dept {
+    font-size: .9rem;
+  }
+
+  .site-header .main-nav {
+    top: 100%;
+    right: 8px;
+    left: 8px;
+    width: auto !important;
+    max-height: calc(100dvh - 72px);
+    border: 1px solid #d5e3ed;
+    border-radius: 0 0 14px 14px !important;
+    box-shadow: 0 16px 34px rgba(20, 55, 82, .16);
+  }
+
+  .site-header .main-nav > ul {
+    width: 100%;
+    padding: 8px 12px 14px;
+  }
+
+  .clinical-tools-section {
+    padding-block: 20px !important;
+  }
+
+  #clinical-workspace .app-shell {
+    padding: 10px 9px 26px !important;
+  }
+
+  #clinical-workspace .page-title h1 {
+    font-size: clamp(22px, 7vw, 27px);
+  }
+
+  #clinical-workspace .form-card,
+  #clinical-workspace .result-card,
+  #clinical-workspace .section-card,
+  #clinical-workspace #view-petct-dose .petct-inline .card {
+    padding: 13px !important;
+  }
+
+  #clinical-workspace fieldset {
+    min-width: 0;
+  }
+
+  #clinical-workspace .form-card .btn,
+  #clinical-workspace .stock-pediatric-form .btn,
+  #clinical-workspace #view-petct-dose .petct-qc-actions button,
+  #clinical-workspace #view-petct-dose .petct-qc-sync-controls button {
+    width: 100% !important;
+    min-height: 46px;
+  }
+
+  #clinical-workspace #view-petct-dose .petct-qc-sync-controls {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+  }
+
+  #clinical-workspace #view-petct-dose #qcSavedCount {
+    justify-self: start;
+  }
+
+  /* Lịch sử được chuyển thành từng thẻ; người dùng không còn phải kéo ngang
+     một bảng 7–18 cột để xem hoặc xóa bản ghi. */
+  #clinical-workspace #view-dose .history-card .table-wrap,
+  #clinical-workspace .stock-pediatric-history .table-wrap,
+  #clinical-workspace #view-petct-dose .petct-qc-table-wrap {
+    overflow: visible !important;
+    border: 0;
+  }
+
+  #clinical-workspace #view-dose .history-card table,
+  #clinical-workspace .stock-pediatric-history table,
+  #clinical-workspace #view-petct-dose .petct-qc-table {
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  #clinical-workspace #view-dose .history-card thead,
+  #clinical-workspace .stock-pediatric-history thead,
+  #clinical-workspace #view-petct-dose .petct-qc-table thead {
+    display: none;
+  }
+
+  #clinical-workspace #view-dose .history-card tbody,
+  #clinical-workspace .stock-pediatric-history tbody,
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  #clinical-workspace #view-dose .history-card tbody tr,
+  #clinical-workspace .stock-pediatric-history tbody tr,
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody tr {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #d5e3ed;
+    border-radius: 13px;
+    background: #fff;
+    box-shadow: 0 5px 14px rgba(31, 74, 108, .07);
+  }
+
+  #clinical-workspace #view-dose .history-card tbody td,
+  #clinical-workspace .stock-pediatric-history tbody td,
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody td {
+    display: grid;
+    grid-template-columns: minmax(108px, 38%) minmax(0, 1fr);
+    gap: 10px;
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 9px 10px;
+    border-right: 0;
+    border-bottom: 1px solid #e5edf3;
+    white-space: normal;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+
+  #clinical-workspace #view-dose .history-card tbody td:last-child,
+  #clinical-workspace .stock-pediatric-history tbody td:last-child,
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody td:last-child {
+    border-bottom: 0;
+  }
+
+  #clinical-workspace #view-dose .history-card tbody td::before,
+  #clinical-workspace .stock-pediatric-history tbody td::before,
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody td::before {
+    color: #526b7b;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .02em;
+    text-transform: uppercase;
+    content: attr(data-label);
+  }
+
+  #clinical-workspace #view-dose .history-card tbody td[colspan],
+  #clinical-workspace .stock-pediatric-history tbody td[colspan],
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody td[colspan] {
+    display: block;
+    padding: 18px 12px;
+    text-align: center !important;
+  }
+
+  #clinical-workspace #view-dose .history-card tbody td[colspan]::before,
+  #clinical-workspace .stock-pediatric-history tbody td[colspan]::before,
+  #clinical-workspace #view-petct-dose .petct-qc-table tbody td[colspan]::before {
+    display: none;
+  }
+
+  #clinical-workspace #view-petct-dose .petct-qc-storage-cell {
+    display: grid !important;
+    grid-template-columns: minmax(108px, 38%) minmax(0, 1fr) 44px !important;
+    align-items: center;
+  }
+
+  #clinical-workspace #view-petct-dose .petct-qc-delete,
+  #clinical-workspace .history-delete-row {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Bảng kế hoạch nhiều ca vẫn cần đủ cột; giữ cuộn ngang rõ ràng và cố định
+     cột nhận diện ca để không mất ngữ cảnh khi vuốt. */
+  #clinical-workspace #view-petct-dose .batch-table-wrap {
+    overflow-x: auto !important;
+    scrollbar-gutter: stable;
+    border: 1px solid #cfdee8;
+  }
+
+  #clinical-workspace #view-petct-dose .batch-table-wrap th:first-child,
+  #clinical-workspace #view-petct-dose .batch-table-wrap td:first-child {
+    position: sticky;
+    z-index: 2;
+    left: 0;
+    background: #f4f9fc;
+    box-shadow: 1px 0 0 #cfdee8;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .site-header .brand-logo {
+    width: 50px !important;
+    flex-basis: 50px !important;
+  }
+
+  .site-header .brand-text .dept {
+    max-width: 112px;
+    font-size: .82rem;
+  }
+
+  .site-header .auth-login,
+  .site-header .auth-logout {
+    padding-inline: 8px;
+  }
+}

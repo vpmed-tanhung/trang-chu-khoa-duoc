@@ -72,6 +72,7 @@
   function setCloudStatus(message, state) {
     const output = byId('qcCloudStatus');
     if (!output) return;
+    output.hidden = !message;
     output.className = 'petct-qc-cloud-status' + (state ? ' is-' + state : '');
     output.textContent = message;
   }
@@ -191,24 +192,24 @@
       const aceton = record.mode === 'aceton-nacl';
       const mibi = record.mode === 'mibi-seppak';
       return '<tr>' +
-        '<td>' + displayValue(record.drugName) + '</td>' +
-        '<td>' + displayValue(record.date) + '</td>' +
-        '<td>' + displayValue(record.lotNumber) + '</td>' +
-        '<td>' + displayValue(record.manufacturer) + '</td>' +
-        '<td>' + displayValue(record.boundActivity) + '</td>' +
-        '<td>' + displayValue(aceton ? record.acetonTop : '') + '</td>' +
-        '<td>' + displayValue(aceton ? record.acetonBot : '') + '</td>' +
-        '<td>' + displayValue(aceton ? record.naclTop : '') + '</td>' +
-        '<td>' + displayValue(aceton ? record.naclBot : '') + '</td>' +
-        '<td>' + displayValue(mibi ? record.sepPak : '') + '</td>' +
-        '<td>' + displayValue(mibi ? record.ethanol : '') + '</td>' +
-        '<td><strong>' + formatPercent(Number(record.boundPercent)) + '</strong></td>' +
-        '<td>' + displayValue(record.ph) + '</td>' +
-        '<td>' + displayValue(record.mo99) + '</td>' +
-        '<td>' + displayValue(aluminumText(record.aluminum)) + '</td>' +
-        '<td>' + displayValue(record.compounder) + '</td>' +
-        '<td>' + displayValue(record.operator) + '</td>' +
-        '<td class="petct-qc-storage-cell">' + storageCell(record) + '</td>' +
+        '<td data-label="Dược chất">' + displayValue(record.drugName) + '</td>' +
+        '<td data-label="Ngày thực hiện">' + displayValue(record.date) + '</td>' +
+        '<td data-label="Số lô">' + displayValue(record.lotNumber) + '</td>' +
+        '<td data-label="Hãng sản xuất">' + displayValue(record.manufacturer) + '</td>' +
+        '<td data-label="Hoạt độ gắn (mCi)">' + displayValue(record.boundActivity) + '</td>' +
+        '<td data-label="Aceton TOP (µCi)">' + displayValue(aceton ? record.acetonTop : '') + '</td>' +
+        '<td data-label="Aceton BOT (µCi)">' + displayValue(aceton ? record.acetonBot : '') + '</td>' +
+        '<td data-label="NaCl TOP (µCi)">' + displayValue(aceton ? record.naclTop : '') + '</td>' +
+        '<td data-label="NaCl BOT (µCi)">' + displayValue(aceton ? record.naclBot : '') + '</td>' +
+        '<td data-label="Sep-Pak (µCi)">' + displayValue(mibi ? record.sepPak : '') + '</td>' +
+        '<td data-label="Ethanol (µCi)">' + displayValue(mibi ? record.ethanol : '') + '</td>' +
+        '<td data-label="HS gắn"><strong>' + formatPercent(Number(record.boundPercent)) + '</strong></td>' +
+        '<td data-label="pH">' + displayValue(record.ph) + '</td>' +
+        '<td data-label="Mo-99 (µCi)">' + displayValue(record.mo99) + '</td>' +
+        '<td data-label="Nhôm tạp chất">' + displayValue(aluminumText(record.aluminum)) + '</td>' +
+        '<td data-label="Người pha chế">' + displayValue(record.compounder) + '</td>' +
+        '<td data-label="Người QC">' + displayValue(record.operator) + '</td>' +
+        '<td data-label="Lưu trữ" class="petct-qc-storage-cell">' + storageCell(record) + '</td>' +
         '</tr>';
     }).join('');
   }
@@ -460,7 +461,7 @@
           setCloudStatus('Đã tải lịch sử Supabase; còn ' + result.failedCount + ' bản ghi cục bộ chờ đồng bộ.', 'pending');
           if (manual) setFormMessage('Đã làm mới lịch sử; còn bản ghi cục bộ chờ gửi lại.', '');
         } else {
-          setCloudStatus('Đã đồng bộ Supabase · ' + cloudRecords.length + ' bản ghi trên đám mây.', 'ok');
+          setCloudStatus('', 'ok');
           if (manual) setFormMessage('Đã làm mới và đồng bộ lịch sử QC.', 'ok');
         }
       } catch (error) {

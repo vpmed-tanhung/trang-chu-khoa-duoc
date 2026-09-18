@@ -1,0 +1,40 @@
+BẢN SỬA 5.9.9 — GIAO DIỆN ĐIỆN THOẠI VÀ LƯU SUPABASE
+Ngày đóng gói: 18/09/2026
+
+1. TRIỂN KHAI WEBSITE
+- Tải toàn bộ thư mục nguồn lên hosting, không chỉ chép riêng index.html.
+- Sau khi triển khai, mở website và tải lại cứng một lần để service worker nhận
+  build 2026.09.18.92.
+
+2. BẮT BUỘC CHẠY MỘT LẦN CHO LỊCH SỬ SUY THẬN / NHI KHOA
+- Mở đúng Supabase project đang khai báo tại assets/js/server-config.js.
+- Vào SQL Editor.
+- Chạy toàn bộ file: supabase/06_LUU_LICH_SU_CONG_CU.sql
+- Không chạy renal_lookup_audit.sql trên project hiện tại vì file cũ dùng kiến
+  trúc tài khoản profiles, không khớp pharmacy_staff_members của website.
+
+3. PET/CT QC
+- Mô-đun đã được nối lại với cấu hình đúng tại
+  assets/petct-qc-supabase-config.js.
+- Bảng qc_records trên project PET/CT phải được giữ nguyên. Nếu cài project mới,
+  chạy supabase/qc_records.sql trước khi sử dụng.
+
+4. KIỂM TRA SAU TRIỂN KHAI
+- Đăng nhập tài khoản Khoa Dược.
+- Suy thận: tính một ca có mã bệnh nhân, kiểm tra thông báo lưu và lịch sử chung.
+- Nhi khoa: tính một ca, kiểm tra lịch sử dùng chung.
+- PET/CT > QC: lưu một bản ghi, bấm Làm mới / Đồng bộ và xác nhận bản ghi còn đó.
+- Trên điện thoại: mở menu, nhập form, xem lịch sử dạng thẻ và thử nút xóa của
+  tài khoản quản trị.
+
+5. THAY ĐỔI CHÍNH
+- Header, menu, form, nút thao tác và bảng lịch sử dùng được trên màn hình nhỏ.
+- Bảng lịch sử 7–18 cột chuyển thành thẻ trên điện thoại.
+- Sửa PET/CT nạp nhầm tệp cấu hình Supabase mẫu.
+- Nối KHOA_DUOC_AUTH sang mô-đun lịch sử suy thận/Nhi khoa bằng access token
+  hiện tại; không yêu cầu đăng nhập lần hai.
+- Thêm migration RLS/RPC khớp hệ tài khoản pharmacy_staff_members.
+- Khôi phục tệp ICD-10 runtime từng bị cắt ngang trong gói nguồn.
+
+LƯU Ý: Công cụ liều là hỗ trợ chuyên môn; luôn xác nhận chỉ định, chức năng cơ
+quan, hướng dẫn/phác đồ hiện hành và dữ liệu người bệnh trước khi áp dụng.

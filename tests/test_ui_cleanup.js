@@ -28,7 +28,8 @@ assert.ok(css.includes('border-radius: 0 !important;'), 'Danh sách giới thi�
 assert.ok(css.includes('box-shadow: none !important;'), 'Danh sách giới thiệu không được có bóng card');
 
 assert.ok(
-  unified.includes("<td>${esc(x.department||'—')}</td><td>${esc(x.crcl)} mL/ph</td>"),
+  unified.includes('<td data-label="Khoa/phòng">${esc(x.department||\'—\')}</td>') &&
+  unified.includes('<td data-label="CrCl">${esc(x.crcl)} mL/ph</td>'),
   'Dòng lịch sử phải có cột Khoa/phòng trước CrCl'
 );
 assert.ok(unified.includes("['Thời gian','Mã bệnh nhân','Khoa/phòng sử dụng','CrCl','eGFR','Thuốc','Gợi ý']"));

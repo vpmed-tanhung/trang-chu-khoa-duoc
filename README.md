@@ -1,5 +1,10 @@
 # Website Khoa Dược – Bệnh viện VPMED Tân Hưng
 
+**Bản hiện tại:** v5.9.10 (build 2026.09.18.93). Xem
+`DOC_TRIEN_KHAI_BAN_SUA_5.9.10.txt` trước khi triển khai; project Supabase đang
+hoạt động cần chạy một lần `supabase/06_LUU_LICH_SU_CONG_CU.sql` để bật lưu lịch
+sử công cụ suy thận và kháng sinh Nhi.
+
 Website Khoa Dược được xây dựng nhằm tạo **không gian tra cứu tập trung**, hỗ trợ nhân viên y tế tiếp cận nhanh các tài liệu và công cụ phục vụ công tác chuyên môn tại bệnh viện.
 
 ## Chức năng chính

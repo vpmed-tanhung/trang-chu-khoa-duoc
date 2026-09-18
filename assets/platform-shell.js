@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD_VERSION = '2026.09.15.91';
+  const BUILD_VERSION = '2026.09.18.93';
   const IS_INSTALLED_APP = (() => {
     try {
       return new URL(location.href).searchParams.get('vpmed_app') === 'installed' ||
@@ -37,8 +37,8 @@
       'assets/antibiotic_38_complete.js?v=20260716-38-drugs',
       'assets/renal_database_20260723.js?v=20260723-renal-only-v4',
       'assets/diseases.js',
-      'assets/unified.js?v=20260915-amr-v1',
-      'assets/vpmed-renal-audit.js?v=20260814-module-history-v5',
+      'assets/unified.js?v=20260918-mobile-history-v2',
+      'assets/vpmed-renal-audit.js?v=20260918-auth-bridge-v2',
       'assets/antibiotic_consultation.js?v=20260814-short-module-copy-v1',
       'assets/dose_24h_summary.js?v=20260822-renal-layout-v4-large-clean',
       'assets/vancomycin_renal_v2.js?v=20260723-renal-only-v6',
@@ -123,8 +123,8 @@
       scripts: [
         'assets/petct_batch_calculator.js?v=20260802-formula-only',
         'assets/petct-qc-calculator.js?v=20260914-qc-v1',
-        'CAU_HINH_SUPABASE.js?v=20260914-root-v3',
-        'assets/petct-qc.js?v=20260914-supabase-delete-v2',
+        'assets/petct-qc-supabase-config.js?v=20260918-qc-live-v2',
+        'assets/petct-qc.js?v=20260918-clean-copy-v4',
         'assets/petct-tool.js?v=20260914-batch-only-v1'
       ]
     },
@@ -143,7 +143,7 @@
       ],
       scripts: [
         'assets/stock_clinical_data_20260814.js?v=20260822-pediatric-expansion-v1',
-        'assets/stock_clinical_tools.js?v=20260822-pediatric-expansion-v1',
+        'assets/stock_clinical_tools.js?v=20260918-pediatric-audit-v2',
         'assets/pediatric-dosing.js?v=20260910-pkpd-mic-v1'
       ]
     },

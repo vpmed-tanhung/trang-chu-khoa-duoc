@@ -1,10 +1,10 @@
 {
-  "version": "2026.09.14.90",
-  "displayVersion": "5.9.8",
-  "updatedAt": "2026-09-14T19:48:04+07:00",
-  "note": "Đồng bộ phiên bản hiển thị trên footer toàn bộ website thành v5.9.8.",
-  "buildId": "v5.9.8-site-version-footer-20260914-90",
-  "clinicalDataVersion": "sha256-0bdf9491edc4a09ff6c8209a",
-  "previousVersion": "2026.09.14.89",
-  "previousDisplayVersion": "5.9.7"
+  "version": "2026.09.18.93",
+  "displayVersion": "5.9.10",
+  "updatedAt": "2026-09-18T20:30:00+07:00",
+  "note": "Tinh gọn giao diện lịch sử PET/CT QC; giữ nguyên đồng bộ Supabase.",
+  "buildId": "v5.9.10-qc-copy-clean-20260918-93",
+  "clinicalDataVersion": "sha256-058cca1983e778d64236598f",
+  "previousVersion": "2026.09.18.92",
+  "previousDisplayVersion": "5.9.9"
 }

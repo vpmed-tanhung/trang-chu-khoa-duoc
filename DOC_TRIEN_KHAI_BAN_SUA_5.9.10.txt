@@ -1,0 +1,14 @@
+BẢN SỬA 5.9.10 — TINH GỌN GIAO DIỆN PET/CT QC
+Ngày đóng gói: 18/09/2026
+
+Thay đổi so với v5.9.9:
+- Bỏ tiêu đề “Lịch sử QC trên thiết bị và Supabase”.
+- Không hiển thị dòng xác nhận “Đã đồng bộ Supabase · ... bản ghi trên đám mây”.
+- Các cảnh báo lỗi, offline hoặc bản ghi chờ đồng bộ vẫn được giữ để người dùng
+  biết khi dữ liệu chưa lưu thành công.
+
+Triển khai:
+- Tải toàn bộ thư mục nguồn lên hosting.
+- Tải lại cứng một lần để service worker nhận build 2026.09.18.93.
+- Nếu chưa thiết lập lịch sử suy thận/Nhi khoa, chạy một lần file
+  supabase/06_LUU_LICH_SU_CONG_CU.sql trên đúng project Supabase.

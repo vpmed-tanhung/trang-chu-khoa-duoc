@@ -64,14 +64,14 @@
     }
     body.innerHTML=sharedRows.map(function(item){
       var manage=isAdmin()?'<td><button type="button" class="history-delete-row" data-delete-history="'+escapeHtml(item.id)+'">Xóa</button></td>':'';
-      return '<tr>'+
-        '<td>'+escapeHtml(formatDate(item.created_at))+'</td>'+
-        '<td><b>'+escapeHtml(item.patient_code||'—')+'</b></td>'+
-        '<td class="history-user-cell"><b>'+escapeHtml(item.department||'Chưa cập nhật')+'</b></td>'+
-        '<td>'+escapeHtml(item.crcl_ml_min==null?'—':item.crcl_ml_min)+' mL/ph</td>'+
-        '<td>'+escapeHtml(item.egfr_ml_min_1_73m2==null?'—':item.egfr_ml_min_1_73m2)+'</td>'+
-        '<td>'+escapeHtml(item.drug_name||'—')+'</td>'+
-        '<td>'+escapeHtml(item.result_summary||item.renal_band||'—')+'</td>'+manage+'</tr>';
+      return '<tr>'+ 
+        '<td data-label="Thời gian">'+escapeHtml(formatDate(item.created_at))+'</td>'+ 
+        '<td data-label="Mã bệnh nhân"><b>'+escapeHtml(item.patient_code||'—')+'</b></td>'+ 
+        '<td data-label="Khoa/phòng" class="history-user-cell"><b>'+escapeHtml(item.department||'Chưa cập nhật')+'</b></td>'+ 
+        '<td data-label="CrCl">'+escapeHtml(item.crcl_ml_min==null?'—':item.crcl_ml_min)+' mL/ph</td>'+ 
+        '<td data-label="eGFR">'+escapeHtml(item.egfr_ml_min_1_73m2==null?'—':item.egfr_ml_min_1_73m2)+'</td>'+ 
+        '<td data-label="Thuốc">'+escapeHtml(item.drug_name||'—')+'</td>'+ 
+        '<td data-label="Gợi ý">'+escapeHtml(item.result_summary||item.renal_band||'—')+'</td>'+manage.replace('<td>','<td data-label="Quản lý">')+'</tr>';
     }).join('');
     if(isAdmin()){
       body.querySelectorAll('[data-delete-history]').forEach(function(button){
@@ -131,7 +131,7 @@
     });
     if(result.error){
       console.error('[renal_lookup_logs:insert]',result.error);
-      setStatus('Kết quả đã tính nhưng chưa lưu được vào lịch sử chung: '+databaseErrorText(result.error)+'. Admin chạy supabase/sua_loi_ghi_nhat_ky.sql.','error');
+      setStatus('Kết quả đã tính nhưng chưa lưu được vào lịch sử chung: '+databaseErrorText(result.error)+'. Admin chạy supabase/06_LUU_LICH_SU_CONG_CU.sql.','error');
       return;
     }
     await refreshSharedHistory();
