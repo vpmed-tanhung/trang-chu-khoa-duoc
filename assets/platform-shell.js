@@ -158,7 +158,7 @@
       styles: [],
       scripts: [
         'assets/pharmacovigilance_alerts_data.js?v=20260711',
-        'assets/pharmacovigilance_auto_data.js?v=20261022084644',
+        'assets/pharmacovigilance_auto_data.js?v=20261022115928',
         'assets/pharmacovigilance_bulletin_76_data.js?v=20260804',
         'assets/pharmacovigilance_auto_editor.js?v=20260823-concise-summary-v2',
         'assets/pharmacovigilance_integration.js?v=20260823-concise-summary-v2'
